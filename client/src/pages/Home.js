@@ -5,6 +5,7 @@ import HeaderLayout from "../components/layout/HeaderLayout";
 import LeftSideLayout from "../components/layout/LeftSideLayout";
 import MainContentLayout from "../components/layout/MainContentLayout";
 import RightSideBarLayout from "../components/layout/RightSideBarLayout";
+
 const HomeContainer = styled.div`
   height: 100vh;
   width: 100vw;
