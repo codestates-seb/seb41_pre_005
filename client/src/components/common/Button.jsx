@@ -1,7 +1,12 @@
 import React from "react";
 
 const Button = (props) => {
-  return <button>클릭</button>;
+  return (
+    <div>
+      <span>변경</span>
+      <button>클릭</button>
+    </div>
+  );
 };
 
 export default Button;
