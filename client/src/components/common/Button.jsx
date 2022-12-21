@@ -5,6 +5,7 @@ const Button = (props) => {
     <div>
       <span>변경</span>
       <button>클릭</button>
+        <span>test</span>
     </div>
   );
 };
