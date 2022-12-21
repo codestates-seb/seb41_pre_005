@@ -52,8 +52,8 @@ public class Question {
 
     public void addUser(User user) {
         this.user = user;
-        if (!this.user.getQuestion().contains(this)) {
-            this.user.getQuestion().add(this);
+        if (!this.user.getQuestions().contains(this)) {
+            this.user.getQuestions().add(this);
         }
     }
 

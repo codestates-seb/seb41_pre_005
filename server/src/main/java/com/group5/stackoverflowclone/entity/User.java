@@ -1,44 +1,46 @@
 package com.group5.stackoverflowclone.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@NoArgsConstructor
+@Entity(name = "USERS")
 public class User {
     @Id
-    @Column(name = "USER_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
+
     private String email;
+
     private String password;
+
     private String displayName;
 
+    @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "users")
-    private List<QuestionVote> questionVotes = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Vote> votes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "users")
-    private List<AnswerVote> answerVotes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "answer")
+    @OneToMany(mappedBy = "user")
     private List<Answer> answers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "user")
     private List<Question> questions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "comment")
-    private List<Comment> votes = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
 
     public User(String email, String password, String displayName) {
         this.email = email;
@@ -46,22 +48,31 @@ public class User {
         this.displayName = displayName;
     }
 
-    public void addVote(QuestionVote questionVote) {
-        votes.add(questionVote);
-//        if (questionVote.getUser() != this) {
-//            questionVote.setUser(this);
-//        }
+    public void addVote(Vote vote) {
+        votes.add(vote);
+        if (vote.getUser() != this) {
+            vote.addUser(this);
+        }
     }
 
     public void addAnswer(Answer answer) {
-        votes.add(answer);
+        answers.add(answer);
+        if (answer.getUser() != this) {
+            answer.addUser(this);
+        }
     }
 
-    public void addVote(Question question) {
-        votes.add(question);
+    public void addQuestion(Question question) {
+        questions.add(question);
+        if (question.getUser() != this) {
+            question.addUser(this);
+        }
     }
 
-    public void addVote(Comment comment) {
-        votes.add(comment);
+    public void addComment(Comment comment) {
+        comments.add(comment);
+        if (comment.getUser() != this) {
+            comment.addUser(this);
+        }
     }
 }

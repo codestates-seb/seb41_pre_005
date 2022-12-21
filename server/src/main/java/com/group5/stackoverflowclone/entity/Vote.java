@@ -1,24 +1,23 @@
 package com.group5.stackoverflowclone.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-public class Comment {
+public class Vote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long commentId;
+    private long voteId;
 
-    private String content;
+    private int amount;
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -34,17 +33,28 @@ public class Comment {
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
 
+    @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
+    private Question question;
+
     public void addUser(User user) {
         this.user = user;
-        if (!this.user.getComments().contains(this)) {
-            this.user.getComments().add(this);
+        if (!this.user.getVotes().contains(this)) {
+            this.user.getVotes().add(this);
         }
     }
 
     public void addAnswer(Answer answer) {
         this.answer = answer;
-        if (!this.answer.getComments().contains(this)) {
-            this.answer.getComments().add(this);
+        if (!this.answer.getVotes().contains(this)) {
+            this.answer.getVotes().add(this);
+        }
+    }
+
+    public void addQuestion(Question question) {
+        this.question = question;
+        if (!this.question.getVotes().contains(this)) {
+            this.question.getVotes().add(this);
         }
     }
 }
