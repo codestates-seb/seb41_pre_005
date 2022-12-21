@@ -22,9 +22,9 @@ const Home = (props) => {
       <BodyContainer>
         <LeftSideLayout></LeftSideLayout>
         <ContentLayout>
-          <MainContentLayout></MainContentLayout>
+          <MainContentLayout />
+          <RightSideBarLayout />
         </ContentLayout>
-        <RightSideBarLayout></RightSideBarLayout>
       </BodyContainer>
     </HomeContainer>
   );
