@@ -1,6 +1,8 @@
-package com.group5.stackoverflowclone.entity;
+package com.group5.stackoverflowclone.domain.vote;
 
-import lombok.AllArgsConstructor;
+import com.group5.stackoverflowclone.domain.answer.entity.Answer;
+import com.group5.stackoverflowclone.domain.question.entity.Question;
+import com.group5.stackoverflowclone.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

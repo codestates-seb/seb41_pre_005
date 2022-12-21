@@ -1,13 +1,13 @@
-package com.group5.stackoverflowclone.entity;
+package com.group5.stackoverflowclone.domain.comment.entity;
 
+import com.group5.stackoverflowclone.domain.user.entity.User;
+import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

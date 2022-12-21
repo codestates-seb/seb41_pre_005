@@ -1,5 +1,6 @@
-package com.group5.stackoverflowclone.entity;
+package com.group5.stackoverflowclone.domain.tag.entity;
 
+import com.group5.stackoverflowclone.domain.question.entity.QuestionTag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,7 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long tagId;
 
-    private String name;
+    private String tagName;
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

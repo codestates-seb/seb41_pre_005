@@ -1,5 +1,8 @@
-package com.group5.stackoverflowclone.entity;
+package com.group5.stackoverflowclone.domain.question.entity;
 
+import com.group5.stackoverflowclone.domain.user.entity.User;
+import com.group5.stackoverflowclone.domain.vote.Vote;
+import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +25,7 @@ public class Question {
 
     private String content;
 
-    private int clicks;
+    private int viewCount;
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
