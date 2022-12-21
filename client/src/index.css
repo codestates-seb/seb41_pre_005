@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ececec;
 }
 
 code {
@@ -20,6 +21,9 @@ code {
 ul,
 ol {
   list-style: none;
+}
+button {
+  border: 0;
 }
 
 a {
