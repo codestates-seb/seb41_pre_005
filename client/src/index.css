@@ -16,14 +16,32 @@ code {
   margin: 0px;
   padding: 0px;
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 ul,
 ol {
   list-style: none;
 }
-button {
-  border: 0;
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+button,
+select {
+  text-transform: none;
+  cursor: pointer;
 }
 
 a {
