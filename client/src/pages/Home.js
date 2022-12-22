@@ -8,7 +8,7 @@ import RightSideBarLayout from "../components/layout/RightSideBarLayout";
 const HomeContainer = styled.div`
   height: 100vh;
   width: 100%;
-  background-color: black;
+  background-color: #f1f2f3;
 `;
 const BodyContainer = styled.div`
   display: flex;
