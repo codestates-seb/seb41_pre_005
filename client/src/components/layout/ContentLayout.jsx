@@ -8,7 +8,6 @@ const ContentContainer = styled.div`
 `;
 
 const ContentLayout = ({ children }) => {
-  console.log(children);
   return <ContentContainer>{children}</ContentContainer>;
 };
 
