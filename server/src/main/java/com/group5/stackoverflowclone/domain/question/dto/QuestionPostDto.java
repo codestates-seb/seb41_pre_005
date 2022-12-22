@@ -1,6 +1,7 @@
 package com.group5.stackoverflowclone.domain.question.dto;
 
 import com.group5.stackoverflowclone.domain.question.entity.QuestionTag;
+import com.group5.stackoverflowclone.domain.tag.dto.TagSimplePostDto;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -14,5 +15,5 @@ public class QuestionPostDto {
     @NotBlank
     private String content;
 
-    private List<QuestionTag> questionTags;
+    private List<TagSimplePostDto> tagIdList;
 }
