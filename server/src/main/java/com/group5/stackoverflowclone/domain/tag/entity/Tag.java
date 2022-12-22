@@ -16,16 +16,9 @@ import java.util.List;
 @Entity
 public class Tag {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long tagId;
 
     private String tagName;
-
-    @Column(updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Column(name = "LAST_MODIFIED_AT")
-    private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "tag")
     private List<QuestionTag> questionTags = new ArrayList<>();
