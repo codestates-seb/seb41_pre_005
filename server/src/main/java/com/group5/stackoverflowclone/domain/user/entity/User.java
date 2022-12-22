@@ -2,7 +2,6 @@ package com.group5.stackoverflowclone.domain.user.entity;
 
 import com.group5.stackoverflowclone.domain.vote.Vote;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
-import com.group5.stackoverflowclone.domain.comment.entity.Comment;
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,8 +42,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Question> questions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<Comment> comments = new ArrayList<>();
 
     public User(String email, String password, String displayName) {
         this.email = email;
@@ -73,10 +70,4 @@ public class User {
         }
     }
 
-    public void addComment(Comment comment) {
-        comments.add(comment);
-        if (comment.getUser() != this) {
-            comment.addUser(this);
-        }
-    }
 }

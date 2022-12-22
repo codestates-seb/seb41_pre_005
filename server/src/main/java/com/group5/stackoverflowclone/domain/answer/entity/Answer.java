@@ -1,6 +1,5 @@
 package com.group5.stackoverflowclone.domain.answer.entity;
 
-import com.group5.stackoverflowclone.domain.comment.entity.Comment;
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.vote.Vote;
@@ -39,9 +38,6 @@ public class Answer {
     private Question question;
 
     @OneToMany(mappedBy = "answer")
-    private List<Comment> comments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "answer")
     private List<Vote> votes = new ArrayList<>();
 
     public void addUser(User user) {
@@ -58,12 +54,6 @@ public class Answer {
         }
     }
 
-    public void addComment(Comment comment) {
-        comments.add(comment);
-        if (comment.getAnswer() != this) {
-            comment.addAnswer(this);
-        }
-    }
 
     public void addVote(Vote vote) {
         votes.add(vote);
