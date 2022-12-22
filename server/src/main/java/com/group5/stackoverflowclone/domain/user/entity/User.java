@@ -1,6 +1,5 @@
 package com.group5.stackoverflowclone.domain.user.entity;
 
-import com.group5.stackoverflowclone.domain.vote.Vote;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import lombok.Getter;
@@ -34,9 +33,6 @@ public class User {
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "user")
-    private List<Vote> votes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
     private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
@@ -47,13 +43,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.displayName = displayName;
-    }
-
-    public void addVote(Vote vote) {
-        votes.add(vote);
-        if (vote.getUser() != this) {
-            vote.addUser(this);
-        }
     }
 
     public void addAnswer(Answer answer) {
