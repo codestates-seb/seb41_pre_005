@@ -5,11 +5,10 @@ import HeaderLayout from "../components/layout/HeaderLayout";
 import LeftSideLayout from "../components/layout/LeftSideLayout";
 import MainContentLayout from "../components/layout/MainContentLayout";
 import RightSideBarLayout from "../components/layout/RightSideBarLayout";
-
 const HomeContainer = styled.div`
   height: 100vh;
-  width: 100vw;
-  background-color: black;
+  width: 100%;
+  background-color: #f1f2f3;
 `;
 const BodyContainer = styled.div`
   display: flex;
@@ -23,9 +22,9 @@ const Home = (props) => {
       <BodyContainer>
         <LeftSideLayout></LeftSideLayout>
         <ContentLayout>
-          <MainContentLayout></MainContentLayout>
+          <MainContentLayout />
+          <RightSideBarLayout />
         </ContentLayout>
-        <RightSideBarLayout></RightSideBarLayout>
       </BodyContainer>
     </HomeContainer>
   );

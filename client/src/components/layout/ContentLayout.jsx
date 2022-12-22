@@ -4,10 +4,11 @@ const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: aqua;
+  display: flex;
 `;
 
-const ContentLayout = (props) => {
-  return <ContentContainer></ContentContainer>;
+const ContentLayout = ({ children }) => {
+  return <ContentContainer>{children}</ContentContainer>;
 };
 
 export default ContentLayout;

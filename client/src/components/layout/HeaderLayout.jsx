@@ -7,13 +7,7 @@ const HeaderLayoutContainer = styled.div`
 `;
 
 const HeaderLayout = (props) => {
-  return (
-    <HeaderLayoutContainer>
-      <span>logo</span>
-      <span> products</span>
-      <input></input>
-    </HeaderLayoutContainer>
-  );
+  return <HeaderLayoutContainer></HeaderLayoutContainer>;
 };
 
 export default HeaderLayout;
