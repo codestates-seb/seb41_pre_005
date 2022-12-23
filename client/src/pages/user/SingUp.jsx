@@ -3,16 +3,23 @@ import SignUpLayout from "../../components/layout/SignUpLayout";
 import styled from "styled-components";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
+import SingUpAside from '../../components/common/signup/SignUpAside';
+import SignUpBottom from '../../components/common/signup/SignUpBottom';
+
 const FormContainer = styled.div`
   width: 31.6rem;
   height: 42rem;
   padding: 2.4rem;
   border-radius: 1rem;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const SignUpBody = styled.div`
   width: 40rem;
   height: 32rem;
+  margin-right: 2rem;
 `;
 const InputContainer = styled.div`
   margin: 1rem 0;
@@ -34,7 +41,7 @@ const InformPolicy = styled.div`
 const SignUp = (props) => {
   return (
     <SignUpLayout>
-      <SignUpBody></SignUpBody>
+      <SignUpBody><SingUpAside></SingUpAside></SignUpBody>
       <FormContainer>
         <form>
           <InputContainer>
@@ -59,6 +66,7 @@ const SignUp = (props) => {
           By clicking “Sign up”, you agree to our terms of service, privacy
           policy and cookie policy
         </InformPolicy>
+        <SignUpBottom></SignUpBottom>
       </FormContainer>
     </SignUpLayout>
   );
