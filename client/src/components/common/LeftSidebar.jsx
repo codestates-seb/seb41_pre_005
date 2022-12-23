@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarthAmericas } from "@fortawesome/free-solid-svg-icons";
 
 const SidebarContainer = styled.div`
-  /* background-color: #fff; */
   margin-top: 2.5rem;
   width: 16.4rem;
   overflow: auto;
@@ -15,7 +14,8 @@ const SidebarList = styled.li`
   text-align: left;
   color: #525960;
   font-size: 1.3rem;
-  padding-left: 10px;
+  padding-left: 1rem;
+  margin-left: 1rem;
 
   .icon {
     font-size: 1.6rem;
@@ -28,25 +28,32 @@ const SidebarList = styled.li`
     font-size: 1.3rem;
     padding-left: 20px;
   }
+  &:hover {
+    color: hsl(210deg 8% 5%);
+  }
 `;
 
 const LeftSidebar = () => {
   return (
     <SidebarContainer>
       <ul>
-        <SidebarList>Home</SidebarList>
         <SidebarList>
-          <span className="public">PUBLIC</span>
+          <button>Home</button>
         </SidebarList>
         <SidebarList>
-          <FontAwesomeIcon icon={faEarthAmericas} className="icon" />
-          Questions
+          <button className="public">PUBLIC</button>
         </SidebarList>
         <SidebarList>
-          <span className="publicLists">Tags</span>
+          <button>
+            <FontAwesomeIcon icon={faEarthAmericas} className="icon" />
+            Questions
+          </button>
         </SidebarList>
         <SidebarList>
-          <span className="publicLists">Users</span>
+          <button className="publicLists">Tags</button>
+        </SidebarList>
+        <SidebarList>
+          <button className="publicLists">Users</button>
         </SidebarList>
       </ul>
     </SidebarContainer>

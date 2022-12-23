@@ -60,7 +60,7 @@ const SmallYellowContents = styled.div`
 `;
 
 const CustomContainer = styled.div`
-  width: 30rem;
+  width: 100%;
   height: 9.55rem;
   margin-top: 1.2rem;
   color: #525960;
@@ -78,7 +78,7 @@ const CustomContainer = styled.div`
 `;
 
 const WatchedContainer = styled.div`
-  width: 30rem;
+  width: 100%;
   height: 22.653rem;
   margin-top: 1.2rem;
   color: #525960;
@@ -100,6 +100,11 @@ const WatchedContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    &:hover {
+      background-color: hsl(205deg 56% 76%);
+      cursor: pointer;
+    }
 
     .icon {
       font-size: 1.5rem;
@@ -131,7 +136,7 @@ const WatchContentsContainer = styled.div`
 `;
 
 const IgnoredContainer = styled.div`
-  width: 30rem;
+  width: 100%;
   height: 11.253rem;
   margin-top: 1rem;
   color: #525960;
@@ -151,10 +156,15 @@ const IgnoredContainer = styled.div`
     border: 1px solid #7aa7c7;
     position: relative;
     top: 1.5rem;
+
+    &:hover {
+      background-color: hsl(205deg 56% 76%);
+      cursor: pointer;
+    }
   }
 `;
 const SidebarName = styled.div`
-  width: 95%;
+  width: 100%;
   height: 4.45rem;
   background-color: #f8f9f9;
   border: 1px solid #e3e5e6;
