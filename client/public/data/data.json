@@ -3,7 +3,7 @@
     {
       "id": 1,
       "questionTitle": "local에서 data.json 파일을 어떻게 axios로 받아오나요?",
-      "questionBody": "나도 모른다.",
+      "questionBody": "stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나? stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나?",
       "tags": ["react"],
       "questionViewCount": 0,
       "questionstatus": null,
@@ -60,7 +60,7 @@
     {
       "id": 3,
       "questionTitle": "데이터 받아오기 성공~~",
-      "questionBody": "게시글 내용 세번째입니다",
+      "questionBody": "stackoverflow 뭔데..",
       "tags": ["javascript"],
       "questionViewCount": 0,
       "questionstatus": null,
@@ -85,7 +85,7 @@
     {
       "id": 4,
       "questionTitle": "이제 잠 좀 자자",
-      "questionBody": "게시글 내용 네번째입니다",
+      "questionBody": "아 쟤는 또 왜 밀려 들어가는건데... width 정해줬잖아 해달라는대로 해줬잖아..",
       "tags": ["java"],
       "questionViewCount": 0,
       "questionstatus": null,
