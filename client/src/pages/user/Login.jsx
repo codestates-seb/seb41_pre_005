@@ -4,6 +4,7 @@ import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
 import AlertIcon, {AlertText} from "../../components/login/AlertWarning";
 import SocialLogin from "../../components/login/SocialLogin";
+import LoginForm from "../../components/login/LoginForm";
 
 const LoginContainer = styled.div`
   height: 100%;
@@ -22,15 +23,6 @@ const FormContainer = styled.div`
   border-radius: 1rem;
   background-color: white;
 `;
-const InputContainer = styled.div`
-  margin: 1rem 0;
-`;
-const Label = styled.label`
-  display: block;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  font-size: 1.5rem;
-`;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -48,19 +40,10 @@ const Login = props => {
         <FormContainer>
           <SocialLogin />
           <form>
-            <InputContainer>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" width="23rem" />
-              <AlertIcon />
-            </InputContainer>
-
-            <InputContainer>
-              <FlexContainer>
-                <Label htmlFor="password">Password</Label>
-                <FindPassword>Forgot password?</FindPassword>
-              </FlexContainer>
-              <Input id="password" width="23rem" />
-            </InputContainer>
+            <FlexContainer>
+              <FindPassword>Forgot password?</FindPassword>
+            </FlexContainer>
+            <Input id="password" width="23rem" />
             <Button width="23rem">Log in</Button>
           </form>
         </FormContainer>

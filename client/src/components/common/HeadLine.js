@@ -53,17 +53,15 @@ export const TagsHeadline = () => {
   );
 };
 
-const AskQuestionBtn = styled(ButtonBlue)`
-  margin-left: 20px;
-`;
+const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
-  margin-top: 10rem;
-  margin-left: 10rem;
+  margin-top: 3rem;
+  margin-left: 3rem;
   display: flex;
 `;
 const AskQuestionWord = styled.div`
   font-size: 3rem;
-  margin-right: 55rem;
+  margin-right: 44rem;
 `;
 
 export const HomeHeadLine = () => {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import HeaderLayout from "../layout/HeaderLayout";
 // import {Link} from "react-router-dom";
 
 const Bluebutton = styled.button`
@@ -125,6 +126,7 @@ const HeaderContinaer = styled.div`
   position: fixed;
   left: 0;
   top: 0;
+  box-sizing: border-box;
   min-width: auto;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
     rgba(0, 0, 0, 0.05) 0px 1px 4px 0px, rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
@@ -308,46 +310,48 @@ const SignupBtn = styled(ButtonBlue)``;
 
 const Header = () => {
   return (
-    <HeaderContinaer>
-      <HeaderTopbarContainer>
-        <LogoContainer>
-          {/* <Link to="/"> */}
-          <img
-            src={process.env.PUBLIC_URL + "/images/main_logo.svg"}
-            alt="Stack Overflow logo"
-          ></img>
-          {/* </Link> */}
-        </LogoContainer>
-        <HeadBtnContainer>
-          <button className="about_btn">About</button>
-        </HeadBtnContainer>
-        <HeadBtnContainer>
-          <button className="forTeams_btn">Products</button>
-        </HeadBtnContainer>
-        <HeadBtnContainer>
-          <button className="forTeams_btn">For Teams</button>
-        </HeadBtnContainer>
-        <HeaderSearchbar></HeaderSearchbar>
-        <div className="LogSinb">
-          <LoginBtn
-            width="59.45px"
-            height="32px"
-            fontSize="13px"
-            fontWeight="400"
-          >
-            Log in
-          </LoginBtn>
-          <SignupBtn
-            width="64.44px"
-            height="33px"
-            fontSize="13px"
-            fontWeight="400"
-          >
-            Sign up
-          </SignupBtn>
-        </div>
-      </HeaderTopbarContainer>
-    </HeaderContinaer>
+    <HeaderLayout>
+      <HeaderContinaer>
+        <HeaderTopbarContainer>
+          <LogoContainer>
+            {/* <Link to="/"> */}
+            <img
+              src={process.env.PUBLIC_URL + "/images/main_logo.svg"}
+              alt="Stack Overflow logo"
+            ></img>
+            {/* </Link> */}
+          </LogoContainer>
+          <HeadBtnContainer>
+            <button className="about_btn">About</button>
+          </HeadBtnContainer>
+          <HeadBtnContainer>
+            <button className="forTeams_btn">Products</button>
+          </HeadBtnContainer>
+          <HeadBtnContainer>
+            <button className="forTeams_btn">For Teams</button>
+          </HeadBtnContainer>
+          <HeaderSearchbar></HeaderSearchbar>
+          <div className="LogSinb">
+            <LoginBtn
+              width="59.45px"
+              height="32px"
+              fontSize="13px"
+              fontWeight="400"
+            >
+              Log in
+            </LoginBtn>
+            <SignupBtn
+              width="64.44px"
+              height="33px"
+              fontSize="13px"
+              fontWeight="400"
+            >
+              Sign up
+            </SignupBtn>
+          </div>
+        </HeaderTopbarContainer>
+      </HeaderContinaer>
+    </HeaderLayout>
   );
 };
 
