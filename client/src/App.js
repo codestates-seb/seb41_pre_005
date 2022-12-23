@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <PageLayout>
-        <Profile />
+        <Home></Home>
       </PageLayout>
     </>
   );
