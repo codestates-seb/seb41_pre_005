@@ -1,5 +1,6 @@
-package com.group5.stackoverflowclone.entity;
+package com.group5.stackoverflowclone.domain.question.entity;
 
+import com.group5.stackoverflowclone.domain.tag.entity.Tag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
