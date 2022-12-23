@@ -15,7 +15,7 @@ function App() {
   return (
     <PageLayout>
       <Header />
-      <HeaderLayout />
+
       <Questions />
     </PageLayout>
   );

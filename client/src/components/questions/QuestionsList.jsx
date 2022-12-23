@@ -20,7 +20,7 @@ const QuestionsList = (props) => {
     }
     loadQuestions();
   }, []);
-  console.log(questions);
+
   return (
     <Main>
       <ul>
