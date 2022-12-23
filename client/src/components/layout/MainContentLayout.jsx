@@ -5,8 +5,8 @@ const MainContainer = styled.div`
   height: 100%;
   background-color: blueviolet;
 `;
-const MainContentLayout = (props) => {
-  return <MainContainer></MainContainer>;
+const MainContentLayout = ({children}) => {
+  return <MainContainer>{children}</MainContainer>;
 };
 
 export default MainContentLayout;

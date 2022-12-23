@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  position: relative;
-  transform: translateY(100%);
-  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: -8.8rem;
+
+  /* transform: translateY(100%); */
+  width: 100vw;
   background-color: #232627;
   display: flex;
 

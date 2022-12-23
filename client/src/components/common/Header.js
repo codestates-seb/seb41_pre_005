@@ -40,7 +40,7 @@ const SkyblueButton = styled.button`
   }
 `;
 
-function ButtonBlue({
+export function ButtonBlue({
   children,
   border,
   width,
@@ -65,7 +65,7 @@ function ButtonBlue({
   );
 }
 
-function ButtonSblue({children, width, height, fontSize, fontWeight}) {
+export function ButtonSblue({children, width, height, fontSize, fontWeight}) {
   return (
     <SkyblueButton
       width={width}
@@ -116,7 +116,7 @@ const ButtonComponent = styled.button`
   }
 `;
 
-const Button = ({children}) => {
+export const Button = ({children}) => {
   return <ButtonComponent>{children}</ButtonComponent>;
 };
 

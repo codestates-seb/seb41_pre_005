@@ -16,9 +16,8 @@ function App() {
     <>
       <PageLayout>
         <Header />
-        <Login />
+        <Home />
       </PageLayout>
-      <Footer />
     </>
   );
 }
