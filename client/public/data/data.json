@@ -1,0 +1,286 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "questionTitle": "local에서 data.json 파일을 어떻게 axios로 받아오나요?",
+      "questionBody": "나도 모른다.",
+      "tags": ["react"],
+      "questionViewCount": 0,
+      "questionstatus": null,
+      "createdAt": "2022-10-24T14:09:04.6402551",
+      "modifiedAt": "2022-10-25T14:09:04.6402551",
+      "author": "형진",
+      "reputation": 1,
+      "questionVote": 111,
+      "answer": [
+        {
+          "id": "1",
+          "votes": 1,
+          "contentbody": "콘텐츠1입니다",
+          "contentcode": "for (let i = 0;i< comment.length; i++{ return comment[i] })"
+        },
+        {
+          "id": "2",
+          "votes": 2,
+          "contentbody": "콘텐츠2입니다",
+          "contentcode": "for (let j = 0;j< comment.length; j++{ return comment[j] })"
+        },
+        {
+          "id": "3",
+          "votes": 3,
+          "contentbody": "콘텐츠3입니다",
+          "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "questionTitle": "아... css는 또 언제해",
+      "questionBody": "지금 시간은 세시.. 오늘..잘 수 있을까?",
+      "tags": ["springboot"],
+      "questionViewCount": 0,
+      "questionstatus": null,
+      "createdAt": "2022-10-24T14:09:04.6402551",
+      "modifiedAt": "2022-10-24T15:09:04.6402551",
+      "author": "나",
+      "questionVote": 222,
+      "reputation": 10,
+      "answer": [
+        {
+          "id": "4"
+        },
+        {
+          "id": "5"
+        },
+        {
+          "id": "6"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "questionTitle": "데이터 받아오기 성공~~",
+      "questionBody": "게시글 내용 세번째입니다",
+      "tags": ["javascript"],
+      "questionViewCount": 0,
+      "questionstatus": null,
+      "createdAt": "2022-10-24T14:09:04.6402551",
+      "modifiedAt": "2022-10-24T14:10:05.6402551",
+      "questionVote": 333,
+      "title": "question3",
+      "author": "당신",
+      "reputation": 5,
+      "answer": [
+        {
+          "id": "7"
+        },
+        {
+          "id": "8"
+        },
+        {
+          "id": "9"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "questionTitle": "이제 잠 좀 자자",
+      "questionBody": "게시글 내용 네번째입니다",
+      "tags": ["java"],
+      "questionViewCount": 0,
+      "questionstatus": null,
+      "createdAt": "2022-10-24T14:09:04.6401551",
+      "modifiedAt": null,
+      "questionVote": 444,
+      "title": "question4",
+      "author": "나와너",
+      "reputation": 8,
+      "answer": [
+        {
+          "id": "10"
+        },
+        {
+          "id": "11"
+        },
+        {
+          "id": "12"
+        }
+      ]
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "body": "one user",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": "two user",
+      "postId": 1
+    },
+    {
+      "id": 3,
+      "body": "three user",
+      "postId": 1
+    },
+    {
+      "id": 4,
+      "body": "four user",
+      "postId": 1
+    },
+    {
+      "userEmail": "테스트",
+      "PasswardForm": "3333",
+      "id": 5
+    },
+    {
+      "userEmail": "",
+      "PasswardForm": "",
+      "id": 6
+    },
+    {
+      "userEmail": "",
+      "PasswardForm": "",
+      "id": 7
+    }
+  ],
+  "signup": [
+    {
+      "id": 1,
+      "uerName": "",
+      "passward": ""
+    },
+    {
+      "id": 2,
+      "uerName": "",
+      "passward": ""
+    },
+    {
+      "id": 3,
+      "uerName": "",
+      "passward": ""
+    },
+    {
+      "id": 4,
+      "uerName": "",
+      "passward": ""
+    },
+    {
+      "userName": "테스트",
+      "userEmail": "1111",
+      "userPassword": "2222",
+      "id": 5
+    },
+    {
+      "userName": "asd",
+      "userEmail": "",
+      "userPassword": "",
+      "id": 6
+    },
+    {
+      "userName": "asd1",
+      "userEmail": "",
+      "userPassword": "",
+      "id": 7
+    },
+    {
+      "userName": "asd12",
+      "userEmail": "",
+      "userPassword": "",
+      "id": 8
+    },
+    {
+      "userName": "",
+      "userEmail": "AAAA@naver.com",
+      "userPassword": "",
+      "id": 9
+    },
+    {
+      "userName": "",
+      "userEmail": "asd@naver.com",
+      "userPassword": "",
+      "id": 10
+    },
+    {
+      "userName": "asd1",
+      "userEmail": "asd@naver.com",
+      "userPassword": "",
+      "id": 11
+    },
+    {
+      "userName": "asd1",
+      "userEmail": "",
+      "userPassword": "",
+      "id": 12
+    },
+    {
+      "userName": "",
+      "userEmail": "",
+      "userPassword": "",
+      "id": 13
+    },
+    {
+      "userName": "asdf1",
+      "userEmail": "asdf@naver.com",
+      "userPassword": "asd",
+      "id": 14
+    },
+    {
+      "userName": "asd1",
+      "userEmail": "rkdhfh@naver.com",
+      "userPassword": "1234AAaa!",
+      "id": 15
+    },
+    {
+      "userName": "asd1",
+      "userEmail": "asd@naver.com",
+      "userPassword": "asd!@AS12",
+      "id": 16
+    }
+  ],
+  "answer": [
+    {
+      "id": 1,
+      "votes": 1,
+      "contentbody": "test3입니다!",
+      "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })"
+    },
+    {
+      "id": 2,
+      "votes": 2,
+      "contentbody": "테스트입니다",
+      "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })"
+    },
+    {
+      "id": 3,
+      "votes": 3,
+      "contentbody": "콘텐츠3입니다",
+      "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })"
+    },
+    {
+      "votes": 4,
+      "contentbody": "zxc",
+      "contentcode": "12",
+      "id": 4
+    },
+    {
+      "votes": 5,
+      "contentbody": "테스트입니다!",
+      "contentcode": "123",
+      "id": 5
+    },
+    {
+      "votes": 6,
+      "contentbody": "테스트입니다2",
+      "contentcode": "1234",
+      "id": 6
+    },
+    {
+      "votes": 7,
+      "contentbody": "테스트입니다3",
+      "contentcode": "테스트입니다3",
+      "id": 7
+    }
+  ]
+}
