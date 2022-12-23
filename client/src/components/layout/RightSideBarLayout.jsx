@@ -6,7 +6,11 @@ const SideBarContainer = styled.div`
   background-color: green;
 `;
 const RightSideBarLayout = (props) => {
-  return <SideBarContainer></SideBarContainer>;
+  return (
+    <SideBarContainer>
+      <RightSidebar></RightSidebar>
+    </SideBarContainer>
+  );
 };
 
 export default RightSideBarLayout;

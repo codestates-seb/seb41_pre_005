@@ -7,7 +7,11 @@ const LeftSideLayoutContainer = styled.div`
   background-color: aliceblue;
 `;
 const LeftSideLayout = (props) => {
-  return <LeftSideLayoutContainer></LeftSideLayoutContainer>;
+  return (
+    <LeftSideLayoutContainer>
+      <LeftSidebar></LeftSidebar>
+    </LeftSideLayoutContainer>
+  );
 };
 
 export default LeftSideLayout;
