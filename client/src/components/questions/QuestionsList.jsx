@@ -23,11 +23,9 @@ const QuestionsList = (props) => {
 
   return (
     <Main>
-      <ul>
-        {questions?.map((item) => (
-          <QuestionsItem question={item} key={item.id} />
-        ))}
-      </ul>
+      {questions?.map((item) => (
+        <QuestionsItem question={item} key={item.id} />
+      ))}
     </Main>
   );
 };
