@@ -225,92 +225,109 @@ const CopyrightInfoContainer = styled.p`
     width: 262px;
   }
 `;
+const FooterContain = styled.div`
+  margin-top: 13rem;
+  height: 19.7rem;
+  position: relative;
+`;
+
+const FooterLayout = ({children}) => {
+  return <FooterContain>{children}</FooterContain>;
+};
 
 const Footer = () => {
   return (
-    <FooterContainer>
-      <FooterLogoAndSites>
-        <FooterLogoContainer>
-          <svg
-            aria-hidden="true"
-            className="native svg-icon iconLogoGlyphMd"
-            width="32"
-            height="37"
-            viewBox="0 0 32 37"
-          >
-            <path d="M26 33v-9h4v13H0V24h4v9h22Z" fill="#BCBBBB" />
-            <path
-              d="m21.5 0-2.7 2 9.9 13.3 2.7-2L21.5 0ZM26 18.4 13.3 7.8l2.1-2.5 12.7 10.6-2.1 2.5ZM9.1 15.2l15 7 1.4-3-15-7-1.4 3Zm14 10.79.68-2.95-16.1-3.35L7 23l16.1 2.99ZM23 30H7v-3h16v3Z"
-              fill="#F48024"
-            />
-          </svg>
-        </FooterLogoContainer>
-        <SiteFooters>
-          <StackFooterContainer>
-            <SiteFooterTitleContainer>STACK OVERFLOW</SiteFooterTitleContainer>
-            <SiteFooterLists>
-              <SiteFooterListContainer>Questions</SiteFooterListContainer>
-              <SiteFooterListContainer>Help</SiteFooterListContainer>
-            </SiteFooterLists>
-          </StackFooterContainer>
-          <ProductsFooterContainer>
-            <SiteFooterTitleContainer>PRODUCTS</SiteFooterTitleContainer>
-            <SiteFooterLists>
-              <SiteFooterListContainer>Teams</SiteFooterListContainer>
-              <SiteFooterListContainer>Advertising</SiteFooterListContainer>
-              <SiteFooterListContainer>Collectives</SiteFooterListContainer>
-              <SiteFooterListContainer>Talent</SiteFooterListContainer>
-            </SiteFooterLists>
-          </ProductsFooterContainer>
-          <CompanyFooterContainer>
-            <SiteFooterTitleContainer>COMPANY</SiteFooterTitleContainer>
-            <SiteFooterLists>
-              <SiteFooterListContainer>About</SiteFooterListContainer>
-              <SiteFooterListContainer>Press</SiteFooterListContainer>
-              <SiteFooterListContainer>Work Here</SiteFooterListContainer>
-              <SiteFooterListContainer>Legal</SiteFooterListContainer>
-              <SiteFooterListContainer>Privacy Policy</SiteFooterListContainer>
-              <SiteFooterListContainer>
-                Terms of Service
-              </SiteFooterListContainer>
-              <SiteFooterListContainer>Contact Us</SiteFooterListContainer>
-              <SiteFooterListContainer>Cookie Settings</SiteFooterListContainer>
-              <SiteFooterListContainer>Cookie Policy</SiteFooterListContainer>
-            </SiteFooterLists>
-          </CompanyFooterContainer>
-          <ExchangeFooterContainer>
-            <SiteFooterTitleContainer>
-              STACK EXCHANGE NETWORK
-            </SiteFooterTitleContainer>
-            <SiteFooterLists>
-              <SiteFooterListContainer>Technology</SiteFooterListContainer>
-              <SiteFooterListContainer>
-                Culture & recreation
-              </SiteFooterListContainer>
-              <SiteFooterListContainer>Life & arts</SiteFooterListContainer>
-              <SiteFooterListContainer>Science</SiteFooterListContainer>
-              <SiteFooterListContainer>Professional</SiteFooterListContainer>
-              <SiteFooterListContainer>Business</SiteFooterListContainer>
-              <SiteFooterListContainer>API</SiteFooterListContainer>
-              <SiteFooterListContainer>Data</SiteFooterListContainer>
-            </SiteFooterLists>
-          </ExchangeFooterContainer>
-        </SiteFooters>
-      </FooterLogoAndSites>
-      <CopyrightFooterContainer>
-        <SocialListContainer>
-          <li>Blog</li>
-          <li>Facebook</li>
-          <li>Twitter</li>
-          <li>LinkedIn</li>
-          <li>Instagram</li>
-        </SocialListContainer>
-        <CopyrightInfoContainer>
-          Site design / logo © 2022 Stack Exchange Inc; user contributions
-          licensed under <u>CC BY-SA</u>. rev 2022.10.25.33519
-        </CopyrightInfoContainer>
-      </CopyrightFooterContainer>
-    </FooterContainer>
+    <FooterLayout>
+      <FooterContainer>
+        <FooterLogoAndSites>
+          <FooterLogoContainer>
+            <svg
+              aria-hidden="true"
+              className="native svg-icon iconLogoGlyphMd"
+              width="32"
+              height="37"
+              viewBox="0 0 32 37"
+            >
+              <path d="M26 33v-9h4v13H0V24h4v9h22Z" fill="#BCBBBB" />
+              <path
+                d="m21.5 0-2.7 2 9.9 13.3 2.7-2L21.5 0ZM26 18.4 13.3 7.8l2.1-2.5 12.7 10.6-2.1 2.5ZM9.1 15.2l15 7 1.4-3-15-7-1.4 3Zm14 10.79.68-2.95-16.1-3.35L7 23l16.1 2.99ZM23 30H7v-3h16v3Z"
+                fill="#F48024"
+              />
+            </svg>
+          </FooterLogoContainer>
+          <SiteFooters>
+            <StackFooterContainer>
+              <SiteFooterTitleContainer>
+                STACK OVERFLOW
+              </SiteFooterTitleContainer>
+              <SiteFooterLists>
+                <SiteFooterListContainer>Questions</SiteFooterListContainer>
+                <SiteFooterListContainer>Help</SiteFooterListContainer>
+              </SiteFooterLists>
+            </StackFooterContainer>
+            <ProductsFooterContainer>
+              <SiteFooterTitleContainer>PRODUCTS</SiteFooterTitleContainer>
+              <SiteFooterLists>
+                <SiteFooterListContainer>Teams</SiteFooterListContainer>
+                <SiteFooterListContainer>Advertising</SiteFooterListContainer>
+                <SiteFooterListContainer>Collectives</SiteFooterListContainer>
+                <SiteFooterListContainer>Talent</SiteFooterListContainer>
+              </SiteFooterLists>
+            </ProductsFooterContainer>
+            <CompanyFooterContainer>
+              <SiteFooterTitleContainer>COMPANY</SiteFooterTitleContainer>
+              <SiteFooterLists>
+                <SiteFooterListContainer>About</SiteFooterListContainer>
+                <SiteFooterListContainer>Press</SiteFooterListContainer>
+                <SiteFooterListContainer>Work Here</SiteFooterListContainer>
+                <SiteFooterListContainer>Legal</SiteFooterListContainer>
+                <SiteFooterListContainer>
+                  Privacy Policy
+                </SiteFooterListContainer>
+                <SiteFooterListContainer>
+                  Terms of Service
+                </SiteFooterListContainer>
+                <SiteFooterListContainer>Contact Us</SiteFooterListContainer>
+                <SiteFooterListContainer>
+                  Cookie Settings
+                </SiteFooterListContainer>
+                <SiteFooterListContainer>Cookie Policy</SiteFooterListContainer>
+              </SiteFooterLists>
+            </CompanyFooterContainer>
+            <ExchangeFooterContainer>
+              <SiteFooterTitleContainer>
+                STACK EXCHANGE NETWORK
+              </SiteFooterTitleContainer>
+              <SiteFooterLists>
+                <SiteFooterListContainer>Technology</SiteFooterListContainer>
+                <SiteFooterListContainer>
+                  Culture & recreation
+                </SiteFooterListContainer>
+                <SiteFooterListContainer>Life & arts</SiteFooterListContainer>
+                <SiteFooterListContainer>Science</SiteFooterListContainer>
+                <SiteFooterListContainer>Professional</SiteFooterListContainer>
+                <SiteFooterListContainer>Business</SiteFooterListContainer>
+                <SiteFooterListContainer>API</SiteFooterListContainer>
+                <SiteFooterListContainer>Data</SiteFooterListContainer>
+              </SiteFooterLists>
+            </ExchangeFooterContainer>
+          </SiteFooters>
+        </FooterLogoAndSites>
+        <CopyrightFooterContainer>
+          <SocialListContainer>
+            <li>Blog</li>
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>LinkedIn</li>
+            <li>Instagram</li>
+          </SocialListContainer>
+          <CopyrightInfoContainer>
+            Site design / logo © 2022 Stack Exchange Inc; user contributions
+            licensed under <u>CC BY-SA</u>. rev 2022.10.25.33519
+          </CopyrightInfoContainer>
+        </CopyrightFooterContainer>
+      </FooterContainer>
+    </FooterLayout>
   );
 };
 

@@ -7,7 +7,6 @@ import MainContentLayout from "../components/layout/MainContentLayout";
 import RightSideBarLayout from "../components/layout/RightSideBarLayout";
 import {HomeHeadLine} from "../components/common/HeadLine";
 import Footer from "../components/common/Footer";
-import FooterLayout from "../components/layout/FooterLayout";
 // const HomeHeadLine = () => {
 //   return (
 //     <AskQuestionHead>
@@ -42,9 +41,7 @@ const Home = () => {
             <RightSideBarLayout />
           </ContentLayout>
         </BodyContainer>
-        <FooterLayout>
-          <Footer />
-        </FooterLayout>
+        <Footer />
       </HomeContainer>
     </>
   );
