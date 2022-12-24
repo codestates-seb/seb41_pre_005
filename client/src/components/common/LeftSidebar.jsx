@@ -42,9 +42,6 @@ const LeftSidebar = () => {
           <button className="public">PUBLIC</button>
         </SidebarList>
         <SidebarList>
-<<<<<<< HEAD
-          <button>Questions</button>
-=======
           <button>
             <svg
               aria-hidden="true"
@@ -57,7 +54,6 @@ const LeftSidebar = () => {
             </svg>
             Questions
           </button>
->>>>>>> 572274c42b7eb7ce103f1441af14070b93008c10
         </SidebarList>
         <SidebarList>
           <button className="publicLists">Tags</button>
@@ -68,4 +64,3 @@ const LeftSidebar = () => {
 };
 
 export default LeftSidebar;
-
