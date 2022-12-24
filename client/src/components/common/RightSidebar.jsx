@@ -116,9 +116,10 @@ const WatchContentsContainer = styled.div`
   position: relative;
   top: 2rem;
   left: 4rem;
-  
-
-  .watchText {
+  <<<<<<<
+    HEAD
+    =======>>>>>>>572274c42b7eb7ce103f1441af14070b93008c10
+    .watchText {
     font-size: 1.3rem;
     margin-top: 1.5rem;
   }
@@ -290,7 +291,9 @@ const RightSidebar = () => {
         <SidebarName>Watced Tags</SidebarName>
         <WatchContentsContainer>
           <MagnifyingGlass></MagnifyingGlass>
-          <span className="watchText">Watch tags to curate your list of <br></br> questions.</span>
+          <span className="watchText">
+            Watch tags to curate your list of <br></br> questions.
+          </span>
           <button className="watchButton">
             <Eye></Eye>
             Watch a tag

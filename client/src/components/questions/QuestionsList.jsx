@@ -5,6 +5,8 @@ import QuestionsItem from "./QuestionsItem";
 const Main = styled.div`
   height: 100%;
   width: 100%;
+  border-top: 1px solid hsl(210, 8%, 90%);
+  border-bottom: 1px solid hsl(210, 8%, 90%);
 `;
 
 const QuestionsList = (props) => {
@@ -23,11 +25,9 @@ const QuestionsList = (props) => {
 
   return (
     <Main>
-      <ul>
-        {questions?.map((item) => (
-          <QuestionsItem question={item} key={item.id} />
-        ))}
-      </ul>
+      {questions?.map((item) => (
+        <QuestionsItem question={item} key={item.id} />
+      ))}
     </Main>
   );
 };

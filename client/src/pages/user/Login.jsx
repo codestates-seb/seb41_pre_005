@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../../components/common/Button";
-import Input from "../../components/common/Input";
-import AlertIcon, {AlertText} from "../../components/login/AlertWarning";
+
 import SocialLogin from "../../components/login/SocialLogin";
 import LoginForm from "../../components/login/LoginForm";
-import LoginPageBottom from '../../components/login/LoginPageBottom';
+import LoginPageBottom from "../../components/login/LoginPageBottom";
 
 const LoginContainer = styled.div`
   height: 100%;
@@ -35,19 +33,13 @@ const FindPassword = styled.span`
   line-height: 2rem;
   font-size: 1rem;
 `;
-const Login = props => {
+const Login = (props) => {
   return (
     <>
       <LoginContainer>
         <FormContainer>
           <SocialLogin />
-          <form>
-            <FlexContainer>
-              <FindPassword>Forgot password?</FindPassword>
-            </FlexContainer>
-            <Input id="password" width="23rem" />
-            <Button width="23rem">Log in</Button>
-          </form>
+          <LoginForm />
         </FormContainer>
         <LoginPageBottom></LoginPageBottom>
       </LoginContainer>
