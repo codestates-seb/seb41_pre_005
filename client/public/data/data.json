@@ -4,7 +4,7 @@
       "id": 1,
       "questionTitle": "local에서 data.json 파일을 어떻게 axios로 받아오나요?",
       "questionBody": "stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나? stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나?",
-      "tags": ["react"],
+      "tags": ["react", "typescript", "nextjs"],
       "questionViewCount": 0,
       "questionstatus": null,
       "createdAt": "2022-10-24T14:09:04.6402551",
@@ -37,11 +37,11 @@
       "id": 2,
       "questionTitle": "아... css는 또 언제해",
       "questionBody": "지금 시간은 세시.. 오늘..잘 수 있을까?",
-      "tags": ["springboot"],
+      "tags": ["springboot", "MySQL", "Oracle"],
       "questionViewCount": 0,
       "questionstatus": null,
-      "createdAt": "2022-10-24T14:09:04.6402551",
-      "modifiedAt": "2022-10-24T15:09:04.6402551",
+      "createdAt": "2022-11-24T14:09:04.6402551",
+      "modifiedAt": "2022-11-24T15:09:04.6402551",
       "author": "나",
       "questionVote": 222,
       "reputation": 10,
@@ -61,11 +61,11 @@
       "id": 3,
       "questionTitle": "데이터 받아오기 성공~~",
       "questionBody": "stackoverflow 뭔데..",
-      "tags": ["javascript"],
+      "tags": ["javascript", "PHP", "JQuery"],
       "questionViewCount": 0,
       "questionstatus": null,
-      "createdAt": "2022-10-24T14:09:04.6402551",
-      "modifiedAt": "2022-10-24T14:10:05.6402551",
+      "createdAt": "2022-12-23T14:09:04.6402551",
+      "modifiedAt": "2022-12-23T14:10:05.6402551",
       "questionVote": 333,
       "title": "question3",
       "author": "당신",
@@ -84,12 +84,12 @@
     },
     {
       "id": 4,
-      "questionTitle": "이제 잠 좀 자자",
+      "questionTitle": "Java for loop skipping a scanner and duplicating print statement",
       "questionBody": "아 쟤는 또 왜 밀려 들어가는건데... width 정해줬잖아 해달라는대로 해줬잖아..",
       "tags": ["java"],
       "questionViewCount": 0,
       "questionstatus": null,
-      "createdAt": "2022-10-24T14:09:04.6401551",
+      "createdAt": "2022-12-24T14:09:04.6401551",
       "modifiedAt": null,
       "questionVote": 444,
       "title": "question4",
@@ -104,6 +104,96 @@
         },
         {
           "id": "12"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "questionTitle": "local에서 data.json 파일을 어떻게 axios로 받아오나요?",
+      "questionBody": "stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나? stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나?",
+      "tags": ["react", "typescript", "nextjs"],
+      "questionViewCount": 0,
+      "questionstatus": null,
+      "createdAt": "2022-10-24T14:09:04.6402551",
+      "modifiedAt": "2022-10-25T14:09:04.6402551",
+      "author": "형진",
+      "reputation": 1,
+      "questionVote": 111,
+      "answer": [
+        {
+          "id": "1",
+          "votes": 1,
+          "contentbody": "콘텐츠1입니다",
+          "contentcode": "for (let i = 0;i< comment.length; i++{ return comment[i] })"
+        },
+        {
+          "id": "2",
+          "votes": 2,
+          "contentbody": "콘텐츠2입니다",
+          "contentcode": "for (let j = 0;j< comment.length; j++{ return comment[j] })"
+        },
+        {
+          "id": "3",
+          "votes": 3,
+          "contentbody": "콘텐츠3입니다",
+          "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "questionTitle": "local에서 data.json 파일을 어떻게 axios로 받아오나요?",
+      "questionBody": "stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나? stackoverflow 말줄임표는 또 어떻게 하는건데 이거 slice으로 잘라서 일괄적으로 처리해야하나?",
+      "tags": ["react", "typescript", "nextjs"],
+      "questionViewCount": 0,
+      "questionstatus": null,
+      "createdAt": "2022-10-24T14:09:04.6402551",
+      "modifiedAt": "2022-10-25T14:09:04.6402551",
+      "author": "형진",
+      "reputation": 1,
+      "questionVote": 111,
+      "answer": [
+        {
+          "id": "1",
+          "votes": 1,
+          "contentbody": "콘텐츠1입니다",
+          "contentcode": "for (let i = 0;i< comment.length; i++{ return comment[i] })"
+        },
+        {
+          "id": "2",
+          "votes": 2,
+          "contentbody": "콘텐츠2입니다",
+          "contentcode": "for (let j = 0;j< comment.length; j++{ return comment[j] })"
+        },
+        {
+          "id": "3",
+          "votes": 3,
+          "contentbody": "콘텐츠3입니다",
+          "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "questionTitle": "아... css는 또 언제해",
+      "questionBody": "지금 시간은 세시.. 오늘..잘 수 있을까?",
+      "tags": ["springboot", "MySQL", "Oracle"],
+      "questionViewCount": 0,
+      "questionstatus": null,
+      "createdAt": "2022-11-24T14:09:04.6402551",
+      "modifiedAt": "2022-11-24T15:09:04.6402551",
+      "author": "나",
+      "questionVote": 222,
+      "reputation": 10,
+      "answer": [
+        {
+          "id": "4"
+        },
+        {
+          "id": "5"
+        },
+        {
+          "id": "6"
         }
       ]
     }
