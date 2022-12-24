@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEarthAmericas } from "@fortawesome/free-solid-svg-icons";
 
 const SidebarContainer = styled.div`
   margin-top: 2.5rem;
@@ -44,10 +42,7 @@ const LeftSidebar = () => {
           <button className="public">PUBLIC</button>
         </SidebarList>
         <SidebarList>
-          <button>
-            <FontAwesomeIcon icon={faEarthAmericas} className="icon" />
-            Questions
-          </button>
+          <button>Questions</button>
         </SidebarList>
         <SidebarList>
           <button className="publicLists">Tags</button>

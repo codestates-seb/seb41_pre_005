@@ -1,12 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faEye,
-  faPencil,
-  faMessage,
-} from "@fortawesome/free-solid-svg-icons";
 
 const YellowContainer = styled.div`
   width: 30rem;
@@ -180,22 +173,16 @@ const RightSidebar = () => {
       <YellowContainer>
         <YellowHeader>The Overflow Blog</YellowHeader>
         <YellowContents>
-          <Iconbox>
-            <FontAwesomeIcon icon={faPencil} className="icon" />
-          </Iconbox>
+          <Iconbox></Iconbox>
           Best practices to increase the speed for Next.js apps
         </YellowContents>
         <YellowContents>
-          <Iconbox>
-            <FontAwesomeIcon icon={faPencil} className="icon" />
-          </Iconbox>
-          I spent two years trying to do what Backstage does for free
+          <Iconbox></Iconbox>I spent two years trying to do what Backstage does
+          for free
         </YellowContents>
         <YellowHeader>Featured on Meta</YellowHeader>
         <YellowContents>
-          <Iconbox>
-            <FontAwesomeIcon icon={faMessage} className="icon" />
-          </Iconbox>
+          <Iconbox></Iconbox>
           Navigation and UI research starting soon
         </YellowContents>
         <YellowContents>
@@ -219,12 +206,8 @@ const RightSidebar = () => {
       <WatchedContainer>
         <SidebarName>Watced Tags</SidebarName>
         <WatchContentsContainer>
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" />
           Watch tags to curate your list of <br></br> questions.
-          <button className="watchButton">
-            <FontAwesomeIcon icon={faEye} className="icon" />
-            Watch a tag
-          </button>
+          <button className="watchButton">Watch a tag</button>
         </WatchContentsContainer>
       </WatchedContainer>
       <IgnoredContainer>
