@@ -2,6 +2,8 @@ package com.group5.stackoverflowclone.auth.filter;
 
 import com.group5.stackoverflowclone.auth.jwt.JwtTokenizer;
 import com.group5.stackoverflowclone.auth.utils.CustomAuthorityUtils;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,11 +28,26 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         this.authorityUtils = authorityUtils;
     }
 
+    /**
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(
             HttpServletRequest request, HttpServletResponse response, FilterChain  filterChain) throws ServletException, IOException {
-        Map<String, Object> claims = verifyJws(request);
-        setAuthenticationToContext(claims);
+        try {
+            Map<String, Object> claims = verifyJws(request);
+            setAuthenticationToContext(claims);
+        } catch (SignatureException se) {
+            request.setAttribute("exception", se);
+        } catch (ExpiredJwtException ee) {
+            request.setAttribute("exception", ee);
+        } catch (Exception e) {
+            request.setAttribute("exception", e);
+        }
 
         filterChain.doFilter(request, response);
     }
@@ -41,6 +58,11 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         return authorization == null || !authorization.startsWith("Bearer");
     }
 
+    /**
+     * 요청에서 Claims 정보를 추출하는 메서드
+     * @param request
+     * @return
+     */
     private Map<String, Object> verifyJws(HttpServletRequest request) {
         String jws = request.getHeader("Authorization").replace("Bearer ", "");
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
@@ -49,6 +71,10 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     }
 
     // email or displayName??
+    /**
+     * 추출한 Claims 정보를 SecurityContext에 등록하는 메서드
+     * @param claims
+     */
     private void setAuthenticationToContext(Map<String, Object> claims) {
         String email = (String) claims.get("email");
         List<GrantedAuthority> authorities = authorityUtils.createAuthorities((List) claims.get("roles"));
