@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import SocialLogin from "../../components/login/SocialLogin";
 import LoginForm from "../../components/login/LoginForm";
+import LoginPageBottom from "../../components/login/LoginPageBottom";
 
 const LoginContainer = styled.div`
   height: 100%;
@@ -11,6 +12,7 @@ const LoginContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 const FormContainer = styled.div`
   margin-top: 10rem;
@@ -39,6 +41,7 @@ const Login = (props) => {
           <SocialLogin />
           <LoginForm />
         </FormContainer>
+        <LoginPageBottom></LoginPageBottom>
       </LoginContainer>
     </>
   );

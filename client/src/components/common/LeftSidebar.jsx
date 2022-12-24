@@ -47,9 +47,6 @@ const LeftSidebar = () => {
         <SidebarList>
           <button className="publicLists">Tags</button>
         </SidebarList>
-        <SidebarList>
-          <button className="publicLists">Users</button>
-        </SidebarList>
       </ul>
     </SidebarContainer>
   );

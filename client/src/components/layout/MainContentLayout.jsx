@@ -4,7 +4,7 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
-const MainContentLayout = ({ children }) => {
+const MainContentLayout = ({children}) => {
   return <MainContainer>{children}</MainContainer>;
 };
 

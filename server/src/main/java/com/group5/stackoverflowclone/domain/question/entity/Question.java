@@ -1,5 +1,7 @@
-package com.group5.stackoverflowclone.entity;
+package com.group5.stackoverflowclone.domain.question.entity;
 
+import com.group5.stackoverflowclone.domain.user.entity.User;
+import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +24,10 @@ public class Question {
 
     private String content;
 
-    private int clicks;
+    private int viewCount;
+
+    private int voteCount;
+
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -40,9 +45,6 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question")
-    private List<Vote> votes = new ArrayList<>();
-
     public void addQuestionTag(QuestionTag questionTag) {
         this.questionTags.add(questionTag);
         if (questionTag.getQuestion() != this) {
@@ -52,8 +54,8 @@ public class Question {
 
     public void addUser(User user) {
         this.user = user;
-        if (!this.user.getQuestion().contains(this)) {
-            this.user.getQuestion().add(this);
+        if (!this.user.getQuestions().contains(this)) {
+            this.user.getQuestions().add(this);
         }
     }
 
@@ -61,13 +63,6 @@ public class Question {
         this.answers.add(answer);
         if (answer.getQuestion() != this) {
             answer.addQuestion(this);
-        }
-    }
-
-    public void addQuestionTag(Vote vote) {
-        this.votes.add(vote);
-        if (vote.getQuestion() != this) {
-            vote.addQuestion(this);
         }
     }
 }

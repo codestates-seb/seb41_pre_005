@@ -6,7 +6,7 @@ const HeaderLayoutContainer = styled.div`
   background-color: pink;
 `;
 
-const HeaderLayout = ({ children }) => {
+const HeaderLayout = ({children}) => {
   return <HeaderLayoutContainer>{children}</HeaderLayoutContainer>;
 };
 

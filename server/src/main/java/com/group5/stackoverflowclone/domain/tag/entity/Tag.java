@@ -1,5 +1,6 @@
-package com.group5.stackoverflowclone.entity;
+package com.group5.stackoverflowclone.domain.tag.entity;
 
+import com.group5.stackoverflowclone.domain.question.entity.QuestionTag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,16 +16,9 @@ import java.util.List;
 @Entity
 public class Tag {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long tagId;
 
-    private String name;
-
-    @Column(updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Column(name = "LAST_MODIFIED_AT")
-    private LocalDateTime modifiedAt = LocalDateTime.now();
+    private String tagName;
 
     @OneToMany(mappedBy = "tag")
     private List<QuestionTag> questionTags = new ArrayList<>();
