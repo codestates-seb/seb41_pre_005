@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import SignUpLayout from "../../components/layout/SignUpLayout";
 import styled from "styled-components";
-import Input from "../../components/common/Input";
-import Button from "../../components/common/Button";
-import SingUpAside from '../../components/common/signup/SignUpAside';
-import SignUpBottom from '../../components/common/signup/SignUpBottom';
+
+import SingUpAside from "../../components/signup/SignUpAside";
+import SignUpBottom from "../../components/signup/SignUpBottom";
+import SignUpForm from "../../components/signup/SignUpForm";
 
 const FormContainer = styled.div`
   width: 31.6rem;
@@ -41,27 +41,11 @@ const InformPolicy = styled.div`
 const SignUp = (props) => {
   return (
     <SignUpLayout>
-      <SignUpBody><SingUpAside></SingUpAside></SignUpBody>
+      <SignUpBody>
+        <SingUpAside></SingUpAside>
+      </SignUpBody>
       <FormContainer>
-        <form>
-          <InputContainer>
-            <Label htmlFor="displayName">Display name</Label>
-            <Input id="displayName" />
-          </InputContainer>
-          <InputContainer>
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" />
-          </InputContainer>
-          <InputContainer>
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" />
-          </InputContainer>
-          <ValidationMessage>
-            Passwords must contain at least eight characters, including at least
-            1 letter and 1 number.
-          </ValidationMessage>
-          <Button>Sign up</Button>
-        </form>
+        <SignUpForm />
         <InformPolicy>
           By clicking “Sign up”, you agree to our terms of service, privacy
           policy and cookie policy
