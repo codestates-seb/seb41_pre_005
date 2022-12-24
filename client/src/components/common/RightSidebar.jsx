@@ -116,6 +116,10 @@ const WatchContentsContainer = styled.div`
   position: relative;
   top: 2rem;
   left: 4rem;
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 572274c42b7eb7ce103f1441af14070b93008c10
 
   .watchText {
     font-size: 1.3rem;
@@ -237,6 +241,7 @@ const RightSidebar = () => {
       <YellowContainer>
         <YellowHeader>The Overflow Blog</YellowHeader>
         <YellowContents>
+<<<<<<< HEAD
           <Iconbox></Iconbox>
           Best practices to increase the speed for Next.js apps
         </YellowContents>
@@ -247,6 +252,24 @@ const RightSidebar = () => {
         <YellowHeader>Featured on Meta</YellowHeader>
         <YellowContents>
           <Iconbox></Iconbox>
+=======
+          <Iconbox>
+            <Pencil></Pencil>
+          </Iconbox>
+          Best practices to increase the speed for Next.js apps
+        </YellowContents>
+        <YellowContents>
+          <Iconbox>
+            <Pencil></Pencil>
+          </Iconbox>
+          I spent two years trying to do what Backstage does for free
+        </YellowContents>
+        <YellowHeader>Featured on Meta</YellowHeader>
+        <YellowContents>
+          <Iconbox>
+            <S_FaviconStack></S_FaviconStack>
+          </Iconbox>
+>>>>>>> 572274c42b7eb7ce103f1441af14070b93008c10
           Navigation and UI research starting soon
         </YellowContents>
         <YellowContents>
@@ -282,8 +305,17 @@ const RightSidebar = () => {
       <WatchedContainer>
         <SidebarName>Watced Tags</SidebarName>
         <WatchContentsContainer>
+<<<<<<< HEAD
           Watch tags to curate your list of <br></br> questions.
           <button className="watchButton">Watch a tag</button>
+=======
+          <MagnifyingGlass></MagnifyingGlass>
+          <span className="watchText">Watch tags to curate your list of <br></br> questions.</span>
+          <button className="watchButton">
+            <Eye></Eye>
+            Watch a tag
+          </button>
+>>>>>>> 572274c42b7eb7ce103f1441af14070b93008c10
         </WatchContentsContainer>
       </WatchedContainer>
       <IgnoredContainer>
