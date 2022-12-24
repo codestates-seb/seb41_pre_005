@@ -5,6 +5,8 @@ import QuestionsItem from "./QuestionsItem";
 const Main = styled.div`
   height: 100%;
   width: 100%;
+  border-top: 1px solid hsl(210, 8%, 90%);
+  border-bottom: 1px solid hsl(210, 8%, 90%);
 `;
 
 const QuestionsList = (props) => {

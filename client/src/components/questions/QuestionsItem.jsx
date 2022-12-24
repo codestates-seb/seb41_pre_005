@@ -1,18 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import Author from "./Author";
+import QuestionStatistics from "./QuestionStatistics";
+import Tags from "./Tags";
 const QuestionContainer = styled.div`
   height: 15.9rem;
   display: flex;
   padding: 1.6rem;
   font-size: 1.3rem;
+  border-bottom: 1px solid hsl(210, 8%, 90%);
 `;
-const QuestionStats = styled.div`
-  height: 100%;
-  width: 10.8rem;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-`;
+
 const QuestionSummary = styled.div`
   flex-grow: 1;
   max-width: 100%;
@@ -28,27 +26,23 @@ const QuestionBody = styled.div`
   margin-bottom: 0.8rem;
   color: #3b4045;
 `;
-const QuestionVotes = styled.div``;
-const QuestionAnswers = styled.div``;
-const QuestionViews = styled.div``;
 
+const SummaryMeta = styled.div`
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.6rem;
+  row-gap: 0.8rem;
+`;
 const QuestionsItem = ({ question }) => {
   return (
     <QuestionContainer>
-      <QuestionStats>
-        <QuestionVotes>
-          <span>{question?.questionVote}</span>
-          <span> votes</span>
-        </QuestionVotes>
-        <QuestionAnswers>
-          <span>{question?.answer?.length}</span>
-          <span> answers</span>
-        </QuestionAnswers>
-        <QuestionViews>
-          <span>{question?.questionViewCount}</span>
-          <span> views</span>
-        </QuestionViews>
-      </QuestionStats>
+      <QuestionStatistics
+        questionVote={question?.questionVote}
+        answerConunt={question?.answer?.length}
+        viewCount={question?.questionViewCount}
+      />
       <QuestionSummary>
         <QuestionTitle>{question?.questionTitle}</QuestionTitle>
         <QuestionBody>
@@ -56,6 +50,10 @@ const QuestionsItem = ({ question }) => {
             ? `${question?.questionBody?.slice(0, 100)}...`
             : question?.questionBody}
         </QuestionBody>
+        <SummaryMeta>
+          <Tags tags={question?.tags} />
+          <Author author={question?.author} createdAt={question?.createdAt} />
+        </SummaryMeta>
       </QuestionSummary>
     </QuestionContainer>
   );
