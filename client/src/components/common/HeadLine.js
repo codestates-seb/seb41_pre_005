@@ -60,9 +60,8 @@ const AskQuestionHead = styled.div`
   display: flex;
 `;
 const AskQuestionWord = styled.div`
-  font-size: 3rem;
-  margin-right: 44rem;
-  width: 30rem;
+  font-size: 2.7rem;
+  margin-right: 48rem;
 `;
 const SearchResultsHead = styled.div`
   margin-top: 3rem;
