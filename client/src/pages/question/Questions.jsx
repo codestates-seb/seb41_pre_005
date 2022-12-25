@@ -5,6 +5,7 @@ import LeftSideLayout from "../../components/layout/LeftSideLayout";
 import MainContentLayout from "../../components/layout/MainContentLayout";
 import QuestionsLayout from "../../components/layout/question/QuestionsLayout";
 import RightSideBarLayout from "../../components/layout/RightSideBarLayout";
+import QuestionNav from "../../components/questions/QuestionNav";
 import QuestionsList from "../../components/questions/QuestionsList";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
@@ -23,23 +24,16 @@ const Questions = props => {
     height: 4.7rem;
   `;
   return (
-    <>
-      <Header />
-      <QuestionsLayout>
-        <LeftSideLayout></LeftSideLayout>
-        <ContentLayout>
-          <MainContentLayout>
-            <QuestionsHeadLayout>
-              <QuestionsHeadLine />
-              <QuestionsFilter></QuestionsFilter>
-            </QuestionsHeadLayout>
-            <QuestionsList />
-          </MainContentLayout>
-          <RightSideBarLayout></RightSideBarLayout>
-        </ContentLayout>
-      </QuestionsLayout>
-      <Footer />
-    </>
+    <QuestionsLayout>
+      <LeftSideLayout></LeftSideLayout>
+      <ContentLayout>
+        <MainContentLayout>
+          <QuestionNav />
+          <QuestionsList />
+        </MainContentLayout>
+        <RightSideBarLayout></RightSideBarLayout>
+      </ContentLayout>
+    </QuestionsLayout>
   );
 };
 
