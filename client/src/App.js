@@ -8,6 +8,9 @@ import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import Tags from "./pages/Tags";
+import QuestionDetail from "./pages/question/QuestionDetail";
+import AskQuestion from "./pages/question/AskQuestion";
+
 const PageLayout = styled.div`
   max-width: 126.4rem;
   height: 100vh;
@@ -18,7 +21,9 @@ function App() {
     <>
       <Header />
       <PageLayout>
-        <Home />
+        <QuestionDetail />
+        {/* <AskQuestion /> */}
+        {/* <Home /> */}
         {/* <Questions /> */}
         {/* <Tags /> */}
         {/* <Login /> */}
