@@ -6,18 +6,40 @@ import MainContentLayout from "../../components/layout/MainContentLayout";
 import QuestionsLayout from "../../components/layout/question/QuestionsLayout";
 import RightSideBarLayout from "../../components/layout/RightSideBarLayout";
 import QuestionsList from "../../components/questions/QuestionsList";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
+import {QuestionsHeadLine} from "../../components/common/HeadLine";
 
-const Questions = (props) => {
+const Questions = props => {
+  const QuestionsHeadLayout = styled.div`
+    /* margin-top: 7rem;
+    width: 100%;
+    /* margin-right: -7rem; */
+    margin-left: -15rem;
+    margin-bottom: 1.2rem;
+  `;
+  const QuestionsFilter = styled.div`
+    width: 100%;
+    height: 4.7rem;
+  `;
   return (
-    <QuestionsLayout>
-      <LeftSideLayout></LeftSideLayout>
-      <ContentLayout>
-        <MainContentLayout>
-          <QuestionsList />
-        </MainContentLayout>
-        <RightSideBarLayout></RightSideBarLayout>
-      </ContentLayout>
-    </QuestionsLayout>
+    <>
+      <Header />
+      <QuestionsLayout>
+        <LeftSideLayout></LeftSideLayout>
+        <ContentLayout>
+          <MainContentLayout>
+            <QuestionsHeadLayout>
+              <QuestionsHeadLine />
+              <QuestionsFilter></QuestionsFilter>
+            </QuestionsHeadLayout>
+            <QuestionsList />
+          </MainContentLayout>
+          <RightSideBarLayout></RightSideBarLayout>
+        </ContentLayout>
+      </QuestionsLayout>
+      <Footer />
+    </>
   );
 };
 

@@ -56,7 +56,7 @@ export const TagsHeadline = () => {
 const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
   margin-top: 3rem;
-  margin-left: 3rem;
+  margin-left: 19rem;
   display: flex;
 `;
 const AskQuestionWord = styled.div`
@@ -77,7 +77,9 @@ export const QuestionsHeadLine = () => {
   return (
     <AskQuestionHead>
       <AskQuestionWord>All Questions</AskQuestionWord>
-      <AskQuestionBtn>Ask question</AskQuestionBtn>
+      <AskQuestionBtn fontWeight="550" fontSize="13px">
+        Ask Question
+      </AskQuestionBtn>
     </AskQuestionHead>
   );
 };
