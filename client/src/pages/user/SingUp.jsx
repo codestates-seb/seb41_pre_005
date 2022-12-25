@@ -21,22 +21,12 @@ const SignUpBody = styled.div`
   height: 32rem;
   margin-right: 2rem;
 `;
-const InputContainer = styled.div`
-  margin: 1rem 0;
-`;
-const Label = styled.label`
-  display: block;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  font-size: 1.5rem;
-`;
-const ValidationMessage = styled.p`
+
+const InformPolicy = styled.div`
+  margin-top: 3.2rem;
   font-size: 1.2rem;
   color: gray;
   margin-bottom: 2rem;
-`;
-const InformPolicy = styled.div`
-  margin-top: 3.2rem;
 `;
 const SignUp = (props) => {
   return (

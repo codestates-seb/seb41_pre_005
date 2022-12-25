@@ -8,6 +8,9 @@ import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import Tags from "./pages/Tags";
+import Profile from "./pages/user/Profile";
+import SearchResults from "../src/pages/SearchResults";
+
 import QuestionDetail from "./pages/question/QuestionDetail";
 import AskQuestion from "./pages/question/AskQuestion";
 
@@ -28,6 +31,8 @@ function App() {
         {/* <Tags /> */}
         {/* <Login /> */}
         {/* <SignUp /> */}
+        {/* <Profile></Profile> */}
+        <SearchResults></SearchResults>
       </PageLayout>
     </>
   );

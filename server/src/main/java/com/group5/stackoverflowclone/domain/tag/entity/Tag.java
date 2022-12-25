@@ -1,12 +1,11 @@
 package com.group5.stackoverflowclone.domain.tag.entity;
 
+import com.group5.stackoverflowclone.domain.question.entity.Question;
 import com.group5.stackoverflowclone.domain.question.entity.QuestionTag;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.group5.stackoverflowclone.domain.user.entity.User;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +15,24 @@ import java.util.List;
 @Entity
 public class Tag {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long tagId;
 
     private String tagName;
 
-    @OneToMany(mappedBy = "tag")
+    @Column(columnDefinition = "TEXT", length = 1000)
+    private String content;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
     private List<QuestionTag> questionTags = new ArrayList<>();
 
+    public Tag(String tagName, String content) {
+        this.tagName = tagName;
+        this.content = content;
+    }
+
     public void addQuestionTag(QuestionTag questionTag) {
-        this.questionTags.add(questionTag);
-        if (questionTag.getTag() != this) {
-            questionTag.addTag(this);
-        }
+        questionTags.add(questionTag);
     }
 }

@@ -6,6 +6,7 @@ import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
 import ProfileMainLayout from "../../components/layout/profile/MainContentLayout";
 import ProfileStats from "../../components/profile/ProfileStats";
+import ProfileAbout from "../../components/profile/ProfileAbout";
 
 const HomeContainer = styled.div`
   height: 100vh;
@@ -26,7 +27,22 @@ const ProfileHead = styled.div`
   height: 14.4rem;
   /* display: flex; */
 `;
+const ProfileContentLayout = styled.div`
+  padding: 2.4rem;
+`;
+const ProfileHead = styled.div`
+  width: 106.7rem;
+  height: 14.4rem;
+  /* display: flex; */
+`;
 
+const UserNameContain = styled.div`
+  margin-top: -10rem;
+  margin-left: 14.5rem;
+  font-size: 3.4rem;
+  width: 35rem;
+  display: flex;
+`;
 const UserNameContain = styled.div`
   margin-top: -10rem;
   margin-left: 14.5rem;
@@ -136,13 +152,13 @@ const Profile = () => {
               </ProfileHead>
               <ProfileMainLayout>
                 <ProfileStats />
-                <AboutLayout></AboutLayout>
+                <ProfileAbout />
               </ProfileMainLayout>
             </ProfileContentLayout>
           </ContentLayout>
         </BodyContainer>
-        <Footer />
       </HomeContainer>
+      <Footer></Footer>
     </>
   );
 };
