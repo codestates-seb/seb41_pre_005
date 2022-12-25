@@ -49,3 +49,11 @@ a {
   cursor: pointer;
   user-select: auto;
 }
+.ql-editor {
+  min-height: 210px;
+}
+.ql-editor:focus {
+  border: 1px solid #38a9f0;
+  box-shadow: 0px 0px 0px 4px hsla(206, 100%, 40%, 0.15);
+  outline: 0;
+}
