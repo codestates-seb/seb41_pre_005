@@ -5,6 +5,7 @@ import LoginForm from "../../components/login/LoginForm";
 import LoginPageBottom from "../../components/login/LoginPageBottom";
 
 const LoginContainer = styled.div`
+  position: relative;
   height: 100%;
   width: 100%;
   padding: 2.4rem;
@@ -12,7 +13,17 @@ const LoginContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #f1f2f3;
+
+  /* background-color: #f1f2f3; */
+  &::after {
+    z-index: -1;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    content: "";
+    background-color: #f1f2f3;
+  }
+
 `;
 const FormContainer = styled.div`
   margin-top: 10rem;

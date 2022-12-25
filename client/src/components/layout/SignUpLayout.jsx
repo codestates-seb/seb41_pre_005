@@ -6,6 +6,14 @@ const LayoutContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  &::after {
+    z-index: -1;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    content: "";
+    background-color: #f1f2f3;
+  }
 `;
 const Layout = styled.div`
   display: flex;
