@@ -14,22 +14,31 @@
       "questionVote": 111,
       "answer": [
         {
-          "id": "1",
+          "id": "11",
           "votes": 1,
           "contentbody": "콘텐츠1입니다",
-          "contentcode": "for (let i = 0;i< comment.length; i++{ return comment[i] })"
+          "contentcode": "for (let i = 0;i< comment.length; i++{ return comment[i] })",
+          "createdAt": "2022-10-24T14:09:04.6402551",
+          "modifiedAt": "2022-10-25T14:09:04.6402551",
+          "author": "koreadinosaur"
         },
         {
-          "id": "2",
+          "id": "22",
           "votes": 2,
           "contentbody": "콘텐츠2입니다",
-          "contentcode": "for (let j = 0;j< comment.length; j++{ return comment[j] })"
+          "contentcode": "for (let j = 0;j< comment.length; j++{ return comment[j] })",
+          "createdAt": "2022-10-24T14:09:04.6402551",
+          "modifiedAt": "2022-10-25T14:09:04.6402551",
+          "author": "DPDPO"
         },
         {
-          "id": "3",
+          "id": "33",
           "votes": 3,
           "contentbody": "콘텐츠3입니다",
-          "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })"
+          "contentcode": "for (let x = 0;x< comment.length; x++{ return comment[x] })",
+          "createdAt": "2022-10-24T14:09:04.6402551",
+          "modifiedAt": "2022-10-25T14:09:04.6402551",
+          "author": "mjw"
         }
       ]
     },

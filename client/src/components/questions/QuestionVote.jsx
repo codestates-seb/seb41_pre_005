@@ -1,54 +1,54 @@
 import React from "react";
 import styled from "styled-components";
 
+const QuestionVoteContainer = styled.div`
+  width: 60px;
+  height: 200px;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  fill: #bbbfc3;
+`;
+
+const VoteBtn = styled.button`
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  border: none;
+
+  padding: 0;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    fill: #f48225;
+  }
+`;
+const UpVoteBtn = styled(VoteBtn)``;
+const DownVoteBtn = styled(VoteBtn)``;
+
+const VoteStat = styled.div`
+  width: 36px;
+  font-size: 21px;
+  color: #6a7376;
+  text-align: center;
+`;
+
+const SideIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const SaveIcon = styled(SideIcon)`
+  margin: 4px 0;
+`;
+const ActivityIcon = styled(SideIcon)`
+  margin: 8px 0;
+`;
 const QuestionVote = () => {
-  const QuestionVoteContainer = styled.div`
-    width: 60px;
-    height: 200px;
-    padding-right: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    fill: #bbbfc3;
-  `;
-
-  const VoteBtn = styled.button`
-    width: 36px;
-    height: 36px;
-    background-color: transparent;
-    border: none;
-
-    padding: 0;
-    &:hover {
-      cursor: pointer;
-    }
-    &:active {
-      fill: #f48225;
-    }
-  `;
-  const UpVoteBtn = styled(VoteBtn)``;
-  const DownVoteBtn = styled(VoteBtn)``;
-
-  const VoteStat = styled.div`
-    width: 36px;
-    font-size: 21px;
-    color: #6a7376;
-    text-align: center;
-  `;
-
-  const SideIcon = styled.div`
-    display: flex;
-    justify-content: center;
-    &:hover {
-      cursor: pointer;
-    }
-  `;
-  const SaveIcon = styled(SideIcon)`
-    margin: 4px 0;
-  `;
-  const ActivityIcon = styled(SideIcon)`
-    margin: 8px 0;
-  `;
   //fill="#BBBFC3"
   return (
     <>
