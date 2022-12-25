@@ -19,21 +19,24 @@ const Questions = props => {
     margin-left: -15rem;
     margin-bottom: 1.2rem;
   `;
-  const QuestionsFilter = styled.div`
-    width: 100%;
-    height: 4.7rem;
-  `;
+
   return (
-    <QuestionsLayout>
-      <LeftSideLayout></LeftSideLayout>
-      <ContentLayout>
-        <MainContentLayout>
-          <QuestionNav />
-          <QuestionsList />
-        </MainContentLayout>
-        <RightSideBarLayout></RightSideBarLayout>
-      </ContentLayout>
-    </QuestionsLayout>
+    <>
+      <QuestionsLayout>
+        <LeftSideLayout></LeftSideLayout>
+        <ContentLayout>
+          <MainContentLayout>
+            <QuestionsHeadLayout>
+              <QuestionsHeadLine />
+            </QuestionsHeadLayout>
+            <QuestionNav />
+            <QuestionsList />
+          </MainContentLayout>
+          <RightSideBarLayout></RightSideBarLayout>
+        </ContentLayout>
+      </QuestionsLayout>
+      <Footer />
+    </>
   );
 };
 
