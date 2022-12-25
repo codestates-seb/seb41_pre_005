@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TagRepository extends JpaRepository<Tag, Long> {
-
     @Override
     @Query("SELECT m FROM Tag m")
     List<Tag> findAll();
+
+    public Optional<Tag> findByTagName(String tagName);
 }
