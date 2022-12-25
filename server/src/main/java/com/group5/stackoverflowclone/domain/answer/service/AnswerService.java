@@ -20,7 +20,7 @@ public class AnswerService {
     }
 
     public Answer createAnswer(Answer answer, long questionId) {
-        answer.setQuestion(questionService.findQuestion(questionId));
+        answer.addQuestion(questionService.findQuestion(questionId));
         Answer saveAnswer = answerRepository.save(answer);
 
         return saveAnswer;

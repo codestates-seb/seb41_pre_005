@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -33,6 +34,27 @@ public class UserService {
             userResponseList.add(userResponseDto);
         }
         return userResponseList;
+    }
+
+    public User findUser(long userId) {
+        return findVerifiedUserById(userId);
+    }
+
+    public void updateAnswerCount(User user, long answerCount) {
+        user.setAnswerCount(answerCount + 1);
+        userRepository.save(user);
+    }
+
+    public void updateQuestionCount(User user, long questionCount) {
+        user.setQuestionCount(questionCount + 1);
+        userRepository.save(user);
+    }
+
+    private User findVerifiedUserById(long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        User foundUser = optionalUser.get();
+
+        return foundUser;
     }
 
     private void verifyExistsEmail(String email) {

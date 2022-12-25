@@ -5,6 +5,8 @@ import com.group5.stackoverflowclone.domain.answer.dto.AnswerPostDto;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.answer.mapper.AnswerMapper;
 import com.group5.stackoverflowclone.domain.answer.service.AnswerService;
+import com.group5.stackoverflowclone.domain.question.entity.Question;
+import com.group5.stackoverflowclone.domain.question.service.QuestionService;
 import com.group5.stackoverflowclone.response.SingleResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +21,12 @@ import javax.validation.constraints.Positive;
 @Validated
 public class AnswerController {
     private final AnswerService answerService;
+    private final QuestionService questionService;
     private final AnswerMapper mapper;
 
-    public AnswerController(AnswerService answerService, AnswerMapper mapper) {
+    public AnswerController(AnswerService answerService, QuestionService questionService, AnswerMapper mapper) {
         this.answerService = answerService;
+        this.questionService = questionService;
         this.mapper = mapper;
     }
 
@@ -31,6 +35,9 @@ public class AnswerController {
     public ResponseEntity postAnswer(@PathVariable("question-id") @Positive long questionId,
                                      @Valid @RequestBody AnswerPostDto answerPostDto) {
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto), questionId);
+
+        Question question = questionService.findQuestion(questionId);
+        question.addAnswer(answer);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(answer)), HttpStatus.CREATED);
     }
