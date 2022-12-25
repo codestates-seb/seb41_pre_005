@@ -1,15 +1,10 @@
 package com.group5.stackoverflowclone.domain.tag.dto;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.validation.constraints.NotNull;
 
 @Getter
-@NoArgsConstructor
+@Builder
 public class TagSimplePostDto {
-    @NotNull
-    @Setter
-    private long tagId;
+    private String tagName;
 }
