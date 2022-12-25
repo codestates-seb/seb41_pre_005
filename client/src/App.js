@@ -9,6 +9,8 @@ import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import Tags from "./pages/Tags";
 import Profile from "./pages/user/Profile"
+import SearchResults from "../src/pages/SearchResults"
+
 const PageLayout = styled.div`
   max-width: 126.4rem;
   height: 100vh;
@@ -24,7 +26,8 @@ function App() {
         {/* <Tags /> */}
         {/* <Login /> */}
         {/* <SignUp /> */}
-        <Profile></Profile>
+        {/* <Profile></Profile> */}
+        <SearchResults></SearchResults>
       </PageLayout>
     </>
   );
