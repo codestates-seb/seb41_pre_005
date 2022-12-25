@@ -24,8 +24,7 @@ const YellowHeader = styled.div`
 const YellowContents = styled.div`
   width: 26.5rem;
   height: 3.5rem;
-  margin-top: 1.2rem;
-  margin-left: 2.25rem;
+  margin: 1.2rem 0 1.2rem 2.25rem;
   font-size: 1.3rem;
   color: #3b4045;
   display: flex;
@@ -36,6 +35,7 @@ const YellowContents = styled.div`
 const Iconbox = styled.div`
   width: 2.216rem;
   height: 3.4rem;
+  padding-right: 2rem;
 `;
 
 const SmallYellowContents = styled.div`
@@ -116,10 +116,8 @@ const WatchContentsContainer = styled.div`
   position: relative;
   top: 2rem;
   left: 4rem;
-  <<<<<<<
-    HEAD
-    =======>>>>>>>572274c42b7eb7ce103f1441af14070b93008c10
-    .watchText {
+
+  .watchText {
     font-size: 1.3rem;
     margin-top: 1.5rem;
   }

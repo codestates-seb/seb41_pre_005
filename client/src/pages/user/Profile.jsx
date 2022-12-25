@@ -6,88 +6,85 @@ import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
 import ProfileMainLayout from "../../components/layout/profile/MainContentLayout";
 import ProfileStats from "../../components/profile/ProfileStats";
+import ProfileAbout from "../../components/profile/ProfileAbout";
 
-const Profile = () => {
-  const HomeContainer = styled.div`
-    height: 100vh;
-    width: 100%;
-    background-color: #f1f2f3;
-  `;
-  const BodyContainer = styled.div`
-    display: flex;
-    width: 100%;
-    height: 100%;
-  `;
+const HomeContainer = styled.div`
+  height: auto;
+  width: 100%;
+`;
+const BodyContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
 
-  const ProfileContentLayout = styled.div`
-    padding: 2.4rem;
-  `;
-  const ProfileHead = styled.div`
-    width: 106.7rem;
-    height: 14.4rem;
-    /* display: flex; */
-  `;
+const ProfileContentLayout = styled.div`
+  padding: 2.4rem;
+`;
+const ProfileHead = styled.div`
+  width: 106.7rem;
+  height: 14.4rem;
+  /* display: flex; */
+`;
 
-  const UserNameContain = styled.div`
-    margin-top: -10rem;
-    margin-left: 14.5rem;
-    font-size: 3.4rem;
-    width: 35rem;
-    display: flex;
-  `;
+const UserNameContain = styled.div`
+  margin-top: -10rem;
+  margin-left: 14.5rem;
+  font-size: 3.4rem;
+  width: 35rem;
+  display: flex;
+`;
 
-  const ProfileBtnContainer = styled.div`
-    margin-left: 86rem;
-    margin-top: -10rem;
-  `;
-  const EditBtn = styled.button`
-    width: 10.3rem;
-    height: 3.5rem;
-    border: 1px solid #a0a6ac;
-    border-radius: 3px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    background-color: white;
-  `;
-  const ProfileBtn = styled.button`
-    width: 7.8rem;
-    height: 3.5rem;
-    border: 1px solid #a0a6ac;
-    border-radius: 3px;
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
-    cursor: pointer;
-    background-color: white;
-    /* &:hover {
+const ProfileBtnContainer = styled.div`
+  margin-left: 86rem;
+  margin-top: -10rem;
+`;
+const EditBtn = styled.button`
+  width: 10.3rem;
+  height: 3.5rem;
+  border: 1px solid #a0a6ac;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: white;
+`;
+const ProfileBtn = styled.button`
+  width: 7.8rem;
+  height: 3.5rem;
+  border: 1px solid #a0a6ac;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  background-color: white;
+  /* &:hover {
       background-color: #f8f9f9;
     } */
-  `;
-  const ProfileCreatedAt = styled.div`
-    margin-top: 0.5rem;
-    margin-left: 14.5rem;
-    font-size: 1.3rem;
-    color: grey;
-    font-weight: 500;
-  `;
-  const MemberPeriod = styled.div`
-    font-size: 1.3rem;
-    color: grey;
-    font-weight: 500;
-    margin-left: 2.3rem;
-    margin-top: -18px;
-  `;
-  const ProfileImg = styled.div`
-    width: 12.8rem;
-    height: 12.8rem;
-    border-radius: 7px;
-    border: 1px solid orange;
-    background-color: orange;
-    cursor: pointer;
-  `;
-  const AboutLayout = styled.div`
-    flex-grow: 1;
-    margin: 1.2rem;
-  `;
+`;
+const ProfileCreatedAt = styled.div`
+  margin-top: 0.5rem;
+  margin-left: 14.5rem;
+  font-size: 1.3rem;
+  color: grey;
+  font-weight: 500;
+`;
+const MemberPeriod = styled.div`
+  font-size: 1.3rem;
+  color: grey;
+  font-weight: 500;
+  margin-left: 2.3rem;
+  margin-top: -18px;
+`;
+const ProfileImg = styled.div`
+  width: 12.8rem;
+  height: 12.8rem;
+  border-radius: 7px;
+  border: 1px solid orange;
+  background-color: orange;
+  cursor: pointer;
+`;
+
+const Profile = () => {
   return (
     <>
       <Header />
@@ -135,13 +132,13 @@ const Profile = () => {
               </ProfileHead>
               <ProfileMainLayout>
                 <ProfileStats />
-                <AboutLayout></AboutLayout>
+                <ProfileAbout />
               </ProfileMainLayout>
             </ProfileContentLayout>
           </ContentLayout>
         </BodyContainer>
-        <Footer />
       </HomeContainer>
+      <Footer></Footer>
     </>
   );
 };
