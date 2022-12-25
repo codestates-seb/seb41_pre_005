@@ -1,14 +1,20 @@
 package com.group5.stackoverflowclone.config;
 
 import com.group5.stackoverflowclone.auth.filter.JwtAuthenticationFilter;
+import com.group5.stackoverflowclone.auth.filter.JwtVerificationFilter;
+import com.group5.stackoverflowclone.auth.handler.UserAccessDeniedHandler;
+import com.group5.stackoverflowclone.auth.handler.UserAuthenticationEntryPoint;
 import com.group5.stackoverflowclone.auth.handler.UserAuthenticationFailureHandler;
 import com.group5.stackoverflowclone.auth.handler.UserAuthenticationSuccessHandler;
 import com.group5.stackoverflowclone.auth.jwt.JwtTokenizer;
+import com.group5.stackoverflowclone.auth.utils.CustomAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -23,9 +29,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
+    private final CustomAuthorityUtils authorityUtils;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
         this.jwtTokenizer = jwtTokenizer;
+        this.authorityUtils = authorityUtils;
     }
 
     @Bean
@@ -35,13 +43,24 @@ public class SecurityConfiguration {
                 .and()
                 .csrf().disable()
                 .cors(withDefaults())
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new UserAuthenticationEntryPoint())
+                .accessDeniedHandler(new UserAccessDeniedHandler())
+                .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().permitAll()
-                );
+                .authorizeHttpRequests()
+                // 수정 필요할 수도 있음!!
+                .antMatchers(HttpMethod.POST,"/users/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/questions/**", "/questions").permitAll()
+                .antMatchers(HttpMethod.POST, "/**/questions/ask").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/docs/**").hasRole("ADMIN")
+                .anyRequest().permitAll();
+
         return http.build();
     }
 
@@ -71,7 +90,12 @@ public class SecurityConfiguration {
             jwtAuthenticationFilter.setFilterProcessesUrl("users/login");
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
-            builder.addFilter(jwtAuthenticationFilter);
+
+            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);
+
+            builder
+                    .addFilter(jwtAuthenticationFilter)
+                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);
         }
     }
 }
