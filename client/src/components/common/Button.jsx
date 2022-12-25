@@ -7,9 +7,14 @@ const ButtonElement = styled.button`
   color: white;
   font-size: 1.2rem;
   margin: auto;
+  border-radius: ${(props) => props.radius || null};
 `;
-const Button = ({ children, width }) => {
-  return <ButtonElement width={width}>{children}</ButtonElement>;
+const Button = ({ children, width, radius }) => {
+  return (
+    <ButtonElement width={width} radius={radius}>
+      {children}
+    </ButtonElement>
+  );
 };
 
 export default Button;
