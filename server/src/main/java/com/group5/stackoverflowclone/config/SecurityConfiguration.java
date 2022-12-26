@@ -55,10 +55,10 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 // 수정 필요할 수도 있음!!
-                .antMatchers(HttpMethod.POST,"/users/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/questions/**", "/questions").permitAll()
-                .antMatchers(HttpMethod.POST, "/**/questions/ask").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/docs/**").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.POST,"/users/login").permitAll()
+//                .antMatchers(HttpMethod.GET, "/questions/**", "/questions").permitAll()
+//                .antMatchers(HttpMethod.POST, "/**/questions/ask").hasRole("USER")
+//                .antMatchers(HttpMethod.GET, "/docs/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
 
         return http.build();
@@ -87,7 +87,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
-            jwtAuthenticationFilter.setFilterProcessesUrl("users/login");
+            jwtAuthenticationFilter.setFilterProcessesUrl("/users/login");
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
 
