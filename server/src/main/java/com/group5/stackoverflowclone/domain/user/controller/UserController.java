@@ -36,6 +36,9 @@ public class UserController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.userToUserResponseDto(user)), HttpStatus.CREATED);
     }
 
+    // 로그인
+
+
     // 전체 유저 조회 -> stackOverFlow 상에 어느 정보까지 나와야할까? -> 삭제
     @GetMapping
     public ResponseEntity getAllUsers() {
