@@ -5,7 +5,10 @@ import com.group5.stackoverflowclone.domain.tag.repository.TagRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -16,7 +19,21 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
+    public List<Tag> createTagByName(String tagNames) {
+        String[] split = tagNames.split(",");
+        return Arrays.stream(split)
+                .filter(tag -> !tag.isEmpty())
+                .map(String::trim)
+                .map(tag -> new Tag(tag, ""))
+                .map(this::verifyTag).collect(Collectors.toList());
+    }
+
     public List<Tag> getAllTags() {
         return tagRepository.findAll();
+    }
+
+    private Tag verifyTag(Tag tag) {
+        Optional<Tag> optionalTag = tagRepository.findByTagName(tag.getTagName());
+        return optionalTag.orElseGet(() -> tagRepository.save(tag));
     }
 }

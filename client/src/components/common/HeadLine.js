@@ -55,20 +55,58 @@ export const TagsHeadline = () => {
 
 const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
-  margin-top: 3rem;
-  margin-left: 3rem;
+  margin-top: 2.5rem;
+  margin-left: 17.5rem;
   display: flex;
 `;
 const AskQuestionWord = styled.div`
-  font-size: 3rem;
-  margin-right: 44rem;
+  font-size: 2.7rem;
+  margin-right: 48rem;
+`;
+const SearchResultsHead = styled.div`
+  margin-top: 3rem;
+  margin-left: 15rem;
+  display: flex;
+  flex-direction: column;
+`;
+const Top = styled.div`
+  width: 100%;
+  height: 3.78rem;
+  margin-bottom: 2.4rem;
+  display: flex;
+`;
+const SearchResultsWord = styled.div`
+  width: 80rem;
+  height: 100%;
+  font-size: 2.7rem;
+`;
+const AdvancedWord = styled.div`
+  width: 19rem;
+  height: 100%;
+  font-size: 1.3rem;
+  color: #0074cc;
+  display: flex;
+  align-items: center;
+`;
+const TextBox = styled.div`
+  width: 100%;
+  height: 3.2rem;
+`;
+const Text = styled.div`
+  width: 100%;
+  height: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  color: #6a737c;
 `;
 
 export const HomeHeadLine = () => {
   return (
     <AskQuestionHead>
       <AskQuestionWord>Top Questions</AskQuestionWord>
-      <AskQuestionBtn>Ask question</AskQuestionBtn>
+      <AskQuestionBtn fontWeight="550" fontSize="13px">
+        Ask question
+      </AskQuestionBtn>
     </AskQuestionHead>
   );
 };
@@ -77,8 +115,27 @@ export const QuestionsHeadLine = () => {
   return (
     <AskQuestionHead>
       <AskQuestionWord>All Questions</AskQuestionWord>
-      <AskQuestionBtn>Ask question</AskQuestionBtn>
+      <AskQuestionBtn fontWeight="550" fontSize="13px">
+        Ask Question
+      </AskQuestionBtn>
     </AskQuestionHead>
+  );
+};
+export const SearchResultsHeadLine = () => {
+  return (
+    <SearchResultsHead>
+      <Top>
+        <SearchResultsWord>Search Results</SearchResultsWord>
+        <AdvancedWord>Advanced Search Tips</AdvancedWord>
+        <AskQuestionBtn fontWeight="550" fontSize="13px">
+          Ask Question
+        </AskQuestionBtn>
+      </Top>
+      <TextBox>
+        <Text>Results for react</Text>
+        <Text>Search options not deleted</Text>
+      </TextBox>
+    </SearchResultsHead>
   );
 };
 

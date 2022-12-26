@@ -3,10 +3,9 @@ import styled from "styled-components";
 const HeaderLayoutContainer = styled.div`
   width: 100%;
   height: 5rem;
-  background-color: pink;
 `;
 
-const HeaderLayout = ({children}) => {
+const HeaderLayout = ({ children }) => {
   return <HeaderLayoutContainer>{children}</HeaderLayoutContainer>;
 };
 

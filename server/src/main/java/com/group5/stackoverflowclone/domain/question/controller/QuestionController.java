@@ -1,10 +1,15 @@
 package com.group5.stackoverflowclone.domain.question.controller;
 
+import com.group5.stackoverflowclone.domain.answer.dto.AnswerResponseDto;
+import com.group5.stackoverflowclone.domain.answer.entity.Answer;
+import com.group5.stackoverflowclone.domain.answer.mapper.AnswerMapper;
+import com.group5.stackoverflowclone.domain.answer.service.AnswerService;
 import com.group5.stackoverflowclone.domain.question.dto.QuestionPatchDto;
 import com.group5.stackoverflowclone.domain.question.dto.QuestionPostDto;
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import com.group5.stackoverflowclone.domain.question.mapper.QuestionMapper;
 import com.group5.stackoverflowclone.domain.question.service.QuestionService;
+import com.group5.stackoverflowclone.domain.user.service.UserService;
 import com.group5.stackoverflowclone.response.MultiResponseDto;
 import com.group5.stackoverflowclone.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -26,11 +31,15 @@ import java.util.List;
 public class QuestionController {
     private final QuestionMapper mapper;
     private final QuestionService questionService;
+    private final UserService userService;
+    private final AnswerService answerService;
+    private final AnswerMapper answerMapper;
 
     //질문 등록
     @PostMapping("/questions/ask")
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
-        Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
+        Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto), questionPostDto.getTagNameList(), questionPostDto.getUserId());
+        userService.updateQuestionCount(question.getUser(), question.getUser().getQuestionCount());
 
         return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.CREATED);
     }
@@ -39,8 +48,10 @@ public class QuestionController {
     @GetMapping("/questions/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
         Question question = questionService.findQuestion(questionId);
+        questionService.updateQuestionViewCount(question, question.getViewCount());
 
-        return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
+        return new ResponseEntity(new MultiResponseDto<>(mapper.questionToQuestionResponseDto(question),
+                answerMapper.answersToAnswerResponseDtos(question.getAnswers())), HttpStatus.OK);
     }
 
     //질문 수정
@@ -83,5 +94,19 @@ public class QuestionController {
         questionService.deleteQuestion(questionId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("questions/upvote/{question-id}")
+    public ResponseEntity setUpVote(@PathVariable("question-id") long questionId, @Positive @RequestParam long userId) {
+        questionService.setUpVote(questionId, userId);
+
+        return new ResponseEntity(new SingleResponseDto<>(questionService.getVoteCount(questionId)), HttpStatus.OK);
+    }
+
+    @PostMapping("questions/downvote/{question-id}")
+    public ResponseEntity setDownVote(@PathVariable("question-id") long questionId, @Positive @RequestParam long userId) {
+        questionService.setDownVote(questionId, userId);
+
+        return new ResponseEntity(new SingleResponseDto<>(questionService.getVoteCount(questionId)), HttpStatus.OK);
     }
 }

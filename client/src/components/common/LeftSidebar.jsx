@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SidebarContainer = styled.div`
-  margin-top: 2.5rem;
   width: 16.4rem;
   overflow: auto;
 `;
