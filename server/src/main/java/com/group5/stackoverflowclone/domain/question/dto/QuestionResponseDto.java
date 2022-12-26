@@ -1,8 +1,9 @@
 package com.group5.stackoverflowclone.domain.question.dto;
 
+import com.group5.stackoverflowclone.domain.answer.dto.AnswerResponseDto;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
-import com.group5.stackoverflowclone.domain.user.entity.User;
-import com.group5.stackoverflowclone.domain.vote.Vote;
+import com.group5.stackoverflowclone.domain.tag.dto.TagResponseDto;
+import com.group5.stackoverflowclone.domain.tag.dto.TagSimplePostDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,11 +17,11 @@ public class QuestionResponseDto {
     private long userId;
     private String title;
     private String content;
-    private int viewCount;
+    private String displayName;
+    private long viewCount;
+    private long voteCount;
+    private List<AnswerResponseDto> answerList;
+    private List<TagResponseDto> tagList;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-    private List<Vote> votes;
-    private List<QuestionTagResponseDto> questionTags;
-    private List<Answer> answers;
-    private User user;
 }

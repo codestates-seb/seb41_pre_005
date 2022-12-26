@@ -1,6 +1,7 @@
 package com.group5.stackoverflowclone.domain.question.dto;
 
-import com.group5.stackoverflowclone.domain.question.entity.QuestionTag;
+import com.group5.stackoverflowclone.domain.tag.dto.TagSimplePostDto;
+import com.group5.stackoverflowclone.domain.tag.entity.Tag;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -15,5 +16,9 @@ public class QuestionPatchDto {
 
     private String content;
 
-    private List<QuestionTag> questionTags;
+    private List<Tag> tags;
+
+    public void setQuestionId(long questionId) {
+        this.questionId = questionId;
+    }
 }

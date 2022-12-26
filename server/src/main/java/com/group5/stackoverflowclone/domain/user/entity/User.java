@@ -1,6 +1,5 @@
 package com.group5.stackoverflowclone.domain.user.entity;
 
-import com.group5.stackoverflowclone.domain.vote.Vote;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import lombok.Getter;
@@ -29,6 +28,12 @@ public class User {
 
     private String displayName;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private long answerCount;
+
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private long questionCount;
+
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -39,27 +44,10 @@ public class User {
     private List<String> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Vote> votes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
     private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Question> questions = new ArrayList<>();
-
-
-    public User(String email, String password, String displayName) {
-        this.email = email;
-        this.password = password;
-        this.displayName = displayName;
-    }
-
-    public void addVote(Vote vote) {
-        votes.add(vote);
-        if (vote.getUser() != this) {
-            vote.addUser(this);
-        }
-    }
 
     public void addAnswer(Answer answer) {
         answers.add(answer);
@@ -73,5 +61,13 @@ public class User {
         if (question.getUser() != this) {
             question.addUser(this);
         }
+    }
+
+    public void setAnswerCount(long answerCount) {
+        this.answerCount = answerCount;
+    }
+
+    public void setQuestionCount(long questionCount) {
+        this.questionCount = questionCount;
     }
 }

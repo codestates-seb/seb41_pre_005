@@ -1,5 +1,8 @@
 package com.group5.stackoverflowclone.response;
 
+import com.group5.stackoverflowclone.domain.answer.dto.AnswerResponseDto;
+import com.group5.stackoverflowclone.domain.question.dto.QuestionResponseDto;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 

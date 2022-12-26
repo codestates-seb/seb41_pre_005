@@ -1,13 +1,19 @@
 import React from "react";
-
-const Button = (props) => {
+import styled from "styled-components";
+const ButtonElement = styled.button`
+  width: ${(props) => props.width || "26.8rem"};
+  height: 3.7rem;
+  background-color: #0693ff;
+  color: white;
+  font-size: 1.2rem;
+  margin: auto;
+  border-radius: ${(props) => props.radius || null};
+`;
+const Button = ({ children, width, radius }) => {
   return (
-    <div>
-      <span>변경</span>
-      <span>테스트</span>
-      <button>클릭</button>
-        <button>테스트</button>
-    </div>
+    <ButtonElement width={width} radius={radius}>
+      {children}
+    </ButtonElement>
   );
 };
 

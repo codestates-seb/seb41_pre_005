@@ -2,7 +2,6 @@ package com.group5.stackoverflowclone.domain.answer.entity;
 
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import com.group5.stackoverflowclone.domain.user.entity.User;
-import com.group5.stackoverflowclone.domain.vote.Vote;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,22 +22,27 @@ public class Answer {
 
     private String content;
 
+    private long voteCount;
+
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "QUESTION_ID" )
     private Question question;
 
-    @OneToMany(mappedBy = "answer")
-    private List<Vote> votes = new ArrayList<>();
+    @ElementCollection
+    public List<Long> upVotedUserId = new ArrayList<>();
+
+    @ElementCollection
+    public List<Long> downVotedUserId = new ArrayList<>();
 
     public void addUser(User user) {
         this.user = user;
@@ -54,12 +58,7 @@ public class Answer {
         }
     }
 
-
-    public void addVote(Vote vote) {
-        votes.add(vote);
-        if (vote.getAnswer() != this) {
-            vote.addAnswer(this);
-        }
+    public void setVoteCount(long voteCount) {
+        this.voteCount = voteCount;
     }
-
 }
