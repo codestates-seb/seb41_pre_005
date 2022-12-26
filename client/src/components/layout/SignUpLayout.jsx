@@ -11,6 +11,7 @@ const LayoutContainer = styled.div`
     position: absolute;
     width: 100vw;
     height: 100vh;
+    bottom: 0;
     content: "";
     background-color: #f1f2f3;
   }

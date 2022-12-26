@@ -56,8 +56,8 @@ export const TagsHeadline = () => {
 
 const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
-  margin-top: 2.5rem;
-  margin-left: 17.5rem;
+  margin-top: 2.4rem;
+  margin-right: 2.4rem;
   display: flex;
 `;
 const AskQuestionWord = styled.div`
@@ -122,6 +122,23 @@ export const QuestionsHeadLine = () => {
         </AskQuestionBtn>
       </Link>
     </AskQuestionHead>
+  );
+};
+export const QuestionDetailHeadLine = () => {
+  return (
+    <SearchResultsHead>
+      <Top>
+        <SearchResultsWord>Search Results</SearchResultsWord>
+        <AdvancedWord>Advanced Search Tips</AdvancedWord>
+        <AskQuestionBtn fontWeight="550" fontSize="13px">
+          Ask Question
+        </AskQuestionBtn>
+      </Top>
+      <TextBox>
+        <Text>Results for react</Text>
+        <Text>Search options not deleted</Text>
+      </TextBox>
+    </SearchResultsHead>
   );
 };
 export const SearchResultsHeadLine = () => {

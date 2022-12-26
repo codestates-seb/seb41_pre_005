@@ -50,8 +50,7 @@ public class QuestionController {
         Question question = questionService.findQuestion(questionId);
         questionService.updateQuestionViewCount(question, question.getViewCount());
 
-        return new ResponseEntity(new MultiResponseDto<>(mapper.questionToQuestionResponseDto(question),
-                answerMapper.answersToAnswerResponseDtos(question.getAnswers())), HttpStatus.OK);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
     }
 
     //질문 수정
@@ -96,14 +95,14 @@ public class QuestionController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("questions/upvote/{question-id}")
+    @PostMapping("questions/upVote/{question-id}")
     public ResponseEntity setUpVote(@PathVariable("question-id") long questionId, @Positive @RequestParam long userId) {
         questionService.setUpVote(questionId, userId);
 
         return new ResponseEntity(new SingleResponseDto<>(questionService.getVoteCount(questionId)), HttpStatus.OK);
     }
 
-    @PostMapping("questions/downvote/{question-id}")
+    @PostMapping("questions/downVote/{question-id}")
     public ResponseEntity setDownVote(@PathVariable("question-id") long questionId, @Positive @RequestParam long userId) {
         questionService.setDownVote(questionId, userId);
 
