@@ -12,13 +12,13 @@ import SearchResults from "../src/pages/SearchResults";
 import QuestionDetail from "./pages/question/QuestionDetail";
 import AskQuestion from "./pages/question/AskQuestion";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/common/Header";
 
 const PageLayout = styled.div`
   max-width: 126.4rem;
-  height: 100vh;
+  height: calc(100vh-5rem);
   margin: auto;
 `;
 function App() {

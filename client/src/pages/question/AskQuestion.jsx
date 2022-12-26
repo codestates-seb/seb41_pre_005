@@ -9,7 +9,17 @@ import AskQuestionHeadline from '../../components/questions/AskQuestionHeadline'
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
-  background-color: #f8f9f9;
+  &::after {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    content: "";
+    background-color: #f1f2f3;
+  }
 `;
 const AskContainer = styled.div`
   width: 851px;

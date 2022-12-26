@@ -56,8 +56,8 @@ export const TagsHeadline = () => {
 
 const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
-  margin-top: 2.5rem;
-  margin-left: 17.5rem;
+  margin-top: 2.4rem;
+  margin-right: 2.4rem;
   display: flex;
 `;
 const AskQuestionWord = styled.div`

@@ -5,6 +5,9 @@ import com.group5.stackoverflowclone.domain.answer.dto.AnswerPostDto;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.answer.mapper.AnswerMapper;
 import com.group5.stackoverflowclone.domain.answer.service.AnswerService;
+import com.group5.stackoverflowclone.domain.question.entity.Question;
+import com.group5.stackoverflowclone.domain.question.service.QuestionService;
+import com.group5.stackoverflowclone.domain.user.service.UserService;
 import com.group5.stackoverflowclone.response.SingleResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +22,14 @@ import javax.validation.constraints.Positive;
 @Validated
 public class AnswerController {
     private final AnswerService answerService;
+    private final QuestionService questionService;
+    private final UserService userService;
     private final AnswerMapper mapper;
 
-    public AnswerController(AnswerService answerService, AnswerMapper mapper) {
+    public AnswerController(AnswerService answerService, QuestionService questionService, UserService userService, AnswerMapper mapper) {
         this.answerService = answerService;
+        this.questionService = questionService;
+        this.userService = userService;
         this.mapper = mapper;
     }
 
@@ -31,6 +38,12 @@ public class AnswerController {
     public ResponseEntity postAnswer(@PathVariable("question-id") @Positive long questionId,
                                      @Valid @RequestBody AnswerPostDto answerPostDto) {
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto), questionId);
+
+        Question question = questionService.findQuestion(questionId);
+        question.addAnswer(answer);
+
+        userService.updateAnswerCount(question.getUser(), question.getUser().getAnswerCount());
+
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(answer)), HttpStatus.CREATED);
     }
@@ -55,6 +68,22 @@ public class AnswerController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @PostMapping("/upVote/{question-id}/{answer-id}")
+    public ResponseEntity setUpVote(@PathVariable("question-id") @Positive long questionId,
+                                    @PathVariable("answer-id") @Positive long answerId,
+                                    @Positive @RequestParam long userId) {
+        answerService.setUpVote(answerId, userId);
 
+        return new ResponseEntity(new SingleResponseDto<>(answerService.getVoteCount(answerId)), HttpStatus.OK);
+    }
 
+    @PostMapping("/downVote/{question-id}/{answer-id}")
+    public ResponseEntity setDownVote(@PathVariable("question-id") @Positive long questionId,
+                                    @PathVariable("answer-id") @Positive long answerId,
+                                    @Positive @RequestParam long userId) {
+
+        answerService.setDownVote(answerId, userId);
+
+        return new ResponseEntity(new SingleResponseDto<>(answerService.getVoteCount(answerId)), HttpStatus.OK);
+    }
 }

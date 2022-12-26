@@ -6,24 +6,23 @@ import LoginPageBottom from "../../components/login/LoginPageBottom";
 
 const LoginContainer = styled.div`
   position: relative;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-  /* background-color: #f1f2f3; */
   &::after {
     z-index: -1;
     position: absolute;
     width: 100vw;
     height: 100vh;
+    bottom: 0;
     content: "";
     background-color: #f1f2f3;
   }
-
+  /* background-color: #f1f2f3; */
 `;
 const FormContainer = styled.div`
   margin-top: 10rem;
@@ -44,7 +43,7 @@ const FindPassword = styled.span`
   line-height: 2rem;
   font-size: 1rem;
 `;
-const Login = props => {
+const Login = (props) => {
   return (
     <>
       <LoginContainer>

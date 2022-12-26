@@ -5,7 +5,7 @@ const QuestionsContainer = styled.div`
   width: 100%; */
   height: auto;
   min-height: 100%;
-  padding-bottom: 322px;
+  /* padding-bottom: 322px; */
 `;
 const BodyContainer = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const BodyContainer = styled.div`
   height: 100%;
 `;
 
-const QuestionsLayout = ({children}) => {
+const QuestionsLayout = ({ children }) => {
   return (
     <QuestionsContainer>
       <BodyContainer>{children}</BodyContainer>
