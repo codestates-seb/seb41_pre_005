@@ -306,7 +306,7 @@ const HeaderSearchbar = () => {
   );
 };
 
-const LoginBtn = styled(ButtonBlue)``;
+const LoginBtn = styled(ButtonSblue)``;
 const SignupBtn = styled(ButtonBlue)``;
 
 const Header = () => {
