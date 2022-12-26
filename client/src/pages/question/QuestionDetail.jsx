@@ -7,7 +7,9 @@ import Footer from "../../components/common/Footer";
 import QuestionEditEtc from "../../components/questions/QuestionEditEtc";
 import QuestionVote from "../../components/questions/QuestionVote";
 import AskQuestionForm from "../../components/questions/AskQuestionForm";
-import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
+import AnswerList from "../../components/answers/AnswerList";
+import AskEditor from "../../components/questions/AskEditor";
+import Button from "../../components/common/Button";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -67,7 +69,15 @@ const Userinfo = styled.div`
   margin-top: -1.5rem;
   border-radius: 3px;
 `;
-const FooterLayout = styled.div``;
+const AnswerEditorHeader = styled.h2`
+  padding-top: 2rem;
+  margin-bottom: 1.9rem;
+  font-weight: 400;
+  font-size: 1.9rem;
+`;
+const ButtonContainer = styled.div`
+  padding: 10px 0;
+`;
 
 const QuestionDetail = () => {
   return (
@@ -90,6 +100,14 @@ const QuestionDetail = () => {
                     <QuestionEditEtc />
                     <Userinfo>User</Userinfo>
                   </EditContain>
+                  <AnswerList />
+                  <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
+                  <AskEditor />
+                  <ButtonContainer>
+                    <Button width="12rem" radius="3px">
+                      Post Your Answer
+                    </Button>
+                  </ButtonContainer>
                 </QuestionContent>
                 <RightSideBarLayout />
               </Question>
