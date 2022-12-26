@@ -22,7 +22,7 @@ public class Answer {
 
     private String content;
 
-    private int voteCount;
+    private long voteCount;
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -30,13 +30,19 @@ public class Answer {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "QUESTION_ID" )
     private Question question;
+
+    @ElementCollection
+    public List<Long> upVotedUserId = new ArrayList<>();
+
+    @ElementCollection
+    public List<Long> downVotedUserId = new ArrayList<>();
 
     public void addUser(User user) {
         this.user = user;
@@ -50,5 +56,9 @@ public class Answer {
         if (!this.question.getAnswers().contains(this)) {
             this.question.getAnswers().add(this);
         }
+    }
+
+    public void setVoteCount(long voteCount) {
+        this.voteCount = voteCount;
     }
 }

@@ -26,6 +26,12 @@ public class User {
 
     private String displayName;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private long answerCount;
+
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private long questionCount;
+
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -37,13 +43,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Question> questions = new ArrayList<>();
-
-
-    public User(String email, String password, String displayName) {
-        this.email = email;
-        this.password = password;
-        this.displayName = displayName;
-    }
 
     public void addAnswer(Answer answer) {
         answers.add(answer);
@@ -57,6 +56,14 @@ public class User {
         if (question.getUser() != this) {
             question.addUser(this);
         }
+    }
+
+    public void setAnswerCount(long answerCount) {
+        this.answerCount = answerCount;
+    }
+
+    public void setQuestionCount(long questionCount) {
+        this.questionCount = questionCount;
     }
 
 }

@@ -13,6 +13,8 @@ public class UserResponseDto {
     private long userId;
     private String email;
     private String displayName;
+    private long answerCount;
+    private long questionCount;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

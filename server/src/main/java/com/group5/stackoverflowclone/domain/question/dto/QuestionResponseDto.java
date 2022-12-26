@@ -1,5 +1,6 @@
 package com.group5.stackoverflowclone.domain.question.dto;
 
+import com.group5.stackoverflowclone.domain.answer.dto.AnswerResponseDto;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.tag.dto.TagResponseDto;
 import com.group5.stackoverflowclone.domain.tag.dto.TagSimplePostDto;
@@ -19,7 +20,7 @@ public class QuestionResponseDto {
     private String displayName;
     private long viewCount;
     private long voteCount;
-    private List<Answer> answerList;
+    private List<AnswerResponseDto> answerList;
     private List<TagResponseDto> tagList;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
