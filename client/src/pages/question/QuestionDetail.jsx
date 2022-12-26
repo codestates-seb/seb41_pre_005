@@ -10,6 +10,7 @@ import AskQuestionForm from "../../components/questions/AskQuestionForm";
 import AnswerList from "../../components/answers/AnswerList";
 import AskEditor from "../../components/questions/AskEditor";
 import Button from "../../components/common/Button";
+import ElapsedTime from "../../components/answers/ElapsedTime";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -69,6 +70,15 @@ const Userinfo = styled.div`
   margin-top: -1.5rem;
   border-radius: 3px;
 `;
+const ProfileImg = styled.div`
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 7px;
+  border: 1px solid orange;
+  background-color: orange;
+  cursor: pointer;
+  margin-left: 7px;
+`;
 const AnswerEditorHeader = styled.h2`
   padding-top: 2rem;
   margin-bottom: 1.9rem;
@@ -79,6 +89,17 @@ const ButtonContainer = styled.div`
   padding: 10px 0;
 `;
 
+const TimeContain = styled.div`
+  width: 18.7rem;
+  height: 2rem;
+  margin-left: 7px;
+`;
+const UsernameContain = styled.div`
+  font-size: 1.3rem;
+  color: #0074cc;
+  margin-left: 5rem;
+  margin-top: -3rem;
+`;
 const QuestionDetail = () => {
   return (
     <>
@@ -93,12 +114,32 @@ const QuestionDetail = () => {
                 <QuestionVote></QuestionVote>
                 <QuestionContent>
                   <Content>
-                    HeloosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfssdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfssdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfssdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosa
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test Test Test Test Test
+                    Test Test Test Test Test Test Test Test
                   </Content>
                   <TagsContain>Tags</TagsContain>
                   <EditContain>
                     <QuestionEditEtc />
-                    <Userinfo>User</Userinfo>
+                    <Userinfo>
+                      <TimeContain>
+                        <ElapsedTime />
+                      </TimeContain>
+                      <ProfileImg></ProfileImg>
+                      <UsernameContain>User</UsernameContain>
+                    </Userinfo>
                   </EditContain>
                   <AnswerList />
                   <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
