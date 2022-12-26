@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Author from "./Author";
 import QuestionStatistics from "./QuestionStatistics";
@@ -44,7 +45,10 @@ const QuestionsItem = ({ question }) => {
         viewCount={question?.questionViewCount}
       />
       <QuestionSummary>
-        <QuestionTitle>{question?.questionTitle}</QuestionTitle>
+        <QuestionTitle>
+          {" "}
+          <Link>{question?.questionTitle}</Link>
+        </QuestionTitle>
         <QuestionBody>
           {question?.questionBody?.length > 100
             ? `${question?.questionBody?.slice(0, 100)}...`

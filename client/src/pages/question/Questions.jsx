@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+
 import ContentLayout from "../../components/layout/ContentLayout";
 import LeftSideLayout from "../../components/layout/LeftSideLayout";
 import MainContentLayout from "../../components/layout/MainContentLayout";

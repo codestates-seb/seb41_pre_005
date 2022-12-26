@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const FooterContainer = styled.footer`
-  position: absolute;
-  bottom: 0;
   left: -8.8rem;
 
   /* transform: translateY(100%); */
@@ -231,7 +229,7 @@ const FooterContain = styled.div`
   position: relative;
 `;
 
-const FooterLayout = ({children}) => {
+const FooterLayout = ({ children }) => {
   return <FooterContain>{children}</FooterContain>;
 };
 

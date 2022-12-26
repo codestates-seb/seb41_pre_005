@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HeaderLayout from "../layout/HeaderLayout";
 // import {Link} from "react-router-dom";
@@ -9,10 +10,10 @@ const Bluebutton = styled.button`
   border: 1px solid #0995ff;
   border-radius: 4px;
   box-shadow: inset 0 1px 0 0 #ffffff;
-  width: ${props => props.width || "100px"};
-  height: ${props => props.height || "40px"};
-  font-size: ${props => props.fontSize || "14px"};
-  font-weight: ${props => props.fontWeight || "700"};
+  width: ${(props) => props.width || "100px"};
+  height: ${(props) => props.height || "40px"};
+  font-size: ${(props) => props.fontSize || "14px"};
+  font-weight: ${(props) => props.fontWeight || "700"};
   :hover {
     background: #0063bf;
   }
@@ -29,11 +30,11 @@ const SkyblueButton = styled.button`
   background: #e1ecf4;
   color: #3a739d;
   border-radius: 4px;
-  border: ${props => props.border || "1px solid #3a739d"};
-  width: ${props => props.width || "100px"};
-  height: ${props => props.height || "40px"};
-  font-size: ${props => props.fontSize || "14px"};
-  font-weight: ${props => props.fontWeight || "700"};
+  border: ${(props) => props.border || "1px solid #3a739d"};
+  width: ${(props) => props.width || "100px"};
+  height: ${(props) => props.height || "40px"};
+  font-size: ${(props) => props.fontSize || "14px"};
+  font-weight: ${(props) => props.fontWeight || "700"};
   margin-right: 0.5rem;
   margin-left: -2rem;
   :hover {
@@ -66,7 +67,7 @@ export function ButtonBlue({
   );
 }
 
-export function ButtonSblue({children, width, height, fontSize, fontWeight}) {
+export function ButtonSblue({ children, width, height, fontSize, fontWeight }) {
   return (
     <SkyblueButton
       width={width}
@@ -96,7 +97,7 @@ const ButtonComponent = styled.button`
   text-decoration: none;
   cursor: pointer;
   user-select: none;
-  white-space: ${props =>
+  white-space: ${(props) =>
     props.whiteSpace === "nowrap" ? "nowrap !important" : "normal"};
 
   &.primary {
@@ -117,7 +118,7 @@ const ButtonComponent = styled.button`
   }
 `;
 
-export const Button = ({children}) => {
+export const Button = ({ children }) => {
   return <ButtonComponent>{children}</ButtonComponent>;
 };
 
@@ -234,54 +235,53 @@ const HeadBtnContainer = styled.div`
   }
 `;
 
+const SearchbarContainer = styled.div`
+  box-sizing: border-box;
+  padding: 0 3.5rem;
+  position: relative;
+  display: flex;
+  font-family: inherit;
+  margin-left: -1.5rem;
+`;
+
+const SearchbarInput = styled.input`
+  box-sizing: border-box;
+  max-width: ${(props) => props.width || "1000px"};
+  height: ${(props) => props.height || "30px"};
+
+  border: 1px solid #babfc4;
+  border-radius: 3px;
+  padding-left: 30px;
+  font-size: 1.3rem;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #6bbbf7;
+    box-shadow: 0px 0px 0px 4px #d8e5f2;
+  }
+`;
+
+const SearchIcon = styled.div`
+  position: absolute;
+  left: 4.2rem;
+  top: 7px;
+  svg {
+    color: #81878c;
+  }
+`;
+
+const HeaderSearchbarContainer = styled(SearchbarContainer)`
+  flex-grow: 1;
+  max-width: 756px;
+`;
+
+const HeaderSearchbarInput = styled(SearchbarInput)`
+  width: 100%;
+  height: 33px;
+  position: relative;
+`;
+const HeaderSearchIcon = styled(SearchIcon)``;
 const HeaderSearchbar = () => {
-  const SearchbarContainer = styled.div`
-    box-sizing: border-box;
-    padding: 0 3.5rem;
-    position: relative;
-    display: flex;
-    font-family: inherit;
-    margin-left: -1.5rem;
-  `;
-
-  const SearchbarInput = styled.input`
-    box-sizing: border-box;
-    max-width: ${props => props.width || "1000px"};
-    height: ${props => props.height || "30px"};
-
-    border: 1px solid #babfc4;
-    border-radius: 3px;
-    padding-left: 30px;
-    font-size: 1.3rem;
-
-    &:focus {
-      outline: none;
-      border: 1px solid #6bbbf7;
-      box-shadow: 0px 0px 0px 4px #d8e5f2;
-    }
-  `;
-
-  const SearchIcon = styled.div`
-    position: absolute;
-    left: 4.2rem;
-    top: 7px;
-    svg {
-      color: #81878c;
-    }
-  `;
-
-  const HeaderSearchbarContainer = styled(SearchbarContainer)`
-    flex-grow: 1;
-    max-width: 756px;
-  `;
-
-  const HeaderSearchbarInput = styled(SearchbarInput)`
-    width: 100%;
-    height: 33px;
-    position: relative;
-  `;
-  const HeaderSearchIcon = styled(SearchIcon)``;
-
   return (
     <HeaderSearchbarContainer id="search">
       <HeaderSearchbarInput
@@ -297,7 +297,7 @@ const HeaderSearchbar = () => {
           viewBox="0 0 18 18"
         >
           <path
-            style={{fill: "rgb(131, 140, 149)"}}
+            style={{ fill: "rgb(131, 140, 149)" }}
             d="m18 16.5-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5ZM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0Z"
           />
         </svg>
@@ -305,7 +305,8 @@ const HeaderSearchbar = () => {
     </HeaderSearchbarContainer>
   );
 };
-const LoginBtn = styled(ButtonSblue)``;
+
+const LoginBtn = styled(ButtonBlue)``;
 const SignupBtn = styled(ButtonBlue)``;
 
 const Header = () => {
@@ -314,12 +315,12 @@ const Header = () => {
       <HeaderContinaer>
         <HeaderTopbarContainer>
           <LogoContainer>
-            {/* <Link to="/"> */}
-            <img
-              src={process.env.PUBLIC_URL + "/images/main_logo.svg"}
-              alt="Stack Overflow logo"
-            ></img>
-            {/* </Link> */}
+            <Link to="/">
+              <img
+                src={process.env.PUBLIC_URL + "/images/main_logo.svg"}
+                alt="Stack Overflow logo"
+              ></img>
+            </Link>
           </LogoContainer>
           <HeadBtnContainer>
             <button className="about_btn">About</button>
@@ -332,22 +333,27 @@ const Header = () => {
           </HeadBtnContainer>
           <HeaderSearchbar></HeaderSearchbar>
           <div className="LogSinb">
-            <LoginBtn
-              width="59.45px"
-              height="32px"
-              fontSize="13px"
-              fontWeight="400"
-            >
-              Log in
-            </LoginBtn>
-            <SignupBtn
-              width="64.44px"
-              height="33px"
-              fontSize="13px"
-              fontWeight="400"
-            >
-              Sign up
-            </SignupBtn>
+            <Link to="/login">
+              <LoginBtn
+                width="59.45px"
+                height="32px"
+                fontSize="13px"
+                fontWeight="400"
+              >
+                Log in
+              </LoginBtn>
+            </Link>
+            <Link to="/signup">
+              <SignupBtn
+                to="signup"
+                width="64.44px"
+                height="33px"
+                fontSize="13px"
+                fontWeight="400"
+              >
+                Sign up
+              </SignupBtn>
+            </Link>
           </div>
         </HeaderTopbarContainer>
       </HeaderContinaer>

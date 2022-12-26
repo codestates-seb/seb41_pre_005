@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const HeaderContainer = styled.div`
-  width: 40rem;
+  width: 41.8rem;
   height: 2.7rem;
   font-size: 2.5rem;
   color: #232629;
   font-weight: 500;
   margin-bottom: 3.2rem;
-  
 `;
 
 const List = styled.div`
