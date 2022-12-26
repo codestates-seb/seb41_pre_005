@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 // import AskQuestionButton from "../../components/questions/AskQuestionButton";
 import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
@@ -7,7 +7,17 @@ import AskQuestionTags from "../../components/questions/AskQuestionTags";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
-  background-color: #f1f2f3;
+  &::after {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    content: "";
+    background-color: #f1f2f3;
+  }
 `;
 const AskContainer = styled.div`
   width: 851px;
@@ -32,7 +42,7 @@ const ButtonContainer = styled.div`
   width: 100%;
   margin: 12px 0 0 0;
 `;
-const AskQuestion = props => {
+const AskQuestion = (props) => {
   const [questionBody, setQuestionBody] = useState();
   return (
     <AskPageLayout>
