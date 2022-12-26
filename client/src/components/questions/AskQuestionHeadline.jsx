@@ -30,24 +30,24 @@ const Box = styled.div`
   padding: 1.6rem;
 `;
 const ImageBox = styled.div`
-    width:89rem;
-    height: 13rem;
-    margin-left: 3rem;
-    margin-top: 3rem;
-`
+  width: 89rem;
+  height: 13rem;
+  margin-left: 3rem;
+  margin-top: 3rem;
+`;
 const AskQuestionHeadline = () => {
   return (
     <Container>
       <Head>
         <ReviewWord>Review your question</ReviewWord>
         <ImageBox>
-        <img
-          className="AskQuestionHead"
-          alt="robot"
-          src={process.env.PUBLIC_URL + "/images/AskQuestionHead.png"}
-          width="890px"
-          height="120rem"
-        ></img>
+          <img
+            className="AskQuestionHead"
+            alt="robot"
+            src={process.env.PUBLIC_URL + "/images/AskQuestionHead.png"}
+            width="890px"
+            height="120rem"
+          ></img>
         </ImageBox>
       </Head>
       <Box>Please do a final review of your question and then post.</Box>

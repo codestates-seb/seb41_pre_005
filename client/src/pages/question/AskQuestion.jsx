@@ -5,7 +5,8 @@ import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
 import AskQuestionForm from "../../components/questions/AskQuestionForm";
 import AskQuestionTags from "../../components/questions/AskQuestionTags";
 import AskQuestionTitle from "../../components/questions/AskQuestionTitle";
-import AskQuestionHeadline from '../../components/questions/AskQuestionHeadline';
+import AskQuestionHeadline from "../../components/questions/AskQuestionHeadline";
+import Footer from "../../components/common/Footer";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -18,7 +19,7 @@ const AskPageLayout = styled.div`
     width: 100vw;
     height: 100vh;
     content: "";
-    background-color: #f1f2f3;
+    background-color: #f8f9f9;
   }
 `;
 const AskContainer = styled.div`
@@ -55,22 +56,27 @@ const ButtonContainer = styled.div`
 const AskQuestion = (props) => {
   const [questionBody, setQuestionBody] = useState();
   return (
-    <AskPageLayout>
-      <AskQuestionHeadline></AskQuestionHeadline>
-      <AskContainer>
-        <form>
-          <Main>
-            <Notice></Notice>
-            <TitleContainer><AskQuestionTitle></AskQuestionTitle></TitleContainer>
-            <AskQuestionForm />
-            <AskQuestionTags />
-            <ButtonContainer>
-              <PostQuestionBtn></PostQuestionBtn>
-            </ButtonContainer>
-          </Main>
-        </form>
-      </AskContainer>
-    </AskPageLayout>
+    <>
+      <AskPageLayout>
+        <AskQuestionHeadline></AskQuestionHeadline>
+        <AskContainer>
+          <form>
+            <Main>
+              <Notice></Notice>
+              <TitleContainer>
+                <AskQuestionTitle></AskQuestionTitle>
+              </TitleContainer>
+              <AskQuestionForm />
+              <AskQuestionTags />
+              <ButtonContainer>
+                <PostQuestionBtn></PostQuestionBtn>
+              </ButtonContainer>
+            </Main>
+          </form>
+        </AskContainer>
+      </AskPageLayout>
+      <Footer />
+    </>
   );
 };
 
