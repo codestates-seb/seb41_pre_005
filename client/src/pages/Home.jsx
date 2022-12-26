@@ -4,13 +4,13 @@ import ContentLayout from "../components/layout/ContentLayout";
 import LeftSideLayout from "../components/layout/LeftSideLayout";
 import MainContentLayout from "../components/layout/MainContentLayout";
 import RightSideBarLayout from "../components/layout/RightSideBarLayout";
-import {HomeHeadLine} from "../components/common/HeadLine";
+import { HomeHeadLine } from "../components/common/HeadLine";
+import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import QuestionsList from "../components/questions/QuestionsList";
 
 const HomeContainer = styled.div`
-  /* height: 100vh;
-  width: 100%; */
+  width: 100%;
   height: auto;
   min-height: 100%;
   padding-bottom: 322px;
@@ -43,7 +43,6 @@ const Home = () => {
                 <HomeHeadLine />
               </HomeHeadContainer>
               <HomeFilter></HomeFilter>
-
               <QuestionsList />
             </MainContentLayout>
             <RightSideBarLayout />

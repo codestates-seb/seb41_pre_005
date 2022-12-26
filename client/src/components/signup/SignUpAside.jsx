@@ -8,7 +8,6 @@ const HeaderContainer = styled.div`
   color: #232629;
   font-weight: 500;
   margin-bottom: 3.2rem;
-  
 `;
 
 const List = styled.div`

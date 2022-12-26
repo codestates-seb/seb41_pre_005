@@ -5,7 +5,7 @@ const HeaderLayoutContainer = styled.div`
   height: 5rem;
 `;
 
-const HeaderLayout = ({children}) => {
+const HeaderLayout = ({ children }) => {
   return <HeaderLayoutContainer>{children}</HeaderLayoutContainer>;
 };
 

@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {ButtonBlue} from "./Header";
+import { ButtonBlue } from "./Header";
 
 const PageHeaderHeadline = styled.div`
   padding: 24px;
@@ -105,7 +106,7 @@ export const HomeHeadLine = () => {
     <AskQuestionHead>
       <AskQuestionWord>Top Questions</AskQuestionWord>
       <AskQuestionBtn fontWeight="550" fontSize="13px">
-        Ask question
+        <Link to="/questions/ask">Ask question</Link>
       </AskQuestionBtn>
     </AskQuestionHead>
   );
@@ -115,9 +116,11 @@ export const QuestionsHeadLine = () => {
   return (
     <AskQuestionHead>
       <AskQuestionWord>All Questions</AskQuestionWord>
-      <AskQuestionBtn fontWeight="550" fontSize="13px">
-        Ask Question
-      </AskQuestionBtn>
+      <Link to="/questions/ask">
+        <AskQuestionBtn fontWeight="550" fontSize="13px">
+          Ask Question
+        </AskQuestionBtn>
+      </Link>
     </AskQuestionHead>
   );
 };
