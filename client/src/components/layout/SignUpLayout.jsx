@@ -6,14 +6,28 @@ const LayoutContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  /* &::after {
+    z-index: -1;
+    position: absolute;
+    left: -12rem;
+    width: 100vw;
+    height: 100%;
+    content: "";
+    background-color: #f1f2f3;
+  } */
   &::after {
     z-index: -1;
     position: absolute;
+    bottom: 0;
+    top: 0;
     width: 100vw;
     height: 100vh;
-    bottom: 0;
     content: "";
     background-color: #f1f2f3;
+    @media screen and (max-height: 920px) {
+      height: 100%;
+    }
   }
 `;
 const Layout = styled.div`

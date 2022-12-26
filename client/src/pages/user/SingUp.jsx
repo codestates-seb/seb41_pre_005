@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SingUpAside from "../../components/signup/SignUpAside";
 import SignUpBottom from "../../components/signup/SignUpBottom";
 import SignUpForm from "../../components/signup/SignUpForm";
+import SocialLogin from "../../components/login/SocialLogin";
 
 const FormContainer = styled.div`
   width: 31.6rem;
@@ -35,6 +36,7 @@ const SignUp = (props) => {
         <SingUpAside></SingUpAside>
       </SignUpBody>
       <FormContainer>
+        <SocialLogin />
         <SignUpForm />
         <InformPolicy>
           By clicking “Sign up”, you agree to our terms of service, privacy
