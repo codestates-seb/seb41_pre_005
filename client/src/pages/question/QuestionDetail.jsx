@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import AnswerList from "../../components/answers/AnswerList";
 import Button from "../../components/common/Button";
+import { QuestionDetailHeadLine } from '../../components/common/HeadLine';
 import ContentLayout from "../../components/layout/ContentLayout";
 import LeftSideLayout from "../../components/layout/LeftSideLayout";
 import MainContentLayout from "../../components/layout/MainContentLayout";
 import QuestionsLayout from "../../components/layout/question/QuestionsLayout";
 import RightSideBarLayout from "../../components/layout/RightSideBarLayout";
 import AskEditor from "../../components/questions/AskEditor";
+import QuestionDetailHeader from '../../components/layout/question/QuestionDetailHeader';
 
 const AnswerEditorHeader = styled.h2`
   padding-top: 2rem;
@@ -22,6 +24,7 @@ const ButtonContainer = styled.div`
 const QuestionDetail = (props) => {
   return (
     <QuestionsLayout>
+      {/* <QuestionDetailHeader></QuestionDetailHeader> */}
       <LeftSideLayout></LeftSideLayout>
       <ContentLayout>
         <MainContentLayout padding="24px 16px">

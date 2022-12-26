@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Tags from "./pages/Tags";
 import Profile from "./pages/user/Profile"
 import SearchResults from "../src/pages/SearchResults"
+import QuestionDetail from './pages/question/QuestionDetail';
 
 const PageLayout = styled.div`
   max-width: 126.4rem;
@@ -27,7 +28,8 @@ function App() {
         {/* <Login /> */}
         {/* <SignUp /> */}
         {/* <Profile></Profile> */}
-        <SearchResults></SearchResults>
+        {/* <SearchResults></SearchResults> */}
+        <QuestionDetail />
       </PageLayout>
     </>
   );

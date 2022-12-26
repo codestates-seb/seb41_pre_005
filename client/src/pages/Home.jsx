@@ -14,7 +14,7 @@ const HomeContainer = styled.div`
   height: auto;
   min-height: 100%;
   padding-bottom: 322px;
-  background-color: #f1f2f3;
+  /* background-color: #f1f2f3; */
 `;
 const BodyContainer = styled.div`
   display: flex;
