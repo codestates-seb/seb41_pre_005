@@ -2,15 +2,19 @@ import "./App.css";
 import styled from "styled-components";
 import SignUp from "./pages/user/SingUp";
 import Login from "./pages/user/Login";
-// import HeaderLayout from "./components/layout/HeaderLayout";
 import Questions from "./pages/question/Questions";
-import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import Tags from "./pages/Tags";
-import Profile from "./pages/user/Profile"
-import SearchResults from "../src/pages/SearchResults"
-import QuestionDetail from './pages/question/QuestionDetail';
+import Profile from "./pages/user/Profile";
+import SearchResults from "../src/pages/SearchResults";
+
+import QuestionDetail from "./pages/question/QuestionDetail";
+import AskQuestion from "./pages/question/AskQuestion";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Header from "./components/common/Header";
 
 const PageLayout = styled.div`
   max-width: 126.4rem;
@@ -22,14 +26,16 @@ function App() {
     <>
       <Header />
       <PageLayout>
-        {/* <Home /> */}
-        {/* <Questions /> */}
-        {/* <Tags /> */}
-        {/* <Login /> */}
-        {/* <SignUp /> */}
-        {/* <Profile></Profile> */}
-        {/* <SearchResults></SearchResults> */}
-        <QuestionDetail />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/questions" element={<Questions />} />
+          <Route path="/questions/:id" element={<QuestionDetail />} />
+          <Route path="/questions/ask" element={<AskQuestion />} />
+          <Route path="/users/:id" element={<Profile />} />
+          <Route path="/tags" element={<Tags />} />
+        </Routes>
       </PageLayout>
     </>
   );

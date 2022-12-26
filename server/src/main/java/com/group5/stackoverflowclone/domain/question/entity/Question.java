@@ -1,10 +1,12 @@
 package com.group5.stackoverflowclone.domain.question.entity;
 
+import com.group5.stackoverflowclone.domain.tag.entity.Tag;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,14 +22,18 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long questionId;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
     private String content;
 
-    private int viewCount;
+    // 조회수
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private long viewCount;
 
-    private int voteCount;
-
+    // 투표수
+    private long voteCount;
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -35,21 +41,25 @@ public class Question {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "question")
+    @ToString.Exclude
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<QuestionTag> questionTags = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
+    @ElementCollection
+    public List<Long> upVotedUserId = new ArrayList<>();
+
+    @ElementCollection
+    public List<Long> downVotedUserId = new ArrayList<>();
+
     public void addQuestionTag(QuestionTag questionTag) {
-        this.questionTags.add(questionTag);
-        if (questionTag.getQuestion() != this) {
-            questionTag.addQuestion(this);
-        }
+        questionTags.add(questionTag);
     }
 
     public void addUser(User user) {
@@ -64,5 +74,13 @@ public class Question {
         if (answer.getQuestion() != this) {
             answer.addQuestion(this);
         }
+    }
+
+    public void setViewCount(long viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public void setVoteCount(long voteCount) {
+        this.voteCount = voteCount;
     }
 }

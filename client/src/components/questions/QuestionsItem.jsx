@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Questions from "../../pages/question/Questions";
 import Author from "./Author";
 import QuestionStatistics from "./QuestionStatistics";
 import Tags from "./Tags";
@@ -44,7 +46,12 @@ const QuestionsItem = ({ question }) => {
         viewCount={question?.questionViewCount}
       />
       <QuestionSummary>
-        <QuestionTitle>{question?.questionTitle}</QuestionTitle>
+        <QuestionTitle>
+          {" "}
+          <Link to={`/questions/${question.id}`}>
+            {question?.questionTitle}
+          </Link>
+        </QuestionTitle>
         <QuestionBody>
           {question?.questionBody?.length > 100
             ? `${question?.questionBody?.slice(0, 100)}...`

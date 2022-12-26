@@ -4,34 +4,46 @@ import ContentLayout from "../components/layout/ContentLayout";
 import LeftSideLayout from "../components/layout/LeftSideLayout";
 import MainContentLayout from "../components/layout/MainContentLayout";
 import RightSideBarLayout from "../components/layout/RightSideBarLayout";
-import {HomeHeadLine} from "../components/common/HeadLine";
+import { HomeHeadLine } from "../components/common/HeadLine";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
+import QuestionsList from "../components/questions/QuestionsList";
 
 const HomeContainer = styled.div`
-  /* height: 100vh;
-  width: 100%; */
+  width: 100%;
   height: auto;
   min-height: 100%;
   padding-bottom: 322px;
-  /* background-color: #f1f2f3; */
 `;
 const BodyContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
 `;
+const HomeHeadContainer = styled.div`
+  margin-left: -15rem;
+  margin-bottom: 1.2rem;
+`;
+const HomeFilter = styled.div`
+  width: 100%;
+  height: 38.59px;
+  padding-left: 24px;
+  margin-bottom: 16px;
+`;
 
 const Home = () => {
   return (
     <>
-      <Header />
       <HomeContainer>
         <BodyContainer>
           <LeftSideLayout></LeftSideLayout>
           <ContentLayout>
             <MainContentLayout>
-              <HomeHeadLine />
+              <HomeHeadContainer>
+                <HomeHeadLine />
+              </HomeHeadContainer>
+              <HomeFilter></HomeFilter>
+              <QuestionsList />
             </MainContentLayout>
             <RightSideBarLayout />
           </ContentLayout>

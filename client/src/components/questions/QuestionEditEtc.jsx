@@ -5,7 +5,7 @@ const QuestionBodyBtnsContainer = styled.div`
   display: flex;
   width: 247px;
   margin-left: 35rem;
-  margin-top: -20rem;
+  margin-top: 10rem;
 `;
 
 const QuestionBtn = styled.button`

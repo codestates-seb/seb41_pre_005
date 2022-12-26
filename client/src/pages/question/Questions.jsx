@@ -9,17 +9,17 @@ import QuestionNav from "../../components/questions/QuestionNav";
 import QuestionsList from "../../components/questions/QuestionsList";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
-import {QuestionsHeadLine} from "../../components/common/HeadLine";
+import { QuestionsHeadLine } from "../../components/common/HeadLine";
 
-const Questions = props => {
-  const QuestionsHeadLayout = styled.div`
-    /* margin-top: 7rem;
-    width: 100%;
-    /* margin-right: -7rem; */
-    margin-left: -15rem;
-    margin-bottom: 1.2rem;
-  `;
+const QuestionsHeadLayout = styled.div`
+  /* margin-top: 7rem;
+width: 100%;
+/* margin-right: -7rem; */
+  margin-left: -15rem;
+  margin-bottom: 1.2rem;
+`;
 
+const Questions = (props) => {
   return (
     <>
       <QuestionsLayout>

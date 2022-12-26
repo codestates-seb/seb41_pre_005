@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonBlue } from "./Header";
 
@@ -55,14 +56,13 @@ export const TagsHeadline = () => {
 
 const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
-  margin-top: 3rem;
-  margin-left: 19rem;
+  margin-top: 2.5rem;
+  margin-left: 17.5rem;
   display: flex;
 `;
 const AskQuestionWord = styled.div`
-  font-size: 3rem;
-  margin-right: 44rem;
-  width: 30rem;
+  font-size: 2.7rem;
+  margin-right: 48rem;
 `;
 const SearchResultsHead = styled.div`
   margin-top: 3rem;
@@ -105,7 +105,9 @@ export const HomeHeadLine = () => {
   return (
     <AskQuestionHead>
       <AskQuestionWord>Top Questions</AskQuestionWord>
-      <AskQuestionBtn>Ask question</AskQuestionBtn>
+      <AskQuestionBtn fontWeight="550" fontSize="13px">
+        <Link to="/questions/ask">Ask question</Link>
+      </AskQuestionBtn>
     </AskQuestionHead>
   );
 };
@@ -114,9 +116,11 @@ export const QuestionsHeadLine = () => {
   return (
     <AskQuestionHead>
       <AskQuestionWord>All Questions</AskQuestionWord>
-      <AskQuestionBtn fontWeight="550" fontSize="13px">
-        Ask Question
-      </AskQuestionBtn>
+      <Link to="/questions/ask">
+        <AskQuestionBtn fontWeight="550" fontSize="13px">
+          Ask Question
+        </AskQuestionBtn>
+      </Link>
     </AskQuestionHead>
   );
 };
