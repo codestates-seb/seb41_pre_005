@@ -1,14 +1,74 @@
 import React from "react";
 import styled from "styled-components";
-import AnswerList from "../../components/answers/AnswerList";
-import Button from "../../components/common/Button";
-import ContentLayout from "../../components/layout/ContentLayout";
 import LeftSideLayout from "../../components/layout/LeftSideLayout";
 import MainContentLayout from "../../components/layout/MainContentLayout";
-import QuestionsLayout from "../../components/layout/question/QuestionsLayout";
 import RightSideBarLayout from "../../components/layout/RightSideBarLayout";
+import Footer from "../../components/common/Footer";
+import QuestionEditEtc from "../../components/questions/QuestionEditEtc";
+import QuestionVote from "../../components/questions/QuestionVote";
+import AskQuestionForm from "../../components/questions/AskQuestionForm";
+import AnswerList from "../../components/answers/AnswerList";
 import AskEditor from "../../components/questions/AskEditor";
+import Button from "../../components/common/Button";
 
+const QuestDetailContainer = styled.div`
+  /* height: 100vh; */
+  /* width: 100%;  */
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 322px;
+`;
+const BodyContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+const ContentContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+const QuestionHeadContainer = styled.div`
+  width: 100%;
+  margin-top: 78px;
+  border-bottom: 1px solid grey;
+`;
+const Question = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  font-size: 15px;
+`;
+const QuestionContent = styled.div`
+  width: 66rem;
+  font-size: 15px;
+  margin-right: 3rem;
+`;
+const Content = styled.div`
+  max-width: 650px;
+  border: 1px solid black;
+  word-break: break-all;
+`;
+const TagsContain = styled.div`
+  border: 1px solid black;
+  width: 65rem;
+  height: 4.6rem;
+  margin-top: 3rem;
+  margin-bottom: -5rem;
+`;
+
+const EditContain = styled.div`
+  margin-left: -35rem;
+`;
+const Userinfo = styled.div`
+  width: 200px;
+  height: 67px;
+  background-color: #dce9f6;
+  margin-left: 80rem;
+  margin-top: -1.5rem;
+  border-radius: 3px;
+`;
 const AnswerEditorHeader = styled.h2`
   padding-top: 2rem;
   margin-bottom: 1.9rem;
@@ -19,24 +79,47 @@ const ButtonContainer = styled.div`
   padding: 10px 0;
 `;
 
-const QuestionDetail = (props) => {
+const QuestionDetail = () => {
   return (
-    <QuestionsLayout>
-      <LeftSideLayout></LeftSideLayout>
-      <ContentLayout>
-        <MainContentLayout padding="24px 16px">
-          <AnswerList />
-          <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
-          <AskEditor />
-          <ButtonContainer>
-            <Button width="12rem" radius="3px">
-              Post Your Answer
-            </Button>
-          </ButtonContainer>
-        </MainContentLayout>
-        <RightSideBarLayout></RightSideBarLayout>
-      </ContentLayout>
-    </QuestionsLayout>
+    <>
+      <QuestDetailContainer>
+        <BodyContainer>
+          <LeftSideLayout></LeftSideLayout>
+          <ContentContainer>
+            <MainContentLayout>
+              <QuestionHeadContainer>Header</QuestionHeadContainer>
+
+              <Question>
+                <QuestionVote></QuestionVote>
+                <QuestionContent>
+                  <Content>
+                    HeloosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfssdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfssdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfssdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsHeloosadfsfsdfsdfsfsdfasdfsdsdfsHeloosadfsdfsdafsdfsdfsfsdfasdfsdsdfsdfosadfsdfsdafsdfsdfosadfsdfsdafsdfsdfosa
+                  </Content>
+                  <TagsContain>Tags</TagsContain>
+                  <EditContain>
+                    <QuestionEditEtc />
+                    <Userinfo>User</Userinfo>
+                  </EditContain>
+                  <AnswerList />
+                  <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
+                  <AskEditor />
+                  <ButtonContainer>
+                    <Button width="12rem" radius="3px">
+                      Post Your Answer
+                    </Button>
+                  </ButtonContainer>
+                </QuestionContent>
+                <RightSideBarLayout />
+              </Question>
+            </MainContentLayout>
+          </ContentContainer>
+        </BodyContainer>
+      </QuestDetailContainer>
+      <Footer />
+
+      {/* <FooterLayout>
+      </FooterLayout> */}
+    </>
   );
 };
 

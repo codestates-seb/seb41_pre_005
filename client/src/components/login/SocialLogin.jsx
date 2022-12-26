@@ -4,6 +4,113 @@ import styled from "styled-components";
 // import {AiOutlineGithub} from "react-icons/ai";
 // import {QuestHeadLine} from "./HeadLine";
 
+const OauthGoogle = styled.button`
+  margin-right: 0px;
+  margin-left: 0px;
+
+  margin-top: -0.5rem;
+  flex: 1 auto;
+  background-color: white;
+  color: black;
+  &:hover {
+    background-color: #f8f9f9;
+  }
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8em;
+  border: 1px solid transparent;
+  outline: none;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 15/13px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+
+  border-color: #d6d9dc;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+`;
+
+// const GoogleLogo = styled(FcGoogle)`
+//   font-size: 1.3rem;
+//   margin-top: -0.2rem;
+//   margin-right: 1rem;
+//   width: 2rem;
+//   height: 2rem;
+// `;
+
+// const SocialGoogle = styled.span`
+//   margin-bottom: 1rem;
+//   font-size: 1.3rem;
+// `;
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1rem;
+`;
+
+const FlexItem = styled.div`
+  @media screen and (max-width: 640px) {
+    width: 267.345px;
+    height: 583.469px;
+    font-size: 1.8rem;
+  }
+  width: 288.453px;
+  height: 580.531px;
+  display: block;
+`;
+
+const OauthDivWrapper = styled.div`
+  width: 28.8rem;
+  display: flex;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const OauthGitHub = styled.button`
+  margin-right: 0px;
+  margin-left: 0px;
+
+  margin-top: -0.8rem;
+  flex: 1 auto;
+  background-color: #2f3337;
+  color: #ffffff;
+  &:hover {
+    background-color: #242629;
+  }
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8em;
+  border: 1px solid transparent;
+  outline: none;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 15/13px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+
+  border-color: #d6d9dc;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+`;
+
 const SocialLogin = () => {
   // const SocialLoginContainer = styled.div`
   //   display: flex;
@@ -11,113 +118,6 @@ const SocialLogin = () => {
   //   flex-direction: column;
   //   align-items: center;
   // `;
-  const OauthGoogle = styled.button`
-    margin-right: 0px;
-    margin-left: 0px;
-
-    margin-top: -0.5rem;
-    flex: 1 auto;
-    background-color: white;
-    color: black;
-    &:hover {
-      background-color: #f8f9f9;
-    }
-
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.8em;
-    border: 1px solid transparent;
-    outline: none;
-    font-size: 13px;
-    font-weight: normal;
-    line-height: 15/13px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    user-select: none;
-
-    border-color: #d6d9dc;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-  `;
-
-  // const GoogleLogo = styled(FcGoogle)`
-  //   font-size: 1.3rem;
-  //   margin-top: -0.2rem;
-  //   margin-right: 1rem;
-  //   width: 2rem;
-  //   height: 2rem;
-  // `;
-
-  // const SocialGoogle = styled.span`
-  //   margin-bottom: 1rem;
-  //   font-size: 1.3rem;
-  // `;
-
-  const Wrapper = styled.div`
-    display: flex;
-    width: 100%;
-    height: 1rem;
-    justify-content: center;
-    align-items: center;
-    margin-top: -1rem;
-  `;
-
-  const FlexItem = styled.div`
-    @media screen and (max-width: 640px) {
-      width: 267.345px;
-      height: 583.469px;
-      font-size: 1.8rem;
-    }
-    width: 288.453px;
-    height: 580.531px;
-    display: block;
-  `;
-
-  const OauthDivWrapper = styled.div`
-    width: 28.8rem;
-    display: flex;
-    margin-bottom: 1.5rem;
-    margin-left: auto;
-    margin-right: auto;
-  `;
-
-  const OauthGitHub = styled.button`
-    margin-right: 0px;
-    margin-left: 0px;
-
-    margin-top: -0.8rem;
-    flex: 1 auto;
-    background-color: #2f3337;
-    color: #ffffff;
-    &:hover {
-      background-color: #242629;
-    }
-
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.8em;
-    border: 1px solid transparent;
-    outline: none;
-    font-size: 13px;
-    font-weight: normal;
-    line-height: 15/13px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    user-select: none;
-
-    border-color: #d6d9dc;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-  `;
-
   return (
     <Wrapper>
       <FlexItem>

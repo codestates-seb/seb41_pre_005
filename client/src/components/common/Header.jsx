@@ -234,54 +234,53 @@ const HeadBtnContainer = styled.div`
   }
 `;
 
+const SearchbarContainer = styled.div`
+  box-sizing: border-box;
+  padding: 0 3.5rem;
+  position: relative;
+  display: flex;
+  font-family: inherit;
+  margin-left: -1.5rem;
+`;
+
+const SearchbarInput = styled.input`
+  box-sizing: border-box;
+  max-width: ${props => props.width || "1000px"};
+  height: ${props => props.height || "30px"};
+
+  border: 1px solid #babfc4;
+  border-radius: 3px;
+  padding-left: 30px;
+  font-size: 1.3rem;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #6bbbf7;
+    box-shadow: 0px 0px 0px 4px #d8e5f2;
+  }
+`;
+
+const SearchIcon = styled.div`
+  position: absolute;
+  left: 4.2rem;
+  top: 7px;
+  svg {
+    color: #81878c;
+  }
+`;
+
+const HeaderSearchbarContainer = styled(SearchbarContainer)`
+  flex-grow: 1;
+  max-width: 756px;
+`;
+
+const HeaderSearchbarInput = styled(SearchbarInput)`
+  width: 100%;
+  height: 33px;
+  position: relative;
+`;
+const HeaderSearchIcon = styled(SearchIcon)``;
 const HeaderSearchbar = () => {
-  const SearchbarContainer = styled.div`
-    box-sizing: border-box;
-    padding: 0 3.5rem;
-    position: relative;
-    display: flex;
-    font-family: inherit;
-    margin-left: -1.5rem;
-  `;
-
-  const SearchbarInput = styled.input`
-    box-sizing: border-box;
-    max-width: ${props => props.width || "1000px"};
-    height: ${props => props.height || "30px"};
-
-    border: 1px solid #babfc4;
-    border-radius: 3px;
-    padding-left: 30px;
-    font-size: 1.3rem;
-
-    &:focus {
-      outline: none;
-      border: 1px solid #6bbbf7;
-      box-shadow: 0px 0px 0px 4px #d8e5f2;
-    }
-  `;
-
-  const SearchIcon = styled.div`
-    position: absolute;
-    left: 4.2rem;
-    top: 7px;
-    svg {
-      color: #81878c;
-    }
-  `;
-
-  const HeaderSearchbarContainer = styled(SearchbarContainer)`
-    flex-grow: 1;
-    max-width: 756px;
-  `;
-
-  const HeaderSearchbarInput = styled(SearchbarInput)`
-    width: 100%;
-    height: 33px;
-    position: relative;
-  `;
-  const HeaderSearchIcon = styled(SearchIcon)``;
-
   return (
     <HeaderSearchbarContainer id="search">
       <HeaderSearchbarInput
