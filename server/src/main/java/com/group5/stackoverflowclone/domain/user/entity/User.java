@@ -5,10 +5,12 @@ import com.group5.stackoverflowclone.domain.question.entity.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -38,6 +40,9 @@ public class User {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
     @OneToMany(mappedBy = "user")
     private List<Answer> answers = new ArrayList<>();
 
@@ -65,5 +70,4 @@ public class User {
     public void setQuestionCount(long questionCount) {
         this.questionCount = questionCount;
     }
-
 }
