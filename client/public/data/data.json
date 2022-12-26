@@ -381,5 +381,6 @@
       "contentcode": "테스트입니다3",
       "id": 7
     }
-  ]
+  ],
+  "tags": ["react", "typescript", "nextjs", "java", "oracle", "mongodb"]
 }
