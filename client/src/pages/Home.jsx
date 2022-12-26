@@ -21,7 +21,6 @@ const BodyContainer = styled.div`
   height: 100%;
 `;
 const HomeHeadContainer = styled.div`
-  margin-left: -15rem;
   margin-bottom: 1.2rem;
 `;
 const HomeFilter = styled.div`
