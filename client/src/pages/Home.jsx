@@ -13,7 +13,6 @@ const HomeContainer = styled.div`
   width: 100%; */
   height: auto;
   min-height: 100%;
-  padding-bottom: 322px;
 `;
 const BodyContainer = styled.div`
   display: flex;

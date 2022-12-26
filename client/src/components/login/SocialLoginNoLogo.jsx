@@ -61,17 +61,17 @@ const Wrapper = styled.div`
 
 const FlexItem = styled.div`
   @media screen and (max-width: 640px) {
-    width: 267.345px;
+    width: 316px;
     height: 583.469px;
     font-size: 1.8rem;
   }
-  width: 288.453px;
-  height: 580.531px;
+  width: 316px;
+  height: 300.531px;
   display: block;
 `;
 
 const OauthDivWrapper = styled.div`
-  width: 28.8rem;
+  width: 31.6rem;
   display: flex;
   margin-bottom: 1.5rem;
   margin-left: auto;
@@ -110,30 +110,8 @@ const OauthGitHub = styled.button`
   border-style: solid;
   border-width: 1px;
 `;
-const StackIcon = () => {
-  return (
-    <svg
-      cursor="pointer"
-      aria-hidden="true"
-      width="32"
-      height="37"
-      viewBox="0 0 32 37"
-      style={{
-        marginLeft: "13rem",
-        marginBottom: "2rem",
-        marginTop: "10rem",
-      }}
-    >
-      <path d="M 26 33 v -9 h 4 v 13 H 0 V 24 h 4 v 9 h 22 Z" fill="#c2c3c4" />
-      <path
-        d="m 21.5 0 l -2.7 2 l 9.9 13.3 l 2.7 -2 L 21.5 0 Z M 26 18.4 L 13.3 7.8 l 2.1 -2.5 l 12.7 10.6 l -2.1 2.5 Z M 9.1 15.2 l 15 7 l 1.4 -3 l -15 -7 l -1.4 3 Z m 14 10.79 l 0.68 -2.95 l -16.1 -3.35 L 7 23 l 16.1 2.99 Z M 23 30 H 7 v -3 h 16 v 3 Z"
-        fill="#F77F2B"
-      />
-    </svg>
-  );
-};
 
-const SocialLogin = () => {
+const SocialLoginNoLogo = () => {
   // const SocialLoginContainer = styled.div`
   //   display: flex;
   //   margin-top: 10rem;
@@ -143,7 +121,6 @@ const SocialLogin = () => {
   return (
     <Wrapper>
       <FlexItem>
-        <StackIcon />
         <OauthDivWrapper>
           <OauthGoogle>
             <svg
@@ -200,7 +177,7 @@ const SocialLogin = () => {
   );
 };
 
-export default SocialLogin;
+export default SocialLoginNoLogo;
 
 {
   /* <SocialGitubBtn>
