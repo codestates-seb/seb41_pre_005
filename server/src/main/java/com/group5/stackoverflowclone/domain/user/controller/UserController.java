@@ -36,9 +36,6 @@ public class UserController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.userToUserResponseDto(user)), HttpStatus.CREATED);
     }
 
-    // 로그인
-
-
     // 전체 유저 조회 -> stackOverFlow 상에 어느 정보까지 나와야할까? -> 삭제
     @GetMapping
     public ResponseEntity getAllUsers() {
@@ -47,8 +44,7 @@ public class UserController {
         return new ResponseEntity(userList, HttpStatus.OK);
     }
 
-    //질문 개수는 어떻게 늘릴까요?
-    // 마이페이지 조회 -> 질문개수, 답변개수 이런 정보들 다 끌어와야함 나중에
+    // 마이페이지 조회
     @GetMapping("/{user-id}")
     public ResponseEntity getProfile(@PathVariable("user-id") @Positive long userId) {
         User user = userService.findUser(userId);

@@ -33,6 +33,10 @@ public class UserService {
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
 
+        List<String> roles = new ArrayList<>();
+        roles.add("USER");
+        user.setRoles(roles);
+
         return userRepository.save(user);
     }
 

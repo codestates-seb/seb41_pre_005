@@ -55,10 +55,11 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 // 수정 필요할 수도 있음!!
-//                .antMatchers(HttpMethod.POST,"/users/login").permitAll()
-//                .antMatchers(HttpMethod.GET, "/questions/**", "/questions").permitAll()
-//                .antMatchers(HttpMethod.POST, "/**/questions/ask").hasRole("USER")
-//                .antMatchers(HttpMethod.GET, "/docs/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/users/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
+                .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/users/*").hasRole("USER")
                 .anyRequest().permitAll();
 
         return http.build();
