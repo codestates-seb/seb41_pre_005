@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Questions from "../../pages/question/Questions";
 import Author from "./Author";
 import QuestionStatistics from "./QuestionStatistics";
 import Tags from "./Tags";
@@ -47,7 +48,9 @@ const QuestionsItem = ({ question }) => {
       <QuestionSummary>
         <QuestionTitle>
           {" "}
-          <Link>{question?.questionTitle}</Link>
+          <Link to={`/questions/${question.id}`}>
+            {question?.questionTitle}
+          </Link>
         </QuestionTitle>
         <QuestionBody>
           {question?.questionBody?.length > 100

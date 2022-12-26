@@ -8,19 +8,12 @@ import { HomeHeadLine } from "../components/common/HeadLine";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import QuestionsList from "../components/questions/QuestionsList";
-// const HomeHeadLine = () => {
-//   return (
-//     <AskQuestionHead>
-//       <AskQuestionWord>Top Questions</AskQuestionWord>
-//       <AskQuestionBtn>Ask question</AskQuestionBtn>
-//     </AskQuestionHead>
-//   );
-// };
 
 const HomeContainer = styled.div`
-  height: 100vh;
   width: 100%;
-  background-color: #f1f2f3;
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 322px;
 `;
 const BodyContainer = styled.div`
   display: flex;
@@ -50,7 +43,6 @@ const Home = () => {
                 <HomeHeadLine />
               </HomeHeadContainer>
               <HomeFilter></HomeFilter>
-
               <QuestionsList />
             </MainContentLayout>
             <RightSideBarLayout />
