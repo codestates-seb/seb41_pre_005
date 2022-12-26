@@ -124,6 +124,23 @@ export const QuestionsHeadLine = () => {
     </AskQuestionHead>
   );
 };
+export const QuestionDetailHeadLine = () => {
+  return (
+    <SearchResultsHead>
+      <Top>
+        <SearchResultsWord>Search Results</SearchResultsWord>
+        <AdvancedWord>Advanced Search Tips</AdvancedWord>
+        <AskQuestionBtn fontWeight="550" fontSize="13px">
+          Ask Question
+        </AskQuestionBtn>
+      </Top>
+      <TextBox>
+        <Text>Results for react</Text>
+        <Text>Search options not deleted</Text>
+      </TextBox>
+    </SearchResultsHead>
+  );
+};
 export const SearchResultsHeadLine = () => {
   return (
     <SearchResultsHead>

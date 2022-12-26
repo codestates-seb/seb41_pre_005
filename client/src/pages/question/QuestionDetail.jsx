@@ -11,6 +11,7 @@ import AnswerList from "../../components/answers/AnswerList";
 import AskEditor from "../../components/questions/AskEditor";
 import Button from "../../components/common/Button";
 import ElapsedTime from "../../components/answers/ElapsedTime";
+import { ButtonBlue } from "../../components/common/Header";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -31,8 +32,9 @@ const ContentContainer = styled.div`
   flex-direction: row;
 `;
 const QuestionHeadContainer = styled.div`
-  width: 100%;
-  margin-top: 78px;
+  width: 105.1rem;
+  margin-top: 3rem;
+  margin-left: 1.8rem;
   border-bottom: 1px solid grey;
 `;
 const Question = styled.div`
@@ -100,6 +102,38 @@ const UsernameContain = styled.div`
   margin-left: 5rem;
   margin-top: -3rem;
 `;
+const HeadTitleBox = styled.div`
+  width: 105.1rem;
+  height: 8.089rem;
+  display: flex;
+  flex-direction: row;
+`;
+const HeadTitle = styled.div`
+  width: 93.598rem;
+  height: 7.289rem;
+  font-size: 2.7rem;
+  margin-bottom: 0.8rem;
+`;
+const HeadBtnBox = styled.div`
+  width: 10.302rem;
+  height: 7.289rem;
+
+  margin-left: 3rem;
+`;
+const SmallTextBox = styled.div`
+  width: 105.1rem;
+  height: 3.4rem;
+  padding-bottom: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  
+  .smallText {
+    font-size: 1.3rem;
+    margin-right: 2rem;
+    color: #6a737c;
+  }
+`;
+const AskQuestionBtn = styled(ButtonBlue)``;
 const QuestionDetail = () => {
   return (
     <>
@@ -108,8 +142,24 @@ const QuestionDetail = () => {
           <LeftSideLayout></LeftSideLayout>
           <ContentContainer>
             <MainContentLayout>
-              <QuestionHeadContainer>Header</QuestionHeadContainer>
-
+              <QuestionHeadContainer>
+                <HeadTitleBox>
+                  <HeadTitle>
+                    How to resolve './components/AppFooter' or its corresponding
+                    type declarations. Error on Netlify and railway.app
+                  </HeadTitle>
+                  <HeadBtnBox>
+                    <AskQuestionBtn fontWeight="550" fontSize="13px">
+                      Ask Question
+                    </AskQuestionBtn>
+                  </HeadBtnBox>
+                </HeadTitleBox>
+                <SmallTextBox>
+                  <div className='smallText'>Asked today</div>
+                  <div className='smallText'>Modified today</div>
+                  <div className='smallText'>Viewed 9 times</div>
+                </SmallTextBox>
+              </QuestionHeadContainer>
               <Question>
                 <QuestionVote></QuestionVote>
                 <QuestionContent>
