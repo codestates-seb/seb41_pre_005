@@ -50,6 +50,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+
     private User findVerifiedUserById(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         User foundUser = optionalUser.get();

@@ -2,11 +2,12 @@ package com.group5.stackoverflowclone.domain.answer.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Builder
+@Setter
 public class AnswerResponseDto {
     private long answerId;
     private long questionId;

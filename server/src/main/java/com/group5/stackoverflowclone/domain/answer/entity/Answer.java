@@ -22,7 +22,7 @@ public class Answer {
 
     private String content;
 
-    private int voteCount;
+    private long voteCount;
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -38,6 +38,12 @@ public class Answer {
     @JoinColumn(name = "QUESTION_ID" )
     private Question question;
 
+    @ElementCollection
+    public List<Long> upVotedUserId = new ArrayList<>();
+
+    @ElementCollection
+    public List<Long> downVotedUserId = new ArrayList<>();
+
     public void addUser(User user) {
         this.user = user;
         if (!this.user.getAnswers().contains(this)) {
@@ -50,5 +56,9 @@ public class Answer {
         if (!this.question.getAnswers().contains(this)) {
             this.question.getAnswers().add(this);
         }
+    }
+
+    public void setVoteCount(long voteCount) {
+        this.voteCount = voteCount;
     }
 }

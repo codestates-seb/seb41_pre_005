@@ -1,5 +1,6 @@
 package com.group5.stackoverflowclone.domain.question.mapper;
 
+import com.group5.stackoverflowclone.domain.answer.dto.AnswerResponseDto;
 import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.question.dto.QuestionPatchDto;
 import com.group5.stackoverflowclone.domain.question.dto.QuestionPostDto;
@@ -41,8 +42,21 @@ public interface QuestionMapper {
         questionResponseDto.setCreatedAt( question.getCreatedAt() );
         questionResponseDto.setModifiedAt( question.getModifiedAt() );
 
-        List<Answer> answers = question.getAnswers();
-        questionResponseDto.setAnswerList(answers);
+        List<Answer> answerList = question.getAnswers();
+        List<AnswerResponseDto> answerResponseList = answerList.stream().map(answer -> {
+            AnswerResponseDto answerResponseDto = new AnswerResponseDto();
+            answerResponseDto.setAnswerId(answer.getAnswerId());
+            answerResponseDto.setQuestionId(question.getQuestionId());
+            answerResponseDto.setUserId(answer.getUser().getUserId());
+            answerResponseDto.setContent(answer.getContent());
+            answerResponseDto.setVoteCount(answer.getVoteCount());
+            answerResponseDto.setDisplayName(answer.getUser().getDisplayName());
+            answerResponseDto.setCreatedAt(answer.getCreatedAt());
+            answerResponseDto.setModifiedAt(answer.getModifiedAt());
+            return answerResponseDto;
+        }).collect(Collectors.toList());
+
+        questionResponseDto.setAnswerList(answerResponseList);
 
         List<QuestionTag> list = question.getQuestionTags();
         if (list != null && !list.isEmpty()) {
