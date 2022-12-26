@@ -253,7 +253,7 @@ const SearchbarInput = styled.input`
   border-radius: 3px;
   padding-left: 30px;
   font-size: 1.3rem;
-
+  background-color: white;
   &:focus {
     outline: none;
     border: 1px solid #6bbbf7;
