@@ -57,12 +57,13 @@ export const TagsHeadline = () => {
 const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
   margin-top: 2.4rem;
-  margin-right: 2.4rem;
+
   display: flex;
 `;
 const AskQuestionWord = styled.div`
   font-size: 2.7rem;
-  margin-right: 48rem;
+  text-align: left;
+  flex: 1 auto;
 `;
 const SearchResultsHead = styled.div`
   margin-top: 3rem;

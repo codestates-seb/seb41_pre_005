@@ -15,7 +15,6 @@ const QuestionsHeadLayout = styled.div`
   /* margin-top: 7rem;
 width: 100%;
 /* margin-right: -7rem; */
-
   margin-bottom: 1.2rem;
 `;
 
