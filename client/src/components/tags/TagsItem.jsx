@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const TagContainer = styled.div`
   width: 25.375rem;
@@ -34,21 +34,22 @@ const Questions = styled.div`
   font-size: 1.2rem;
 `;
 
-const TagsItem = ({tags}) => {
+const TagsItem = ({ tag }) => {
   return (
-      <TagContainer>
-        <div className="margin">
-          <a className="name">javascript</a>
-        </div>
-        <Description>
-          For questions about programming in ECMAScript (JavaScript/JS) and its
-          different dialects/implementations (except for ActionScript). Keep in
-        </Description>
-        <Questions>
-            <span>0</span>
-            <span>questions</span>
-        </Questions>
-      </TagContainer>
+    <TagContainer>
+      <div className="margin">
+        <a className="name">{tag.tagName}</a>
+      </div>
+      <Description>
+        {tag?.content.length > 130
+          ? `${tag?.content?.slice(0, 130)}...`
+          : tag?.content}
+      </Description>
+      <Questions>
+        <span>0</span>
+        <span> questions</span>
+      </Questions>
+    </TagContainer>
   );
 };
 
