@@ -24,6 +24,7 @@ const FooterContainer = styled.footer`
   @media screen and (min-width: 500px) {
     flex-direction: column;
     padding: 16px;
+    height: 100%;
   }
   @media screen and (min-width: 641px) {
     //641 ~ 980px
