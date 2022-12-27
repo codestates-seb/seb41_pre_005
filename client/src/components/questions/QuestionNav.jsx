@@ -15,7 +15,6 @@ const QuestionCount = styled.div`
 const NavBar = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  margin-right: 1.6rem;
   margin-bottom: 0.1rem;
   line-height: 1.7rem;
 `;

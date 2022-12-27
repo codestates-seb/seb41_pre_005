@@ -32,9 +32,10 @@ const ValidContainer = styled.div`
   color: #d0393e;
 `;
 const AskQuestionTitle = () => {
-  const titleValidation = { required: "Title is missing" };
-  const { formState: errors } = useFormContext();
-  console.log(errors);
+  const titleValidation = { required: "Title is required" };
+  const {
+    formState: { errors },
+  } = useFormContext();
   return (
     <TitleBox>
       <TitleWord>Title</TitleWord>
@@ -44,8 +45,9 @@ const AskQuestionTitle = () => {
       <TagInputContainer>
         <Input width="100%" fieldName="title" validation={titleValidation} />
       </TagInputContainer>
-      <ValidContainer>{errors?.title?.message}</ValidContainer>
-      <div>{errors.content?.message}</div>
+      {errors?.title && (
+        <ValidContainer>{errors?.title?.message}</ValidContainer>
+      )}
     </TitleBox>
   );
 };

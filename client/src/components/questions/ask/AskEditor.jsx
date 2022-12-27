@@ -81,7 +81,6 @@ const AskEditor = ({ label }) => {
     <EditorContainer>
       <CustomReactQuill
         theme="snow"
-        value={question}
         modules={modules}
         formats={formats}
         onChange={onChangeHandler}
