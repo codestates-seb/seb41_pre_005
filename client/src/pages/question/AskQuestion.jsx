@@ -7,6 +7,7 @@ import AskQuestionTags from "../../components/questions/AskQuestionTags";
 import AskQuestionTitle from "../../components/questions/AskQuestionTitle";
 import AskQuestionHeadline from "../../components/questions/AskQuestionHeadline";
 import Footer from "../../components/common/Footer";
+import { FormProvider, useForm } from "react-hook-form";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -55,24 +56,27 @@ const ButtonContainer = styled.div`
 `;
 const AskQuestion = (props) => {
   const [questionBody, setQuestionBody] = useState();
+  const methods = useForm();
   return (
     <>
       <AskPageLayout>
         <AskQuestionHeadline></AskQuestionHeadline>
         <AskContainer>
-          <form>
-            <Main>
-              <Notice></Notice>
-              <TitleContainer>
-                <AskQuestionTitle></AskQuestionTitle>
-              </TitleContainer>
-              <AskQuestionForm />
-              <AskQuestionTags />
-              <ButtonContainer>
-                <PostQuestionBtn></PostQuestionBtn>
-              </ButtonContainer>
-            </Main>
-          </form>
+          <FormProvider {...methods}>
+            <form>
+              <Main>
+                <Notice></Notice>
+                <TitleContainer>
+                  <AskQuestionTitle></AskQuestionTitle>
+                </TitleContainer>
+                <AskQuestionForm />
+                <AskQuestionTags />
+                <ButtonContainer>
+                  <PostQuestionBtn></PostQuestionBtn>
+                </ButtonContainer>
+              </Main>
+            </form>
+          </FormProvider>
         </AskContainer>
       </AskPageLayout>
       <Footer />
