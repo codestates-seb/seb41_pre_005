@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Input from '../common/Input';
+import Input from "../../common/Input";
+import { useFormContext } from "react-hook-form";
 
 const TitleBox = styled.div`
   width: 72rem;
@@ -31,12 +32,20 @@ const ValidContainer = styled.div`
   color: #d0393e;
 `;
 const AskQuestionTitle = () => {
+  const titleValidation = { required: "Title is missing" };
+  const { formState: errors } = useFormContext();
+  console.log(errors);
   return (
     <TitleBox>
       <TitleWord>Title</TitleWord>
-      <TextWord>Be specific and imagine you’re asking a question to another person.</TextWord>
-      <TagInputContainer><Input width="100%" /></TagInputContainer>
-      <ValidContainer>Title is missing</ValidContainer>
+      <TextWord>
+        Be specific and imagine you’re asking a question to another person.
+      </TextWord>
+      <TagInputContainer>
+        <Input width="100%" fieldName="title" validation={titleValidation} />
+      </TagInputContainer>
+      <ValidContainer>{errors?.title?.message}</ValidContainer>
+      <div>{errors.content?.message}</div>
     </TitleBox>
   );
 };
