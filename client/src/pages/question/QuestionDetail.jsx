@@ -12,6 +12,7 @@ import AskEditor from "../../components/questions/AskEditor";
 import Button from "../../components/common/Button";
 import ElapsedTime from "../../components/answers/ElapsedTime";
 import { ButtonBlue } from "../../components/common/Header";
+import { FormProvider, useForm } from "react-hook-form";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -126,7 +127,7 @@ const SmallTextBox = styled.div`
   padding-bottom: 0.8rem;
   display: flex;
   flex-direction: row;
-  
+
   .smallText {
     font-size: 1.3rem;
     margin-right: 2rem;
@@ -135,6 +136,7 @@ const SmallTextBox = styled.div`
 `;
 const AskQuestionBtn = styled(ButtonBlue)``;
 const QuestionDetail = () => {
+  const methods = useForm();
   return (
     <>
       <QuestDetailContainer>
@@ -155,9 +157,9 @@ const QuestionDetail = () => {
                   </HeadBtnBox>
                 </HeadTitleBox>
                 <SmallTextBox>
-                  <div className='smallText'>Asked today</div>
-                  <div className='smallText'>Modified today</div>
-                  <div className='smallText'>Viewed 9 times</div>
+                  <div className="smallText">Asked today</div>
+                  <div className="smallText">Modified today</div>
+                  <div className="smallText">Viewed 9 times</div>
                 </SmallTextBox>
               </QuestionHeadContainer>
               <Question>
@@ -193,7 +195,9 @@ const QuestionDetail = () => {
                   </EditContain>
                   <AnswerList />
                   <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
-                  <AskEditor />
+                  <FormProvider {...methods}>
+                    <AskEditor />
+                  </FormProvider>
                   <ButtonContainer>
                     <Button width="12rem" radius="3px">
                       Post Your Answer
