@@ -46,7 +46,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
 
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
 
         return authenticationManager.authenticate(authenticationToken);
     }
@@ -62,7 +62,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * @throws IOException
      */
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws ServletException, IOException {
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            FilterChain chain,
+                                            Authentication authResult) throws ServletException, IOException {
         User user = (User) authResult.getPrincipal();
 
         String accessToken = delegateAccessToken(user);

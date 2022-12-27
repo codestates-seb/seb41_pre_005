@@ -4,6 +4,9 @@ import com.group5.stackoverflowclone.domain.user.dto.UserResponseDto;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.user.mapper.UserMapper;
 import com.group5.stackoverflowclone.domain.user.repository.UserRepository;
+import com.group5.stackoverflowclone.exception.BusinessLogicException;
+import com.group5.stackoverflowclone.exception.ExceptionCode;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,13 +19,24 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, UserMapper mapper) {
+    public UserService(UserRepository userRepository, UserMapper mapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.mapper = mapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User createUser(User user) {
+        verifyExistsEmail(user.getEmail());
+
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
+        List<String> roles = new ArrayList<>();
+        roles.add("USER");
+        user.setRoles(roles);
+
         return userRepository.save(user);
     }
 
@@ -59,6 +73,10 @@ public class UserService {
     }
 
     private void verifyExistsEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
 
+        if (user.isPresent()) {
+            throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
+        }
     }
 }

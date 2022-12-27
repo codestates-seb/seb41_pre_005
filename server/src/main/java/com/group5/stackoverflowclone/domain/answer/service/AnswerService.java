@@ -4,6 +4,7 @@ import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.answer.repository.AnswerRepository;
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import com.group5.stackoverflowclone.domain.question.service.QuestionService;
+import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.user.service.UserService;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ public class AnswerService {
         this.userService = userService;
     }
 
-    public Answer createAnswer(Answer answer, long questionId) {
+    public Answer createAnswer(Answer answer, long questionId, long userId) {
+        answer.addUser(userService.findUser(userId));
         answer.addQuestion(questionService.findQuestion(questionId));
         Answer saveAnswer = answerRepository.save(answer);
 

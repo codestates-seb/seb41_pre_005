@@ -15,6 +15,8 @@ import AskQuestion from "./pages/question/AskQuestion";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/common/Header";
+import { useState } from "react";
+import LoginHeader from "./components/common/LoginHeader";
 
 const PageLayout = styled.div`
   max-width: 126.4rem;
@@ -22,9 +24,12 @@ const PageLayout = styled.div`
   margin: auto;
 `;
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <LoginHeader />
+      {/* {isLogin ? <LoginHeader /> : <Header />} */}
       <PageLayout>
         <Routes>
           <Route path="/" element={<Home />} />

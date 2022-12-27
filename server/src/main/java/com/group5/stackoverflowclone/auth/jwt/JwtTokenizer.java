@@ -21,7 +21,7 @@ import java.util.*;
 @Component
 public class JwtTokenizer {
     @Getter
-    @Value("${jwt.key}")
+    @Value("${jwt.secret-key}")
     private String secretKey;
 
     @Getter
@@ -64,22 +64,38 @@ public class JwtTokenizer {
     public Jws<Claims> getClaims(String jws, String base64EncodedSecretKey) {
         Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
 
-        return Jwts.parserBuilder()
+        Jws<Claims> claims = Jwts.parserBuilder()
                 .setSigningKey(key)
-                .build().parseClaimsJws(jws);
+                .build()
+                .parseClaimsJws(jws);
+        return claims;
+    }
+
+    // 단순히 검증만 하는 용도로 쓰일 경우
+    public void verifySignature(String jws, String base64EncodedSecretKey) {
+        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+
+        Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jws);
     }
 
     // 토큰의 만료 시간을 반환해주는 메서드
     public Date getTokenExpiration(int expirationMinutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, expirationMinutes);
-        return calendar.getTime();
+        Date expiration = calendar.getTime();
+
+        return expiration;
     }
 
     // base64로 인코딩된 키를 Key 객체로 만들어 반환하는 메서드
     private Key getKeyFromBase64EncodedKey(String base64EncodedSecretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(base64EncodedSecretKey);
-        return Keys.hmacShaKeyFor(keyBytes);
+        Key key = Keys.hmacShaKeyFor(keyBytes);
+
+        return key;
     }
 
 }
