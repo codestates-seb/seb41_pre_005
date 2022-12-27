@@ -4,6 +4,8 @@ import RightSidebar from "../common/RightSidebar";
 const SideBarContainer = styled.div`
   width: 29.8rem;
   height: 100%;
+  margin-left: 2rem;
+  margin-top: 2.5rem;
   background-color: #ffffff;
 `;
 const RightSideBarLayout = (props) => {

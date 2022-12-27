@@ -6,13 +6,15 @@ import MainContentLayout from "../components/layout/MainContentLayout";
 import { TagsHeadline } from "../components/common/HeadLine";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
+import TagsItem from "../components/tags/TagsItem";
+import TagsLists from "../components/tags/TagsLists";
 
 const TagsContainer = styled.div`
   /* height: 100vh;
 width: 100%; */
   height: auto;
   min-height: 100%;
-  padding-bottom: 322px;
+  /* padding-bottom: 322px; */
   background-color: white;
 `;
 const BodyContainer = styled.div`
@@ -55,6 +57,7 @@ const Tags = () => {
                   <TagsInput placeholder="Filter by tag name"></TagsInput>
                 </InputContainer>
               </TagsFilter>
+              <TagsLists></TagsLists>
               <TagsContent></TagsContent>
             </MainContentLayout>
           </ContentLayout>
