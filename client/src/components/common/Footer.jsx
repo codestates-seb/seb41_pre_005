@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 const Layout = styled.div`
   position: absolute;
   left: 0;
