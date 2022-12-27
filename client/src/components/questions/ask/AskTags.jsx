@@ -8,16 +8,26 @@ const TagsLayout = styled.div`
   float: left;
 `;
 const TagsContainer = styled.ul`
-  display: inline;
+  display: flex;
 `;
 const TagItem = styled.li`
-  display: inline;
-  margin-right: 4px;
+  margin: 2px;
+  background-color: rgb(225, 236, 244);
+  font-size: 12px;
+  border: 1px solid transparent;
+  padding-left: 0 4px;
+  color: rgb(57, 115, 157);
+  display: inline-flex;
+  justify-content: center;
+  min-width: 0;
+  white-space: nowrap;
+  line-height: 1.8;
+  border-radius: 3px;
 `;
 const TagLink = styled.a`
   font-size: 1.2rem;
   color: hsl(205, 47%, 42%);
-  background-color: hsl(205, 46%, 92%);
+
   border-color: transparent;
 
   display: inline-block;
@@ -30,13 +40,16 @@ const TagLink = styled.a`
   border-radius: 3px;
   margin: 2px 2px 2px 0;
 `;
-const Tags = ({ tags }) => {
+const AskTags = ({ tags }) => {
   return (
     <TagsLayout>
       <TagsContainer>
         {tags?.map((item, index) => (
           <TagItem key={index}>
-            <TagLink>{item}</TagLink>
+            {item}
+            <button type="button">
+              <img src={`${process.env.PUBLIC_URL}` + "/images/Clear.svg"} />
+            </button>
           </TagItem>
         ))}
       </TagsContainer>
@@ -44,4 +57,4 @@ const Tags = ({ tags }) => {
   );
 };
 
-export default Tags;
+export default AskTags;

@@ -1,15 +1,19 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import styled from "styled-components";
+import { useFormContext } from "react-hook-form";
 const EditorContainer = styled.div`
   min-height: 260px;
 `;
 const CustomReactQuill = styled(ReactQuill)`
   width: 100%;
 `;
-
-const AskEditor = (props) => {
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: 1.3rem;
+`;
+const AskEditor = ({ label }) => {
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -54,6 +58,25 @@ const AskEditor = (props) => {
     "background",
   ];
   const [question, setQuestion] = useState();
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
+  const questionBodyValidation = {
+    required: "question is required",
+    minLength: {
+      value: 20,
+      message: "at least 20 charcters",
+    },
+  };
+  useEffect(() => {
+    register(label || "content", questionBodyValidation);
+  }, [register]);
+  const onChangeHandler = (editorState) => {
+    setValue(label || "content", editorState);
+  };
+
   return (
     <EditorContainer>
       <CustomReactQuill
@@ -61,7 +84,9 @@ const AskEditor = (props) => {
         value={question}
         modules={modules}
         formats={formats}
+        onChange={onChangeHandler}
       />
+      <ErrorMessage>{errors?.content?.message}</ErrorMessage>
     </EditorContainer>
   );
 };

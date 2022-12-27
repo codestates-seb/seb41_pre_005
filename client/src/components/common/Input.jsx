@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import AlertIcon from "../login/AlertWarning";
+
+import { useFormContext } from "react-hook-form";
 const InputElement = styled.input`
   width: ${(props) => props.width || "26.8rem"};
   height: 3.3rem;
@@ -20,13 +21,33 @@ const InputElement = styled.input`
     outline: 0;
   }
 `;
-const Input = ({ width }) => {
+const Input = ({
+  width,
+  fieldName,
+  validation,
+  id,
+  placeholder,
+  handleKeyup,
+}) => {
   const [isValid, setIsValid] = useState(true);
+  const { register, setValue } = useFormContext();
+
   const handleOnFocus = () => {
     setIsValid(true);
   };
+  const onKeyUp = (e) => {
+    handleKeyup(e);
+  };
   return (
-    <InputElement width={width} onFocus={handleOnFocus} isValid={isValid} />
+    <InputElement
+      id={id}
+      width={width}
+      onFocus={handleOnFocus}
+      placeholder={placeholder || null}
+      isValid={isValid}
+      {...(fieldName ? { ...register(fieldName, validation) } : null)}
+      onKeyUp={handleKeyup ? handleKeyup : null}
+    />
   );
 };
 
