@@ -18,5 +18,5 @@ public class QuestionPostDto {
     @NotBlank
     private String content;
 
-    private String tagNameList;
+    private List<String> tagNameList;
 }
