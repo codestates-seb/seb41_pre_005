@@ -447,6 +447,122 @@ const LoginHeader = ({ isLogin, setIsLogin }) => {
                 >
                   <path d="M15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2ZM1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2Zm16-7H1v4h16V6Z"></path>
                 </svg>
+                {clickedMenu === "community" ? (
+                  <CommunityDropdown>
+                    <DropdownSubTitle>CURRENT COMMUNITY</DropdownSubTitle>
+                    <DropdownSubContent>
+                      <DropdownSubContainer>
+                        <svg
+                          cursor="pointer"
+                          aria-hidden="true"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 32 37"
+                          style={{ marginRight: "10px", marginLeft: "10px" }}
+                        >
+                          <path
+                            d="M 26 33 v -9 h 4 v 13 H 0 V 24 h 4 v 9 h 22 Z"
+                            fill="#c2c3c4"
+                          />
+                          <path
+                            d="m 21.5 0 l -2.7 2 l 9.9 13.3 l 2.7 -2 L 21.5 0 Z M 26 18.4 L 13.3 7.8 l 2.1 -2.5 l 12.7 10.6 l -2.1 2.5 Z M 9.1 15.2 l 15 7 l 1.4 -3 l -15 -7 l -1.4 3 Z m 14 10.79 l 0.68 -2.95 l -16.1 -3.35 L 7 23 l 16.1 2.99 Z M 23 30 H 7 v -3 h 16 v 3 Z"
+                            fill="#F77F2B"
+                          />
+                        </svg>
+                        <div
+                          style={{ marginRight: "75px", fontWeight: "800" }}
+                          className="name"
+                        >
+                          Stack Overflow
+                        </div>
+                        <span
+                          style={{ marginLeft: "17px" }}
+                          className="discription loginout"
+                        >
+                          help
+                        </span>
+                        <span
+                          style={{ marginLeft: "17px" }}
+                          className="discription loginout"
+                        >
+                          chat
+                        </span>
+                        <Link to="/">
+                          <div
+                            className="discription loginout"
+                            style={{ marginLeft: "17px" }}
+                            role="presentation"
+                            onClick={() => {
+                              setIsLogin(false);
+                            }}
+                          >
+                            log out
+                          </div>
+                        </Link>
+                      </DropdownSubContainer>
+                      <DropdownSubContainer>
+                        <div
+                          style={{
+                            color: "grey",
+                            fontSize: "18px",
+                            fontWeight: "300",
+                            marginLeft: "15px",
+                          }}
+                        >
+                          ㄴ
+                        </div>
+                        <svg
+                          cursor="pointer"
+                          aria-hidden="true"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 32 37"
+                          style={{ marginRight: "10px", marginLeft: "10px" }}
+                        >
+                          <path
+                            d="M 26 33 v -9 h 4 v 13 H 0 V 24 h 4 v 9 h 22 Z"
+                            fill="grey"
+                          />
+                          <path
+                            d="m 21.5 0 l -2.7 2 l 9.9 13.3 l 2.7 -2 L 21.5 0 Z M 26 18.4 L 13.3 7.8 l 2.1 -2.5 l 12.7 10.6 l -2.1 2.5 Z M 9.1 15.2 l 15 7 l 1.4 -3 l -15 -7 l -1.4 3 Z m 14 10.79 l 0.68 -2.95 l -16.1 -3.35 L 7 23 l 16.1 2.99 Z M 23 30 H 7 v -3 h 16 v 3 Z"
+                            fill="grey"
+                          />
+                        </svg>
+                        <div style={{ marginLight: "75px" }} className="name">
+                          Meta Stack Overflow
+                        </div>
+                      </DropdownSubContainer>
+                    </DropdownSubContent>
+                    <DropdownSubTitle>
+                      YOUR COMMUNITIES{" "}
+                      <span style={{ marginLeft: "200px" }}>edit</span>
+                    </DropdownSubTitle>
+                    <Communitues>
+                      <DropdownSubContainerBottom>
+                        <svg
+                          cursor="pointer"
+                          aria-hidden="true"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 32 37"
+                          style={{ marginRight: "10px", marginLeft: "10px" }}
+                        >
+                          <path
+                            d="M 26 33 v -9 h 4 v 13 H 0 V 24 h 4 v 9 h 22 Z"
+                            fill="#c2c3c4"
+                          />
+                          <path
+                            d="m 21.5 0 l -2.7 2 l 9.9 13.3 l 2.7 -2 L 21.5 0 Z M 26 18.4 L 13.3 7.8 l 2.1 -2.5 l 12.7 10.6 l -2.1 2.5 Z M 9.1 15.2 l 15 7 l 1.4 -3 l -15 -7 l -1.4 3 Z m 14 10.79 l 0.68 -2.95 l -16.1 -3.35 L 7 23 l 16.1 2.99 Z M 23 30 H 7 v -3 h 16 v 3 Z"
+                            fill="#F77F2B"
+                          />
+                        </svg>
+                        <div style={{ marginRight: "75px" }} className="name">
+                          Stack Overflow
+                        </div>
+                      </DropdownSubContainerBottom>
+                    </Communitues>
+                  </CommunityDropdown>
+                ) : null}
               </EtcBtn>
             </>
           </RightContainer>
