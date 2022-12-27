@@ -8,6 +8,9 @@ import com.group5.stackoverflowclone.domain.tag.service.TagService;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.user.service.UserService;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,9 +47,16 @@ public class QuestionService {
         return findVerifiedQuestionById(questionId);
     }
 
-    public List<Question> getAllQuestions() {
-        List<Question> questionList = questionRepository.findAll();
-        return questionList;
+    public Page<Question> getTopQuestions() {
+        return questionRepository.findAll(PageRequest.of(0, 20, Sort.by("viewCount").descending()));
+    }
+
+    public Page<Question> getAllQuestions(int page, int size) {
+        return questionRepository.findAll(PageRequest.of(page, size));
+    }
+
+    public Page<Question> getAllQuestions(int page, int size, String sort) {
+        return questionRepository.findAll(PageRequest.of(page, size, Sort.by(sort).descending()));
     }
 
     public Question updateQuestion(Question question) {

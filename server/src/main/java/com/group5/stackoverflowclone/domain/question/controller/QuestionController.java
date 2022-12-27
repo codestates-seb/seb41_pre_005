@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,26 +68,28 @@ public class QuestionController {
     // Top Question 조회
     @GetMapping("/")
     public ResponseEntity getTopQuestions() {
-        List<Question> questions = new ArrayList<>();
+        Page<Question> topQuestions = questionService.getTopQuestions();
+        List<Question> questions = topQuestions.getContent();
 
-        return new ResponseEntity(mapper.questionsToQuestionResponseDtos(questions), HttpStatus.OK);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.questionsToQuestionResponseDtos(questions)), HttpStatus.OK);
     }
 
-    // 전체 질문 조회
+    // 전체 질문 조회, 정렬
     @GetMapping("/questions")
-    public ResponseEntity getAllQuestions() {
-        List<Question> questions = questionService.getAllQuestions();
+    public ResponseEntity sortQuestion(@Positive @RequestParam int page,
+                                       @Positive @RequestParam int size,
+                                       @RequestParam(required = false) String sort) {
+        Page<Question> pageQuestions;
 
-        return new ResponseEntity(mapper.questionsToQuestionResponseDtos(questions), HttpStatus.OK);
+        if (!sort.isEmpty()) {
+            pageQuestions = questionService.getAllQuestions(page - 1, size, sort);
+        } else {
+            pageQuestions = questionService.getAllQuestions(page - 1, size);
+        }
+        List<Question> questions = pageQuestions.getContent();
+
+        return new ResponseEntity(new MultiResponseDto<>(mapper.questionsToQuestionResponseDtos(questions), pageQuestions), HttpStatus.OK);
     }
-
-//    // 전체 질문 정렬
-//    @GetMapping("/questions")
-//    public ResponseEntity sortQuestion(@RequestParam String sort) {
-//        List<Question> questions = new ArrayList<>();
-//
-//        return new ResponseEntity(mapper.questionsToQuestionResponseDtos(questions), HttpStatus.OK);
-//    }
 
     @DeleteMapping("/questions/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId) {
