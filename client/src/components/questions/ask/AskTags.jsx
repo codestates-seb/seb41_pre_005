@@ -15,7 +15,7 @@ const TagItem = styled.li`
   background-color: rgb(225, 236, 244);
   font-size: 12px;
   border: 1px solid transparent;
-  padding-left: 0 4px;
+  padding: 0 4px;
   color: rgb(57, 115, 157);
   display: inline-flex;
   justify-content: center;
@@ -40,16 +40,31 @@ const TagLink = styled.a`
   border-radius: 3px;
   margin: 2px 2px 2px 0;
 `;
-const AskTags = ({ tags }) => {
+const RemoveButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  height: 16px;
+  padding: 1px;
+  width: 16px;
+  margin-left: 4px;
+`;
+const AskTags = ({ tags, handleDelete }) => {
+  const handleClick = (e) => {
+    handleDelete(e.target.id);
+  };
   return (
     <TagsLayout>
       <TagsContainer>
         {tags?.map((item, index) => (
-          <TagItem key={index}>
-            {item}
-            <button type="button">
-              <img src={`${process.env.PUBLIC_URL}` + "/images/Clear.svg"} />
-            </button>
+          <TagItem key={item.tagId}>
+            {item.tagName}
+            <RemoveButton type="button" id={item.tagId} onClick={handleClick}>
+              <img
+                src={`${process.env.PUBLIC_URL}` + "/images/Clear.svg"}
+                id={item.tagId}
+              />
+            </RemoveButton>
           </TagItem>
         ))}
       </TagsContainer>

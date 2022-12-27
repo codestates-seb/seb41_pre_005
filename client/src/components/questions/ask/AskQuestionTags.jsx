@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Input from "../../common/Input";
+import { useFormContext } from "react-hook-form";
 import AskTags from "./AskTags";
 const TagsLayout = styled.div`
   padding: 2.4rem;
@@ -59,23 +60,32 @@ const TagContainer = styled.div`
   margin-left: 5px;
 `;
 const AskQuestionTags = (props) => {
-  const [tags, SetTags] = useState([]);
+  const [tags, setTags] = useState([]);
   const [focused, setFocused] = useState(false);
+  const [tagId, setTagId] = useState(0);
+  const { register, setValue } = useFormContext();
+  useEffect(() => {
+    register("tags");
+  }, [register]);
   const addTags = (e) => {
     const onlyText = e.target.value.trim();
-    console.log(e.target.value.trim());
     if (onlyText === "") return;
-    SetTags([...tags, onlyText]);
+    setTags([...tags, { tagName: onlyText, tagId }]);
+    setTagId(tagId + 1);
     e.target.value = "";
   };
+  const deleteTag = (tagId) => {
+    let newTags = tags.filter((item) => item.tagId * 1 !== tagId * 1);
+    setTags(newTags);
+  };
   const keyUpHandler = (e) => {
-    console.log(e.key);
     if (e.key === " ") {
       if (tags.indexOf(e.target.value.trim()) === -1) {
         return addTags(e);
       }
     }
   };
+  setValue("tags", tags);
   return (
     <TagsLayout>
       <LabelContainer>
@@ -96,7 +106,7 @@ const AskQuestionTags = (props) => {
       </TagInputContainer> */}
       <TagEditor className={focused ? "inputFocused" : null}>
         <TagContainer>
-          <AskTags tags={tags} />
+          <AskTags tags={tags} handleDelete={deleteTag} />
         </TagContainer>
         <TagInput
           onBlur={() => setFocused(false)}
