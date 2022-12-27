@@ -5,6 +5,8 @@ import LeftSideLayout from "../components/layout/LeftSideLayout";
 import MainContentLayout from "../components/layout/MainContentLayout";
 import { TagsHeadline } from "../components/common/HeadLine";
 import Footer from "../components/common/Footer";
+import TagsItem from "../components/tags/TagsItem";
+import TagsLists from "../components/tags/TagsLists";
 import TagsInput from "../components/tags/TagsInput";
 
 const TagsContainer = styled.div`
@@ -12,7 +14,7 @@ const TagsContainer = styled.div`
 width: 100%; */
   height: auto;
   min-height: 100%;
-  padding-bottom: 322px;
+  /* padding-bottom: 322px; */
   background-color: white;
 `;
 const BodyContainer = styled.div`
@@ -72,6 +74,7 @@ const Tags = () => {
                   />
                 </InputContainer>
               </TagsFilter>
+              <TagsLists></TagsLists>
               <TagsContent></TagsContent>
             </MainContentLayout>
           </ContentLayout>
