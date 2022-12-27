@@ -1,4 +1,3 @@
-import alertIcon from "../../images/alert.svg";
 import React from "react";
 import styled from "styled-components";
 const Alert = styled.img`
@@ -24,7 +23,7 @@ const AlertContainer = styled.div`
 const AlertIcon = (props) => {
   return (
     <AlertContainer>
-      <Alert src={alertIcon} />
+      <Alert src={process.env.PUBLIC_URL + "/images/alert.svg"} />
       <AlertText>username do not exist</AlertText>
     </AlertContainer>
   );
