@@ -31,7 +31,7 @@ const SignUpForm = (props) => {
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
     console.log(data);
-    const res = await axios({
+    await axios({
       url: "/users/signup",
       method: "post",
       data: {
@@ -40,9 +40,9 @@ const SignUpForm = (props) => {
         displayName: data.userName,
       },
     })
-      .then((response) => {
-        console.log(response.data);
-      })
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
       .catch((error) => {
         console.log(error);
       });
