@@ -77,9 +77,9 @@ const SignUpForm = (props) => {
             validation={nameValidation}
             error={error?.userName}
           />
+          {error?.userName && <AlertWarning text={error.userName?.message} />}
         </InputContainer>
 
-        {error?.userName && <AlertWarning text={error.userName?.message} />}
         <InputContainer>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -88,8 +88,9 @@ const SignUpForm = (props) => {
             validation={emailValidation}
             error={error?.userEmail}
           />
+          {error?.userEmail && <AlertWarning text={error.userEmail?.message} />}
         </InputContainer>
-        {error?.userEmail && <AlertWarning text={error.userEmail?.message} />}
+
         <InputContainer>
           <Label htmlFor="password">Password</Label>
           <Input
@@ -99,10 +100,10 @@ const SignUpForm = (props) => {
             validation={passwordValidation}
             error={error?.userPassword}
           />
+          {error?.userPassword && (
+            <AlertWarning text={error.userPassword?.message} />
+          )}
         </InputContainer>
-        {error?.userPassword && (
-          <AlertWarning text={error.userPassword?.message} />
-        )}
 
         <ValidationMessage>
           Passwords must contain at least eight characters, including at least 1
