@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import { useFormContext } from "react-hook-form";
 const InputElement = styled.input`
   width: ${(props) => props.width || "26.8rem"};
@@ -28,23 +27,22 @@ const Input = ({
   id,
   placeholder,
   handleKeyup,
+  type,
+  error,
 }) => {
   const [isValid, setIsValid] = useState(true);
   const { register, setValue } = useFormContext();
 
-  const handleOnFocus = () => {
-    setIsValid(true);
-  };
   const onKeyUp = (e) => {
     handleKeyup(e);
   };
   return (
     <InputElement
+      type={type || "text"}
       id={id}
       width={width}
-      onFocus={handleOnFocus}
       placeholder={placeholder || null}
-      isValid={isValid}
+      isValid={error ? false : true}
       {...(fieldName ? { ...register(fieldName, validation) } : null)}
       onKeyUp={handleKeyup ? handleKeyup : null}
     />
