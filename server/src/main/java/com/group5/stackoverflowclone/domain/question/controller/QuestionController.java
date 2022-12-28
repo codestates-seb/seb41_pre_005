@@ -1,7 +1,5 @@
 package com.group5.stackoverflowclone.domain.question.controller;
 
-import com.group5.stackoverflowclone.domain.answer.dto.AnswerResponseDto;
-import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.answer.mapper.AnswerMapper;
 import com.group5.stackoverflowclone.domain.answer.service.AnswerService;
 import com.group5.stackoverflowclone.domain.question.dto.QuestionPatchDto;
@@ -16,16 +14,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("")
 @Validated
 @RequiredArgsConstructor
@@ -45,21 +42,22 @@ public class QuestionController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.CREATED);
     }
 
-    //질문 조회
-    @GetMapping("/questions/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
-        Question question = questionService.findQuestion(questionId);
-        questionService.updateQuestionViewCount(question, question.getViewCount());
-
-        return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
-    }
-
     //질문 수정
     @PatchMapping("/questions/{question-id}/edit")
     public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                         @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionPatchDto.setQuestionId(questionId);
-        Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto));
+        Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto),
+                questionPatchDto.getTagNameList(), questionId, questionPatchDto.getUserId());
+
+        return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
+    }
+
+    //질문 조회
+    @GetMapping("/questions/{question-id}")
+    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
+        Question question = questionService.findQuestion(questionId);
+        questionService.updateQuestionViewCount(question, question.getViewCount());
 
         return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
     }

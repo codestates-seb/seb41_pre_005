@@ -19,13 +19,18 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
-    public List<Tag> createTagByName(String tagNames) {
-        String[] split = tagNames.split(",");
-        return Arrays.stream(split)
+    public List<Tag> createTagByName(List<String> tagNames) {
+        return tagNames.stream()
                 .filter(tag -> !tag.isEmpty())
                 .map(String::trim)
                 .map(tag -> new Tag(tag, ""))
                 .map(this::verifyTag).collect(Collectors.toList());
+
+//        String[] split = tagNames.split(",");
+//                .filter(tag -> !tag.isEmpty())
+//                .map(String::trim)
+//                .map(tag -> new Tag(tag, ""))
+//                .map(this::verifyTag).collect(Collectors.toList());
     }
 
     public List<Tag> getAllTags() {
