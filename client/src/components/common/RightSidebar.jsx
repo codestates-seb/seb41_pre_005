@@ -167,7 +167,7 @@ const Pencil = () => {
   return (
     <svg
       aria-hidden="true"
-      class="va-text-top svg-icon iconPencilSm"
+      className="va-text-top svg-icon iconPencilSm"
       width="14"
       height="14"
       viewBox="0 0 14 14"
@@ -208,7 +208,7 @@ const Eye = () => {
   return (
     <svg
       aria-hidden="true"
-      class="svg-icon iconEye native js-svg"
+      className="svg-icon iconEye native js-svg"
       width="18"
       height="18"
       viewBox="0 0 18 18"

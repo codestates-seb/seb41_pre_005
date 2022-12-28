@@ -353,7 +353,9 @@ const LoginHeader = ({ isLogin, setIsLogin }) => {
           <HeaderSearchbar></HeaderSearchbar>
           <RightContainer>
             <ProfileImgContain>
-              <ProfileImg />
+              <Link to="/users/:id">
+                <ProfileImg />
+              </Link>
               <div
                 style={{
                   fontSize: "12px",
