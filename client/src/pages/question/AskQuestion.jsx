@@ -8,6 +8,7 @@ import AskQuestionTitle from "../../components/questions/ask/AskQuestionTitle";
 import AskQuestionHeadline from "../../components/questions/ask/AskQuestionHeadline";
 import Footer from "../../components/common/Footer";
 import { FormProvider, useForm } from "react-hook-form";
+import axios from "axios";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -62,7 +63,26 @@ const initialValue = {
 const AskQuestion = (props) => {
   const [questionBody, setQuestionBody] = useState();
   const methods = useForm(initialValue);
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    console.log(data);
+    const tagNameList = data.tags.map((item) => item.tagName);
+    console.log(tagNameList);
+    const formData = {
+      content: data.content,
+      title: data.title,
+      tagNameList,
+    };
+    try {
+      const response = await axios({
+        method: "post",
+        url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/questions/ask",
+        data: formData,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <AskPageLayout>

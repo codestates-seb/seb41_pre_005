@@ -25,9 +25,8 @@ const LoginContainer = styled.div`
   /* background-color: #f1f2f3; */
 `;
 const FormContainer = styled.div`
-  margin-top: 10rem;
   width: 27.8rem;
-  height: 23.4rem;
+
   padding: 2.4rem;
   padding-top: 1.4rem;
   border-radius: 1rem;
@@ -45,15 +44,13 @@ const FindPassword = styled.span`
 `;
 const Login = (props) => {
   return (
-    <>
-      <LoginContainer>
-        <FormContainer>
-          <SocialLogin />
-          <LoginForm />
-        </FormContainer>
-        <LoginPageBottom></LoginPageBottom>
-      </LoginContainer>
-    </>
+    <LoginContainer>
+      <SocialLogin />
+      <FormContainer>
+        <LoginForm />
+      </FormContainer>
+      <LoginPageBottom></LoginPageBottom>
+    </LoginContainer>
   );
 };
 
