@@ -37,8 +37,10 @@ public class AnswerService {
         return findVerifiedAnswer(answerId);
     }
 
-    public Answer updateAnswer(Answer answer) {
+    public Answer updateAnswer(Answer answer, long userId) {
         Answer foundAnswer = findAnswer(answer.getAnswerId());
+
+        userService.verifyUserByUserId(userId, foundAnswer.getUser().getUserId());
 
         Optional.ofNullable(answer.getContent())
                 .ifPresent(foundAnswer::setContent);
@@ -46,8 +48,9 @@ public class AnswerService {
         return answerRepository.save(foundAnswer);
     }
 
-    public void deleteAnswer(long answerId) {
+    public void deleteAnswer(long answerId, long userId) {
         Answer answer = findVerifiedAnswer(answerId);
+        userService.verifyUserByUserId(answer.getUser().getUserId(), userId);
 
         answerRepository.delete(answer);
     }
