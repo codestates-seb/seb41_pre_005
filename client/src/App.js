@@ -40,6 +40,7 @@ function App() {
           <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path="/users/:id" element={<Profile />} />
           <Route path="/tags" element={<Tags />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </PageLayout>
     </>

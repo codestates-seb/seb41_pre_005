@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HeaderLayout from "../layout/HeaderLayout";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import FunctionSearch from './FunctionSearch';
 
 const HeaderContinaer = styled.div`
   box-sizing: border-box;
@@ -39,7 +40,6 @@ const LogoContainer = styled.div`
   background-color: transparent;
   margin-left: 10rem;
   margin-bottom: 0.2rem;
-
   img {
     width: 14.6rem;
     height: 3rem;
@@ -53,7 +53,6 @@ const LogoContainer = styled.div`
   align-items: center;
   background-color: #00000000;
   margin-left: 8px;
-
   @media screen and (max-width: 640px) {
     display: none;
   }
@@ -84,7 +83,6 @@ const HeadBtnContainer = styled.div`
   position: relative;
   user-select: auto;
   margin-left: 1rem;
-
   .about_btn {
     width: 70px;
     height: 29px;
@@ -118,81 +116,78 @@ const HeadBtnContainer = styled.div`
   }
 `;
 
-const SearchbarContainer = styled.div`
-  box-sizing: border-box;
-  padding: 0 3.5rem;
-  position: relative;
-  display: flex;
-  font-family: inherit;
-  margin-left: -1.5rem;
-`;
+// const SearchbarContainer = styled.div`
+//   box-sizing: border-box;
+//   padding: 0 3.5rem;
+//   position: relative;
+//   display: flex;
+//   font-family: inherit;
+//   margin-left: -1.5rem;
+// `;
 
-const SearchbarInput = styled.input`
-  box-sizing: border-box;
-  max-width: ${(props) => props.width || "1000px"};
-  height: ${(props) => props.height || "30px"};
+// const SearchbarInput = styled.input`
+//   box-sizing: border-box;
+//   max-width: ${(props) => props.width || "1000px"};
+//   height: ${(props) => props.height || "30px"};
+//   border: 1px solid #babfc4;
+//   border-radius: 3px;
+//   padding-left: 30px;
+//   font-size: 1.3rem;
+//   background-color: white;
+//   &:focus {
+//     outline: none;
+//     border: 1px solid #6bbbf7;
+//     box-shadow: 0px 0px 0px 4px #d8e5f2;
+//   }
+// `;
 
-  border: 1px solid #babfc4;
-  border-radius: 3px;
-  padding-left: 30px;
-  font-size: 1.3rem;
-  background-color: white;
+// const SearchIcon = styled.div`
+//   position: absolute;
+//   left: 4.2rem;
+//   top: 7px;
+//   svg {
+//     color: #81878c;
+//   }
+// `;
 
-  &:focus {
-    outline: none;
-    border: 1px solid #6bbbf7;
-    box-shadow: 0px 0px 0px 4px #d8e5f2;
-  }
-`;
+// const HeaderSearchbarContainer = styled(SearchbarContainer)`
+//   flex-grow: 1;
+//   max-width: 756px;
+// `;
 
-const SearchIcon = styled.div`
-  position: absolute;
-  left: 4.2rem;
-  top: 7px;
-  svg {
-    color: #81878c;
-  }
-`;
-
-const HeaderSearchbarContainer = styled(SearchbarContainer)`
-  flex-grow: 1;
-  max-width: 756px;
-`;
-
-const HeaderSearchbarInput = styled(SearchbarInput)`
-  width: 100%;
-  height: 33px;
-  position: relative;
-`;
-const HeaderSearchIcon = styled(SearchIcon)``;
-const HeaderSearchbar = () => {
-  return (
-    <HeaderSearchbarContainer id="search">
-      <HeaderSearchbarInput
-        type="text"
-        placeholder="Search..."
-      ></HeaderSearchbarInput>
-      <HeaderSearchIcon>
-        <svg
-          aria-hidden="true"
-          className="svg-icon iconSearch"
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-        >
-          <path
-            style={{ fill: "rgb(131, 140, 149)" }}
-            d="m18 16.5-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5ZM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0Z"
-          />
-        </svg>
-      </HeaderSearchIcon>
-    </HeaderSearchbarContainer>
-  );
-};
+// const HeaderSearchbarInput = styled(SearchbarInput)`
+//   width: 100%;
+//   height: 33px;
+//   position: relative;
+// `;
+// const HeaderSearchIcon = styled(SearchIcon)``;
+// const HeaderSearchbar = () => {
+//   return (
+//     <HeaderSearchbarContainer id="search">
+//       <HeaderSearchbarInput
+//         type="text"
+//         placeholder="Search..."
+//       ></HeaderSearchbarInput>
+//       <HeaderSearchIcon>
+//         <svg
+//           aria-hidden="true"
+//           className="svg-icon iconSearch"
+//           width="18"
+//           height="18"
+//           viewBox="0 0 18 18"
+//         >
+//           <path
+//             style={{ fill: "rgb(131, 140, 149)" }}
+//             d="m18 16.5-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5ZM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0Z"
+//           />
+//         </svg>
+//       </HeaderSearchIcon>
+//     </HeaderSearchbarContainer>
+//   );
+// };
 
 const RightContainer = styled.div`
   height: 4.7rem;
-
   display: flex;
 `;
 const ProfileImgContain = styled.div`
@@ -350,7 +345,8 @@ const LoginHeader = ({ isLogin, setIsLogin }) => {
           <HeadBtnContainer>
             <button className="forTeams_btn">Products</button>
           </HeadBtnContainer>
-          <HeaderSearchbar></HeaderSearchbar>
+          {/* <HeaderSearchbar></HeaderSearchbar> */}
+          <FunctionSearch></FunctionSearch>
           <RightContainer>
             <ProfileImgContain>
               <ProfileImg />
