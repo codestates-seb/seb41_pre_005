@@ -6,6 +6,7 @@ import AlertIcon, { AlertText } from "../../components/login/AlertWarning";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../../components/login/AlertWarning";
 import axios from "axios";
+import { login } from "../../api/userAPI";
 const InputContainer = styled.div`
   margin: 0.6rem 0;
 `;
@@ -50,7 +51,7 @@ const LoginForm = (props) => {
   const error = methods?.formState?.errors;
   console.log(error);
   const onSubmit = async (data) => {
-    try {
+    /*     try {
       const res = await axios({
         method: "post",
         data,
@@ -59,7 +60,8 @@ const LoginForm = (props) => {
       console.log(res);
     } catch (e) {
       console.log(e);
-    }
+    } */
+    login(data);
   };
   return (
     <FormProvider {...methods}>

@@ -21,6 +21,7 @@ const AnswerList = () => {
         method: "get",
         url: "data/data.json",
       });
+
       setAnswers(questionData?.data?.questions[0]?.answer);
       return questionData;
     }

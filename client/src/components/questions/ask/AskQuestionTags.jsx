@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Input from "../../common/Input";
 import { useFormContext } from "react-hook-form";
 import AskTags from "./AskTags";
 const TagsLayout = styled.div`
@@ -66,6 +65,7 @@ const AskQuestionTags = (props) => {
   const { register, setValue } = useFormContext();
   useEffect(() => {
     register("tags");
+    setValue("tags", tags);
   }, [register]);
   const addTags = (e) => {
     const onlyText = e.target.value.trim();
@@ -85,7 +85,7 @@ const AskQuestionTags = (props) => {
       }
     }
   };
-  setValue("tags", tags);
+
   return (
     <TagsLayout>
       <LabelContainer>

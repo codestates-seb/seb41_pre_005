@@ -5,6 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../login/AlertWarning";
+import { signUp } from "../../api/userAPI";
 
 const InputContainer = styled.div`
   margin: 1rem 0;
@@ -30,7 +31,7 @@ const SignUpForm = (props) => {
   const methods = useForm(initialValue);
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
-    console.log(data);
+    /*     console.log(data);
     const res = await axios({
       url: "/users/signup",
       method: "post",
@@ -45,7 +46,8 @@ const SignUpForm = (props) => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }); */
+    signUp(data);
   };
 
   // console.log(watch("userName"));
