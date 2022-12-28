@@ -1,7 +1,5 @@
 package com.group5.stackoverflowclone.domain.question.controller;
 
-import com.group5.stackoverflowclone.domain.answer.dto.AnswerResponseDto;
-import com.group5.stackoverflowclone.domain.answer.entity.Answer;
 import com.group5.stackoverflowclone.domain.answer.mapper.AnswerMapper;
 import com.group5.stackoverflowclone.domain.answer.service.AnswerService;
 import com.group5.stackoverflowclone.domain.question.dto.QuestionPatchDto;
@@ -21,10 +19,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("")
 @Validated
 @RequiredArgsConstructor
@@ -44,6 +42,17 @@ public class QuestionController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.CREATED);
     }
 
+    //질문 수정
+    @PatchMapping("/questions/{question-id}/edit")
+    public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
+                                        @Valid @RequestBody QuestionPatchDto questionPatchDto) {
+        questionPatchDto.setQuestionId(questionId);
+        Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto),
+                questionPatchDto.getTagNameList(), questionId, questionPatchDto.getUserId());
+
+        return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
+    }
+
     //질문 조회
     @GetMapping("/questions/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
@@ -53,40 +62,32 @@ public class QuestionController {
         return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
     }
 
-    //질문 수정
-    @PatchMapping("/questions/{question-id}/edit")
-    public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
-                                        @Valid @RequestBody QuestionPatchDto questionPatchDto) {
-        questionPatchDto.setQuestionId(questionId);
-        Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto));
-
-        return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
-    }
-
 
     // Top Question 조회
     @GetMapping("/")
     public ResponseEntity getTopQuestions() {
-        List<Question> questions = new ArrayList<>();
+        Page<Question> topQuestions = questionService.getTopQuestions();
+        List<Question> questions = topQuestions.getContent();
 
-        return new ResponseEntity(mapper.questionsToQuestionResponseDtos(questions), HttpStatus.OK);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.questionsToQuestionResponseDtos(questions)), HttpStatus.OK);
     }
 
-    // 전체 질문 조회
+    // 전체 질문 조회, 정렬
     @GetMapping("/questions")
-    public ResponseEntity getAllQuestions() {
-        List<Question> questions = questionService.getAllQuestions();
+    public ResponseEntity sortQuestion(@Positive @RequestParam int page,
+                                       @Positive @RequestParam int size,
+                                       @RequestParam(required = false) String sort) {
+        Page<Question> pageQuestions;
 
-        return new ResponseEntity(mapper.questionsToQuestionResponseDtos(questions), HttpStatus.OK);
+        if (!sort.isEmpty()) {
+            pageQuestions = questionService.getAllQuestions(page - 1, size, sort);
+        } else {
+            pageQuestions = questionService.getAllQuestions(page - 1, size);
+        }
+        List<Question> questions = pageQuestions.getContent();
+
+        return new ResponseEntity(new MultiResponseDto<>(mapper.questionsToQuestionResponseDtos(questions), pageQuestions), HttpStatus.OK);
     }
-
-//    // 전체 질문 정렬
-//    @GetMapping("/questions")
-//    public ResponseEntity sortQuestion(@RequestParam String sort) {
-//        List<Question> questions = new ArrayList<>();
-//
-//        return new ResponseEntity(mapper.questionsToQuestionResponseDtos(questions), HttpStatus.OK);
-//    }
 
     @DeleteMapping("/questions/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId) {

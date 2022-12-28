@@ -48,7 +48,7 @@ const SingUpAside = () => {
       <HeaderContainer>Join the Stack Overflow community</HeaderContainer>
       <List>
         <IconBox>
-          <svg width="26" height="26" class="svg-icon mtn2">
+          <svg width="26" height="26" className="svg-icon mtn2">
             <path
               opacity=".5"
               d="M4.2 4H22a2 2 0 012 2v11.8a3 3 0 002-2.8V5a3 3 0 00-3-3H7a3 3 0 00-2.8 2z"
@@ -60,7 +60,7 @@ const SingUpAside = () => {
       </List>
       <List>
         <IconBox>
-          <svg width="26" height="26" class="svg-icon mtn2">
+          <svg width="26" height="26" className="svg-icon mtn2">
             <path d="M12 .7a2 2 0 013 0l8.5 9.6a1 1 0 01-.7 1.7H4.2a1 1 0 01-.7-1.7L12 .7z"></path>
             <path
               opacity=".5"
@@ -72,7 +72,7 @@ const SingUpAside = () => {
       </List>
       <List>
         <IconBox>
-          <svg width="26" height="26" class="svg-icon mtn2">
+          <svg width="26" height="26" className="svg-icon mtn2">
             <path d="M14.8 3a2 2 0 00-1.4.6l-10 10a2 2 0 000 2.8l8.2 8.2c.8.8 2 .8 2.8 0l10-10c.4-.4.6-.9.6-1.4V5a2 2 0 00-2-2h-8.2zm5.2 7a2 2 0 110-4 2 2 0 010 4z"></path>
             <path
               opacity=".5"
@@ -84,7 +84,7 @@ const SingUpAside = () => {
       </List>
       <List>
         <IconBox>
-          <svg width="26" height="26" class="svg-icon mtn2">
+          <svg width="26" height="26" className="svg-icon mtn2">
             <path d="M21 4V2H5v2H1v5c0 2 2 4 4 4v1c0 2.5 3 4 7 4v3H7s-1.2 2.3-1.2 3h14.4c0-.6-1.2-3-1.2-3h-5v-3c4 0 7-1.5 7-4v-1c2 0 4-2 4-4V4h-4zM5 11c-1 0-2-1-2-2V6h2v5zm11.5 2.7l-3.5-2-3.5 1.9L11 9.8 7.2 7.5h4.4L13 3.8l1.4 3.7h4L15.3 10l1.4 3.7h-.1zM23 9c0 1-1 2-2 2V6h2v3z"></path>
           </svg>
         </IconBox>

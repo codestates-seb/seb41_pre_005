@@ -9,6 +9,8 @@ import java.util.List;
 
 @Getter
 public class QuestionPatchDto {
+    private long userId;
+
     private long questionId;
 
     @NotBlank
@@ -16,7 +18,7 @@ public class QuestionPatchDto {
 
     private String content;
 
-    private List<Tag> tags;
+    private List<String> tagNameList;
 
     public void setQuestionId(long questionId) {
         this.questionId = questionId;

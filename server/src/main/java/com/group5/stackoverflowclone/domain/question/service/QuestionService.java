@@ -3,31 +3,40 @@ package com.group5.stackoverflowclone.domain.question.service;
 import com.group5.stackoverflowclone.domain.question.entity.Question;
 import com.group5.stackoverflowclone.domain.question.entity.QuestionTag;
 import com.group5.stackoverflowclone.domain.question.repository.QuestionRepository;
+import com.group5.stackoverflowclone.domain.question.repository.QuestionTagRepository;
 import com.group5.stackoverflowclone.domain.tag.entity.Tag;
 import com.group5.stackoverflowclone.domain.tag.service.TagService;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.user.service.UserService;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
 public class QuestionService {
     private final QuestionRepository questionRepository;
+    private final QuestionTagRepository questionTagRepository;
     private final UserService userService;
     private final TagService tagService;
 
-    public QuestionService(QuestionRepository questionRepository, UserService userService, TagService tagService) {
+    public QuestionService(QuestionRepository questionRepository, QuestionTagRepository questionTagRepository, UserService userService, TagService tagService) {
         this.questionRepository = questionRepository;
+        this.questionTagRepository = questionTagRepository;
         this.userService = userService;
         this.tagService = tagService;
     }
 
-    public Question createQuestion(Question question, String tagName, long userId) {
+    public Question createQuestion(Question question, List<String> tagName, long userId) {
         question.addUser(userService.findUser(userId));
 
         List<Tag> tags = tagService.createTagByName(tagName);
@@ -44,22 +53,43 @@ public class QuestionService {
         return findVerifiedQuestionById(questionId);
     }
 
-    public List<Question> getAllQuestions() {
-        List<Question> questionList = questionRepository.findAll();
-        return questionList;
+    public Page<Question> getTopQuestions() {
+        return questionRepository.findAll(PageRequest.of(0, 20, Sort.by("viewCount").descending()));
     }
 
-    public Question updateQuestion(Question question) {
+    public Page<Question> getAllQuestions(int page, int size) {
+        return questionRepository.findAll(PageRequest.of(page, size));
+    }
+
+    public Page<Question> getAllQuestions(int page, int size, String sort) {
+        return questionRepository.findAll(PageRequest.of(page, size, Sort.by(sort).descending()));
+    }
+
+    public Question updateQuestion(Question question, List<String> tagName, long questionId, long userId) {
         Question foundQuestion = findQuestion(question.getQuestionId());
+
+        // questionId를 통해서 받는 user과 QuestionPatchDto를 통해서 받는 user가 같은지 검증
+        userService.verifyUserByUserId(findVerifiedQuestionById(questionId).getUser().getUserId(), userId);
+
+        List<Tag> tags = tagService.createTagByName(tagName);
 
         Optional.ofNullable(question.getTitle())
                 .ifPresent(foundQuestion::setTitle);
         Optional.ofNullable(question.getContent())
                 .ifPresent(foundQuestion::setContent);
-        Optional.ofNullable(question.getQuestionTags())
-                .ifPresent(foundQuestion::setQuestionTags);
 
-        return questionRepository.save(foundQuestion);
+        List<QuestionTag> questionTags = foundQuestion.getQuestionTags().stream().collect(Collectors.toList());
+
+        if (!tagName.isEmpty()) {
+            List<Tag> tagByString = tagService.createTagByName(tagName);
+            List<QuestionTag> addTags = tagByString.stream()
+                    .map(tag -> new QuestionTag(foundQuestion, tag))
+                    .collect(Collectors.toList());
+            foundQuestion.setQuestionTags(addTags);
+        }
+
+        questionTagRepository.deleteAll(questionTags);
+        return foundQuestion;
     }
 
     public void deleteQuestion(long questionId) {
