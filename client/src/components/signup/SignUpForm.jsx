@@ -29,10 +29,10 @@ const SignUpForm = (props) => {
   };
   const methods = useForm(initialValue);
   const error = methods?.formState?.errors;
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    axios({
-      url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/users/signup",
+    const res = await axios({
+      url: "/users/signup",
       method: "post",
       data: {
         email: data.userEmail,
@@ -44,7 +44,7 @@ const SignUpForm = (props) => {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error.data);
+        console.log(error);
       });
   };
 
