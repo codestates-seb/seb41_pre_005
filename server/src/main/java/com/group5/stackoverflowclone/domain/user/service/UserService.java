@@ -64,6 +64,12 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void verifyUserByUserId(long questionUserId, long updateUserId) {
+        if (questionUserId != updateUserId) {
+            throw new BusinessLogicException(ExceptionCode.WRONG_USER);
+        }
+    }
+
 
     private User findVerifiedUserById(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
@@ -79,4 +85,5 @@ public class UserService {
             throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
         }
     }
+
 }
