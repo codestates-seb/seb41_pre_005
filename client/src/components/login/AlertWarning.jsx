@@ -20,13 +20,13 @@ export const AlertText = styled.p`
 const AlertContainer = styled.div`
   position: relative;
 `;
-const AlertIcon = (props) => {
+const AlertWarning = ({ text }) => {
   return (
     <AlertContainer>
       <Alert src={process.env.PUBLIC_URL + "/images/alert.svg"} />
-      <AlertText>username do not exist</AlertText>
+      <AlertText>{text}</AlertText>
     </AlertContainer>
   );
 };
 
-export default AlertIcon;
+export default AlertWarning;
