@@ -100,7 +100,7 @@ const ProfileAbout = () => {
         <PostsContent>
           <svg
             aria-hidden="true"
-            class="mb24 svg-spot spotEmptyXL"
+            className="mb24 svg-spot spotEmptyXL"
             width="196"
             height="196"
             viewBox="0 0 196 196"

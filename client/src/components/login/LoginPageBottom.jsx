@@ -30,17 +30,15 @@ const LoginPageBottom = () => {
     <>
       <BottomContainer>
         <span className="text">
-         
           Don’t have an account? <span className="text blue">Sign up</span>
         </span>
         <span className="text marginText">
-       
           Are you an employer?
           <span className="text blue">
             Sign up on Talent
             <svg
               aria-hidden="true"
-              class="va-text-bottom sm:d-none svg-icon iconShareSm"
+              className="va-text-bottom sm:d-none svg-icon iconShareSm"
               width="14"
               height="14"
               viewBox="0 0 14 14"

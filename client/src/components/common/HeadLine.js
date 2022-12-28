@@ -106,9 +106,11 @@ export const HomeHeadLine = () => {
   return (
     <AskQuestionHead>
       <AskQuestionWord>Top Questions</AskQuestionWord>
-      <AskQuestionBtn fontWeight="550" fontSize="13px">
-        <Link to="/questions/ask">Ask question</Link>
-      </AskQuestionBtn>
+      <Link to="/questions/ask">
+        <AskQuestionBtn fontWeight="550" fontSize="13px">
+          Ask Question
+        </AskQuestionBtn>
+      </Link>
     </AskQuestionHead>
   );
 };
