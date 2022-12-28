@@ -54,7 +54,6 @@ const Author = ({ author, createdAt }) => {
           break;
         }
       }
-      console.log(currentTime - uploadTime);
       return formattedTimeDiff;
     }
     setElapsedTime(calculateElapsedTime());
