@@ -3,6 +3,8 @@ import styled from "styled-components";
 import HeaderLayout from "../layout/HeaderLayout";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const HeaderContinaer = styled.div`
   box-sizing: border-box;
@@ -328,12 +330,17 @@ const DropdownSubContainerBottom = styled.div`
 
 const LoginHeader = ({ isLogin, setIsLogin }) => {
   const [clickedMenu, setClickedMenu] = useState(null);
-
   const handleClickMenu = (menu) => {
     if (menu === clickedMenu) setClickedMenu(null);
     else setClickedMenu(menu);
     console.log(clickedMenu);
   };
+  //쿠키 삭제
+  const cookies = new Cookies();
+  const removeCookie = (name, option) => {
+    return cookies.remove(name, { ...option });
+  };
+  const logout = removeCookie("token");
 
   return (
     <HeaderLayout>
@@ -494,9 +501,7 @@ const LoginHeader = ({ isLogin, setIsLogin }) => {
                             className="discription loginout"
                             style={{ marginLeft: "17px" }}
                             role="presentation"
-                            onClick={() => {
-                              setIsLogin(false);
-                            }}
+                            onClick={logout}
                           >
                             log out
                           </div>

@@ -8,14 +8,17 @@ import SignUpForm from "../../components/signup/SignUpForm";
 import SocialLoginNoLogo from "../../components/login/SocialLoginNoLogo";
 
 const FormContainer = styled.div`
+  background-color: f1f2f3;
+`;
+const SingupContainer = styled.div`
   width: 31.6rem;
-  height: 42rem;
   padding: 2.4rem;
   border-radius: 1rem;
-  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  margin-top: 10rem;
 `;
 const SignUpBody = styled.div`
   width: 40rem;
@@ -28,7 +31,12 @@ const InformPolicy = styled.div`
   height: fix;
   font-size: 1.2rem;
   color: gray;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+`;
+
+const Etc = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 const SignUp = (props) => {
   return (
@@ -37,13 +45,17 @@ const SignUp = (props) => {
         <SingUpAside></SingUpAside>
       </SignUpBody>
       <FormContainer>
-        <SocialLoginNoLogo />
-        <SignUpForm />
-        <InformPolicy>
-          By clicking “Sign up”, you agree to our terms of service, privacy
-          policy and cookie policy
-        </InformPolicy>
-        <SignUpBottom></SignUpBottom>
+        <SingupContainer>
+          <SocialLoginNoLogo />
+          <SignUpForm />
+          <InformPolicy>
+            By clicking “Sign up”, you agree to our terms of service, privacy
+            policy and cookie policy
+          </InformPolicy>
+        </SingupContainer>
+        <Etc>
+          <SignUpBottom></SignUpBottom>
+        </Etc>
       </FormContainer>
     </SignUpLayout>
   );

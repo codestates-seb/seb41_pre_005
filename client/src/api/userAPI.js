@@ -10,7 +10,6 @@ export const login = async (data) => {
       data,
       url: "/users/login",
     });
-    console.log(res);
     return res;
   } catch (e) {
     console.log(e);

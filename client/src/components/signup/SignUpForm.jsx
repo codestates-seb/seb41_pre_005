@@ -25,7 +25,7 @@ const ValidationMessage = styled.p`
 `;
 
 const SignUpForm = (props) => {
-  const [popup, setPopup] = useState({
+  const [modal, setModal] = useState({
     open: false,
     title: "",
     message: "",
@@ -62,7 +62,7 @@ const SignUpForm = (props) => {
         console.log(error);
       }); */
     signUp(data);
-    setPopup({
+    setModal({
       open: true,
       title: "회원가입을 성공했습니다.",
       message: `환영합니다 ${data.userName}님!`,
@@ -96,11 +96,11 @@ const SignUpForm = (props) => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <SiginUpModal
-          open={popup.open}
-          setPopup={setPopup}
-          message={popup.message}
-          title={popup.title}
-          callback={popup.callback}
+          open={modal.open}
+          setModal={setModal}
+          message={modal.message}
+          title={modal.title}
+          callback={modal.callback}
         />
         <InputContainer>
           <Label htmlFor="displayName">Display name</Label>

@@ -13,8 +13,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface AnswerMapper {
 
-    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
-
     List<AnswerResponseDto> answersToAnswerResponseDtos(List<Answer> answerList);
 
     default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto) {
@@ -31,6 +29,9 @@ public interface AnswerMapper {
 
         return answer;
     }
+
+    @Mapping(source = "userId", target = "user.userId")
+    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
 
     @Mapping(source = "question.questionId", target = "questionId")
     @Mapping(source = "user.displayName", target = "displayName")

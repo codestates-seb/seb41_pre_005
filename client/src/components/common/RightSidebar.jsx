@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "./Input";
 import { FormProvider, useForm } from "react-hook-form";
-import { ButtonBlue } from "./Header";
+import Button from "./Button";
+import TagsLists from "../tags/TagsLists";
+
+import { tagList } from "../tags/TagsLists";
 
 const YellowContainer = styled.div`
   width: 30rem;
@@ -248,7 +251,13 @@ const FeatContainer = styled.div`
   margin-top: 22px;
   margin-left: 15px;
 `;
+const AddBtnContainer = styled.div`
+  margin-bottom: 2rem;
+`;
 
+const Check = styled.div`
+  background-color: #fff7bb;
+`;
 const RightSidebar = () => {
   const [tag, setTag] = useState(false);
   const handleClicktag = () => {
@@ -257,7 +266,20 @@ const RightSidebar = () => {
   };
   const methods = useForm();
 
+  const emphasisTag = (data) => {
+    /*taglist 받아 온다
+    data로 받아온 태그가 있으면 표시해준다
+    없으면 null
+  */
+    const tagLists = { tagList };
+    const sameTag = tagLists.tagName === data;
+    {
+    }
+    return <Check>{sameTag}</Check>;
+  };
+
   const onSubmit = (data) => {
+    // emphasisTag(data);
     console.log(data);
   };
   return (
@@ -318,20 +340,14 @@ const RightSidebar = () => {
           <SidebarName>Watced Tags</SidebarName>
           <FormProvider {...methods}>
             <FeatContainer>
+              <Input id="tag" fieldName="tagName" width={"222px"} />
               <form onSubmit={methods.handleSubmit(onSubmit)}>
-                <Input id="tag" fieldName="tag" width={"222px"} />
+                <AddBtnContainer>
+                  <Button width={"47px"} height={"21px"}>
+                    Add
+                  </Button>
+                </AddBtnContainer>
               </form>
-              <ButtonBlue
-                width={"47px"}
-                height={"33px"}
-                fontSize={"13px"}
-                fontWeight={500}
-                onClick={() => {
-                  handleClicktag();
-                }}
-              >
-                Add
-              </ButtonBlue>
             </FeatContainer>
           </FormProvider>
         </WatchTag>

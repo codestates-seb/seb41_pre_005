@@ -1,9 +1,14 @@
 import axios from "axios";
 
-export const postQuestion = async (data) => {
+export const postQuestion = async (data, token) => {
+  if (!token) {
+    return alert("post after login");
+  }
   const endpoint = "/questions/ask";
   const tagNameList = data.tags.map((item) => item.tagName);
+
   const formData = {
+    userId: 1,
     content: data.content,
     title: data.title,
     tagNameList,
@@ -13,6 +18,7 @@ export const postQuestion = async (data) => {
       method: "post",
       url: endpoint,
       data: formData,
+      headers: { Authorization: `Bearer ${token}` },
     });
     console.log(response);
   } catch (error) {

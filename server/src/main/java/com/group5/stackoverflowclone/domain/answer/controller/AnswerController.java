@@ -55,16 +55,17 @@ public class AnswerController {
                                       @PathVariable("answer-id") @Positive long answerId,
                                       @Valid @RequestBody AnswerPatchDto answerPatchDto) {
         answerPatchDto.setAnswerId(answerId);
-        Answer answer = answerService.updateAnswer(mapper.answerPatchDtoToAnswer(answerPatchDto));
+        Answer answer = answerService.updateAnswer(mapper.answerPatchDtoToAnswer(answerPatchDto), answerPatchDto.getUserId());
 
         return new ResponseEntity(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(answer)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{question-id}/{answer-id}")
     public ResponseEntity deleteAnswer(@PathVariable("question-id") @Positive long questionId,
-                                       @PathVariable("answer-id") @Positive long answerId) {
+                                       @PathVariable("answer-id") @Positive long answerId,
+                                       @Positive @RequestParam long userId) {
 
-        answerService.deleteAnswer(answerId);
+        answerService.deleteAnswer(answerId, userId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

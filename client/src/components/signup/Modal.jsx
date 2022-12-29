@@ -61,11 +61,10 @@
 
 // import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Button from "../common/Header";
 
-function SiginUpModal({ open, setPopup, message, title, callback }) {
+function SiginUpModal({ open, setModal, message, title, callback }) {
   const handleClose = () => {
-    setPopup({ open: false });
+    setModal({ open: false });
     if (callback) {
       callback();
     }
