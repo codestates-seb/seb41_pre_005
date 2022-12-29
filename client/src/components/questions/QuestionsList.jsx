@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import QuestionsItem from "./QuestionsItem";
+import Pagination from "../pagination/Pagination";
+import { getQuestions } from "../../api/questionAPI";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { storeQuestions } from "../../redux/questionsReducer";
 const Main = styled.div`
   height: 100%;
   width: 100%;
@@ -10,24 +15,34 @@ const Main = styled.div`
 `;
 
 const QuestionsList = (props) => {
-  const [questions, setQuestions] = useState();
+  const questions = useSelector((state) => state.questions);
+
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const query = location.search;
   useEffect(() => {
-    async function loadQuestions() {
+    /*    async function loadQuestions() {
       const questionData = await axios({
         method: "get",
         url: "data/data.json",
       });
       setQuestions(questionData.data.questions);
-      return questionData;
     }
-    loadQuestions();
-  }, []);
+    loadQuestions(); */
+    async function paginationQuestions() {
+      const questions = await getQuestions(query);
+
+      dispatch(storeQuestions(questions));
+    }
+    paginationQuestions();
+  }, [query]);
 
   return (
     <Main>
       {questions?.map((item) => (
-        <QuestionsItem question={item} key={item.id} />
+        <QuestionsItem question={item} key={item.questionId} />
       ))}
+      <Pagination />
     </Main>
   );
 };
