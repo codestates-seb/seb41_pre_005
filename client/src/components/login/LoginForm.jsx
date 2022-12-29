@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
-import AlertIcon, { AlertText } from "../../components/login/AlertWarning";
+
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../../components/login/AlertWarning";
-import axios from "axios";
+
+import { useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../redux/usersReducer";
 const InputContainer = styled.div`
   margin: 0.6rem 0;
 `;
@@ -34,6 +37,9 @@ const ButtonContainer = styled.div`
   height: 100%;
 `;
 const LoginForm = (props) => {
+  const [cookie, setCookie] = useCookies(["token"]);
+  const [isAuthorized, setIsAuthorized] = useState(true);
+  const dispatch = useDispatch();
   const methods = useForm();
   const {
     formState: { errors },
@@ -61,7 +67,14 @@ const LoginForm = (props) => {
     } catch (e) {
       console.log(e);
     } */
-    login(data);
+    const res = await login(data);
+    console.log(res?.headers?.authorization);
+    if (!res?.headers?.authorization) {
+      return setIsAuthorized(false);
+    }
+    const token = res.headers?.authorization.split(" ")[1];
+    dispatch(getUser({ token }));
+    setCookie("token", token);
   };
   return (
     <FormProvider {...methods}>
@@ -92,6 +105,9 @@ const LoginForm = (props) => {
             error={error?.password}
           />
           {error?.password && <AlertWarning text={error.password?.message} />}
+          {!error?.password && !isAuthorized && (
+            <AlertWarning text="email or password is incorrect" />
+          )}
         </InputContainer>
         <ButtonContainer>
           <Button width="23rem">Log in</Button>
