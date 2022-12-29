@@ -68,7 +68,7 @@ const LoginForm = (props) => {
       console.log(e);
     } */
     const res = await login(data);
-    console.log(res?.headers?.authorization);
+    console.log(res);
     if (!res?.headers?.authorization) {
       return setIsAuthorized(false);
     }
