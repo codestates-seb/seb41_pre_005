@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import LeftSideLayout from "../../components/layout/LeftSideLayout";
 import MainContentLayout from "../../components/layout/MainContentLayout";
@@ -14,6 +14,11 @@ import ElapsedTime from "../../components/answers/ElapsedTime";
 import { ButtonBlue } from "../../components/common/Header";
 import { FormProvider, useForm } from "react-hook-form";
 import { postAnswer } from "../../api/answerAPI";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getQuestion } from "../../api/questionAPI";
+import Parser from "html-react-parser";
+import Tags from "../../components/questions/Tags";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -54,6 +59,13 @@ const Content = styled.div`
   max-width: 650px;
   border: 1px solid black;
   word-break: break-all;
+  .ql-syntax {
+    background-color: #23241f;
+    color: #f8f8f2;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 0 10px;
+  }
 `;
 const TagsContain = styled.div`
   border: 1px solid black;
@@ -138,10 +150,18 @@ const SmallTextBox = styled.div`
 const AskQuestionBtn = styled(ButtonBlue)``;
 const QuestionDetail = () => {
   const methods = useForm();
+  const { id } = useParams();
+  const [question, setQuestion] = useState();
+  useEffect(() => {
+    async function selectQuestion() {
+      const res = await getQuestion(id);
+
+      setQuestion(res);
+    }
+    selectQuestion();
+  }, [id]);
   const onSubmit = async (data) => {
-    console.log(data);
     const res = await postAnswer(data);
-    console.log(res);
   };
   return (
     <>
@@ -152,10 +172,7 @@ const QuestionDetail = () => {
             <MainContentLayout>
               <QuestionHeadContainer>
                 <HeadTitleBox>
-                  <HeadTitle>
-                    How to resolve './components/AppFooter' or its corresponding
-                    type declarations. Error on Netlify and railway.app
-                  </HeadTitle>
+                  <HeadTitle>{question?.title}</HeadTitle>
                   <HeadBtnBox>
                     <AskQuestionBtn fontWeight="550" fontSize="13px">
                       Ask Question
@@ -165,14 +182,18 @@ const QuestionDetail = () => {
                 <SmallTextBox>
                   <div className="smallText">Asked today</div>
                   <div className="smallText">Modified today</div>
-                  <div className="smallText">Viewed 9 times</div>
+                  <div className="smallText">
+                    Viewed {question?.viewCount} times
+                  </div>
                 </SmallTextBox>
               </QuestionHeadContainer>
               <Question>
                 <QuestionVote></QuestionVote>
                 <QuestionContent>
-                  <Content></Content>
-                  <TagsContain>Tags</TagsContain>
+                  <Content>{Parser(question?.content || "")}</Content>
+                  <TagsContain>
+                    <Tags tags={question?.tagList} />
+                  </TagsContain>
                   <EditContain>
                     <QuestionEditEtc />
                     <Userinfo>
