@@ -64,7 +64,7 @@ public class QuestionController {
 
 
     // Top Question 조회
-    @GetMapping("/")
+    @GetMapping("/home")
     public ResponseEntity getTopQuestions() {
         Page<Question> topQuestions = questionService.getTopQuestions();
         List<Question> questions = topQuestions.getContent();

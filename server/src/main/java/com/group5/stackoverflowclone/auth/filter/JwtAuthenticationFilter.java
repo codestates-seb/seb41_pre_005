@@ -2,6 +2,7 @@ package com.group5.stackoverflowclone.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group5.stackoverflowclone.auth.dto.LoginDto;
+import com.group5.stackoverflowclone.auth.dto.TokenDto;
 import com.group5.stackoverflowclone.auth.jwt.JwtTokenizer;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -73,6 +74,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.setHeader("Authorization", "Bearer " + accessToken);
         response.setHeader("Refresh", refreshToken);
+
+        // 로그인시 body에 json 형태로 response 넘김
+        response.setContentType("application/json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        TokenDto tokenDto = new TokenDto();
+        tokenDto.setUserId(user.getUserId());
+
+        response.getWriter().write(objectMapper.writeValueAsString(tokenDto));
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
