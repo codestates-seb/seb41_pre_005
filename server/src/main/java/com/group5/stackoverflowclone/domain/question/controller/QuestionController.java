@@ -75,14 +75,13 @@ public class QuestionController {
     // 전체 질문 조회, 정렬
     @GetMapping("/questions")
     public ResponseEntity sortQuestion(@Positive @RequestParam int page,
-                                       @Positive @RequestParam int size,
                                        @RequestParam(required = false) String sort) {
         Page<Question> pageQuestions;
 
         if (!sort.isEmpty()) {
-            pageQuestions = questionService.getAllQuestions(page - 1, size, sort);
+            pageQuestions = questionService.getAllQuestions(page - 1, sort);
         } else {
-            pageQuestions = questionService.getAllQuestions(page - 1, size);
+            pageQuestions = questionService.getAllQuestions(page - 1);
         }
         List<Question> questions = pageQuestions.getContent();
 
