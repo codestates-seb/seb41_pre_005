@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Questions from "../../pages/question/Questions";
+import Parser from "html-react-parser";
 import Author from "./Author";
 import QuestionStatistics from "./QuestionStatistics";
 import Tags from "./Tags";
@@ -48,18 +49,23 @@ const QuestionsItem = ({ question }) => {
       <QuestionSummary>
         <QuestionTitle>
           {" "}
-          <Link to={`/questions/${question.id}`}>
-            {question?.questionTitle}
+          <Link to={`/questions/${question.questionId}`}>
+            {question?.title}
           </Link>
         </QuestionTitle>
         <QuestionBody>
-          {question?.questionBody?.length > 100
-            ? `${question?.questionBody?.slice(0, 100)}...`
-            : question?.questionBody}
+          {Parser(
+            question?.content?.length > 100
+              ? `${question?.content?.slice(0, 100)}...`
+              : question?.content
+          )}
         </QuestionBody>
         <SummaryMeta>
           <Tags tags={question?.tags} />
-          <Author author={question?.author} createdAt={question?.createdAt} />
+          <Author
+            author={question?.displayName}
+            createdAt={question?.createdAt}
+          />
         </SummaryMeta>
       </QuestionSummary>
     </QuestionContainer>
