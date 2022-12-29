@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Tags from "./pages/Tags";
 import Profile from "./pages/user/Profile";
 import SearchResults from "../src/pages/SearchResults";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import QuestionDetail from "./pages/question/QuestionDetail";
 import AskQuestion from "./pages/question/AskQuestion";

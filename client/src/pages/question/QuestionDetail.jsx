@@ -13,6 +13,7 @@ import Button from "../../components/common/Button";
 import ElapsedTime from "../../components/answers/ElapsedTime";
 import { ButtonBlue } from "../../components/common/Header";
 import { FormProvider, useForm } from "react-hook-form";
+import { postAnswer } from "../../api/answerAPI";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -139,6 +140,11 @@ const SmallTextBox = styled.div`
 const AskQuestionBtn = styled(ButtonBlue)``;
 const QuestionDetail = () => {
   const methods = useForm();
+  const onSubmit = async (data) => {
+    console.log(data);
+    const res = await postAnswer(data);
+    console.log(res);
+  };
   return (
     <>
       <QuestDetailContainer>
@@ -167,23 +173,7 @@ const QuestionDetail = () => {
               <Question>
                 <QuestionVote></QuestionVote>
                 <QuestionContent>
-                  <Content>
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test
-                  </Content>
+                  <Content></Content>
                   <TagsContain>Tags</TagsContain>
                   <EditContain>
                     <QuestionEditEtc />
@@ -197,14 +187,19 @@ const QuestionDetail = () => {
                   </EditContain>
                   <AnswerList />
                   <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
-                  <FormProvider {...methods}>
-                    <AskEditor />
-                  </FormProvider>
-                  <ButtonContainer>
-                    <Button width="12rem" radius="3px">
-                      Post Your Answer
-                    </Button>
-                  </ButtonContainer>
+                  <form onSubmit={methods.handleSubmit(onSubmit)}>
+                    <FormProvider {...methods}>
+                      <AskEditor
+                        label="answer"
+                        validation={{ required: "answer can not be empty" }}
+                      />
+                    </FormProvider>
+                    <ButtonContainer>
+                      <Button width="12rem" radius="3px">
+                        Post Your Answer
+                      </Button>
+                    </ButtonContainer>
+                  </form>
                 </QuestionContent>
                 <RightSideBarLayout />
               </Question>

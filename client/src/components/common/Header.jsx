@@ -202,6 +202,10 @@ const HeadBtnContainer = styled.div`
   position: relative;
   user-select: auto;
 
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
+
   .about_btn {
     width: 70px;
     height: 29px;
@@ -242,6 +246,9 @@ const SearchbarContainer = styled.div`
   display: flex;
   font-family: inherit;
   margin-left: -1.5rem;
+  @media screen and (max-width: 820px) {
+    width: auto;
+  }
 `;
 
 const SearchbarInput = styled.input`
@@ -279,6 +286,12 @@ const HeaderSearchbarInput = styled(SearchbarInput)`
   width: 100%;
   height: 33px;
   position: relative;
+`;
+
+const LoginContainer = styled.div`
+  @media screen and (max-width: 590px) {
+    display: none;
+  }
 `;
 const HeaderSearchIcon = styled(SearchIcon)``;
 const HeaderSearchbar = () => {
@@ -332,7 +345,7 @@ const Header = () => {
             <button className="forTeams_btn">For Teams</button>
           </HeadBtnContainer>
           <HeaderSearchbar></HeaderSearchbar>
-          <div className="LogSinb">
+          <LoginContainer className="LogSinb">
             <Link to="/login">
               <LoginBtn
                 width="59.45px"
@@ -354,7 +367,7 @@ const Header = () => {
                 Sign up
               </SignupBtn>
             </Link>
-          </div>
+          </LoginContainer>
         </HeaderTopbarContainer>
       </HeaderContinaer>
     </HeaderLayout>

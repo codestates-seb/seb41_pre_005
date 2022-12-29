@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import styled from "styled-components";
 import axios from "axios";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../login/AlertWarning";
+import { signUp } from "../../api/userAPI";
+import SiginUpModal from "./Modal";
 
 const InputContainer = styled.div`
   margin: 1rem 0;
@@ -22,6 +25,18 @@ const ValidationMessage = styled.p`
 `;
 
 const SignUpForm = (props) => {
+  const [popup, setPopup] = useState({
+    open: false,
+    title: "",
+    message: "",
+    callback: false,
+  });
+  const navigate = useNavigate();
+
+  // const onClickImg = () => {
+  //   // navigate(`/comment/id/등등 내가 원하는 주소`);
+  //   navigate("/login");
+  // };
   const initialValue = {
     userName: "",
     userEmail: "",
@@ -30,8 +45,8 @@ const SignUpForm = (props) => {
   const methods = useForm(initialValue);
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
-    console.log(data);
-    await axios({
+    /*     console.log(data);
+    const res = await axios({
       url: "/users/signup",
       method: "post",
       data: {
@@ -45,7 +60,18 @@ const SignUpForm = (props) => {
       // })
       .catch((error) => {
         console.log(error);
-      });
+      }); */
+    signUp(data);
+    setPopup({
+      open: true,
+      title: "회원가입을 성공했습니다.",
+      message: `환영합니다 ${data.userName}님!`,
+      callback: function () {
+        navigate("/login");
+      },
+    });
+    // alert(`환영합니다 ${data.userName}님!`);
+    // navigate("/login");
   };
 
   // console.log(watch("userName"));
@@ -69,6 +95,13 @@ const SignUpForm = (props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <SiginUpModal
+          open={popup.open}
+          setPopup={setPopup}
+          message={popup.message}
+          title={popup.title}
+          callback={popup.callback}
+        />
         <InputContainer>
           <Label htmlFor="displayName">Display name</Label>
           <Input

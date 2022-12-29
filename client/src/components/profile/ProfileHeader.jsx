@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { getUser } from "../../api/userAPI";
 
 const ProfileHead = styled.div`
   width: 106.7rem;
@@ -64,23 +65,73 @@ const ProfileImg = styled.div`
   background-color: orange;
   cursor: pointer;
 `;
-const ProfileHeader = () => {
-  const [userInfo, setUserInfo] = useState();
+
+const GetUserName = (props) => {
+  return <UserNameContain>{props.userName}</UserNameContain>;
+};
+
+const ElapsedTime = (props) => {
+  const [elapsedTime, setElapsedTime] = useState(0);
   useEffect(() => {
-    axios
-      .get(/*endpoint */)
-      .then((response) => {
-        setUserInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error.data);
-      });
+    function calculateElapsedTime() {
+      const uploadTime = new Date(props.createdAt);
+      const currentTime = new Date();
+      const timeDiff = (currentTime - uploadTime) / 1000;
+      const times = [
+        { time: "년", seconds: 60 * 60 * 24 * 365 },
+        { time: "개월", seconds: 60 * 60 * 24 * 30 },
+        { time: "일", seconds: 60 * 60 * 24 },
+        { time: "시간", seconds: 60 * 60 },
+      ];
+      let formattedTimeDiff;
+      for (let item of times) {
+        if (item === "분") {
+          formattedTimeDiff =
+            Math.floor(timeDiff / item.seconds) + `${item.time}전`;
+        }
+        if (timeDiff / item.seconds < 1) {
+          continue;
+        } else {
+          formattedTimeDiff =
+            Math.floor(timeDiff / item.seconds) + `${item.time}전`;
+          break;
+        }
+      }
+
+      return formattedTimeDiff;
+    }
+    setElapsedTime(calculateElapsedTime());
   }, []);
+  return <span>{elapsedTime || "now"}</span>;
+};
+
+const ProfileHeader = () => {
+  const [userName, setUserName] = useState();
+  const [createAt, setCreateAt] = useState();
+  useEffect(() => {
+    async function getData() {
+      const userData = await axios({
+        method: "get",
+        url: "users/userId",
+      });
+      setUserName(userData.data.displayName);
+      setCreateAt(userData.data.createdAt);
+    }
+    getData();
+  }, []);
+
+  // useEffect(() => {
+  //   getUser().then((res) => {
+  //     setUserName(res.data.displayName);
+  //     setCreateAt(res.data.createdAt);
+  //   });
+  // }, []);
 
   return (
     <ProfileHead>
       <ProfileImg></ProfileImg>
-      <UserNameContain>{/*userInfo.displayname*/}</UserNameContain>
+      <GetUserName userName={userName} />
+      {/* {userInfo.displayname} */}
       <ProfileCreatedAt>
         <svg
           aria-hidden="true"
@@ -94,7 +145,9 @@ const ProfileHeader = () => {
             fill="grey"
           ></path>
         </svg>
-        <MemberPeriod> Member for {/*userInfo.createdAt*/}</MemberPeriod>
+        <MemberPeriod>
+          Member for <ElapsedTime createAt={createAt} />
+        </MemberPeriod>
       </ProfileCreatedAt>
       <ProfileBtnContainer>
         <EditBtn>

@@ -24,7 +24,8 @@ const SignUpBody = styled.div`
 `;
 
 const InformPolicy = styled.div`
-  margin-top: 3.2rem;
+  margin-top: 6.5rem;
+  height: fix;
   font-size: 1.2rem;
   color: gray;
   margin-bottom: 2rem;

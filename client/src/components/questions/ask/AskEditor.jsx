@@ -13,7 +13,7 @@ const ErrorMessage = styled.div`
   color: red;
   font-size: 1.3rem;
 `;
-const AskEditor = ({ label }) => {
+const AskEditor = ({ label, validation }) => {
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -71,7 +71,7 @@ const AskEditor = ({ label }) => {
     },
   };
   useEffect(() => {
-    register(label || "content", questionBodyValidation);
+    register(label || "content", validation || questionBodyValidation);
   }, [register]);
   const onChangeHandler = (editorState) => {
     setValue(label || "content", editorState);
