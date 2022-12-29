@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // import AskQuestionButton from "../../components/questions/AskQuestionButton";
 import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
@@ -9,6 +9,8 @@ import AskQuestionHeadline from "../../components/questions/ask/AskQuestionHeadl
 import Footer from "../../components/common/Footer";
 import { FormProvider, useForm } from "react-hook-form";
 import { postQuestion } from "../../api/questionAPI";
+import { useSelector } from "react-redux";
+import { Cookies } from "react-cookie";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -62,6 +64,10 @@ const initialValue = {
 };
 const AskQuestion = (props) => {
   const methods = useForm(initialValue);
+  const user = useSelector((state) => state);
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+
   const onSubmit = async (data) => {
     console.log(data);
     /*     const tagNameList = data.tags.map((item) => item.tagName);
@@ -81,7 +87,8 @@ const AskQuestion = (props) => {
     } catch (error) {
       console.log(error);
     } */
-    postQuestion(data);
+    const res = await postQuestion(data, user.token || Token);
+    console.log(res);
   };
   return (
     <>
