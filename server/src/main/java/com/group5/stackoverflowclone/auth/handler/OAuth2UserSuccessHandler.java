@@ -3,6 +3,7 @@ package com.group5.stackoverflowclone.auth.handler;
 import com.group5.stackoverflowclone.auth.jwt.JwtTokenizer;
 import com.group5.stackoverflowclone.auth.utils.CustomAuthorityUtils;
 import com.group5.stackoverflowclone.domain.user.entity.User;
+import com.group5.stackoverflowclone.domain.user.repository.UserRepository;
 import com.group5.stackoverflowclone.domain.user.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -25,12 +26,12 @@ import java.util.Map;
 public class OAuth2UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
-    private final UserService userService;
+    private final UserRepository userRepository;
 
-    public OAuth2UserSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserService userService) {
+    public OAuth2UserSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserRepository userRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
-        this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -45,14 +46,16 @@ public class OAuth2UserSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 
     private void saveUser(String email) {
         User user = new User(email);
-        userService.createUser(user);
+        userRepository.save(user);
     }
 
     private void redirect(HttpServletRequest request, HttpServletResponse response, String username, List<String> authorities) throws IOException {
         String accessToken = delegateAccessToken(username, authorities);
         String refreshToken = delegateRefreshToken(username);
 
-        String uri = createURI(accessToken, refreshToken).toString();
+//        String uri = request.getSession().getAttribute("prevPage").toString();
+
+        String uri = createURI("Bearer" + accessToken, refreshToken).toString();
         getRedirectStrategy().sendRedirect(request, response, uri);
     }
 
@@ -90,8 +93,7 @@ public class OAuth2UserSuccessHandler extends SimpleUrlAuthenticationSuccessHand
                 .newInstance()
                 .scheme("http")
                 .host("localhost")
-                // port 90 맞나?
-                .port(90)
+                .port(80)
                 .path("/receive-token.html")
                 .queryParams(queryParams)
                 .build()
