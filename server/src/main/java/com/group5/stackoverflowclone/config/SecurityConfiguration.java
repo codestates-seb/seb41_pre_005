@@ -2,12 +2,12 @@ package com.group5.stackoverflowclone.config;
 
 import com.group5.stackoverflowclone.auth.filter.JwtAuthenticationFilter;
 import com.group5.stackoverflowclone.auth.filter.JwtVerificationFilter;
-import com.group5.stackoverflowclone.auth.handler.UserAccessDeniedHandler;
-import com.group5.stackoverflowclone.auth.handler.UserAuthenticationEntryPoint;
-import com.group5.stackoverflowclone.auth.handler.UserAuthenticationFailureHandler;
-import com.group5.stackoverflowclone.auth.handler.UserAuthenticationSuccessHandler;
+import com.group5.stackoverflowclone.auth.handler.*;
 import com.group5.stackoverflowclone.auth.jwt.JwtTokenizer;
 import com.group5.stackoverflowclone.auth.utils.CustomAuthorityUtils;
+import com.group5.stackoverflowclone.domain.user.repository.UserRepository;
+import com.group5.stackoverflowclone.domain.user.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -35,6 +36,13 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
+    private final UserRepository userRepository;
+
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserRepository userRepository) {
+        this.jwtTokenizer = jwtTokenizer;
+        this.authorityUtils = authorityUtils;
+        this.userRepository = userRepository;
+    }
 
     @Value("${spring.security.oauth2.client.registration.google.clientId}")
     private String clientId;
@@ -42,10 +50,6 @@ public class SecurityConfiguration {
     @Value("${spring.security.oauth2.client.registration.google.clientSecret}")
     private String clientSecret;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
-        this.jwtTokenizer = jwtTokenizer;
-        this.authorityUtils = authorityUtils;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -58,27 +62,23 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
-
-                // OAuth2 로그인 설정 추가
-                .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().authenticated()
-                )
-                .oauth2Login(withDefaults())
-
                 .exceptionHandling()
                 .authenticationEntryPoint(new UserAuthenticationEntryPoint())
                 .accessDeniedHandler(new UserAccessDeniedHandler())
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeHttpRequests()
-                // 수정 필요할 수도 있음!!
-                .antMatchers(HttpMethod.POST,"/users/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
-                .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "/users/*").hasRole("USER")
-                .anyRequest().permitAll();
+                .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers(HttpMethod.POST, "/users/login").permitAll()
+                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/users/*").hasRole("USER")
+                        .anyRequest().permitAll()
+                )
+                .oauth2Login(oauth2 -> oauth2
+                        .successHandler(new OAuth2UserSuccessHandler(jwtTokenizer, authorityUtils, userRepository)));
+
 
         return http.build();
     }
@@ -107,7 +107,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
-            jwtAuthenticationFilter.setFilterProcessesUrl("/users/login");
+            jwtAuthenticationFilter.setFilterProcessesUrl("/login");
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
 
@@ -116,6 +116,7 @@ public class SecurityConfiguration {
             builder
                     .addFilter(jwtAuthenticationFilter)
                     .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);
+//                    .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class);
         }
     }
 
