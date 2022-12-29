@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import questionsReducer from "./questionsReducer";
 import userReducer from "./usersReducer";
 
 const store = configureStore({
-  reducer: userReducer,
+  reducer: { questions: questionsReducer, currentUser: userReducer },
 });
 
 export default store;

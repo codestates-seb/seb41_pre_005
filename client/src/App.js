@@ -26,12 +26,6 @@ const PageLayout = styled.div`
   margin: auto;
 `;
 function App() {
-  // const [popup, setPopup] = useState({
-  //   open: false,
-  //   title: "",
-  //   message: "",
-  //   callback: false,
-  // });
   // const [isLogin, setIsLogin] = useState(false);
   // const getCookie = (name) => {
   //   return cookies.get(name);

@@ -20,11 +20,23 @@ export const postQuestion = async (data, token) => {
       data: formData,
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(response);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getQuestions = () => {};
-export const getQuestion = () => {};
+export const getQuestions = async (page) => {
+  const res = await axios({
+    method: "get",
+    url: `/questions${page}&sort=`,
+  });
+  return res.data.data;
+};
+export const getQuestion = async (id) => {
+  const res = await axios({
+    method: "get",
+    url: `/questions/${id}`,
+  });
+  console.log(res);
+  return res.data.data;
+};

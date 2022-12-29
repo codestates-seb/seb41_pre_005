@@ -109,10 +109,10 @@ const ProfileHeader = () => {
   const [userName, setUserName] = useState();
   const [createAt, setCreateAt] = useState();
   useEffect(() => {
-    async function getData() {
+    async function getData(id) {
       const userData = await axios({
         method: "get",
-        url: "users/userId",
+        url: `/users/${id}`,
       });
       setUserName(userData.data.displayName);
       setCreateAt(userData.data.createdAt);
