@@ -64,12 +64,11 @@ const initialValue = {
 };
 const AskQuestion = (props) => {
   const methods = useForm(initialValue);
-  const user = useSelector((state) => state);
+  const user = useSelector((state) => state.currentUser);
   const cookie = new Cookies();
   const Token = cookie.get("token");
 
   const onSubmit = async (data) => {
-    console.log(data);
     /*     const tagNameList = data.tags.map((item) => item.tagName);
 
     const formData = {
@@ -87,7 +86,8 @@ const AskQuestion = (props) => {
     } catch (error) {
       console.log(error);
     } */
-    const res = await postQuestion(data, user.token || Token);
+    console.log(user);
+    const res = await postQuestion(data, user.token || Token, user.userId);
     console.log(res);
   };
   return (

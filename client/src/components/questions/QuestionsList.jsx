@@ -16,7 +16,6 @@ const Main = styled.div`
 
 const QuestionsList = (props) => {
   const questions = useSelector((state) => state.questions);
-
   const dispatch = useDispatch();
   const location = useLocation();
   const query = location.search;
@@ -31,7 +30,7 @@ const QuestionsList = (props) => {
     loadQuestions(); */
     async function paginationQuestions() {
       const questions = await getQuestions(query);
-
+      console.log(questions);
       dispatch(storeQuestions(questions));
     }
     paginationQuestions();

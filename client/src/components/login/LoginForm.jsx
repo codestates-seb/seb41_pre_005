@@ -10,6 +10,7 @@ import { useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/usersReducer";
+import { useNavigate } from "react-router-dom";
 const InputContainer = styled.div`
   margin: 0.6rem 0;
 `;
@@ -41,6 +42,7 @@ const LoginForm = (props) => {
   const [isAuthorized, setIsAuthorized] = useState(true);
   const dispatch = useDispatch();
   const methods = useForm();
+  const navigate = useNavigate();
   const {
     formState: { errors },
   } = useForm();
@@ -69,11 +71,16 @@ const LoginForm = (props) => {
     } */
     const res = await login(data);
     console.log(res);
-    if (!res?.headers?.authorization) {
+    if (res.status !== 200) {
       return setIsAuthorized(false);
+    } else {
+      navigate("/");
     }
-    const token = res.headers?.authorization.split(" ")[1];
-    dispatch(getUser({ token }));
+    const { userId } = res.data;
+    console.log(res.headers.Authorization);
+
+    const token = res.headers?.Authorization.split(" ")[1];
+    dispatch(getUser({ token, userId }));
     setCookie("token", token);
   };
   return (

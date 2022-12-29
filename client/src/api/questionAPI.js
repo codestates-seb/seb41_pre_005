@@ -1,14 +1,14 @@
 import axios from "axios";
-
-export const postQuestion = async (data, token) => {
+const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
+export const postQuestion = async (data, token, userId) => {
   if (!token) {
     return alert("post after login");
   }
-  const endpoint = "/questions/ask";
+  const endpoint = `${url}/questions/ask`;
   const tagNameList = data.tags.map((item) => item.tagName);
-
+  console.log(data);
   const formData = {
-    userId: 1,
+    userId,
     content: data.content,
     title: data.title,
     tagNameList,
@@ -20,22 +20,24 @@ export const postQuestion = async (data, token) => {
       data: formData,
       headers: { Authorization: `Bearer ${token}` },
     });
+    return response;
   } catch (error) {
     console.log(error);
   }
 };
 
 export const getQuestions = async (page) => {
+  console.log(page);
   const res = await axios({
     method: "get",
-    url: `/questions${page}&sort=`,
+    url: `${url}/questions${page}&sort=`,
   });
   return res.data.data;
 };
 export const getQuestion = async (id) => {
   const res = await axios({
     method: "get",
-    url: `/questions/${id}`,
+    url: `${url}/questions/${id}`,
   });
   console.log(res);
   return res.data.data;

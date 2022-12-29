@@ -66,7 +66,7 @@ const AskQuestionTags = (props) => {
   useEffect(() => {
     register("tags");
     setValue("tags", tags);
-  }, [register]);
+  }, [register, tags]);
   const addTags = (e) => {
     const onlyText = e.target.value.trim();
     if (onlyText === "") return;
