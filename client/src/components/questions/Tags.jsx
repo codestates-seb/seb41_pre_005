@@ -35,8 +35,8 @@ const Tags = ({ tags }) => {
     <TagsLayout>
       <TagsContainer>
         {tags?.map((item, index) => (
-          <TagItem key={index}>
-            <TagLink>{item}</TagLink>
+          <TagItem key={item?.tagId}>
+            <TagLink>{item?.tagName}</TagLink>
           </TagItem>
         ))}
       </TagsContainer>

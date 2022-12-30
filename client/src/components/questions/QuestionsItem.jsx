@@ -61,7 +61,7 @@ const QuestionsItem = ({ question }) => {
           )}
         </QuestionBody>
         <SummaryMeta>
-          <Tags tags={question?.tags} />
+          <Tags tags={question?.tagList} />
           <Author
             author={question?.displayName}
             createdAt={question?.createdAt}
