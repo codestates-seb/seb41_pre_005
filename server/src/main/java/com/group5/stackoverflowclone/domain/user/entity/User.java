@@ -49,6 +49,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Question> questions = new ArrayList<>();
 
+    public User(String email) {
+        this.email = email;
+    }
+
     public void addAnswer(Answer answer) {
         answers.add(answer);
         if (answer.getUser() != this) {

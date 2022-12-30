@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import styled from "styled-components";
@@ -6,6 +7,7 @@ import axios from "axios";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../login/AlertWarning";
 import { signUp } from "../../api/userAPI";
+import SiginUpModal from "./Modal";
 
 const InputContainer = styled.div`
   margin: 1rem 0;
@@ -23,6 +25,14 @@ const ValidationMessage = styled.p`
 `;
 
 const SignUpForm = (props) => {
+  const [modal, setModal] = useState({
+    open: false,
+    title: "",
+    message: "",
+    callback: false,
+  });
+  const navigate = useNavigate();
+
   const initialValue = {
     userName: "",
     userEmail: "",
@@ -41,13 +51,23 @@ const SignUpForm = (props) => {
         displayName: data.userName,
       },
     })
-      .then((response) => {
-        console.log(response.data);
-      })
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
       .catch((error) => {
         console.log(error);
       }); */
     signUp(data);
+    setModal({
+      open: true,
+      title: "회원가입을 성공했습니다.",
+      message: `환영합니다 ${data.userName}님!`,
+      callback: function () {
+        navigate("/login");
+      },
+    });
+    // alert(`환영합니다 ${data.userName}님!`);
+    // navigate("/login");
   };
 
   // console.log(watch("userName"));
@@ -71,6 +91,13 @@ const SignUpForm = (props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <SiginUpModal
+          open={modal.open}
+          setModal={setModal}
+          message={modal.message}
+          title={modal.title}
+          callback={modal.callback}
+        />
         <InputContainer>
           <Label htmlFor="displayName">Display name</Label>
           <Input
@@ -79,9 +106,9 @@ const SignUpForm = (props) => {
             validation={nameValidation}
             error={error?.userName}
           />
+          {error?.userName && <AlertWarning text={error.userName?.message} />}
         </InputContainer>
 
-        {error?.userName && <AlertWarning text={error.userName?.message} />}
         <InputContainer>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -90,8 +117,9 @@ const SignUpForm = (props) => {
             validation={emailValidation}
             error={error?.userEmail}
           />
+          {error?.userEmail && <AlertWarning text={error.userEmail?.message} />}
         </InputContainer>
-        {error?.userEmail && <AlertWarning text={error.userEmail?.message} />}
+
         <InputContainer>
           <Label htmlFor="password">Password</Label>
           <Input
@@ -101,10 +129,10 @@ const SignUpForm = (props) => {
             validation={passwordValidation}
             error={error?.userPassword}
           />
+          {error?.userPassword && (
+            <AlertWarning text={error.userPassword?.message} />
+          )}
         </InputContainer>
-        {error?.userPassword && (
-          <AlertWarning text={error.userPassword?.message} />
-        )}
 
         <ValidationMessage>
           Passwords must contain at least eight characters, including at least 1

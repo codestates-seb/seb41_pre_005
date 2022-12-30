@@ -5,7 +5,6 @@ const BottomContainer = styled.div`
   width: 31.6rem;
   height: 7.8rem;
   padding: 1.6rem;
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;

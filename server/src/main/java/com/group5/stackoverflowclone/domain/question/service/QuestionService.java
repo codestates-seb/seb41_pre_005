@@ -54,15 +54,15 @@ public class QuestionService {
     }
 
     public Page<Question> getTopQuestions() {
-        return questionRepository.findAll(PageRequest.of(0, 20, Sort.by("viewCount").descending()));
+        return questionRepository.findAll(PageRequest.of(0, 50, Sort.by(Sort.Order.desc("viewCount"), Sort.Order.desc("createdAt"))));
     }
 
-    public Page<Question> getAllQuestions(int page, int size) {
-        return questionRepository.findAll(PageRequest.of(page, size));
+    public Page<Question> getAllQuestions(int page) {
+        return questionRepository.findAll(PageRequest.of(page, 15));
     }
 
-    public Page<Question> getAllQuestions(int page, int size, String sort) {
-        return questionRepository.findAll(PageRequest.of(page, size, Sort.by(sort).descending()));
+    public Page<Question> getAllQuestions(int page, String sort) {
+        return questionRepository.findAll(PageRequest.of(page, 15, Sort.by(Sort.Order.desc(sort), Sort.Order.desc("createdAt"))));
     }
 
     public Question updateQuestion(Question question, List<String> tagName, long questionId, long userId) {

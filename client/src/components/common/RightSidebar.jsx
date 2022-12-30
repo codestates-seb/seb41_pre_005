@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Input from "./Input";
+import { FormProvider, useForm } from "react-hook-form";
+import Button from "./Button";
+import TagsLists from "../tags/TagsLists";
+
+import { tagList } from "../tags/TagsLists";
 
 const YellowContainer = styled.div`
   width: 30rem;
@@ -155,7 +161,7 @@ const SidebarName = styled.div`
   width: 100%;
   height: 4.45rem;
   background-color: #f8f9f9;
-  border: 1px solid #e3e5e6;
+  border-bottom: 1px solid #e3e5e6;
   display: flex;
   align-items: center;
   font-size: 1.5rem;
@@ -230,8 +236,52 @@ const S_FaviconStack = styled.div`
   background-size: 1.6rem;
   background-image: url("https://cdn.sstatic.net/Img/favicons-sprite16.png?v=22475cccbf39");
 `;
+const WatchTag = styled.div`
+  width: 100%;
+  height: 124px;
+  color: #525960;
+  background-color: #ffffff;
+  border: 1px solid #e3e5e6;
+  margin-top: 16px;
+`;
+const FeatContainer = styled.div`
+  width: 268px;
+  height: 45.8px;
+  display: flex;
+  margin-top: 22px;
+  margin-left: 15px;
+`;
+const AddBtnContainer = styled.div`
+  margin-bottom: 2rem;
+`;
 
+const Check = styled.div`
+  background-color: #fff7bb;
+`;
 const RightSidebar = () => {
+  const [tag, setTag] = useState(false);
+  const handleClicktag = () => {
+    setTag(!tag);
+    console.log(tag);
+  };
+  const methods = useForm();
+
+  const emphasisTag = (data) => {
+    /*taglist 받아 온다
+    data로 받아온 태그가 있으면 표시해준다
+    없으면 null
+  */
+    const tagLists = { tagList };
+    const sameTag = tagLists.tagName === data;
+    {
+    }
+    return <Check>{sameTag}</Check>;
+  };
+
+  const onSubmit = (data) => {
+    // emphasisTag(data);
+    console.log(data);
+  };
   return (
     <>
       <YellowContainer>
@@ -285,19 +335,43 @@ const RightSidebar = () => {
         <SidebarName>Custom Filters</SidebarName>
         <span className="customText">Create a custom filter</span>
       </CustomContainer>
-      <WatchedContainer>
-        <SidebarName>Watced Tags</SidebarName>
-        <WatchContentsContainer>
-          <MagnifyingGlass></MagnifyingGlass>
-          <span className="watchText">
-            Watch tags to curate your list of <br></br> questions.
-          </span>
-          <button className="watchButton">
-            <Eye></Eye>
-            Watch a tag
-          </button>
-        </WatchContentsContainer>
-      </WatchedContainer>
+      {tag ? (
+        <WatchTag>
+          <SidebarName>Watced Tags</SidebarName>
+          <FormProvider {...methods}>
+            <FeatContainer>
+              <Input id="tag" fieldName="tagName" width={"222px"} />
+              <form onSubmit={methods.handleSubmit(onSubmit)}>
+                <AddBtnContainer>
+                  <Button width={"47px"} height={"21px"}>
+                    Add
+                  </Button>
+                </AddBtnContainer>
+              </form>
+            </FeatContainer>
+          </FormProvider>
+        </WatchTag>
+      ) : (
+        <WatchedContainer>
+          <SidebarName>Watced Tags</SidebarName>
+          <WatchContentsContainer>
+            <MagnifyingGlass></MagnifyingGlass>
+            <span className="watchText">
+              Watch tags to curate your list of <br></br> questions.
+            </span>
+            <button
+              className="watchButton"
+              onClick={() => {
+                handleClicktag();
+              }}
+            >
+              <Eye></Eye>
+              Watch a tag
+            </button>
+          </WatchContentsContainer>
+        </WatchedContainer>
+      )}
+
       <IgnoredContainer>
         <SidebarName>Ignored Tags</SidebarName>
         <button className="ignoreButton">Add an ignored tag</button>

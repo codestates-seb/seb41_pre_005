@@ -1,3 +1,27 @@
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://database-1.cl7kmfkniesl.ap-northeast-2.rds.amazonaws.com:3306/test
+#    username: admin
+#    password: qkrwltjd56
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    defer-datasource-initialization: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#    database-platform: org.hibernate.dialect.MYSQL5InnoDBDialect
+#server:
+#  port: 8090
+#mail:
+#  address:
+#    admin: admin@gmail.com
+#jwt:
+#  secret-key: ${JWT_SECRET_KEY}
+#  access-token-expiration-minutes: 10000
+#  refresh-token-expiration-minutes: 420
+
 spring:
   h2:
     console:
@@ -7,8 +31,24 @@ spring:
     url: jdbc:h2:mem:test
   jpa:
     hibernate:
-      ddl-auto: create  # (1) ??? ?? ??
-    show-sql: true      # (2) SQL ?? ??
+      ddl-auto: create  # (1) 스키마 자동 생성
+    show-sql: true      # (2) SQL 쿼리 출력
+    properties:
+      hibernate:
+        format_sql: true  # (3) SQL pretty print
+  sql:
+    init:
+      data-locations: classpath*:db/h2/data.sql
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${G_CLIENT_ID}
+            clientSecret: ${G_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
 server:
   port: 8090
 mail:

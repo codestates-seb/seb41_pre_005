@@ -60,11 +60,6 @@ const Wrapper = styled.div`
 `;
 
 const FlexItem = styled.div`
-  @media screen and (max-width: 640px) {
-    width: 267.345px;
-    height: 583.469px;
-    font-size: 1.8rem;
-  }
   width: 288.453px;
   height: 580.531px;
   display: block;
@@ -121,7 +116,7 @@ const StackIcon = () => {
       style={{
         marginLeft: "13rem",
         marginBottom: "2rem",
-        marginTop: "10rem",
+        marginTop: "13rem",
       }}
     >
       <path d="M 26 33 v -9 h 4 v 13 H 0 V 24 h 4 v 9 h 22 Z" fill="#c2c3c4" />
@@ -134,12 +129,6 @@ const StackIcon = () => {
 };
 
 const SocialLogin = () => {
-  // const SocialLoginContainer = styled.div`
-  //   display: flex;
-  //   margin-top: 10rem;
-  //   flex-direction: column;
-  //   align-items: center;
-  // `;
   return (
     <Wrapper>
       <FlexItem>

@@ -3,11 +3,11 @@ package com.group5.stackoverflowclone;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class StackoverflowCloneApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+//@SpringBootTest
+//class StackoverflowCloneApplicationTests {
+//
+//	@Test
+//	void contextLoads() {
+//	}
+//
+//}
