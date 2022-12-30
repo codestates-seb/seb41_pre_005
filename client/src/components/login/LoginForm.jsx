@@ -70,14 +70,13 @@ const LoginForm = (props) => {
       console.log(e);
     } */
     const res = await login(data);
-    console.log(res);
     if (res.status !== 200) {
       return setIsAuthorized(false);
     } else {
       navigate("/");
     }
     const { userId } = res.data;
-    console.log(res.headers.Authorization);
+    console.log(res);
 
     const token = res.headers?.Authorization.split(" ")[1];
     dispatch(getUser({ token, userId }));
