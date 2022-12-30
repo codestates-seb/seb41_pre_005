@@ -26,19 +26,25 @@ export const postQuestion = async (data, token, userId) => {
   }
 };
 
-export const getQuestions = async (page) => {
-  console.log(page);
+export const getQuestions = async (page = "?page=1") => {
   const res = await axios({
     method: "get",
     url: `${url}/questions${page}&sort=`,
   });
-  return res.data.data;
+  console.log(res);
+  return res.data;
 };
 export const getQuestion = async (id) => {
   const res = await axios({
     method: "get",
     url: `${url}/questions/${id}`,
   });
-  console.log(res);
   return res.data.data;
+};
+export const getTopQuestions = async () => {
+  const res = await axios({
+    method: "get",
+    url: `${url}/home`,
+  });
+  return res.data;
 };
