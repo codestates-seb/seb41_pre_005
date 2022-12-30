@@ -33,17 +33,14 @@ export const signUp = async (data) => {
   }
 };
 
-export const getUser = async () => {
-  // const [userInfo, setUserInfo] = useState();
+export const getUser = async (id) => {
   try {
     const res = await axios({
-      url: "users/userId",
+      url: `/users/${id}`,
       method: "get",
     });
     console.log(res);
-    // .then((response) => {
-    //   setUserInfo(response.data);
-    // });
+    return res.data.data;
   } catch (error) {
     console.log(error);
   }
