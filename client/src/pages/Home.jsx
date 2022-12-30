@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import ContentLayout from "../components/layout/ContentLayout";
 import LeftSideLayout from "../components/layout/LeftSideLayout";
@@ -7,6 +7,9 @@ import RightSideBarLayout from "../components/layout/RightSideBarLayout";
 import { HomeHeadLine } from "../components/common/HeadLine";
 import Footer from "../components/common/Footer";
 import QuestionsList from "../components/questions/QuestionsList";
+import { getTopQuestions } from "../api/questionAPI";
+import { useDispatch } from "react-redux";
+import { storeQuestions } from "../redux/questionsReducer";
 
 const HomeContainer = styled.div`
   /* height: 100vh;
@@ -30,6 +33,14 @@ const HomeFilter = styled.div`
 `;
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function readTopQuestions() {
+      const res = await getTopQuestions();
+      dispatch(storeQuestions(res));
+    }
+    readTopQuestions();
+  }, []);
   return (
     <>
       <HomeContainer>
