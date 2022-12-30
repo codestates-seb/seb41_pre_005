@@ -15,17 +15,18 @@ import { ButtonBlue } from "../../components/common/Header";
 import { FormProvider, useForm } from "react-hook-form";
 import { postAnswer } from "../../api/answerAPI";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getQuestion } from "../../api/questionAPI";
 import Parser from "html-react-parser";
 import Tags from "../../components/questions/Tags";
+import { getUser } from "../../api/userAPI";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
   /* width: 100%;  */
   height: auto;
   min-height: 100%;
-  padding-bottom: 322px;
+  /* padding-bottom: 322px; */
 `;
 const BodyContainer = styled.div`
   display: flex;
@@ -40,9 +41,9 @@ const ContentContainer = styled.div`
 `;
 const QuestionHeadContainer = styled.div`
   width: 105.1rem;
-  margin-top: 3rem;
-  margin-left: 1.8rem;
-  border-bottom: 1px solid grey;
+  margin-top: 1rem;
+  margin-left: 2.8rem;
+  border-bottom: 1.5px solid #e4e6e8;
 `;
 const Question = styled.div`
   display: flex;
@@ -70,9 +71,11 @@ const Content = styled.div`
 const TagsContain = styled.div`
   border: 1px solid black;
   width: 65rem;
-  height: 4.6rem;
+  height: 3.6rem;
   margin-top: 3rem;
   margin-bottom: -5rem;
+  display: flex;
+  align-items: center;
 `;
 
 const EditContain = styled.div`
@@ -109,6 +112,7 @@ const TimeContain = styled.div`
   width: 18.7rem;
   height: 2rem;
   margin-left: 7px;
+  margin-bottom: 3px;
 `;
 const UsernameContain = styled.div`
   font-size: 1.3rem;
@@ -118,15 +122,16 @@ const UsernameContain = styled.div`
 `;
 const HeadTitleBox = styled.div`
   width: 105.1rem;
-  height: 8.089rem;
+  /* height: 8.089rem; */
   display: flex;
   flex-direction: row;
 `;
 const HeadTitle = styled.div`
   width: 93.598rem;
-  height: 7.289rem;
+  /* height: 7.289rem; */
   font-size: 2.7rem;
   margin-bottom: 0.8rem;
+  word-break: break-all;
 `;
 const HeadBtnBox = styled.div`
   width: 10.302rem;
@@ -147,19 +152,68 @@ const SmallTextBox = styled.div`
     color: #6a737c;
   }
 `;
+const UploadTime = styled.time`
+  color: hsl(210, 8%, 45%);
+  white-space: nowrap;
+  font-size: 1.3rem;
+`;
+const Bold = styled.span`
+  margin-right: 2rem;
+  color: black;
+`;
+
+const HeaderLineTime = ({ createdAt }) => {
+  const [elapsedTime, setElapsedTime] = useState(0);
+  useEffect(() => {
+    function calculateElapsedTime() {
+      const uploadTime = new Date(createdAt);
+      const currentTime = new Date();
+      const timeDiff = (currentTime - uploadTime) / 1000;
+      const times = [
+        { time: "Year", seconds: 60 * 60 * 24 * 365 },
+        { time: "Months", seconds: 60 * 60 * 24 * 30 },
+        { time: "Day", seconds: 60 * 60 * 24 },
+        { time: "Hours", seconds: 60 * 60 },
+        { time: "Minutes", seconds: 60 },
+      ];
+      let formattedTimeDiff;
+      for (let item of times) {
+        if (item === "Minutes") {
+          formattedTimeDiff =
+            Math.floor(timeDiff / item.seconds) + ` ${item.time}`;
+        }
+        if (timeDiff / item.seconds < 1) {
+          continue;
+        } else {
+          formattedTimeDiff =
+            Math.floor(timeDiff / item.seconds) + ` ${item.time}`;
+          break;
+        }
+      }
+
+      return formattedTimeDiff;
+    }
+    setElapsedTime(calculateElapsedTime());
+  });
+  return <UploadTime> {elapsedTime || "now"}</UploadTime>;
+};
+
 const AskQuestionBtn = styled(ButtonBlue)``;
-const QuestionDetail = () => {
+const QuestionDetail = ({ createdAt }) => {
   const methods = useForm();
   const { id } = useParams();
   const [question, setQuestion] = useState();
+  const [userInfo, setUserInfo] = useState();
   useEffect(() => {
     async function selectQuestion() {
       const res = await getQuestion(id);
-
+      getUser(id);
       setQuestion(res);
+      setUserInfo(res);
     }
     selectQuestion();
   }, [id]);
+
   const onSubmit = async (data) => {
     const res = await postAnswer(data);
   };
@@ -174,14 +228,24 @@ const QuestionDetail = () => {
                 <HeadTitleBox>
                   <HeadTitle>{question?.title}</HeadTitle>
                   <HeadBtnBox>
-                    <AskQuestionBtn fontWeight="550" fontSize="13px">
-                      Ask Question
-                    </AskQuestionBtn>
+                    <Link to="/questions/ask">
+                      <AskQuestionBtn fontWeight="550" fontSize="13px">
+                        Ask Question
+                      </AskQuestionBtn>
+                    </Link>
                   </HeadBtnBox>
                 </HeadTitleBox>
                 <SmallTextBox>
-                  <div className="smallText">Asked today</div>
-                  <div className="smallText">Modified today</div>
+                  <UploadTime>
+                    <span>Asked</span>
+                    <Bold>
+                      <HeaderLineTime createdAt={question?.createdAt} />
+                    </Bold>
+                    <span>Modified</span>
+                    <Bold>
+                      <HeaderLineTime createdAt={question?.modifiedAt} />
+                    </Bold>
+                  </UploadTime>
                   <div className="smallText">
                     Viewed {question?.viewCount} times
                   </div>
@@ -198,10 +262,11 @@ const QuestionDetail = () => {
                     <QuestionEditEtc />
                     <Userinfo>
                       <TimeContain>
-                        <ElapsedTime />
+                        <HeaderLineTime createdAt={userInfo?.modifiedAt} />
+                        {/* <ElapsedTime createdAt={Userinfo?.createdAt} /> */}
                       </TimeContain>
                       <ProfileImg></ProfileImg>
-                      <UsernameContain>User</UsernameContain>
+                      <UsernameContain>{userInfo?.displayName}</UsernameContain>
                     </Userinfo>
                   </EditContain>
                   <AnswerList />

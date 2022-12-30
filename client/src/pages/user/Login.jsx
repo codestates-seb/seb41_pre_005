@@ -26,7 +26,6 @@ const LoginContainer = styled.div`
 `;
 const FormContainer = styled.div`
   width: 27.8rem;
-
   padding: 2.4rem;
   padding-top: 1.4rem;
   border-radius: 1rem;

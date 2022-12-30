@@ -10,7 +10,7 @@ const TagsListsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
 `;
-const tagList = [
+export const tagList = [
   {
     tagId: 1,
     tagName: "javascript",
