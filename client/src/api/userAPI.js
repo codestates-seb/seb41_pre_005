@@ -9,7 +9,6 @@ export const login = async (data) => {
       data,
       url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/login",
     });
-    console.log(res);
     return res;
   } catch (e) {
     console.log(e);
@@ -26,7 +25,6 @@ export const signUp = async (data) => {
         displayName: data.userName,
       },
     });
-    console.log(res);
     return res;
   } catch (error) {
     console.log(error);
