@@ -15,7 +15,7 @@ import { ButtonBlue } from "../../components/common/Header";
 import { FormProvider, useForm } from "react-hook-form";
 import { postAnswer } from "../../api/answerAPI";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getQuestion } from "../../api/questionAPI";
 import Parser from "html-react-parser";
 import Tags from "../../components/questions/Tags";
@@ -228,9 +228,11 @@ const QuestionDetail = ({ createdAt }) => {
                 <HeadTitleBox>
                   <HeadTitle>{question?.title}</HeadTitle>
                   <HeadBtnBox>
-                    <AskQuestionBtn fontWeight="550" fontSize="13px">
-                      Ask Question
-                    </AskQuestionBtn>
+                    <Link to="/questions/ask">
+                      <AskQuestionBtn fontWeight="550" fontSize="13px">
+                        Ask Question
+                      </AskQuestionBtn>
+                    </Link>
                   </HeadBtnBox>
                 </HeadTitleBox>
                 <SmallTextBox>

@@ -33,10 +33,6 @@ const SignUpForm = (props) => {
   });
   const navigate = useNavigate();
 
-  // const onClickImg = () => {
-  //   // navigate(`/comment/id/등등 내가 원하는 주소`);
-  //   navigate("/login");
-  // };
   const initialValue = {
     userName: "",
     userEmail: "",
