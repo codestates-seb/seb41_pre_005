@@ -10,13 +10,8 @@ export const login = async (data) => {
       data,
       headers: { Authorization: null },
       url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/login",
-    })
-      .then((res) => {
-        console.log(res.headers);
-        return res;
-      })
-      .then((data) => console.log(data));
-    // console.log(res.headers["Authorization"]);
+    });
+    console.log(res.headers["Authorization"]);
     // console.log(Object.fromEntries(res.headers));
     console.log(res);
 
