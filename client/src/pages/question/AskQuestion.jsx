@@ -41,6 +41,7 @@ const Main = styled.main`
 const Notice = styled.div`
   /* 임시로 지정 */
   max-height: 411px;
+
 `;
 const TitleContainer = styled.div`
   width: 85.1rem;

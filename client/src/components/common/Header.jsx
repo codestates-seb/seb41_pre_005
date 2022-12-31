@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HeaderLayout from "../layout/HeaderLayout";
-// import {Link} from "react-router-dom";
 
 const Bluebutton = styled.button`
   background: #0995ff;
@@ -229,6 +228,7 @@ const HeadBtnContainer = styled.div`
     color: #525960;
     font-size: 1.3rem;
     font-weight: 40rem;
+    margin-left: 0.5rem;
     border: none;
     border-radius: 20px;
     &:hover {
