@@ -4,6 +4,7 @@ import lombok.Getter;
 
 public enum ExceptionCode {
     USER_EXISTS(409, "User exists"),
+    DISPLAY_NAME_EXISTS(409, "DisplayName exists"),
 
     USER_NOT_FOUND(404, "User not found"),
     QUESTION_NOT_FOUND(404, "Question not found"),
