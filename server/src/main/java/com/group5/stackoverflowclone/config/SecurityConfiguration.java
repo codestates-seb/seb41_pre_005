@@ -39,13 +39,12 @@ public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
     private final UserRepository userRepository;
-    private final CustomOAuth2UserService customOAuth2UserService;
+//    private final CustomOAuth2UserService customOAuth2UserService;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserRepository userRepository, CustomOAuth2UserService customOAuth2UserService) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserRepository userRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.userRepository = userRepository;
-        this.customOAuth2UserService = customOAuth2UserService;
     }
 
     @Value("${spring.security.oauth2.client.registration.google.clientId}")
@@ -81,10 +80,10 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/users/*").hasRole("USER")
                         .anyRequest().permitAll()
-                )
-                .oauth2Login(oauth2 -> oauth2
-                        .successHandler(new OAuth2UserSuccessHandler(jwtTokenizer, authorityUtils, userRepository))
-                        .userInfoEndpoint().userService(customOAuth2UserService));
+                );
+//                .oauth2Login(oauth2 -> oauth2
+//                        .successHandler(new OAuth2UserSuccessHandler(jwtTokenizer, authorityUtils, userRepository))
+//                        .userInfoEndpoint().userService(customOAuth2UserService));
 
 
         return http.build();
