@@ -59,6 +59,10 @@ public class QuestionService {
         return questionRepository.findAll(PageRequest.of(0, 50, Sort.by(Sort.Order.desc("viewCount"), Sort.Order.desc("createdAt"))));
     }
 
+    public List<Question> getAllQuestions() {
+        return questionRepository.findAll();
+    }
+
     public Page<Question> getAllQuestions(int page) {
         return questionRepository.findAll(PageRequest.of(page, 15));
     }
