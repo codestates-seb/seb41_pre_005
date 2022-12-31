@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { sortQuestions } from "../../api/questionAPI";
+import { storeQuestions } from "../../redux/questionsReducer";
 const DataController = styled.div``;
 const NavContainer = styled.div`
   display: flex;
@@ -45,8 +49,33 @@ const SortedByVote = styled(SortedByNewest)`
 `;
 const QuestionNav = ({ questionCount }) => {
   const [selected, setSelected] = useState("newest");
-  function handleClick(e) {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  let query = location.search;
+  async function handleClick(e) {
+    if (query.trim() === "") {
+      query = "?page=1";
+    }
     setSelected(e.target.id);
+    let type;
+    switch (e.target.id) {
+      case "newest":
+        type = "createdAt";
+        break;
+      case "view":
+        type = "viewCount";
+        break;
+      case "vote":
+        type = "voteCount";
+        break;
+
+      default:
+        type = "";
+        break;
+    }
+    console.log(type);
+    const res = await sortQuestions(query, type);
+    dispatch(storeQuestions(res));
   }
   return (
     <DataController>

@@ -57,7 +57,6 @@ const LoginForm = (props) => {
     },
   };
   const error = methods?.formState?.errors;
-  console.log(error);
   const onSubmit = async (data) => {
     /*     try {
       const res = await axios({
@@ -70,13 +69,13 @@ const LoginForm = (props) => {
       console.log(e);
     } */
     const res = await login(data);
+
     if (res.status !== 200) {
       return setIsAuthorized(false);
     } else {
-      navigate("/");
+      // navigate("/");
     }
     const { userId } = res.data;
-    console.log(res);
 
     const token = res.headers?.Authorization.split(" ")[1];
     dispatch(getUser({ token, userId }));
