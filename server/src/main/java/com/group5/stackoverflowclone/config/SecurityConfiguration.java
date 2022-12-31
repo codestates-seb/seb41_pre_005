@@ -4,6 +4,7 @@ import com.group5.stackoverflowclone.auth.filter.JwtAuthenticationFilter;
 import com.group5.stackoverflowclone.auth.filter.JwtVerificationFilter;
 import com.group5.stackoverflowclone.auth.handler.*;
 import com.group5.stackoverflowclone.auth.jwt.JwtTokenizer;
+import com.group5.stackoverflowclone.auth.oauth2.CustomOAuth2UserService;
 import com.group5.stackoverflowclone.auth.utils.CustomAuthorityUtils;
 import com.group5.stackoverflowclone.domain.user.repository.UserRepository;
 import com.group5.stackoverflowclone.domain.user.service.UserService;
@@ -22,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -37,11 +39,13 @@ public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
     private final UserRepository userRepository;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserRepository userRepository) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserRepository userRepository, CustomOAuth2UserService customOAuth2UserService) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.userRepository = userRepository;
+        this.customOAuth2UserService = customOAuth2UserService;
     }
 
     @Value("${spring.security.oauth2.client.registration.google.clientId}")
@@ -57,7 +61,9 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-                .cors(withDefaults())
+//                .cors(withDefaults())
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
@@ -77,7 +83,8 @@ public class SecurityConfiguration {
                         .anyRequest().permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2
-                        .successHandler(new OAuth2UserSuccessHandler(jwtTokenizer, authorityUtils, userRepository)));
+                        .successHandler(new OAuth2UserSuccessHandler(jwtTokenizer, authorityUtils, userRepository))
+                        .userInfoEndpoint().userService(customOAuth2UserService));
 
 
         return http.build();
@@ -93,8 +100,10 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE", "OPTION"));
+        // "*"이 없으면 cors 뜸
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("*"));
+        configuration.addExposedHeader("Authorization");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
@@ -107,7 +116,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
-            jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+            jwtAuthenticationFilter.setFilterProcessesUrl("users/login");
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
 
