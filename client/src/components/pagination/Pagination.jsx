@@ -39,6 +39,9 @@ const CustomNavLink = styled(NavLink)`
 `;
 const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
 const Pagination = (props) => {
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([1, 2, 3, 4, 5]);
   const dispatch = useDispatch();
@@ -55,7 +58,9 @@ const Pagination = (props) => {
     <PaginationContainer>
       {pageInfo?.page >= 4 ? (
         <>
-          <CustomNavLink to={`/questions?page=1`}>1</CustomNavLink>
+          <CustomNavLink to={`/questions?page=1`} onClick={goToTop}>
+            1
+          </CustomNavLink>
           <span>...</span>
         </>
       ) : null}
@@ -64,6 +69,7 @@ const Pagination = (props) => {
           to={`/questions?page=${item}`}
           key={item}
           className={({ isActive }) => (isActive ? "selected" : null)}
+          onClick={goToTop}
         >
           {item}
         </CustomNavLink>
