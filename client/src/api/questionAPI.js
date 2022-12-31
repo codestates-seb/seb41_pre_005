@@ -6,7 +6,6 @@ export const postQuestion = async (data, token, userId) => {
   }
   const endpoint = `${url}/questions/ask`;
   const tagNameList = data.tags.map((item) => item.tagName);
-  console.log(data);
   const formData = {
     userId,
     content: data.content,
@@ -31,7 +30,6 @@ export const getQuestions = async (page = "?page=1") => {
     method: "get",
     url: `${url}/questions${page}&sort=`,
   });
-  console.log(res);
   return res.data;
 };
 export const getQuestion = async (id) => {
@@ -46,5 +44,14 @@ export const getTopQuestions = async () => {
     method: "get",
     url: `${url}/home`,
   });
+  return res.data;
+};
+
+export const sortQuestions = async (page, orderType) => {
+  const res = await axios({
+    method: "get",
+    url: `${url}/questions${page}&sort=${orderType}`,
+  });
+  console.log(res);
   return res.data;
 };
