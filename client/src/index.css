@@ -45,7 +45,7 @@ select {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
   user-select: auto;
 }
