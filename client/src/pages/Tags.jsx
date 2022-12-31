@@ -10,11 +10,9 @@ import TagsLists from "../components/tags/TagsLists";
 import TagsInput from "../components/tags/TagsInput";
 
 const TagsContainer = styled.div`
-  /* height: 100vh;
-width: 100%; */
   height: auto;
   min-height: 100%;
-  /* padding-bottom: 322px; */
+  padding-bottom: 2.7rem;
   background-color: white;
 `;
 const BodyContainer = styled.div`
