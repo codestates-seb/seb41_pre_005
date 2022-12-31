@@ -4,8 +4,7 @@ import LeftSidebar from "../common/LeftSidebar";
 
 const LeftSideLayoutContainer = styled.div`
   width: 16.3rem;
-  height: 100vh;
-  border-right: 0.2rem solid hsl(210, 8%, 90%);
+  height: 100%;
 `;
 const LeftSideLayout = props => {
   return (

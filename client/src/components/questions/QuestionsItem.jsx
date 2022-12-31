@@ -11,7 +11,7 @@ const QuestionContainer = styled.div`
   display: flex;
   padding: 1.6rem;
   font-size: 1.3rem;
-  border-bottom: 1px solid hsl(210, 8%, 90%);
+  border-bottom: 0.1rem solid hsl(210, 8%, 90%);
 `;
 
 const QuestionSummary = styled.div`

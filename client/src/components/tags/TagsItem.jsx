@@ -32,6 +32,7 @@ const Questions = styled.div`
   height: 3.138rem;
   color: #838c85;
   font-size: 1.2rem;
+  margin-top: 3rem;
 `;
 
 const TagsItem = ({ tag }) => {

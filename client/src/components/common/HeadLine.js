@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { ButtonBlue } from "./Header";
 
 const PageHeaderHeadline = styled.div`
-  padding: 24px;
+  padding-left: 2.4rem;
   height: 100%;
   width: 100%;
 `;
 
 const FirstLine = styled.div`
-  font-size: 2.8rem;
+  font-size: 2.7rem;
   flex: 1 auto;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  font-weight: 400;
 
   &.mb12 {
     margin-bottom: 1.2rem;
@@ -31,8 +32,8 @@ const SecondLine = styled.div`
 `;
 
 const ThirdLine = styled.div`
-  margin-top: 20px;
-  font-size: 13px;
+  margin: 2rem 0 2rem 0;
+  font-size: 1.3rem;
   color: #2b72c5;
   cursor: pointer;
 `;
@@ -56,8 +57,8 @@ export const TagsHeadline = () => {
 
 const AskQuestionBtn = styled(ButtonBlue)``;
 const AskQuestionHead = styled.div`
-  margin-top: 2.4rem;
-
+  margin-top: 0.2rem;
+  margin-bottom: 2rem;
   display: flex;
 `;
 const AskQuestionWord = styled.div`
