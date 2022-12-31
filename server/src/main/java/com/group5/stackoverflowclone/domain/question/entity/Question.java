@@ -26,7 +26,7 @@ public class Question {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(length = 1000, nullable = false)
     private String content;
 
     // 조회수
@@ -34,6 +34,7 @@ public class Question {
     private long viewCount;
 
     // 투표수
+    @Column(columnDefinition = "integer default 0", nullable = false)
     private long voteCount;
 
     @Column(updatable = false)

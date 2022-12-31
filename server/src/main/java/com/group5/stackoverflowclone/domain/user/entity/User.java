@@ -23,8 +23,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
+    @Column(nullable = false, updatable = false, unique = true)
     private String email;
 
+    @Column(nullable = false, updatable = false)
     private String password;
 
     private String displayName;

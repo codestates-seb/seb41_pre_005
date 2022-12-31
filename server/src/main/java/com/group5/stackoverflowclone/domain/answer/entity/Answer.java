@@ -21,8 +21,10 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerId;
 
+    @Column(length = 1000, nullable = false)
     private String content;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
     private long voteCount;
 
     @Column(updatable = false)
