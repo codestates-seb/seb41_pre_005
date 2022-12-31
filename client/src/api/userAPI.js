@@ -8,7 +8,7 @@ export const login = async (data) => {
     const res = await axios({
       method: "post",
       data,
-      url: "/users/login",
+      url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/login",
     });
     return res;
   } catch (e) {
@@ -18,7 +18,7 @@ export const login = async (data) => {
 export const signUp = async (data) => {
   try {
     const res = await axios({
-      url: "/users/signup",
+      url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/users/signup",
       method: "post",
       data: {
         email: data.userEmail,
@@ -26,7 +26,6 @@ export const signUp = async (data) => {
         displayName: data.userName,
       },
     });
-    console.log(res);
     return res;
   } catch (error) {
     console.log(error);

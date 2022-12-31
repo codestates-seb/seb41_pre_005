@@ -15,18 +15,7 @@ const AnswerContainer = styled.div`
 `;
 const AnswerList = () => {
   const [answers, setAnswers] = useState();
-  useEffect(() => {
-    async function loadAnswers() {
-      const questionData = await axios({
-        method: "get",
-        url: "data/data.json",
-      });
-
-      setAnswers(questionData?.data?.questions[0]?.answer);
-      return questionData;
-    }
-    loadAnswers();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div>

@@ -15,11 +15,10 @@ const Main = styled.div`
 `;
 
 const QuestionsList = (props) => {
-  const questions = useSelector((state) => state.questions);
-
+  const questions = useSelector((state) => state.questions.data);
   const dispatch = useDispatch();
   const location = useLocation();
-  const query = location.search;
+  let query = location.search;
   useEffect(() => {
     /*    async function loadQuestions() {
       const questionData = await axios({
@@ -30,8 +29,11 @@ const QuestionsList = (props) => {
     }
     loadQuestions(); */
     async function paginationQuestions() {
+      if (location.pathname === "/") return;
+      if (query.trim() === "") {
+        query = "?page=1";
+      }
       const questions = await getQuestions(query);
-
       dispatch(storeQuestions(questions));
     }
     paginationQuestions();

@@ -58,7 +58,7 @@ const QuestionContent = styled.div`
 `;
 const Content = styled.div`
   max-width: 650px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   word-break: break-all;
   .ql-syntax {
     background-color: #23241f;
@@ -69,13 +69,13 @@ const Content = styled.div`
   }
 `;
 const TagsContain = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 65rem;
   height: 3.6rem;
   margin-top: 3rem;
   margin-bottom: -5rem;
   display: flex;
-  align-items: center;
+  margin-left: -1.5rem;
 `;
 
 const EditContain = styled.div`
