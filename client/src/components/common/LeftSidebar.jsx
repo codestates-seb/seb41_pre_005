@@ -28,7 +28,6 @@ const BtnClick = styled.a`
     color: #0d0d0e;
     font-weight: 700;
   }
-  
 `;
 const TagsWord = styled.div`
   padding-left: 2rem;
@@ -36,13 +35,21 @@ const TagsWord = styled.div`
 
 const LeftSidebar = () => {
   const [selected, setSelected] = useState("home");
+  console.log(selected);
   const handleClick = (e) => {
+    console.log(e.target);
+    e.preventDefault();
     setSelected(e.target.id);
+    e.stopPropagation();
   };
   return (
-    <SideNav >
-      <Link to="/" >
-        <BtnClick id="home" className={selected === "home" ? "focused" : null} onClick={handleClick}>
+    <SideNav>
+      <Link to="/">
+        <BtnClick
+          id="home"
+          className={selected === "home" ? "focused" : null}
+          onClick={handleClick}
+        >
           Home
         </BtnClick>
       </Link>
@@ -50,7 +57,8 @@ const LeftSidebar = () => {
       <Link to="/questions">
         <BtnClick
           id="question"
-          className={selected === "question" ? "focused" : null } onClick={handleClick}
+          className={selected === "question" ? "focused" : null}
+          onClick={handleClick}
         >
           <svg
             aria-hidden="true"
@@ -65,7 +73,11 @@ const LeftSidebar = () => {
         </BtnClick>
       </Link>
       <Link to="/tags">
-        <BtnClick id="tags" className={selected === "tags" ? "focused" : null} onClick={handleClick}> 
+        <BtnClick
+          id="tags"
+          className={selected === "tags" ? "focused" : null}
+          onClick={handleClick}
+        >
           <TagsWord>Tags</TagsWord>
         </BtnClick>
       </Link>
