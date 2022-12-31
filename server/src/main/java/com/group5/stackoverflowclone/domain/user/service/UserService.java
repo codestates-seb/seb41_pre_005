@@ -66,14 +66,14 @@ public class UserService {
 
     public void verifyUserByUserId(long questionUserId, long updateUserId) {
         if (questionUserId != updateUserId) {
-            throw new BusinessLogicException(ExceptionCode.WRONG_USER);
+            throw new BusinessLogicException(ExceptionCode.UNAUTHORIZED_USER);
         }
     }
 
 
     private User findVerifiedUserById(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
-        User foundUser = optionalUser.get();
+        User foundUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
 
         return foundUser;
     }

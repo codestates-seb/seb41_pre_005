@@ -8,6 +8,8 @@ import com.group5.stackoverflowclone.domain.tag.entity.Tag;
 import com.group5.stackoverflowclone.domain.tag.service.TagService;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.user.service.UserService;
+import com.group5.stackoverflowclone.exception.BusinessLogicException;
+import com.group5.stackoverflowclone.exception.ExceptionCode;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -70,8 +72,6 @@ public class QuestionService {
 
         // questionId를 통해서 받는 user과 QuestionPatchDto를 통해서 받는 user가 같은지 검증
         userService.verifyUserByUserId(findVerifiedQuestionById(questionId).getUser().getUserId(), userId);
-
-        List<Tag> tags = tagService.createTagByName(tagName);
 
         Optional.ofNullable(question.getTitle())
                 .ifPresent(foundQuestion::setTitle);
@@ -150,7 +150,7 @@ public class QuestionService {
 
     private Question findVerifiedQuestionById(long questionId) {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
-        Question foundQuestion = optionalQuestion.get();
+        Question foundQuestion = optionalQuestion.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 
         return foundQuestion;
     }
