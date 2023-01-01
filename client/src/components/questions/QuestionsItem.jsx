@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Questions from "../../pages/question/Questions";
 import Parser from "html-react-parser";
 import Author from "./Author";
 import QuestionStatistics from "./QuestionStatistics";
 import Tags from "./Tags";
+
 const QuestionContainer = styled.div`
   height: 15.9rem;
   display: flex;
@@ -38,6 +38,10 @@ const SummaryMeta = styled.div`
   column-gap: 0.6rem;
   row-gap: 0.8rem;
 `;
+const TagContainer = styled.div`
+  position: relative;
+  right: 2rem;
+`
 const QuestionsItem = ({ question }) => {
   return (
     <QuestionContainer>
@@ -61,7 +65,7 @@ const QuestionsItem = ({ question }) => {
           )}
         </QuestionBody>
         <SummaryMeta>
-          <Tags tags={question?.tagList} />
+          <TagContainer><Tags tags={question?.tagList} /></TagContainer>
           <Author
             author={question?.displayName}
             createdAt={question?.createdAt}

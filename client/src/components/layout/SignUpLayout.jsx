@@ -7,15 +7,7 @@ const LayoutContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  /* &::after {
-    z-index: -1;
-    position: absolute;
-    left: -12rem;
-    width: 100vw;
-    height: 100%;
-    content: "";
-    background-color: #f1f2f3;
-  } */
+  
   &::after {
     z-index: -1;
     position: absolute;

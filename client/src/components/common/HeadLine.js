@@ -162,5 +162,3 @@ export const SearchResultsHeadLine = () => {
     </SearchResultsHead>
   );
 };
-
-// const HeadLine = {QuestionsHeadLine, HomeHeadLine, TagsHeadline};

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+const BottomSvg = styled.img``;
 const BottomContainer = styled.div`
   width: 28.8rem;
   height: 7.8rem;
@@ -36,15 +37,7 @@ const LoginPageBottom = () => {
           Are you an employer?
           <span className="text blue">
             Sign up on Talent
-            <svg
-              aria-hidden="true"
-              className="va-text-bottom sm:d-none svg-icon iconShareSm"
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-            >
-              <path d="M5 1H3a2 2 0 0 0-2 2v8c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V9h-2v2H3V3h2V1Zm2 0h6v6h-2V4.5L6.5 9 5 7.5 9.5 3H7V1Z"></path>
-            </svg>
+            <BottomSvg src={process.env.PUBLIC_URL + "/images/loginPageBottom.svg"}></BottomSvg>
           </span>
         </span>
       </BottomContainer>

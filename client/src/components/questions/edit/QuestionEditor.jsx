@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { FormProvider, useForm } from "react-hook-form";
 import EditButton from "./EditButton";
 import AskQuestionTags from "../ask/AskQuestionTags";
-import { tagList } from "../../tags/TagsLists";
 import AskQuestionTitle from "../ask/AskQuestionTitle";
 import { editQuestion } from "../../../api/questionAPI";
 import { Cookies } from "react-cookie";

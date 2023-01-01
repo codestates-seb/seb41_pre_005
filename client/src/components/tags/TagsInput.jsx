@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
 const InputElement = styled.input`
   width: ${(props) => props.width || "26.8rem"};
   padding: 0.6rem 0.7rem;

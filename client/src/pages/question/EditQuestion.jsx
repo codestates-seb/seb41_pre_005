@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-// import AskQuestionButton from "../../components/questions/AskQuestionButton";
-import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
-import AskQuestionForm from "../../components/questions/ask/AskQuestionForm";
-import AskQuestionTags from "../../components/questions/ask/AskQuestionTags";
-import AskQuestionTitle from "../../components/questions/ask/AskQuestionTitle";
 import AskQuestionHeadline from "../../components/questions/ask/AskQuestionHeadline";
 import Footer from "../../components/common/Footer";
 import { FormProvider, useForm } from "react-hook-form";
@@ -13,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
 import QuestionEditor from "../../components/questions/edit/QuestionEditor";
 import { useLocation } from "react-router-dom";
+
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -48,7 +44,6 @@ const Main = styled.main`
   margin-bottom: 4.8rem;
 `;
 const Notice = styled.div`
-  /* 임시로 지정 */
   max-height: 411px;
 `;
 const TitleContainer = styled.div`
@@ -79,23 +74,6 @@ const EditQuestion = (props) => {
   const { state } = useLocation();
 
   const onSubmit = async (data) => {
-    /*     const tagNameList = data.tags.map((item) => item.tagName);
-
-    const formData = {
-      content: data.content,
-      title: data.title,
-      tagNameList,
-    };
-    try {
-      const response = await axios({
-        method: "post",
-        url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/questions/ask",
-        data: formData,
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    } */
     console.log(user);
     const res = await postQuestion(data, user.token || Token, user.userId);
     console.log(res);

@@ -122,7 +122,7 @@ public class QuestionService {
             question.upVotedUserId.add(userId);
             voteCount++;
         } else if (voteStatus == VoteStatus.ALREADY_UP_VOTED) {
-
+            throw new BusinessLogicException(ExceptionCode.ALREADY_UP_VOTED);
         } else if (voteStatus == VoteStatus.ALREADY_DOWN_VOTED) {
             question.downVotedUserId.remove(userId);
             voteCount++;
@@ -145,7 +145,7 @@ public class QuestionService {
             question.upVotedUserId.remove(userId);
             voteCount--;
         } else if (voteStatus == VoteStatus.ALREADY_DOWN_VOTED) {
-
+            throw new BusinessLogicException(ExceptionCode.ALREADY_DOWN_VOTED);
         }
 
         question.setVoteCount(voteCount);

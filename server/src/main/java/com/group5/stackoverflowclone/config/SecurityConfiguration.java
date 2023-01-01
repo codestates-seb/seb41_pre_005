@@ -97,7 +97,9 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000",
+                "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/",
+                "http://stackoverflowclone.s3-website.ap-northeast-2.amazonaws.com/"));
         // "*"이 없으면 cors 뜸
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("*"));
