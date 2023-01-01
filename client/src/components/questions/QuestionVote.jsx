@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-
+import { upVote } from "../../api/questionAPI";
+import { Cookies } from "react-cookie";
 const QuestionVoteContainer = styled.div`
   width: 60px;
   height: 200px;
@@ -48,17 +49,24 @@ const SaveIcon = styled(SideIcon)`
 const ActivityIcon = styled(SideIcon)`
   margin: 8px 0;
 `;
-const QuestionVote = () => {
+const QuestionVote = ({ question }) => {
   //fill="#BBBFC3"
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  const handleUpVote = () => {
+    upVote(question?.questionId, userId, Token);
+  };
+  const handleDownVout = () => {};
   return (
     <>
       <QuestionVoteContainer>
-        <UpVoteBtn>
+        <UpVoteBtn onClick={handleUpVote}>
           <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36">
             <path d="M2 25h32L18 9 2 25Z" />
           </svg>
         </UpVoteBtn>
-        <VoteStat>{0}</VoteStat>
+        <VoteStat>{question?.voteCount}</VoteStat>
         <DownVoteBtn>
           <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36">
             <path d="M2 11h32L18 27 2 11Z" />

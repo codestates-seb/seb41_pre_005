@@ -209,7 +209,10 @@ const QuestionDetail = ({ createdAt }) => {
                 </SmallTextBox>
               </QuestionHeadContainer>
               <Question>
-                <QuestionVote></QuestionVote>
+                <QuestionVote
+                  question={question}
+                  questionId={id}
+                ></QuestionVote>
                 <QuestionContent>
                   <Content>{Parser(question?.content || "")}</Content>
                   <TagsContain>
