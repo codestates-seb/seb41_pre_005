@@ -2,7 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import Earth from "../.././images/Earth";
+
+const Earth = styled.img`
+  
+`
 
 const SideNav = styled.div`
   margin-top: 3rem;
@@ -69,7 +72,7 @@ const LeftSidebar = () => {
         id="question"
         className={({ isActive }) => (isActive ? "selected" : null)}
       >
-        <Earth></Earth>
+        <Earth src={process.env.PUBLIC_URL + "/images/earth.svg"}></Earth>
         Questions
       </Tab>
       <Tab

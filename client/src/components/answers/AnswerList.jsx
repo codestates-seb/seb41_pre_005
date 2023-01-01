@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import axios from "axios";
 import AnswerItem from "./AnswerItem";
@@ -14,7 +14,7 @@ const AnswerContainer = styled.div`
   padding: 1.6rem 0;
 `;
 const AnswerList = () => {
-  const [answers, setAnswers] = useState();
+  const answers = useSelector((state) => state.questions.answerList);
   useEffect(() => {}, []);
 
   return (
@@ -22,7 +22,7 @@ const AnswerList = () => {
       <AnswerHeader>{answers?.length} Answers</AnswerHeader>
       {answers?.map((item) => (
         <AnswerContainer>
-          <AnswerItem answer={item} key={item.id} />
+          <AnswerItem answer={item} key={item.answerId} />
         </AnswerContainer>
       ))}
     </div>

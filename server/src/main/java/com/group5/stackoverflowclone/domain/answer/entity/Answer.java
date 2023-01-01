@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +21,17 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerId;
 
+    @Column(length = 1000, nullable = false)
     private String content;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
     private long voteCount;
 
     @Column(updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
 
     @Column(name = "LAST_MODIFIED_AT")
-    private LocalDateTime modifiedAt = LocalDateTime.now();
+    private LocalDateTime modifiedAt = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")

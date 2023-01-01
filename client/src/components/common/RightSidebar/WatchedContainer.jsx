@@ -3,9 +3,14 @@ import styled from "styled-components";
 import Input from "../Input";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../Button";
-import { MagnifyingGlass, Eye } from "../../../images/RightSidebarSvg";
+// import { MagnifyingGlass, Eye } from "../../../images/RightSidebarSvg";
 import { tagList } from "../../tags/TagsLists";
 
+const MagnifyingGlass = styled.img`
+`
+const Eye = styled.img`
+  
+`
 const Container = styled.div`
   width: 100%;
   height: 22.653rem;
@@ -140,7 +145,7 @@ const WatchedContainer = () => {
         <Container>
           <SidebarName>Watced Tags</SidebarName>
           <WatchContentsContainer>
-            <MagnifyingGlass></MagnifyingGlass>
+            <MagnifyingGlass src={process.env.PUBLIC_URL + "/images/magnifyingGlass.svg"}></MagnifyingGlass>
             <span className="watchText">
               Watch tags to curate your list of <br></br> questions.
             </span>
@@ -150,7 +155,7 @@ const WatchedContainer = () => {
                 handleClicktag();
               }}
             >
-              <Eye></Eye>
+              <Eye src={process.env.PUBLIC_URL + "/images/eye.svg"}></Eye>
               Watch a tag
             </button>
           </WatchContentsContainer>

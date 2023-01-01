@@ -18,9 +18,10 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long tagId;
 
+    @Column(nullable = false)
     private String tagName;
 
-    @Column(columnDefinition = "TEXT", length = 1000)
+    @Column(length = 1000)
     private String content;
 
     @ToString.Exclude

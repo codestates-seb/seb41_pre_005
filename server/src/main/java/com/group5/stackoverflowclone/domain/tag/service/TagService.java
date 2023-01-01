@@ -25,12 +25,6 @@ public class TagService {
                 .map(String::trim)
                 .map(tag -> new Tag(tag, ""))
                 .map(this::verifyTag).collect(Collectors.toList());
-
-//        String[] split = tagNames.split(",");
-//                .filter(tag -> !tag.isEmpty())
-//                .map(String::trim)
-//                .map(tag -> new Tag(tag, ""))
-//                .map(this::verifyTag).collect(Collectors.toList());
     }
 
     public List<Tag> getAllTags() {
