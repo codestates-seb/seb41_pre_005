@@ -8,16 +8,13 @@ import QuestionEditEtc from "../../components/questions/QuestionEditEtc";
 import QuestionVote from "../../components/questions/QuestionVote";
 import AnswerList from "../../components/answers/AnswerList";
 import { ButtonBlue } from "../../components/common/Header";
-import { FormProvider, useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getQuestion } from "../../api/questionAPI";
 import Parser from "html-react-parser";
 import Tags from "../../components/questions/Tags";
-import { getUser } from "../../api/userAPI";
 import AnswerForm from "../../components/answers/AnswerForm";
 import QuestionDetailTimeDiff from "../../components/questions/QuestionDetailTimeDiff";
 import QuestionEditor from "../../components/questions/edit/QuestionEditor";
-import QuestionEditorForm from "../../components/questions/edit/QuestionEditorForm";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -232,7 +229,11 @@ const QuestionDetail = ({ createdAt }) => {
                     <Tags tags={question?.tagList} />
                   </TagsContain>
                   <EditContain>
-                    <QuestionEditEtc handleEditOn={handleEditOn} />
+                    <QuestionEditEtc
+                      handleEditOn={handleEditOn}
+                      questionUserId={question?.userId}
+                      questionId={question?.questionId}
+                    />
                     <Userinfo>
                       <TimeContain>
                         <QuestionDetailTimeDiff
