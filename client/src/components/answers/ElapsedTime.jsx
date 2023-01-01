@@ -5,11 +5,11 @@ const UploadTime = styled.time`
   white-space: nowrap;
   font-size: 1.2rem;
 `;
-const ElapsedTime = ({ answer }) => {
+const ElapsedTime = ({ createdAt }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
   useEffect(() => {
     function calculateElapsedTime() {
-      const uploadTime = new Date(answer.createdAt);
+      const uploadTime = new Date(createdAt);
       const currentTime = new Date();
       const timeDiff = (currentTime - uploadTime) / 1000;
       const times = [
