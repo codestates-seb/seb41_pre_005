@@ -22,6 +22,7 @@ const Username = styled.a`
   margin: 2px;
 `;
 const Author = ({ displayName }) => {
+  console.log(displayName);
   return <Username>{displayName || "none"}</Username>;
 };
 
