@@ -15,6 +15,9 @@ import Tags from "../../components/questions/Tags";
 import AnswerForm from "../../components/answers/AnswerForm";
 import QuestionDetailTimeDiff from "../../components/questions/QuestionDetailTimeDiff";
 import QuestionEditor from "../../components/questions/edit/QuestionEditor";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/usersReducer";
+import { Cookies } from "react-cookie";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -50,6 +53,8 @@ const QuestionContent = styled.div`
   width: 66rem;
   font-size: 15px;
   margin-right: 3rem;
+  display: flex;
+  flex-direction: column;
 `;
 const Content = styled.div`
   max-width: 650px;
@@ -68,20 +73,18 @@ const TagsContain = styled.div`
   width: 65rem;
   height: 3.6rem;
   margin-top: 3rem;
-  margin-bottom: -5rem;
+  margin-left: 0;
   display: flex;
-  margin-left: -1.5rem;
 `;
 
 const EditContain = styled.div`
-  margin-left: -35rem;
+  display: flex;
+  justify-content: space-between;
 `;
 const Userinfo = styled.div`
   width: 200px;
   height: 67px;
   background-color: #dce9f6;
-  margin-left: 80rem;
-  margin-top: -1.5rem;
   border-radius: 3px;
 `;
 const ProfileImg = styled.div`
@@ -159,8 +162,8 @@ const QuestionDetail = ({ createdAt }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [question, setQuestion] = useState();
-  const [userInfo, setUserInfo] = useState();
-  const [isEditOn, setIsEditOn] = useState(false);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     async function selectQuestion() {
       const res = await getQuestion(id);
@@ -169,6 +172,10 @@ const QuestionDetail = ({ createdAt }) => {
       // setUserInfo(res);
     }
     selectQuestion();
+    const cookie = new Cookies();
+    const Token = cookie.get("token");
+    const userId = JSON.parse(localStorage.getItem("userId"));
+    dispatch(setUser({ Token, userId, questionId: id }));
   }, [id]);
   const handleEditOn = () => {
     navigate("/questions/edit", { state: question });
@@ -216,14 +223,7 @@ const QuestionDetail = ({ createdAt }) => {
                   questionId={id}
                 ></QuestionVote>
                 <QuestionContent>
-                  {isEditOn ? (
-                    <QuestionEditor
-                      questionContent={question?.content}
-                      tagList={question?.tagList}
-                    />
-                  ) : (
-                    <Content>{Parser(question?.content || "")}</Content>
-                  )}
+                  <Content>{Parser(question?.content || "")}</Content>
 
                   <TagsContain>
                     <Tags tags={question?.tagList} />
