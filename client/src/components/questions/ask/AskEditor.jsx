@@ -13,7 +13,7 @@ const ErrorMessage = styled.div`
   color: red;
   font-size: 1.3rem;
 `;
-const AskEditor = ({ label, validation }) => {
+const AskEditor = ({ label, validation, defaultValue }) => {
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -84,6 +84,7 @@ const AskEditor = ({ label, validation }) => {
         modules={modules}
         formats={formats}
         onChange={onChangeHandler}
+        defaultValue={defaultValue}
       />
       <ErrorMessage>{errors?.content?.message}</ErrorMessage>
     </EditorContainer>

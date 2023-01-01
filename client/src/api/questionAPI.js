@@ -1,9 +1,10 @@
 import axios from "axios";
 const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
 export const postQuestion = async (data, token, userId) => {
-  if (!token) {
+  if (!token || !userId) {
     return alert("post after login");
   }
+  console.log(data, token, userId);
   const endpoint = `${url}/questions/ask`;
   const tagNameList = data.tags.map((item) => item.tagName);
   const formData = {
@@ -54,7 +55,7 @@ export const editQuestion = async (data, token, questionId, userId) => {
 export const getQuestions = async (page = "?page=1") => {
   const res = await axios({
     method: "get",
-    url: `${url}/questions${page}&sort=`,
+    url: `${url}/questions${page}&sort=createdAt`,
   });
   return res.data;
 };
@@ -81,7 +82,15 @@ export const sortQuestions = async (page, orderType) => {
   console.log(res);
   return res.data;
 };
-
+export const deleteQuestion = async (questionId, Token) => {
+  const res = await axios({
+    method: "delete",
+    url: `${url}/questions/${questionId}`,
+    headers: { Authorization: `Bearer ${Token}` },
+  });
+  console.log(res);
+  return res;
+};
 export const Search = (data) => {};
 
 export const questionUpVote = async (questionId, userId, Token) => {

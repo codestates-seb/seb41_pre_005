@@ -11,6 +11,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { postQuestion } from "../../api/questionAPI";
 import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -24,6 +25,12 @@ const AskPageLayout = styled.div`
     height: 100vh;
     content: "";
     background-color: #f8f9f9;
+    @media screen and (max-height: 1024px) {
+      height: 160%;
+    }
+    @media screen and (max-height: 660px) {
+      height: 220%;
+    }
   }
 `;
 const AskContainer = styled.div`
@@ -41,7 +48,6 @@ const Main = styled.main`
 const Notice = styled.div`
   /* 임시로 지정 */
   max-height: 411px;
-
 `;
 const TitleContainer = styled.div`
   width: 85.1rem;
@@ -65,9 +71,10 @@ const initialValue = {
 };
 const AskQuestion = (props) => {
   const methods = useForm(initialValue);
-  const user = useSelector((state) => state.currentUser);
+  const userId = JSON.parse(localStorage.getItem("userId"));
   const cookie = new Cookies();
   const Token = cookie.get("token");
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     /*     const tagNameList = data.tags.map((item) => item.tagName);
@@ -87,8 +94,14 @@ const AskQuestion = (props) => {
     } catch (error) {
       console.log(error);
     } */
-    console.log(user);
-    const res = await postQuestion(data, user.token || Token, user.userId);
+
+    const res = await postQuestion(data, Token, userId);
+    console.log(res);
+    if (res?.status !== 201) {
+      alert("fail to post question");
+    } else {
+      navigate(`/questions/${res?.data?.data?.questionId}`);
+    }
     console.log(res);
   };
   return (
