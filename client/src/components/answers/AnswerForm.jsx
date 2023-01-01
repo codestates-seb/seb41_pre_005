@@ -16,9 +16,15 @@ const AnswerForm = (props) => {
   const cookie = new Cookies();
   const Token = cookie.get("token");
   const id = useParams();
-
+  const webStorageUserId = JSON.parse(localStorage.getItem("userId"));
+  console.log(webStorageUserId);
   const onSubmit = async (data) => {
-    const res = await postAnswer(data, user.token || Token, id, user.userId);
+    const res = await postAnswer(
+      data,
+      user.token || Token,
+      id,
+      user.userId || webStorageUserId
+    );
     console.log(res);
     if (res.status === 201) {
       window.location.replace(`/questions/${id.id}`);
