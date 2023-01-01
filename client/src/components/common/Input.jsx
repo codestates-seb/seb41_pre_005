@@ -29,6 +29,7 @@ const Input = ({
   handleKeyup,
   type,
   error,
+  defaultValue,
 }) => {
   const [isValid, setIsValid] = useState(true);
   const { register, setValue } = useFormContext();
@@ -45,6 +46,7 @@ const Input = ({
       isValid={error ? false : true}
       {...(fieldName ? { ...register(fieldName, validation) } : null)}
       onKeyUp={handleKeyup ? handleKeyup : null}
+      defaultValue={defaultValue}
     />
   );
 };

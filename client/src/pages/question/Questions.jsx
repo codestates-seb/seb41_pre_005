@@ -15,20 +15,10 @@ import { useDispatch } from "react-redux";
 import { storeQuestions } from "../../redux/questionsReducer";
 
 const QuestionsHeadLayout = styled.div`
-  /* margin-top: 7rem;
-width: 100%;
-/* margin-right: -7rem; */
   margin-bottom: 1.2rem;
 `;
 
 const Questions = (props) => {
-  /* const dispatch = useDispatch();
-  useEffect(() => {
-    async function renderInitialScreen() {
-      const res = await getQuestions(1);
-      dispatch(storeQuestions(res));
-    }
-  }, []); */
   return (
     <>
       <QuestionsLayout>
