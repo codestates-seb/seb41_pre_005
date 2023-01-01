@@ -10,6 +10,7 @@ const TagsLayout = styled.div`
 `;
 const TagsContainer = styled.ul`
   display: inline;
+  margin-left: 2rem;
 `;
 const TagItem = styled.li`
   display: inline;
