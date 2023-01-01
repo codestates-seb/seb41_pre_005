@@ -8,14 +8,16 @@ import QuestionEditEtc from "../../components/questions/QuestionEditEtc";
 import QuestionVote from "../../components/questions/QuestionVote";
 import AnswerList from "../../components/answers/AnswerList";
 import { ButtonBlue } from "../../components/common/Header";
-import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { FormProvider, useForm } from "react-hook-form";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getQuestion } from "../../api/questionAPI";
 import Parser from "html-react-parser";
 import Tags from "../../components/questions/Tags";
 import { getUser } from "../../api/userAPI";
 import AnswerForm from "../../components/answers/AnswerForm";
 import QuestionDetailTimeDiff from "../../components/questions/QuestionDetailTimeDiff";
+import QuestionEditor from "../../components/questions/edit/QuestionEditor";
+import QuestionEditorForm from "../../components/questions/edit/QuestionEditorForm";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -157,20 +159,23 @@ const Bold = styled.span`
 
 const AskQuestionBtn = styled(ButtonBlue)``;
 const QuestionDetail = ({ createdAt }) => {
-  const methods = useForm();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [question, setQuestion] = useState();
   const [userInfo, setUserInfo] = useState();
+  const [isEditOn, setIsEditOn] = useState(false);
   useEffect(() => {
     async function selectQuestion() {
       const res = await getQuestion(id);
       // getUser(id);
-      console.log(res);
       setQuestion(res);
       // setUserInfo(res);
     }
     selectQuestion();
   }, [id]);
+  const handleEditOn = () => {
+    navigate("/questions/edit", { state: question });
+  };
   console.log(question);
   return (
     <>
@@ -214,12 +219,20 @@ const QuestionDetail = ({ createdAt }) => {
                   questionId={id}
                 ></QuestionVote>
                 <QuestionContent>
-                  <Content>{Parser(question?.content || "")}</Content>
+                  {isEditOn ? (
+                    <QuestionEditor
+                      questionContent={question?.content}
+                      tagList={question?.tagList}
+                    />
+                  ) : (
+                    <Content>{Parser(question?.content || "")}</Content>
+                  )}
+
                   <TagsContain>
                     <Tags tags={question?.tagList} />
                   </TagsContain>
                   <EditContain>
-                    <QuestionEditEtc />
+                    <QuestionEditEtc handleEditOn={handleEditOn} />
                     <Userinfo>
                       <TimeContain>
                         <QuestionDetailTimeDiff
