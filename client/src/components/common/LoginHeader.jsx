@@ -3,8 +3,9 @@ import styled from "styled-components";
 import HeaderLayout from "../layout/HeaderLayout";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Cookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { removeCookie } from "../../Cookie";
 
 const HeaderContinaer = styled.div`
   box-sizing: border-box;
@@ -333,15 +334,20 @@ const LoginHeader = ({ isLogin, setIsLogin }) => {
   const handleClickMenu = (menu) => {
     if (menu === clickedMenu) setClickedMenu(null);
     else setClickedMenu(menu);
-    console.log(clickedMenu);
+    // console.log(clickedMenu);
   };
-  //쿠키 삭제
-  const cookies = new Cookies();
-  const removeCookie = (name, option) => {
-    return cookies.remove(name, { ...option });
-  };
-  const logout = removeCookie("token");
+  // const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const navigate = useNavigate();
+  const cookie = new Cookies();
 
+  const logOut = () => {
+    const Token = cookie.get("token");
+    removeCookie(Token); // 쿠키를 삭제
+    navigate("/"); // 메인 페이지로 이동
+    console.log(Token);
+  };
+  // const logout = removeCookie("token");
+  // console.log(Token);
   return (
     <HeaderLayout>
       <HeaderContinaer>
@@ -380,7 +386,7 @@ const LoginHeader = ({ isLogin, setIsLogin }) => {
                   fontWeight: "bold",
                   color: "#d2b08f",
                   marginLeft: "7px",
-                  marginTop: "-9px",
+                  marginTop: "-12.5px",
                 }}
               >
                 .
@@ -496,16 +502,16 @@ const LoginHeader = ({ isLogin, setIsLogin }) => {
                         >
                           chat
                         </span>
-                        <Link to="/">
-                          <div
-                            className="discription loginout"
-                            style={{ marginLeft: "17px" }}
-                            role="presentation"
-                            onClick={logout}
-                          >
-                            log out
-                          </div>
-                        </Link>
+                        {/* <Link to="/"> */}
+                        <div
+                          className="discription loginout"
+                          style={{ marginLeft: "17px" }}
+                          role="presentation"
+                          onClick={logOut}
+                        >
+                          log out
+                        </div>
+                        {/* </Link> */}
                       </DropdownSubContainer>
                       <DropdownSubContainer>
                         <div

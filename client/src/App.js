@@ -31,17 +31,12 @@ function App() {
   //   return cookies.get(name);
   // };
   // const cookie = getCookie("token");
-  const [isToken, setIsToken] = useState(false);
-  const cookie = new Cookies();
-  useEffect(() => {
-    const Token = cookie.get("token");
-    console.log(Token);
-    setIsToken(true);
-  }, []);
+
   return (
     <>
+      <Header />
       {/* <LoginHeader /> */}
-      {isToken ? <LoginHeader /> : <Header />}
+      {/* {isToken ? <LoginHeader /> : <Header />} */}
       <PageLayout>
         <Routes>
           <Route path="/" element={<Home />} />

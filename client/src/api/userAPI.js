@@ -37,7 +37,7 @@ export const signUp = async (data) => {
 export const getUser = async (id) => {
   try {
     const res = await axios({
-      url: `/users/${id}`,
+      url: `http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/users/${id}`,
       method: "get",
     });
     console.log(res);
