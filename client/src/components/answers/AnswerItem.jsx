@@ -1,8 +1,9 @@
 import React from "react";
-import QuestionVote from "../questions/QuestionVote";
+
 import styled from "styled-components";
 import AnswerEdit from "./AnswerEdit";
 import Parser from "html-react-parser";
+import AnswerVote from "./AnswerVote";
 const FlexBox = styled.div`
   display: flex;
   max-width: 675px;
@@ -13,7 +14,7 @@ const ContentBody = styled.div`
 const AnswerItem = ({ answer }) => {
   return (
     <FlexBox>
-      <QuestionVote />
+      <AnswerVote answer={answer} />
       <ContentBody>
         <div>{Parser(answer?.content)}</div>
         <AnswerEdit answer={answer} />
