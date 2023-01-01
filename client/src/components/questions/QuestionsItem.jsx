@@ -39,7 +39,6 @@ const SummaryMeta = styled.div`
   row-gap: 0.8rem;
 `;
 const QuestionsItem = ({ question }) => {
-  console.log(question);
   return (
     <QuestionContainer>
       <QuestionStatistics

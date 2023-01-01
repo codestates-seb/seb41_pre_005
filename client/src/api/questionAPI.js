@@ -58,7 +58,7 @@ export const sortQuestions = async (page, orderType) => {
 
 export const Search = (data) => {};
 
-export const upVote = async (questionId, userId, Token) => {
+export const questionUpVote = async (questionId, userId, Token) => {
   console.log(questionId, userId);
   const res = await axios({
     method: "post",
@@ -69,7 +69,7 @@ export const upVote = async (questionId, userId, Token) => {
   console.log(res);
   return res;
 };
-export const downVote = async (questionId, userId, Token) => {
+export const questionDownVote = async (questionId, userId, Token) => {
   console.log(questionId, userId);
   const res = await axios({
     method: "post",
