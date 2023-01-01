@@ -25,6 +25,32 @@ export const postQuestion = async (data, token, userId) => {
   }
 };
 
+export const editQuestion = async (data, token, questionId, userId) => {
+  if (!token || !userId) {
+    return alert("post after login");
+  }
+  const endpoint = `${url}/questions/${questionId}/edit`;
+  const tagNameList = data.tagList.map((item) => item.tagName);
+  const formData = {
+    userId,
+    content: data.content,
+    title: data.title,
+    tagNameList,
+  };
+  try {
+    const response = await axios({
+      method: "patch",
+      url: endpoint,
+      data: formData,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getQuestions = async (page = "?page=1") => {
   const res = await axios({
     method: "get",
@@ -59,7 +85,6 @@ export const sortQuestions = async (page, orderType) => {
 export const Search = (data) => {};
 
 export const questionUpVote = async (questionId, userId, Token) => {
-  console.log(questionId, userId);
   const res = await axios({
     method: "post",
     data: { data: 1 },
@@ -70,7 +95,6 @@ export const questionUpVote = async (questionId, userId, Token) => {
   return res;
 };
 export const questionDownVote = async (questionId, userId, Token) => {
-  console.log(questionId, userId);
   const res = await axios({
     method: "post",
     data: { data: 1 },

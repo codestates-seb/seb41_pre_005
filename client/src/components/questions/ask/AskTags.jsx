@@ -9,6 +9,8 @@ const TagsLayout = styled.div`
 `;
 const TagsContainer = styled.ul`
   display: flex;
+  margin: 0;
+  padding: 0;
 `;
 const TagItem = styled.li`
   margin: 2px;

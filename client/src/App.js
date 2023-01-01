@@ -19,6 +19,7 @@ import Header from "./components/common/Header";
 import { useEffect, useState } from "react";
 import LoginHeader from "./components/common/LoginHeader";
 import { Cookies } from "react-cookie";
+import EditQuestion from "./pages/question/EditQuestion";
 
 const PageLayout = styled.div`
   max-width: 126.4rem;
@@ -47,6 +48,7 @@ function App() {
           <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path="/users/:id" element={<Profile />} />
           <Route path="/tags" element={<Tags />} />
+          <Route path="/questions/edit" element={<EditQuestion />} />
         </Routes>
       </PageLayout>
     </>
