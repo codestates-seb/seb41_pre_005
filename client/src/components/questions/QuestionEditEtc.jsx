@@ -1,5 +1,8 @@
 import React from "react";
+import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { deleteQuestion } from "../../api/questionAPI";
 
 const QuestionBodyBtnsContainer = styled.div`
   display: flex;
@@ -27,12 +30,31 @@ const EditBtn = styled(QuestionBtn)``;
 const FollowBtn = styled(QuestionBtn)``;
 const DeleteBtn = styled(QuestionBtn)``;
 
-const QuestionEditEtc = ({ handleEditOn }) => {
+const QuestionEditEtc = ({ handleEditOn, questionUserId, questionId }) => {
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+  const navigate = useNavigate();
+  const handleDelete = async () => {
+    if (questionUserId * 1 !== userId * 1) {
+      return alert("you are not Authorized!");
+    }
+    const res = await deleteQuestion(questionId, Token);
+    if (res.status === 204) {
+      alert("success to delete!");
+      navigate("/questions");
+    } else {
+      alert("fail");
+    }
+  };
   return (
     <QuestionBodyBtnsContainer>
       <ShareBtn>Share</ShareBtn>
       <EditBtn onClick={() => handleEditOn(true)}>Edit</EditBtn>
       <FollowBtn>Follow</FollowBtn>
+      {questionUserId * 1 === userId * 1 ? (
+        <DeleteBtn onClick={handleDelete}>delete</DeleteBtn>
+      ) : null}
     </QuestionBodyBtnsContainer>
   );
 };
