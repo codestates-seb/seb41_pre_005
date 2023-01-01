@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styled from "styled-components";
 import {
   answerDownVote,
@@ -55,7 +55,7 @@ const SaveIcon = styled(SideIcon)`
 const ActivityIcon = styled(SideIcon)`
   margin: 8px 0;
 `;
-const AnswerVote = ({ answer }) => {
+const AnswerVote = memo(({ answer }) => {
   //fill="#BBBFC3"
   const cookie = new Cookies();
   const Token = cookie.get("token");
@@ -116,6 +116,6 @@ const AnswerVote = ({ answer }) => {
       </AnswerVoteContainer>
     </>
   );
-};
+});
 
 export default AnswerVote;
