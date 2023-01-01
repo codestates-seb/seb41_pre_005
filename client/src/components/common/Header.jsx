@@ -468,28 +468,23 @@ const Header = () => {
     // console.log(clickedMenu);
   };
 
-  const [isToken, setIsToken] = useState(false);
   const cookies = new Cookies();
+  const [isToken, setIsToken] = useState(false);
 
+  const Token = cookies.get("token");
   useEffect(() => {
-    const Token = cookies.get("token");
-    console.log(Token);
     // setIsToken(true);
-    if (Token === true) {
-      setIsToken(true);
-    } else if (Token === false) {
-      setIsToken(false);
-    }
-  }, []);
 
+    Token ? setIsToken(true) : setIsToken(false);
+  }, [Token]);
+  console.log(isToken);
   const navigate = useNavigate();
 
   const logOut = () => {
-    const Token = cookies.get("token");
-    cookies.remove(Token); // 쿠키를 삭제
+    cookies.remove("token"); // 쿠키를 삭제
     setIsToken(false);
+    localStorage.removeItem("userId");
     navigate("/"); // 메인 페이지로 이동
-    console.log(Token);
   };
   return (
     <HeaderLayout>
