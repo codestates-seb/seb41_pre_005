@@ -27,11 +27,11 @@ const EditBtn = styled(QuestionBtn)``;
 const FollowBtn = styled(QuestionBtn)``;
 const DeleteBtn = styled(QuestionBtn)``;
 
-const QuestionEditEtc = () => {
+const QuestionEditEtc = ({ handleEditOn }) => {
   return (
     <QuestionBodyBtnsContainer>
       <ShareBtn>Share</ShareBtn>
-      <EditBtn>Edit</EditBtn>
+      <EditBtn onClick={() => handleEditOn(true)}>Edit</EditBtn>
       <FollowBtn>Follow</FollowBtn>
     </QuestionBodyBtnsContainer>
   );

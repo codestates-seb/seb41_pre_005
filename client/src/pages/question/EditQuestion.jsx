@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
-import AskQuestionForm from "../../components/questions/ask/AskQuestionForm";
-import AskQuestionTags from "../../components/questions/ask/AskQuestionTags";
-import AskQuestionTitle from "../../components/questions/ask/AskQuestionTitle";
 import AskQuestionHeadline from "../../components/questions/ask/AskQuestionHeadline";
 import Footer from "../../components/common/Footer";
 import { FormProvider, useForm } from "react-hook-form";
 import { postQuestion } from "../../api/questionAPI";
 import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
+import QuestionEditor from "../../components/questions/edit/QuestionEditor";
+import { useLocation } from "react-router-dom";
 
 const AskPageLayout = styled.div`
   width: 851px;
@@ -40,7 +38,6 @@ const Main = styled.main`
 `;
 const Notice = styled.div`
   max-height: 411px;
-
 `;
 const TitleContainer = styled.div`
   width: 85.1rem;
@@ -62,11 +59,12 @@ const initialValue = {
   content: "",
   tags: [],
 };
-const AskQuestion = (props) => {
+const EditQuestion = (props) => {
   const methods = useForm(initialValue);
   const user = useSelector((state) => state.currentUser);
   const cookie = new Cookies();
   const Token = cookie.get("token");
+  const { state } = useLocation();
 
   const onSubmit = async (data) => {
     console.log(user);
@@ -78,21 +76,15 @@ const AskQuestion = (props) => {
       <AskPageLayout>
         <AskQuestionHeadline></AskQuestionHeadline>
         <AskContainer>
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
-              <Main>
-                <Notice></Notice>
-                <TitleContainer>
-                  <AskQuestionTitle></AskQuestionTitle>
-                </TitleContainer>
-                <AskQuestionForm />
-                <AskQuestionTags />
-                <ButtonContainer>
-                  <PostQuestionBtn></PostQuestionBtn>
-                </ButtonContainer>
-              </Main>
-            </form>
-          </FormProvider>
+          <Main>
+            <Notice></Notice>
+            <QuestionEditor
+              title={state?.title}
+              questionContent={state?.content}
+              tagList={state?.tagList}
+              questionId={state.questionId}
+            />
+          </Main>
         </AskContainer>
       </AskPageLayout>
       <Footer />
@@ -100,4 +92,4 @@ const AskQuestion = (props) => {
   );
 };
 
-export default AskQuestion;
+export default EditQuestion;

@@ -21,3 +21,23 @@ export const postAnswer = async (data, token, questionId, userId) => {
     console.log(error);
   }
 };
+export const answerUpVote = async (questionId, userId, answerId, Token) => {
+  const res = await axios({
+    method: "post",
+    data: { data: 1 },
+    headers: { Authorization: `Bearer ${Token}` },
+    url: `${url}/questions/upVote/${questionId}/${answerId}?userId=${userId}`,
+  });
+  console.log(res);
+  return res;
+};
+export const answerDownVote = async (questionId, userId, answerId, Token) => {
+  const res = await axios({
+    method: "post",
+    data: { data: 1 },
+    headers: { Authorization: `Bearer ${Token}` },
+    url: `${url}/questions/downVote/${questionId}/${answerId}?userId=${userId}`,
+  });
+  console.log(res);
+  return res;
+};

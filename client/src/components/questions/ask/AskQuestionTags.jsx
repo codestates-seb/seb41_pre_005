@@ -58,8 +58,8 @@ const TagInput = styled.input`
 const TagContainer = styled.div`
   margin-left: 5px;
 `;
-const AskQuestionTags = (props) => {
-  const [tags, setTags] = useState([]);
+const AskQuestionTags = ({ tagList }) => {
+  const [tags, setTags] = useState(tagList ? tagList : []);
   const [focused, setFocused] = useState(false);
   const [tagId, setTagId] = useState(0);
   const { register, setValue } = useFormContext();

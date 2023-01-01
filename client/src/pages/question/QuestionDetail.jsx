@@ -8,17 +8,22 @@ import QuestionEditEtc from "../../components/questions/QuestionEditEtc";
 import QuestionVote from "../../components/questions/QuestionVote";
 import AnswerList from "../../components/answers/AnswerList";
 import { ButtonBlue } from "../../components/common/Header";
-import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { FormProvider, useForm } from "react-hook-form";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getQuestion } from "../../api/questionAPI";
 import Parser from "html-react-parser";
 import Tags from "../../components/questions/Tags";
+import { getUser } from "../../api/userAPI";
 import AnswerForm from "../../components/answers/AnswerForm";
 import QuestionDetailTimeDiff from "../../components/questions/QuestionDetailTimeDiff";
+import QuestionEditor from "../../components/questions/edit/QuestionEditor";
 
 const QuestDetailContainer = styled.div`
+  /* height: 100vh; */
+  /* width: 100%;  */
   height: auto;
   min-height: 100%;
+  /* padding-bottom: 322px; */
 `;
 const BodyContainer = styled.div`
   display: flex;
@@ -50,6 +55,7 @@ const QuestionContent = styled.div`
 `;
 const Content = styled.div`
   max-width: 650px;
+  /* border: 1px solid black; */
   word-break: break-all;
   .ql-syntax {
     background-color: #23241f;
@@ -60,6 +66,7 @@ const Content = styled.div`
   }
 `;
 const TagsContain = styled.div`
+  /* border: 1px solid black; */
   width: 65rem;
   height: 3.6rem;
   margin-top: 3rem;
@@ -115,6 +122,7 @@ const HeadTitleBox = styled.div`
 `;
 const HeadTitle = styled.div`
   width: 93.598rem;
+  /* height: 7.289rem; */
   font-size: 2.7rem;
   margin-bottom: 0.8rem;
   word-break: break-all;
@@ -122,7 +130,6 @@ const HeadTitle = styled.div`
 const HeadBtnBox = styled.div`
   width: 10.302rem;
   height: 7.289rem;
-
   margin-left: 3rem;
 `;
 const SmallTextBox = styled.div`
@@ -131,7 +138,6 @@ const SmallTextBox = styled.div`
   padding-bottom: 0.8rem;
   display: flex;
   flex-direction: row;
-
   .smallText {
     font-size: 1.3rem;
     margin-right: 2rem;
@@ -150,18 +156,23 @@ const Bold = styled.span`
 
 const AskQuestionBtn = styled(ButtonBlue)``;
 const QuestionDetail = ({ createdAt }) => {
-  const methods = useForm();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [question, setQuestion] = useState();
   const [userInfo, setUserInfo] = useState();
+  const [isEditOn, setIsEditOn] = useState(false);
   useEffect(() => {
     async function selectQuestion() {
       const res = await getQuestion(id);
-      console.log(res);
+      // getUser(id);
       setQuestion(res);
+      // setUserInfo(res);
     }
     selectQuestion();
   }, [id]);
+  const handleEditOn = () => {
+    navigate("/questions/edit", { state: question });
+  };
   console.log(question);
   return (
     <>
@@ -205,12 +216,20 @@ const QuestionDetail = ({ createdAt }) => {
                   questionId={id}
                 ></QuestionVote>
                 <QuestionContent>
-                  <Content>{Parser(question?.content || "")}</Content>
+                  {isEditOn ? (
+                    <QuestionEditor
+                      questionContent={question?.content}
+                      tagList={question?.tagList}
+                    />
+                  ) : (
+                    <Content>{Parser(question?.content || "")}</Content>
+                  )}
+
                   <TagsContain>
                     <Tags tags={question?.tagList} />
                   </TagsContain>
                   <EditContain>
-                    <QuestionEditEtc />
+                    <QuestionEditEtc handleEditOn={handleEditOn} />
                     <Userinfo>
                       <TimeContain>
                         <QuestionDetailTimeDiff

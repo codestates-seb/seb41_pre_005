@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Author from "./Author";
+import Author from "../questions/Author";
 import ElapsedTime from "./ElapsedTime";
 
 const QuestionBodyBtnsContainer = styled.div`
