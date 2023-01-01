@@ -6,15 +6,9 @@ import RightSideBarLayout from "../../components/layout/RightSideBarLayout";
 import Footer from "../../components/common/Footer";
 import QuestionEditEtc from "../../components/questions/QuestionEditEtc";
 import QuestionVote from "../../components/questions/QuestionVote";
-import AskQuestionForm from "../../components/questions/ask/AskQuestionForm";
 import AnswerList from "../../components/answers/AnswerList";
-import AskEditor from "../../components/questions/ask/AskEditor";
-import Button from "../../components/common/Button";
-import ElapsedTime from "../../components/answers/ElapsedTime";
 import { ButtonBlue } from "../../components/common/Header";
-import { FormProvider, useForm } from "react-hook-form";
-import { postAnswer } from "../../api/answerAPI";
-import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import { getQuestion } from "../../api/questionAPI";
 import Parser from "html-react-parser";
@@ -205,9 +199,10 @@ const QuestionDetail = ({ createdAt }) => {
   useEffect(() => {
     async function selectQuestion() {
       const res = await getQuestion(id);
-      getUser(id);
+      // getUser(id);
+      console.log(res);
       setQuestion(res);
-      setUserInfo(res);
+      // setUserInfo(res);
     }
     selectQuestion();
   }, [id]);
@@ -264,7 +259,7 @@ const QuestionDetail = ({ createdAt }) => {
                       <UsernameContain>{userInfo?.displayName}</UsernameContain>
                     </Userinfo>
                   </EditContain>
-                  <AnswerList />
+                  <AnswerList answers={question?.answerList} />
                   <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
                   <AnswerForm />
                 </QuestionContent>
