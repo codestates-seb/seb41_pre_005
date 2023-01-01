@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 const Button = styled.button`
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
   width: 8rem;
   height: 3.7rem;
