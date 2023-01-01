@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 const StatsLayout = styled.div`
   flex-basis: calc(25%-24px);
   flex-shrink: 0;

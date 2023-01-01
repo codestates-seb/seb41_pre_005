@@ -1,12 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// const Container = styled.div`
-//     width: 78.225rem;
-//     height: auto;
-//     display: flex;
-//     flex-direction: column;
-//     `;
 const AboutLayout = styled.div`
   flex-grow: 1;
   margin: 0rem 1.2rem 1.2rem 2rem;

@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import { getUser } from "../../api/userAPI";
 
 const ProfileHead = styled.div`
@@ -65,35 +65,40 @@ const ProfileImg = styled.div`
   background-color: orange;
   cursor: pointer;
 `;
+const UploadTime = styled.time`
+  color: hsl(210, 8%, 45%);
+  white-space: nowrap;
+  font-size: 1.3rem;
+`;
+// const GetUserName = (props) => {
+//   return <UserNameContain>{props.userName}</UserNameContain>;
+// };
 
-const GetUserName = (props) => {
-  return <UserNameContain>{props.userName}</UserNameContain>;
-};
-
-const ElapsedTime = (props) => {
+const HeaderLineTime = ({ createdAt }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
   useEffect(() => {
     function calculateElapsedTime() {
-      const uploadTime = new Date(props.createdAt);
+      const uploadTime = new Date(createdAt);
       const currentTime = new Date();
       const timeDiff = (currentTime - uploadTime) / 1000;
       const times = [
-        { time: "년", seconds: 60 * 60 * 24 * 365 },
-        { time: "개월", seconds: 60 * 60 * 24 * 30 },
-        { time: "일", seconds: 60 * 60 * 24 },
-        { time: "시간", seconds: 60 * 60 },
+        { time: "Year", seconds: 60 * 60 * 24 * 365 },
+        { time: "Months", seconds: 60 * 60 * 24 * 30 },
+        { time: "Day", seconds: 60 * 60 * 24 },
+        { time: "Hours", seconds: 60 * 60 },
+        { time: "Minutes", seconds: 60 },
       ];
       let formattedTimeDiff;
       for (let item of times) {
-        if (item === "분") {
+        if (item === "Minutes") {
           formattedTimeDiff =
-            Math.floor(timeDiff / item.seconds) + `${item.time}전`;
+            Math.floor(timeDiff / item.seconds) + ` ${item.time}`;
         }
         if (timeDiff / item.seconds < 1) {
           continue;
         } else {
           formattedTimeDiff =
-            Math.floor(timeDiff / item.seconds) + `${item.time}전`;
+            Math.floor(timeDiff / item.seconds) + ` ${item.time}`;
           break;
         }
       }
@@ -101,23 +106,32 @@ const ElapsedTime = (props) => {
       return formattedTimeDiff;
     }
     setElapsedTime(calculateElapsedTime());
-  }, []);
-  return <span>{elapsedTime || "now"}</span>;
+  });
+  return <UploadTime> {elapsedTime || "now"}</UploadTime>;
 };
 
 const ProfileHeader = () => {
-  const [userName, setUserName] = useState();
-  const [createAt, setCreateAt] = useState();
+  // const [userName, setUserName] = useState();
+  // const [createAt, setCreateAt] = useState();
+  // useEffect(() => {
+  //   async function getData(id) {
+  //     const userData = await axios({
+  //       method: "get",
+  //       url: `/users/${id}`,
+  //     });
+  //     setUserName(userData.data.displayName);
+  //     setCreateAt(userData.data.createdAt);
+  //   }
+  //   getData();
+  // }, []);
+  const { id } = useParams();
+  const [userInfo, setUserInfo] = useState();
   useEffect(() => {
-    async function getData(id) {
-      const userData = await axios({
-        method: "get",
-        url: `/users/${id}`,
-      });
-      setUserName(userData.data.displayName);
-      setCreateAt(userData.data.createdAt);
+    async function getUserInfo() {
+      const res = await getUser(id);
+      setUserInfo(res);
     }
-    getData();
+    getUserInfo();
   }, []);
 
   // useEffect(() => {
@@ -130,7 +144,7 @@ const ProfileHeader = () => {
   return (
     <ProfileHead>
       <ProfileImg></ProfileImg>
-      <GetUserName userName={userName} />
+      <UserNameContain>{userInfo?.displayName}</UserNameContain>
       {/* {userInfo.displayname} */}
       <ProfileCreatedAt>
         <svg
@@ -146,7 +160,9 @@ const ProfileHeader = () => {
           ></path>
         </svg>
         <MemberPeriod>
-          Member for <ElapsedTime createAt={createAt} />
+          Member for
+          <HeaderLineTime>{userInfo?.createdAt}</HeaderLineTime>
+          {/* <ElapsedTime>{userInfo?.createdAt}</ElapsedTime> */}
         </MemberPeriod>
       </ProfileCreatedAt>
       <ProfileBtnContainer>

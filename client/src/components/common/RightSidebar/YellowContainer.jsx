@@ -69,13 +69,13 @@ const YellowContainer = () => {
       <YellowHeader>The Overflow Blog</YellowHeader>
       <YellowContents>
         <Iconbox>
-          <Pencil src={process.env.PUBLIC_URL + "/images/pencil.svg"}></Pencil>
+          <Pencil src={process.env.PUBLIC_URL + "/images/sidebar/pencil.svg"}></Pencil>
         </Iconbox>
         Best practices to increase the speed for Next.js apps
       </YellowContents>
       <YellowContents>
         <Iconbox>
-          <Pencil src={process.env.PUBLIC_URL + "/images/pencil.svg"}></Pencil>
+          <Pencil src={process.env.PUBLIC_URL + "/images/sidebar/pencil.svg"}></Pencil>
         </Iconbox>
         I spent two years trying to do what Backstage does for free
       </YellowContents>
@@ -89,26 +89,26 @@ const YellowContainer = () => {
       <YellowContents>
         <Iconbox>
           <MainLogo
-            src={process.env.PUBLIC_URL + "/images/logo_leftSidebar.svg"}
+            src={process.env.PUBLIC_URL + "/images/sidebar/logo_leftSidebar.svg"}
           ></MainLogo>
         </Iconbox>
         2022 Community Moderator Election Results - now with two more mods!
       </YellowContents>
       <SmallYellowContents>
         <Iconbox>
-          <MainLogo src={process.env.PUBLIC_URL + "/images/logo_leftSidebar.svg"}></MainLogo>
+          <MainLogo src={process.env.PUBLIC_URL + "/images/sidebar/logo_leftSidebar.svg"}></MainLogo>
         </Iconbox>
         Temporary policy: ChatGPT is banned
       </SmallYellowContents>
       <SmallYellowContents>
         <Iconbox>
-          <MainLogo src={process.env.PUBLIC_URL + "/images/logo_leftSidebar.svg"}></MainLogo>
+          <MainLogo src={process.env.PUBLIC_URL + "/images/sidebar/logo_leftSidebar.svg"}></MainLogo>
         </Iconbox>
         I'm standing down as a moderator
       </SmallYellowContents>
       <YellowContents>
         <Iconbox>
-          <MainLogo src={process.env.PUBLIC_URL + "/images/logo_leftSidebar.svg"}></MainLogo>
+          <MainLogo src={process.env.PUBLIC_URL + "/images/sidebar/logo_leftSidebar.svg"}></MainLogo>
         </Iconbox>
         Proposing a Community-Specific <br></br>Closure Reason for non-English
         content

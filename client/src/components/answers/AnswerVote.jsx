@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { questionDownVote, questionUpVote } from "../../api/questionAPI";
+import { downVote, upVote } from "../../api/answerAPI";
 import { Cookies } from "react-cookie";
-
-const QuestionVoteContainer = styled.div`
+const AnswerVoteContainer = styled.div`
   width: 60px;
   height: 200px;
   padding-right: 12px;
@@ -50,7 +49,8 @@ const SaveIcon = styled(SideIcon)`
 const ActivityIcon = styled(SideIcon)`
   margin: 8px 0;
 `;
-const QuestionVote = ({ question }) => {
+const AnswerVote = ({ answer }) => {
+  //fill="#BBBFC3"
   const cookie = new Cookies();
   const Token = cookie.get("token");
   const userId = JSON.parse(localStorage.getItem("userId"));
@@ -59,30 +59,30 @@ const QuestionVote = ({ question }) => {
   const [isDownVote, setIsDownVote] = useState(false);
   const handleUpVote = () => {
     if (isUpVote) return;
-    questionUpVote(question?.questionId, userId, Token);
-    let updateVote = isDownVote ? question.voteCount : question.voteCount + 1;
+
+    let updateVote = isDownVote ? answer.voteCount : answer.voteCount + 1;
     setVoteCount(updateVote);
     setIsUpVote(true);
   };
   const handleDownVote = () => {
     if (isDownVote) return;
-    questionDownVote(question?.questionId, userId, Token);
-    let updateVote = isUpVote ? question.voteCount : question.voteCount - 1;
+
+    let updateVote = isUpVote ? answer.voteCount : answer.voteCount - 1;
     setVoteCount(updateVote);
     setIsDownVote(true);
   };
 
-  console.log(question?.voteCount, voteCount);
+  console.log(answer?.voteCount, voteCount);
   return (
     <>
-      <QuestionVoteContainer>
+      <AnswerVoteContainer>
         <UpVoteBtn onClick={handleUpVote}>
           <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36">
             <path d="M2 25h32L18 9 2 25Z" />
           </svg>
         </UpVoteBtn>
         <VoteStat>
-          {voteCount === 0 ? 0 : voteCount || question?.voteCount}
+          {voteCount === 0 ? 0 : voteCount || answer?.voteCount}
         </VoteStat>
         <DownVoteBtn onClick={handleDownVote}>
           <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36">
@@ -99,9 +99,9 @@ const QuestionVote = ({ question }) => {
             <path d="M3 9a8 8 0 1 1 3.73 6.77L8.2 14.3A6 6 0 1 0 5 9l3.01-.01-4 4-4-4h3L3 9Zm7-4h1.01L11 9.36l3.22 2.1-.6.93L10 10V5Z" />
           </svg>
         </ActivityIcon>
-      </QuestionVoteContainer>
+      </AnswerVoteContainer>
     </>
   );
 };
 
-export default QuestionVote;
+export default AnswerVote;

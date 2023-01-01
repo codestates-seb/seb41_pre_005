@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const Earth = styled.img`
-  
-`
+const Earth = styled.img``;
 
 const SideNav = styled.div`
   margin-top: 3rem;
@@ -35,9 +33,7 @@ const Tab = styled(NavLink)`
   padding: 1.2rem;
   line-height: 1.38rem;
   font-size: 1.3rem;
-  .TagsWord {
-    margin-left: 2rem;
-  }
+
   &.active {
     border-right: 0.3rem solid #f48125;
     background-color: #f1f2f3;
@@ -45,8 +41,11 @@ const Tab = styled(NavLink)`
     font-weight: 700;
   }
 `;
+const QuestionsWord = styled.div`
+  height: 1.8rem;
+`;
 const TagsWord = styled.div`
-  padding-left: 2rem;
+  padding-left: 1.8rem;
 `;
 
 const LeftSidebar = () => {
@@ -72,8 +71,10 @@ const LeftSidebar = () => {
         id="question"
         className={({ isActive }) => (isActive ? "selected" : null)}
       >
-        <Earth src={process.env.PUBLIC_URL + "/images/earth.svg"}></Earth>
-        Questions
+        <QuestionsWord>
+          <Earth src={process.env.PUBLIC_URL + "/images/sidebar/earth.svg"}></Earth>
+          Questions
+        </QuestionsWord>
       </Tab>
       <Tab
         to="/tags"

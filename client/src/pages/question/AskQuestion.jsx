@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-// import AskQuestionButton from "../../components/questions/AskQuestionButton";
 import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
 import AskQuestionForm from "../../components/questions/ask/AskQuestionForm";
 import AskQuestionTags from "../../components/questions/ask/AskQuestionTags";
@@ -11,6 +10,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { postQuestion } from "../../api/questionAPI";
 import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
+
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -70,23 +70,6 @@ const AskQuestion = (props) => {
   const Token = cookie.get("token");
 
   const onSubmit = async (data) => {
-    /*     const tagNameList = data.tags.map((item) => item.tagName);
-
-    const formData = {
-      content: data.content,
-      title: data.title,
-      tagNameList,
-    };
-    try {
-      const response = await axios({
-        method: "post",
-        url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/questions/ask",
-        data: formData,
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    } */
     console.log(user);
     const res = await postQuestion(data, user.token || Token, user.userId);
     console.log(res);

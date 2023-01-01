@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import YellowContainer from "./RightSidebar/YellowContainer";
 import CustomContainer from "./RightSidebar/CustomContainer";
 import WatchedContainer from "./RightSidebar/WatchedContainer";
