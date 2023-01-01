@@ -15,6 +15,7 @@ import Parser from "html-react-parser";
 import Tags from "../../components/questions/Tags";
 import { getUser } from "../../api/userAPI";
 import AnswerForm from "../../components/answers/AnswerForm";
+import QuestionDetailTimeDiff from "../../components/questions/QuestionDetailTimeDiff";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -154,42 +155,6 @@ const Bold = styled.span`
   color: black;
 `;
 
-const HeaderLineTime = ({ createdAt }) => {
-  const [elapsedTime, setElapsedTime] = useState(0);
-  useEffect(() => {
-    function calculateElapsedTime() {
-      const uploadTime = new Date(createdAt);
-      const currentTime = new Date();
-      const timeDiff = (currentTime - uploadTime) / 1000;
-      const times = [
-        { time: "Year", seconds: 60 * 60 * 24 * 365 },
-        { time: "Months", seconds: 60 * 60 * 24 * 30 },
-        { time: "Day", seconds: 60 * 60 * 24 },
-        { time: "Hours", seconds: 60 * 60 },
-        { time: "Minutes", seconds: 60 },
-      ];
-      let formattedTimeDiff;
-      for (let item of times) {
-        if (item === "Minutes") {
-          formattedTimeDiff =
-            Math.floor(timeDiff / item.seconds) + ` ${item.time}`;
-        }
-        if (timeDiff / item.seconds < 1) {
-          continue;
-        } else {
-          formattedTimeDiff =
-            Math.floor(timeDiff / item.seconds) + ` ${item.time}`;
-          break;
-        }
-      }
-
-      return formattedTimeDiff;
-    }
-    setElapsedTime(calculateElapsedTime());
-  });
-  return <UploadTime> {elapsedTime || "now"}</UploadTime>;
-};
-
 const AskQuestionBtn = styled(ButtonBlue)``;
 const QuestionDetail = ({ createdAt }) => {
   const methods = useForm();
@@ -206,7 +171,7 @@ const QuestionDetail = ({ createdAt }) => {
     }
     selectQuestion();
   }, [id]);
-
+  console.log(question);
   return (
     <>
       <QuestDetailContainer>
@@ -229,11 +194,13 @@ const QuestionDetail = ({ createdAt }) => {
                   <UploadTime>
                     <span>Asked</span>
                     <Bold>
-                      <HeaderLineTime createdAt={question?.createdAt} />
+                      <QuestionDetailTimeDiff createdAt={question?.createdAt} />
                     </Bold>
                     <span>Modified</span>
                     <Bold>
-                      <HeaderLineTime createdAt={question?.modifiedAt} />
+                      <QuestionDetailTimeDiff
+                        createdAt={question?.modifiedAt}
+                      />
                     </Bold>
                   </UploadTime>
                   <div className="smallText">
@@ -252,11 +219,16 @@ const QuestionDetail = ({ createdAt }) => {
                     <QuestionEditEtc />
                     <Userinfo>
                       <TimeContain>
-                        <HeaderLineTime createdAt={userInfo?.modifiedAt} />
+                        <QuestionDetailTimeDiff
+                          createdAt={
+                            question?.modifiedAt || question?.createdAt
+                          }
+                        />
+
                         {/* <ElapsedTime createdAt={Userinfo?.createdAt} /> */}
                       </TimeContain>
                       <ProfileImg></ProfileImg>
-                      <UsernameContain>{userInfo?.displayName}</UsernameContain>
+                      <UsernameContain>{question?.displayName}</UsernameContain>
                     </Userinfo>
                   </EditContain>
                   <AnswerList answers={question?.answerList} />
