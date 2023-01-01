@@ -1,18 +1,22 @@
 import axios from "axios";
-
-export const postAnswer = async (data) => {
+const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
+export const postAnswer = async (data, token, questionId, userId) => {
   const endpoint = "/answer";
-
+  console.log(questionId);
   const formData = {
-    answer: data.answer,
+    userId,
+    content: data.answer,
   };
+  console.log(formData);
   try {
     const response = await axios({
       method: "post",
-      url: endpoint,
+      url: `${url}/questions/${questionId.id}`,
       data: formData,
+      headers: { Authorization: `Bearer ${token}` },
     });
     console.log(response);
+    return response;
   } catch (error) {
     console.log(error);
   }

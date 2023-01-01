@@ -16,7 +16,7 @@ import AskQuestion from "./pages/question/AskQuestion";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/common/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginHeader from "./components/common/LoginHeader";
 import { Cookies } from "react-cookie";
 
@@ -31,13 +31,17 @@ function App() {
   //   return cookies.get(name);
   // };
   // const cookie = getCookie("token");
+  const [isToken, setIsToken] = useState(false);
   const cookie = new Cookies();
-  const Token = cookie.get("token");
-
+  useEffect(() => {
+    const Token = cookie.get("token");
+    console.log(Token);
+    setIsToken(true);
+  }, []);
   return (
     <>
       {/* <LoginHeader /> */}
-      {Token ? <LoginHeader /> : <Header />}
+      {isToken ? <LoginHeader /> : <Header />}
       <PageLayout>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
 const UserInfoContainer = styled.div`
   flex-wrap: wrap;
   margin-left: auto;
@@ -20,8 +21,8 @@ const UserInfo = styled.div`
 const Username = styled.a`
   margin: 2px;
 `;
-const Author = ({ author }) => {
-  return <Username>{author || "none"}</Username>;
+const Author = ({ answer }) => {
+  return <Username>{answer.displayName || "none"}</Username>;
 };
 
 export default Author;
