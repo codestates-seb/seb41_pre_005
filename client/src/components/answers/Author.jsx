@@ -21,8 +21,9 @@ const UserInfo = styled.div`
 const Username = styled.a`
   margin: 2px;
 `;
-const Author = ({ answer }) => {
-  return <Username>{answer.displayName || "none"}</Username>;
+const Author = ({ displayName }) => {
+  console.log(displayName);
+  return <Username>{displayName || "none"}</Username>;
 };
 
 export default Author;

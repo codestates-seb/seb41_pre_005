@@ -56,7 +56,7 @@ const AnswerEdit = ({ answer }) => {
         <ElapsedTime createdAt={answer?.createdAt} />
       </TimeInfo>
       <UserInfo>
-        <Author author={answer?.author} />
+        <Author displayName={answer?.displayName} />
       </UserInfo>
     </QuestionBodyBtnsContainer>
   );
