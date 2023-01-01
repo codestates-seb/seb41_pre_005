@@ -68,7 +68,7 @@ const QuestionVote = ({ question }) => {
     if (isDownVote) return;
     downVote(question?.questionId, userId, Token);
     let updateVote = isUpVote ? question.voteCount : question.voteCount - 1;
-    setVoteCount(question.voteCount - 1);
+    setVoteCount(updateVote);
     setIsDownVote(true);
   };
 
