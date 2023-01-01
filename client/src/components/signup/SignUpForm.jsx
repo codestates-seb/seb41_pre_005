@@ -7,7 +7,7 @@ import axios from "axios";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../login/AlertWarning";
 import { signUp } from "../../api/userAPI";
-import SiginUpModal from "./Modal";
+import ModalComponet from "../common/Modal";
 
 const InputContainer = styled.div`
   margin: 1rem 0;
@@ -71,6 +71,9 @@ const SignUpForm = (props) => {
   };
 
   // console.log(watch("userName"));
+
+  const pass =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
   const nameValidation = {
     required: "입력해 주세요.",
   };
@@ -83,15 +86,15 @@ const SignUpForm = (props) => {
   };
   const passwordValidation = {
     required: "입력해 주세요.",
-    minLength: {
-      value: 10,
-      message: "10글자 이상이어야 합니다.",
+    pattern: {
+      value: pass,
+      message: "8자리이상, 숫자,문자,특수문자가 들어가야됩니다.",
     },
   };
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <SiginUpModal
+        <ModalComponet
           open={modal.open}
           setModal={setModal}
           message={modal.message}

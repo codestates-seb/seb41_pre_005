@@ -41,7 +41,7 @@ export const getUser = async (id) => {
       method: "get",
     });
     console.log(res);
-    return res.data.data;
+    return res.data;
   } catch (error) {
     console.log(error);
   }

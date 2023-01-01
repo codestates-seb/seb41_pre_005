@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {ButtonBlue} from "../../components/common/Header";
+import { ButtonBlue } from "../../components/common/Headers/HeaderSet";
+import { useNavigate } from "react-router-dom";
 
 const BtnContainer = styled.div`
   /* margin-top: ;
@@ -19,9 +20,17 @@ const DiscardBtn = styled.button`
 `;
 
 const PostQuestionBtn = () => {
+  const navigate = useNavigate();
+  const pageMove = () => {
+    navigate("/questions");
+    goToTop();
+  };
+  const goToTop = () => {
+    window.scrollTo({ top: 0 });
+  };
   return (
     <BtnContainer>
-      <PostBtn width="136px" fontSize="13px">
+      <PostBtn width="136px" fontSize="13px" onClick={pageMove}>
         Post your question
       </PostBtn>
       <DiscardBtn>Discard draft</DiscardBtn>

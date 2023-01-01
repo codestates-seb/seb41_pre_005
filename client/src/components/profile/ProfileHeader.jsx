@@ -130,9 +130,12 @@ const ProfileHeader = () => {
   useEffect(() => {
     async function getUserInfo() {
       const res = await getUser(id);
+      console.log(res);
       setUserInfo(res);
     }
     getUserInfo();
+    // dispatch(getUser({ token, userId }));
+    // setUserInfo(userId)
   }, []);
 
   // useEffect(() => {

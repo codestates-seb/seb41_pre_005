@@ -1,290 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import HeaderLayout from "../layout/HeaderLayout";
-import SearchInput from "../search/SearchInput";
 import { Cookies } from "react-cookie";
 import { useState, useEffect } from "react";
 // import { removeCookie } from "../../Cookie";
 // import {Link} from "react-router-dom";
-
-const Bluebutton = styled.button`
-  background: #0995ff;
-  color: #ffffff;
-  font-weight: bold;
-  border: 1px solid #0995ff;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 0 0 #ffffff;
-  width: ${(props) => props.width || "100px"};
-  height: ${(props) => props.height || "40px"};
-  font-size: ${(props) => props.fontSize || "14px"};
-  font-weight: ${(props) => props.fontWeight || "700"};
-  :hover {
-    background: #0063bf;
-  }
-  &:disabled {
-    opacity: 50%;
-    cursor: not-allowed;
-    :hover {
-      background-color: #0995ff;
-    }
-  }
-`;
-
-const SkyblueButton = styled.button`
-  background: #e1ecf4;
-  color: #3a739d;
-  border-radius: 4px;
-  border: ${(props) => props.border || "1px solid #3a739d"};
-  width: ${(props) => props.width || "100px"};
-  height: ${(props) => props.height || "40px"};
-  font-size: ${(props) => props.fontSize || "14px"};
-  font-weight: ${(props) => props.fontWeight || "700"};
-  margin-right: 0.5rem;
-  margin-left: -2rem;
-  :hover {
-    background: #b3d3ea;
-  }
-`;
-
-export function ButtonBlue({
-  children,
-  border,
-  width,
-  height,
-  fontSize,
-  fontWeight,
-  type,
-  disabled,
-}) {
-  return (
-    <Bluebutton
-      type={type ? type : "submit"}
-      border={border}
-      width={width}
-      height={height}
-      fontSize={fontSize}
-      fontWeight={fontWeight}
-      disabled={disabled}
-    >
-      {children}
-    </Bluebutton>
-  );
-}
-
-export function ButtonSblue({ children, width, height, fontSize, fontWeight }) {
-  return (
-    <SkyblueButton
-      width={width}
-      height={height}
-      fontSize={fontSize}
-      fontWeight={fontWeight}
-    >
-      {children}
-    </SkyblueButton>
-  );
-}
-
-const ButtonComponent = styled.button`
-  position: relative;
-  display: inline-block;
-  padding: 0.8em;
-  color: #0074cc;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  background-color: transparent;
-  outline: none;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: normal;
-  line-height: calc((13 + 2) / 13);
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  user-select: none;
-  white-space: ${(props) =>
-    props.whiteSpace === "nowrap" ? "nowrap !important" : "normal"};
-
-  &.primary {
-    color: #ffffff;
-    background-color: #0a95ff;
-    box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
-  }
-
-  :hover,
-  :focus,
-  :active {
-    color: #ffffff;
-    background-color: #0074cc;
-  }
-  :active {
-    background-color: #0063bf;
-    box-shadow: none;
-  }
-`;
-
-export const Button = ({ children }) => {
-  return <ButtonComponent>{children}</ButtonComponent>;
-};
-
-const HeaderContinaer = styled.div`
-  box-sizing: border-box;
-  position: fixed;
-  left: 0;
-  top: 0;
-  box-sizing: border-box;
-  min-width: auto;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px,
-    rgba(0, 0, 0, 0.05) 0px 1px 4px 0px, rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
-  width: 100%;
-  z-index: 5050;
-  background-color: #f8f9f9;
-  height: 5rem;
-  display: flex;
-  border-top: 3px solid #f48225;
-  align-items: center;
-`;
-
-const HeaderTopbarContainer = styled.div`
-  width: 160rem;
-  max-width: 100%;
-  height: 100%;
-  display: flex;
-  margin: 0 auto;
-  align-items: center;
-  box-sizing: border-box;
-`;
-
-const LogoContainer = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  margin-left: 10rem;
-  margin-bottom: 0.2rem;
-
-  img {
-    width: 14.6rem;
-    height: 3rem;
-  }
-  &:hover {
-    background-color: #e4e6e8;
-  }
-  /* padding: 0 var(--su8);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  background-color: #00000000;
-  margin-left: 8px;
-
-  @media screen and (max-width: 640px) {
-    display: none;
-  }
-  img {
-    margin-left: 0;
-    width: 150px;
-    height: 30px;
-    margin-top: -4px;
-  }
-  &:hover {
-    width: -30px;
-    background-color: #e4e6e8;
-  } */
-`;
-const HeadBtnContainer = styled.div`
-  /* background-color: var(--_na-item-bg);
-  color: var(--_na-item-fc); */
-  font: unset;
-  font-size: 1.3rem;
-  /* padding: var(--_na-item-p);
-  white-space: var(--_na-item-ws); */
-  align-items: center;
-  border: none;
-  border-radius: 1000px;
-  box-shadow: none;
-  cursor: pointer;
-  display: flex;
-  position: relative;
-  user-select: auto;
-
-  @media screen and (max-width: 820px) {
-    display: none;
-  }
-
-  .about_btn {
-    width: 70px;
-    height: 29px;
-    background-color: #f8f9f9;
-    color: #525960;
-    font-size: 13px;
-    font-weight: 400;
-    border: none;
-    border-radius: 20px;
-    margin-left: 10px;
-    &:hover {
-      background-color: #e3e5e8;
-      color: black;
-      cursor: pointer;
-    }
-  }
-  .forTeams_btn {
-    width: 7.5rem;
-    height: 2.9rem;
-    background-color: #f8f9f9;
-    color: #525960;
-    font-size: 1.3rem;
-    font-weight: 40rem;
-    margin-left: 0.5rem;
-    border: none;
-    border-radius: 20px;
-    &:hover {
-      background-color: #e3e5e8;
-      color: black;
-      cursor: pointer;
-    }
-  }
-`;
-
-const LoginContainer = styled.div`
-  @media screen and (max-width: 590px) {
-    display: none;
-  }
-`;
-
-const LoginBtn = styled(ButtonSblue)``;
-const SignupBtn = styled(ButtonBlue)``;
-const RightContainer = styled.div`
-  height: 4.7rem;
-
-  display: flex;
-`;
-const ProfileImgContain = styled.div`
-  display: flex;
-  width: 82.3px;
-  cursor: pointer;
-  &:hover {
-    background-color: #e3e5e8;
-  }
-`;
-
-const ProfileImg = styled.div`
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 3px;
-  border: 1px solid orange;
-  background-color: orange;
-  cursor: pointer;
-  margin-top: 11px;
-  margin-left: 12px;
-`;
-
-const EtcBtn = styled.div`
-  display: flex;
-  width: 4rem;
-  cursor: pointer;
-  &:hover {
-    background-color: #e3e5e8;
-  }
-`;
+import LogoContainer from "./Headers/LogoContainer";
+import { ButtonBlue, ButtonSblue } from "./Headers/HeaderSet";
+import LogOutHeader, { HeadBtnContainer } from "./Headers/LogOutHeader";
+import {
+  DropDownSvg,
+  EtcBtn,
+  ProfileImgContain,
+  ProfileImg,
+} from "./Headers/HeaderSvg";
+import {
+  HeaderContinaer,
+  HeaderTopbarContainer,
+  RightContainer,
+} from "./Headers/HeaderContainer";
 const MenuDropdown = styled.div`
   width: 375px;
   position: absolute;
@@ -490,14 +224,8 @@ const Header = () => {
     <HeaderLayout>
       <HeaderContinaer>
         <HeaderTopbarContainer>
-          <LogoContainer>
-            <Link to="/">
-              <img
-                src={process.env.PUBLIC_URL + "/images/main_logo.svg"}
-                alt="Stack Overflow logo"
-              ></img>
-            </Link>
-          </LogoContainer>
+          <LogoContainer />
+
           {isToken ? (
             <>
               <HeadBtnContainer>
@@ -607,44 +335,7 @@ const Header = () => {
                         <DropdownSubTitle>CURRENT COMMUNITY</DropdownSubTitle>
                         <DropdownSubContent>
                           <DropdownSubContainer>
-                            <svg
-                              cursor="pointer"
-                              aria-hidden="true"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 32 37"
-                              style={{
-                                marginRight: "10px",
-                                marginLeft: "10px",
-                              }}
-                            >
-                              <path
-                                d="M 26 33 v -9 h 4 v 13 H 0 V 24 h 4 v 9 h 22 Z"
-                                fill="#c2c3c4"
-                              />
-                              <path
-                                d="m 21.5 0 l -2.7 2 l 9.9 13.3 l 2.7 -2 L 21.5 0 Z M 26 18.4 L 13.3 7.8 l 2.1 -2.5 l 12.7 10.6 l -2.1 2.5 Z M 9.1 15.2 l 15 7 l 1.4 -3 l -15 -7 l -1.4 3 Z m 14 10.79 l 0.68 -2.95 l -16.1 -3.35 L 7 23 l 16.1 2.99 Z M 23 30 H 7 v -3 h 16 v 3 Z"
-                                fill="#F77F2B"
-                              />
-                            </svg>
-                            <div
-                              style={{ marginRight: "75px", fontWeight: "800" }}
-                              className="name"
-                            >
-                              Stack Overflow
-                            </div>
-                            <span
-                              style={{ marginLeft: "17px" }}
-                              className="discription loginout"
-                            >
-                              help
-                            </span>
-                            <span
-                              style={{ marginLeft: "17px" }}
-                              className="discription loginout"
-                            >
-                              chat
-                            </span>
+                            <DropDownSvg />
                             {/* <Link to="/"> */}
                             <div
                               className="discription loginout"
@@ -736,41 +427,7 @@ const Header = () => {
               </RightContainer>
             </>
           ) : (
-            <>
-              <HeadBtnContainer>
-                <button className="about_btn">About</button>
-              </HeadBtnContainer>
-              <HeadBtnContainer>
-                <button className="forTeams_btn">Products</button>
-              </HeadBtnContainer>
-              <HeadBtnContainer>
-                <button className="forTeams_btn">For Teams</button>
-              </HeadBtnContainer>
-              <SearchInput />
-              <LoginContainer className="LogSinb">
-                <Link to="/login">
-                  <LoginBtn
-                    width="59.45px"
-                    height="32px"
-                    fontSize="13px"
-                    fontWeight="400"
-                  >
-                    Log in
-                  </LoginBtn>
-                </Link>
-                <Link to="/signup">
-                  <SignupBtn
-                    to="signup"
-                    width="64.44px"
-                    height="33px"
-                    fontSize="13px"
-                    fontWeight="400"
-                  >
-                    Sign up
-                  </SignupBtn>
-                </Link>
-              </LoginContainer>
-            </>
+            <LogOutHeader />
           )}
         </HeaderTopbarContainer>
       </HeaderContinaer>

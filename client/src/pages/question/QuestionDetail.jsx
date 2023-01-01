@@ -7,7 +7,7 @@ import Footer from "../../components/common/Footer";
 import QuestionEditEtc from "../../components/questions/QuestionEditEtc";
 import QuestionVote from "../../components/questions/QuestionVote";
 import AnswerList from "../../components/answers/AnswerList";
-import { ButtonBlue } from "../../components/common/Header";
+import { ButtonBlue } from "../../components/common/Headers/HeaderSet";
 import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import { getQuestion } from "../../api/questionAPI";
@@ -160,7 +160,7 @@ const QuestionDetail = ({ createdAt }) => {
   const methods = useForm();
   const { id } = useParams();
   const [question, setQuestion] = useState();
-  const [userInfo, setUserInfo] = useState();
+  // const [userInfo, setUserInfo] = useState();
   useEffect(() => {
     async function selectQuestion() {
       const res = await getQuestion(id);

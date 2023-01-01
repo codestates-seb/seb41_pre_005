@@ -11,6 +11,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { postQuestion } from "../../api/questionAPI";
 import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
+import { Link, useNavigate } from "react-router-dom";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -41,7 +42,6 @@ const Main = styled.main`
 const Notice = styled.div`
   /* 임시로 지정 */
   max-height: 411px;
-
 `;
 const TitleContainer = styled.div`
   width: 85.1rem;
@@ -68,6 +68,7 @@ const AskQuestion = (props) => {
   const user = useSelector((state) => state.currentUser);
   const cookie = new Cookies();
   const Token = cookie.get("token");
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     /*     const tagNameList = data.tags.map((item) => item.tagName);
@@ -106,7 +107,9 @@ const AskQuestion = (props) => {
                 <AskQuestionForm />
                 <AskQuestionTags />
                 <ButtonContainer>
-                  <PostQuestionBtn></PostQuestionBtn>
+                  {/* <Link to="/"> */}
+                  <PostQuestionBtn />
+                  {/* </Link> */}
                 </ButtonContainer>
               </Main>
             </form>
