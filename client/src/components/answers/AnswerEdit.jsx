@@ -45,6 +45,7 @@ const UserInfo = styled(TimeInfo)`
   color: hsl(210, 8%, 45%);
 `;
 const AnswerEdit = ({ answer }) => {
+  console.log(answer);
   return (
     <QuestionBodyBtnsContainer>
       <FlexContainer>
@@ -56,7 +57,7 @@ const AnswerEdit = ({ answer }) => {
         <ElapsedTime createdAt={answer?.createdAt} />
       </TimeInfo>
       <UserInfo>
-        <Author author={answer?.author} />
+        <Author author={answer?.displayName} />
       </UserInfo>
     </QuestionBodyBtnsContainer>
   );
