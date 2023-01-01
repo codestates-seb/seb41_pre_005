@@ -39,12 +39,13 @@ const SummaryMeta = styled.div`
   row-gap: 0.8rem;
 `;
 const QuestionsItem = ({ question }) => {
+  console.log(question);
   return (
     <QuestionContainer>
       <QuestionStatistics
-        questionVote={question?.questionVote}
-        answerConunt={question?.answer?.length}
-        viewCount={question?.questionViewCount}
+        questionVote={question?.voteCount}
+        answerConunt={question?.answerList?.length}
+        viewCount={question?.viewCount}
       />
       <QuestionSummary>
         <QuestionTitle>

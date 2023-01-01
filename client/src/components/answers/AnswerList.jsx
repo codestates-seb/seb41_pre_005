@@ -13,16 +13,13 @@ const AnswerContainer = styled.div`
   border-bottom: 1px solid hsl(210, 8%, 90%);
   padding: 1.6rem 0;
 `;
-const AnswerList = () => {
-  const answers = useSelector((state) => state.questions.answerList);
-  useEffect(() => {}, []);
-
+const AnswerList = ({ answers }) => {
   return (
     <div>
       <AnswerHeader>{answers?.length} Answers</AnswerHeader>
       {answers?.map((item) => (
-        <AnswerContainer>
-          <AnswerItem answer={item} key={item.answerId} />
+        <AnswerContainer key={item.answerId}>
+          <AnswerItem answer={item} />
         </AnswerContainer>
       ))}
     </div>

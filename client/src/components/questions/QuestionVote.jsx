@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { downVote, upVote } from "../../api/questionAPI";
+import { Cookies } from "react-cookie";
 const QuestionVoteContainer = styled.div`
   width: 60px;
   height: 200px;
@@ -48,18 +49,42 @@ const SaveIcon = styled(SideIcon)`
 const ActivityIcon = styled(SideIcon)`
   margin: 8px 0;
 `;
-const QuestionVote = () => {
+const QuestionVote = ({ question }) => {
   //fill="#BBBFC3"
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  const [voteCount, setVoteCount] = useState();
+  const [isUpVote, setIsUpVote] = useState(false);
+  const [isDownVote, setIsDownVote] = useState(false);
+  const handleUpVote = () => {
+    if (isUpVote) return;
+    upVote(question?.questionId, userId, Token);
+    let updateVote = isDownVote ? question.voteCount : question.voteCount + 1;
+    setVoteCount(updateVote);
+    setIsUpVote(true);
+  };
+  const handleDownVote = () => {
+    if (isDownVote) return;
+    downVote(question?.questionId, userId, Token);
+    let updateVote = isUpVote ? question.voteCount : question.voteCount - 1;
+    setVoteCount(updateVote);
+    setIsDownVote(true);
+  };
+
+  console.log(question?.voteCount, voteCount);
   return (
     <>
       <QuestionVoteContainer>
-        <UpVoteBtn>
+        <UpVoteBtn onClick={handleUpVote}>
           <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36">
             <path d="M2 25h32L18 9 2 25Z" />
           </svg>
         </UpVoteBtn>
-        <VoteStat>{0}</VoteStat>
-        <DownVoteBtn>
+        <VoteStat>
+          {voteCount === 0 ? 0 : voteCount || question?.voteCount}
+        </VoteStat>
+        <DownVoteBtn onClick={handleDownVote}>
           <svg aria-hidden="true" width="36" height="36" viewBox="0 0 36 36">
             <path d="M2 11h32L18 27 2 11Z" />
           </svg>

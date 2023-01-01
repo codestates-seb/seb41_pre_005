@@ -55,3 +55,28 @@ export const sortQuestions = async (page, orderType) => {
   console.log(res);
   return res.data;
 };
+
+export const Search = (data) => {};
+
+export const upVote = async (questionId, userId, Token) => {
+  console.log(questionId, userId);
+  const res = await axios({
+    method: "post",
+    data: { data: 1 },
+    headers: { Authorization: `Bearer ${Token}` },
+    url: `${url}/questions/upVote/${questionId}?userId=${userId}`,
+  });
+  console.log(res);
+  return res;
+};
+export const downVote = async (questionId, userId, Token) => {
+  console.log(questionId, userId);
+  const res = await axios({
+    method: "post",
+    data: { data: 1 },
+    headers: { Authorization: `Bearer ${Token}` },
+    url: `${url}/questions/downVote/${questionId}?userId=${userId}`,
+  });
+  console.log(res);
+  return res;
+};
