@@ -9,33 +9,9 @@ export const login = async (data) => {
       method: "post",
       data,
       headers: { Authorization: null },
-      url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/login",
+      url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/users/login",
     });
-    console.log(res.headers["Authorization"]);
-    // console.log(Object.fromEntries(res.headers));
-    console.log(res);
 
-    // console.log(res.headers["Authorization"]);
-    // console.log(res.headers);
-    /*     const res2 = await fetch(
-      "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/login",
-      {
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: JSON.stringify(data),
-      }
-    )
-      .then((res) => {
-        console.log(res);
-        return res.json();
-      })
-      .catch((res) => console.log(res));
-    console.log(res2);
-    const myHeaders = new Headers(res2.headers);
-    console.log(myHeaders); */
     return res;
   } catch (e) {
     console.log(e);
