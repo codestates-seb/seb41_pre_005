@@ -73,11 +73,11 @@ const LoginForm = (props) => {
     if (res.status !== 200) {
       return setIsAuthorized(false);
     } else {
-      // navigate("/");
+      navigate("/");
     }
     const { userId } = res.data;
 
-    const token = res.headers?.Authorization.split(" ")[1];
+    const token = res.headers?.authorization.split(" ")[1];
     dispatch(getUser({ token, userId }));
     setCookie("token", token);
   };
