@@ -6,6 +6,8 @@ import com.group5.stackoverflowclone.domain.question.entity.Question;
 import com.group5.stackoverflowclone.domain.question.service.QuestionService;
 import com.group5.stackoverflowclone.domain.user.entity.User;
 import com.group5.stackoverflowclone.domain.user.service.UserService;
+import com.group5.stackoverflowclone.exception.BusinessLogicException;
+import com.group5.stackoverflowclone.exception.ExceptionCode;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -127,7 +129,7 @@ public class AnswerService {
 
     private Answer findVerifiedAnswer(long answerId) {
         Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
-        Answer foundAnswer = optionalAnswer.get();
+        Answer foundAnswer = optionalAnswer.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 
         return foundAnswer;
     }

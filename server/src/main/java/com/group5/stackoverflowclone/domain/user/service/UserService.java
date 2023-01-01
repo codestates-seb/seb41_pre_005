@@ -29,6 +29,7 @@ public class UserService {
 
     public User createUser(User user) {
         verifyExistsEmail(user.getEmail());
+        verifyExistsName(user.getDisplayName());
 
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
@@ -66,14 +67,14 @@ public class UserService {
 
     public void verifyUserByUserId(long questionUserId, long updateUserId) {
         if (questionUserId != updateUserId) {
-            throw new BusinessLogicException(ExceptionCode.WRONG_USER);
+            throw new BusinessLogicException(ExceptionCode.UNAUTHORIZED_USER);
         }
     }
 
 
     private User findVerifiedUserById(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
-        User foundUser = optionalUser.get();
+        User foundUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
 
         return foundUser;
     }
@@ -83,6 +84,14 @@ public class UserService {
 
         if (user.isPresent()) {
             throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
+        }
+    }
+
+    private void verifyExistsName(String displayName) {
+        Optional<User> user = userRepository.findByDisplayName(displayName);
+
+        if (user.isPresent()) {
+            throw new BusinessLogicException(ExceptionCode.DISPLAY_NAME_EXISTS);
         }
     }
 

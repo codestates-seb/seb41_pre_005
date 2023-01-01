@@ -31,10 +31,6 @@ function App() {
   //   return cookies.get(name);
   // };
   // const cookie = getCookie("token");
-
-  // const cookie = new Cookies();
-  // const Token = cookie.get("token");
-
   const [isToken, setIsToken] = useState(false);
   const cookie = new Cookies();
   useEffect(() => {
@@ -42,12 +38,11 @@ function App() {
     console.log(Token);
     setIsToken(true);
   }, []);
-
   return (
     <>
       <Header />
       {/* <LoginHeader /> */}
-      {/* {isToken ? <LoginHeader /> : <Header />} */}
+      {isToken ? <LoginHeader /> : <Header />}
       <PageLayout>
         <Routes>
           <Route path="/" element={<Home />} />

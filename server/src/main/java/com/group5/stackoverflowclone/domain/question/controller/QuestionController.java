@@ -11,6 +11,7 @@ import com.group5.stackoverflowclone.domain.user.service.UserService;
 import com.group5.stackoverflowclone.response.MultiResponseDto;
 import com.group5.stackoverflowclone.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,6 +61,14 @@ public class QuestionController {
         questionService.updateQuestionViewCount(question, question.getViewCount());
 
         return new ResponseEntity(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)), HttpStatus.OK);
+    }
+
+    //전체 질문 조회
+    @GetMapping("/questions/all")
+    public ResponseEntity getAllQuestions() {
+        List<Question> allQuestions = questionService.getAllQuestions();
+
+        return new ResponseEntity(new SingleResponseDto<>(mapper.questionsToQuestionResponseDtos(allQuestions)), HttpStatus.OK);
     }
 
 

@@ -16,7 +16,7 @@ const AnswerItem = ({ answer }) => {
     <FlexBox>
       <QuestionVote />
       <ContentBody>
-        <div>{answer?.contentbody}</div>
+        <div>{answer?.content}</div>
         <AnswerEdit answer={answer} />
       </ContentBody>
     </FlexBox>

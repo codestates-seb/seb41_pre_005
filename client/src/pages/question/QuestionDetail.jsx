@@ -20,6 +20,7 @@ import { getQuestion } from "../../api/questionAPI";
 import Parser from "html-react-parser";
 import Tags from "../../components/questions/Tags";
 import { getUser } from "../../api/userAPI";
+import AnswerForm from "../../components/answers/AnswerForm";
 
 const QuestDetailContainer = styled.div`
   /* height: 100vh; */
@@ -103,9 +104,6 @@ const AnswerEditorHeader = styled.h2`
   margin-bottom: 1.9rem;
   font-weight: 400;
   font-size: 1.9rem;
-`;
-const ButtonContainer = styled.div`
-  padding: 10px 0;
 `;
 
 const TimeContain = styled.div`
@@ -214,9 +212,6 @@ const QuestionDetail = ({ createdAt }) => {
     selectQuestion();
   }, [id]);
 
-  const onSubmit = async (data) => {
-    const res = await postAnswer(data);
-  };
   return (
     <>
       <QuestDetailContainer>
@@ -271,19 +266,7 @@ const QuestionDetail = ({ createdAt }) => {
                   </EditContain>
                   <AnswerList />
                   <AnswerEditorHeader>Your Answer</AnswerEditorHeader>
-                  <form onSubmit={methods.handleSubmit(onSubmit)}>
-                    <FormProvider {...methods}>
-                      <AskEditor
-                        label="answer"
-                        validation={{ required: "answer can not be empty" }}
-                      />
-                    </FormProvider>
-                    <ButtonContainer>
-                      <Button width="12rem" radius="3px">
-                        Post Your Answer
-                      </Button>
-                    </ButtonContainer>
-                  </form>
+                  <AnswerForm />
                 </QuestionContent>
                 <RightSideBarLayout />
               </Question>
