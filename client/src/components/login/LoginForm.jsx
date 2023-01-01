@@ -9,7 +9,7 @@ import AlertWarning from "../../components/login/AlertWarning";
 import { useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
 import { useDispatch } from "react-redux";
-import { getUser } from "../../redux/usersReducer";
+import { setUser } from "../../redux/usersReducer";
 import { useNavigate } from "react-router-dom";
 const InputContainer = styled.div`
   margin: 0.6rem 0;
@@ -78,7 +78,7 @@ const LoginForm = (props) => {
     const { userId } = res.data;
     localStorage.setItem("userId", JSON.stringify(userId));
     const token = res.headers?.authorization.split(" ")[1];
-    dispatch(getUser({ token, userId }));
+    dispatch(setUser({ token, userId }));
     setCookie("token", token);
   };
   return (
