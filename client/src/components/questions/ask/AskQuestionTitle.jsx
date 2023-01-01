@@ -31,7 +31,7 @@ const ValidContainer = styled.div`
   font-weight: 600;
   color: #d0393e;
 `;
-const AskQuestionTitle = () => {
+const AskQuestionTitle = ({ title }) => {
   const titleValidation = { required: "Title is required" };
   const {
     formState: { errors },
@@ -43,7 +43,12 @@ const AskQuestionTitle = () => {
         Be specific and imagine you’re asking a question to another person.
       </TextWord>
       <TagInputContainer>
-        <Input width="100%" fieldName="title" validation={titleValidation} />
+        <Input
+          defaultValue={title}
+          width="100%"
+          fieldName="title"
+          validation={titleValidation}
+        />
       </TagInputContainer>
       {errors?.title && (
         <ValidContainer>{errors?.title?.message}</ValidContainer>
