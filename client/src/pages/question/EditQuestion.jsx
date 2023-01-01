@@ -26,6 +26,13 @@ const AskPageLayout = styled.div`
     height: 100vh;
     content: "";
     background-color: #f8f9f9;
+
+    @media screen and (max-height: 1024px) {
+      height: 160%;
+    }
+    @media screen and (max-height: 660px) {
+      height: 220%;
+    }
   }
 `;
 const AskContainer = styled.div`
