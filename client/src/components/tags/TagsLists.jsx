@@ -5,7 +5,6 @@ import TagsItem from "./TagsItem";
 const TagsListsContainer = styled.div`
   width: 106.3rem;
   height: 100%;
-  margin-left: 2.4rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -131,7 +130,6 @@ export const tagList = [
     content:
       "A database is an organized collection of data. It is the collection of schemas, tables, queries, reports, views, and other objects. The data are typically organized to model aspects of reality in a way that supports processes requiring information. Use this tag if you have questions about designing a database. If it is about a particular database management system, (e.g., MySQL), please use that tag instead.",
   },
-  
 ];
 const TagsLists = () => {
   return (
