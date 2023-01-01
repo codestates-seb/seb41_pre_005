@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import SocialLogin from "../../components/login/SocialLogin";
 import LoginForm from "../../components/login/LoginForm";
 import LoginPageBottom from "../../components/login/LoginPageBottom";
+import { useSelector } from "react-redux";
 
 const LoginContainer = styled.div`
   position: relative;
@@ -31,17 +32,13 @@ const FormContainer = styled.div`
   border-radius: 1rem;
   background-color: white;
 `;
-
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const FindPassword = styled.span`
-  color: #0693ff;
-  line-height: 2rem;
-  font-size: 1rem;
-`;
 const Login = (props) => {
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  useEffect(() => {
+    if (userId) {
+      window.location.replace("/");
+    }
+  }, []);
   return (
     <LoginContainer>
       <SocialLogin />

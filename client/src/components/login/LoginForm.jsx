@@ -38,7 +38,6 @@ const ButtonContainer = styled.div`
   height: 100%;
 `;
 const LoginForm = (props) => {
-  const [cookie, setCookie] = useCookies(["token"]);
   const [isAuthorized, setIsAuthorized] = useState(true);
   const dispatch = useDispatch();
   const methods = useForm();
@@ -73,13 +72,12 @@ const LoginForm = (props) => {
     if (res.status !== 200) {
       return setIsAuthorized(false);
     } else {
+      const { userId } = res.data;
+      localStorage.setItem("userId", JSON.stringify(userId));
+      const token = res.headers?.authorization.split(" ")[1];
+      dispatch(setUser({ token, userId }));
       navigate("/");
     }
-    const { userId } = res.data;
-    localStorage.setItem("userId", JSON.stringify(userId));
-    const token = res.headers?.authorization.split(" ")[1];
-    dispatch(setUser({ token, userId }));
-    setCookie("token", token);
   };
   return (
     <FormProvider {...methods}>
