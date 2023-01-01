@@ -45,7 +45,6 @@ const UserInfo = styled(TimeInfo)`
   color: hsl(210, 8%, 45%);
 `;
 const AnswerEdit = ({ answer }) => {
-  console.log(answer);
   return (
     <QuestionBodyBtnsContainer>
       <FlexContainer>
