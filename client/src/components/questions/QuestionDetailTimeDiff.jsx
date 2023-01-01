@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+
 const UploadTime = styled.time`
   color: hsl(210, 8%, 45%);
   white-space: nowrap;

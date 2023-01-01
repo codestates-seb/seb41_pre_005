@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
-
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../../components/login/AlertWarning";
-
 import { useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/usersReducer";
 import { useNavigate } from "react-router-dom";
+
 const InputContainer = styled.div`
   margin: 0.6rem 0;
 `;
@@ -58,16 +57,6 @@ const LoginForm = (props) => {
   };
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
-    /*     try {
-      const res = await axios({
-        method: "post",
-        data,
-        url: "/users/login",
-      });
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    } */
     const res = await login(data);
 
     if (res.status !== 200) {

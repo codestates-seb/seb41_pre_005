@@ -6,17 +6,9 @@ const Layout = styled.div`
   right: 50%;
 `;
 const FooterContainer = styled.footer`
-  /* /* position: absolute; */
-  /* bottom: 10; */
-  /* transform: translateY(130%); */
   width: 200%;
   height: 322px;
   position: relative;
-
-  /* transform: translateY(-100%); */
-  /* background-color: #232627;
-  background-image: none;
-  background-position: top left; */
   background: #232627 none repeat top left;
   background-size: auto;
   display: flex;
@@ -237,19 +229,9 @@ const CopyrightInfoContainer = styled.p`
     width: 262px;
   }
 `;
-// const FooterContain = styled.div`
-//   margin-top: 13rem;
-//   height: 19.7rem;
-//   position: relative;
-// `;
-
-// const FooterLayout = ({children}) => {
-//   return <FooterContain>{children}</FooterContain>;
-// };
 
 const Footer = () => {
   return (
-    // <FooterLayout>
     <Layout>
       <FooterContainer>
         <FooterLogoAndSites>
@@ -341,7 +323,6 @@ const Footer = () => {
         </CopyrightFooterContainer>
       </FooterContainer>
     </Layout>
-    // </FooterLayout>
   );
 };
 

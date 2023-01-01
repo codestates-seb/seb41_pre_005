@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-// import AskQuestionButton from "../../components/questions/AskQuestionButton";
 import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
 import AskQuestionForm from "../../components/questions/ask/AskQuestionForm";
 import AskQuestionTags from "../../components/questions/ask/AskQuestionTags";
@@ -46,7 +45,6 @@ const Main = styled.main`
   margin-bottom: 4.8rem;
 `;
 const Notice = styled.div`
-  /* 임시로 지정 */
   max-height: 411px;
 `;
 const TitleContainer = styled.div`

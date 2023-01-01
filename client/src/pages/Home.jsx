@@ -12,8 +12,6 @@ import { useDispatch } from "react-redux";
 import { storeQuestions } from "../redux/questionsReducer";
 
 const HomeContainer = styled.div`
-  /* height: 100vh;
-  width: 100%; */
   height: auto;
   min-height: 100%;
 `;
@@ -52,7 +50,6 @@ const Home = () => {
                 <HomeHeadLine />
               </HomeHeadContainer>
               <HomeFilter></HomeFilter>
-
               <QuestionsList />
             </MainContentLayout>
             <RightSideBarLayout />

@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { sortQuestions } from "../../api/questionAPI";
 import { storeQuestions } from "../../redux/questionsReducer";
+
 const DataController = styled.div``;
 const NavContainer = styled.div`
   display: flex;

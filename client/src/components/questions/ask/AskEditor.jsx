@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import styled from "styled-components";
 import { useFormContext } from "react-hook-form";
+
 const EditorContainer = styled.div`
   min-height: 260px;
 `;
