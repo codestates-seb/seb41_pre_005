@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLocation } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 const PaginationContainer = styled.div`
   margin: 2rem 0;
@@ -39,8 +39,8 @@ const CustomNavLink = styled(NavLink)`
 `;
 const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
 const Pagination = (props) => {
-  const goToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const GoToTop = () => {
+    window.scrollTo({ top:0, behavior:'instant' });
   };
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([1, 2, 3, 4, 5]);
@@ -58,7 +58,7 @@ const Pagination = (props) => {
     <PaginationContainer>
       {pageInfo?.page >= 4 ? (
         <>
-          <CustomNavLink to={`/questions?page=1`} onClick={goToTop}>
+          <CustomNavLink to={`/questions?page=1`} onClick={GoToTop}>
             1
           </CustomNavLink>
           <span>...</span>
@@ -69,7 +69,7 @@ const Pagination = (props) => {
           to={`/questions?page=${item}`}
           key={item}
           className={({ isActive }) => (isActive ? "selected" : null)}
-          onClick={goToTop}
+          onClick={GoToTop}
         >
           {item}
         </CustomNavLink>

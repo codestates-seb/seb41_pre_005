@@ -131,7 +131,6 @@ const HeadTitle = styled.div`
 const HeadBtnBox = styled.div`
   width: 10.302rem;
   height: 7.289rem;
-
   margin-left: 3rem;
 `;
 const SmallTextBox = styled.div`
@@ -140,7 +139,6 @@ const SmallTextBox = styled.div`
   padding-bottom: 0.8rem;
   display: flex;
   flex-direction: row;
-
   .smallText {
     font-size: 1.3rem;
     margin-right: 2rem;
@@ -259,9 +257,6 @@ const QuestionDetail = ({ createdAt }) => {
         </BodyContainer>
       </QuestDetailContainer>
       <Footer />
-
-      {/* <FooterLayout>
-      </FooterLayout> */}
     </>
   );
 };

@@ -95,15 +95,6 @@ const AskQuestionTags = ({ tagList }) => {
           to see suggestions.
         </Description>
       </LabelContainer>
-      {/*       <TagInputContainer>
-        <Tags tags={tags} />
-        <Input
-          handleKeyup={keyUpHandler}
-          width="100%"
-          id="tags"
-          placeholder="Press Enter to add tags"
-        />
-      </TagInputContainer> */}
       <TagEditor className={focused ? "inputFocused" : null}>
         <TagContainer>
           <AskTags tags={tags} handleDelete={deleteTag} />

@@ -8,12 +8,26 @@ import { Provider } from "react-redux";
 import store from "./redux/store.js";
 import { CookiesProvider } from "react-cookie";
 
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top:0, behavior:'instant' })
+  }, [pathname]);
+
+  return null;
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
         <CookiesProvider>
+          <ScrollToTop />
           <App />
         </CookiesProvider>
       </Provider>
