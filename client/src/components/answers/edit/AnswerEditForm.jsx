@@ -1,26 +1,26 @@
 import { FormProvider, useForm } from "react-hook-form";
 import React from "react";
 import styled from "styled-components";
-import AskEditor from "../../components/questions/ask/AskEditor";
-import Button from "../../components/common/Button";
-import { postAnswer } from "../../api/answerAPI";
-import { useSelector } from "react-redux";
-import { Cookies } from "react-cookie";
+import AskEditor from "../../../components/questions/ask/AskEditor";
+import Button from "../../../components/common/Button";
+import { editAnswer } from "../../../api/answerAPI";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 const ButtonContainer = styled.div`
   padding: 10px 0;
 `;
-const AnswerForm = (props) => {
+const AnswerEditForm = ({ answerContent, answerId }) => {
   const methods = useForm();
-  const cookie = new Cookies();
-  const Token = cookie.get("token");
-  const id = useParams();
-  const webStorageUserId = JSON.parse(localStorage.getItem("userId"));
-
+  const { questionId, userId, Token } = useSelector(
+    (state) => state.currentUser
+  );
   const onSubmit = async (data) => {
-    const res = await postAnswer(data, Token, id, webStorageUserId);
-    if (res.status === 201) {
-      window.location.replace(`/questions/${id.id}`);
+    const res = await editAnswer(data, Token, questionId, userId, answerId);
+    console.log(res);
+    if (res.status === 200) {
+      window.location.replace(`/questions/${questionId}`);
+    } else {
+      alert("fail to edit");
     }
   };
   return (
@@ -29,6 +29,7 @@ const AnswerForm = (props) => {
         <AskEditor
           label="answer"
           validation={{ required: "answer can not be empty" }}
+          defaultValue={answerContent}
         />
       </FormProvider>
       <ButtonContainer>
@@ -40,4 +41,4 @@ const AnswerForm = (props) => {
   );
 };
 
-export default AnswerForm;
+export default AnswerEditForm;
