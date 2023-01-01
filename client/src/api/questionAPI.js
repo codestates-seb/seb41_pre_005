@@ -82,7 +82,15 @@ export const sortQuestions = async (page, orderType) => {
   console.log(res);
   return res.data;
 };
-
+export const deleteQuestion = async (questionId, Token) => {
+  const res = await axios({
+    method: "delete",
+    url: `${url}/questions/${questionId}`,
+    headers: { Authorization: `Bearer ${Token}` },
+  });
+  console.log(res);
+  return res;
+};
 export const Search = (data) => {};
 
 export const questionUpVote = async (questionId, userId, Token) => {
