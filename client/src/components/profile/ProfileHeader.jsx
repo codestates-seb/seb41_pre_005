@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../api/userAPI";
+import { Cookies } from "react-cookie";
 
 const ProfileHead = styled.div`
   width: 106.7rem;
@@ -67,8 +68,7 @@ const UploadTime = styled.time`
   white-space: nowrap;
   font-size: 1.3rem;
 `;
-const Cake = styled.img`
-`;
+const Cake = styled.img``;
 
 const HeaderLineTime = ({ createdAt }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -107,11 +107,13 @@ const HeaderLineTime = ({ createdAt }) => {
 };
 
 const ProfileHeader = () => {
-  const { id } = useParams();
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+  const userId = JSON.parse(localStorage.getItem("userId"));
   const [userInfo, setUserInfo] = useState();
   useEffect(() => {
     async function getUserInfo() {
-      const res = await getUser(id);
+      const res = await getUser(Token, userId);
       setUserInfo(res);
     }
     getUserInfo();
@@ -125,7 +127,7 @@ const ProfileHeader = () => {
         <Cake src={process.env.PUBLIC_URL + "/images/profile/cake.svg"}></Cake>
         <MemberPeriod>
           Member for
-          <HeaderLineTime>{userInfo?.createdAt}</HeaderLineTime>
+          <HeaderLineTime createdAt={userInfo?.createdAt}></HeaderLineTime>
         </MemberPeriod>
       </ProfileCreatedAt>
       <ProfileBtnContainer>

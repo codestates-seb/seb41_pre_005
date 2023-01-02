@@ -10,7 +10,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { postQuestion } from "../../api/questionAPI";
 import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const AskPageLayout = styled.div`
   width: 851px;
   height: 100%;
@@ -75,28 +75,10 @@ const AskQuestion = (props) => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    /*     const tagNameList = data.tags.map((item) => item.tagName);
-
-    const formData = {
-      content: data.content,
-      title: data.title,
-      tagNameList,
-    };
-    try {
-      const response = await axios({
-        method: "post",
-        url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/questions/ask",
-        data: formData,
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    } */
-
     const res = await postQuestion(data, Token, userId);
     console.log(res);
     if (res?.status !== 201) {
-      alert("fail to post question");
+      // alert("fail to post question");
     } else {
       navigate(`/questions/${res?.data?.data?.questionId}`);
     }
@@ -117,7 +99,9 @@ const AskQuestion = (props) => {
                 <AskQuestionForm />
                 <AskQuestionTags />
                 <ButtonContainer>
-                  <PostQuestionBtn></PostQuestionBtn>
+                  {/* <Link to="/"> */}
+                  <PostQuestionBtn />
+                  {/* </Link> */}
                 </ButtonContainer>
               </Main>
             </form>

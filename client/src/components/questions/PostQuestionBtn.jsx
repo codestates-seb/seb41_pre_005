@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonBlue } from "../../components/common/Header";
+import { ButtonBlue } from "../common/Headers/HeaderBtn";
 
 const BtnContainer = styled.div``;
 const PostBtn = styled(ButtonBlue)``;
