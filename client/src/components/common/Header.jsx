@@ -503,7 +503,8 @@ const Header = () => {
               <HeadBtnContainer>
                 <button className="forTeams_btn">Products</button>
               </HeadBtnContainer>
-              <HeaderSearchbar></HeaderSearchbar>
+              {/* <HeaderSearchbar></HeaderSearchbar> */}
+              <SearchInput />
               <RightContainer>
                 <ProfileImgContain>
                   <Link to="/users/:id">
