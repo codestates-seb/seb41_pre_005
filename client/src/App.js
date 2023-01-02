@@ -42,13 +42,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/questions/:id" element={<QuestionDetail />} />
           <Route path="/questions/ask" element={<AskQuestion />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/users/:id" element={<Profile />} />
           <Route path="/tags" element={<Tags />} />
           <Route path="/questions/edit" element={<EditQuestion />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </PageLayout>
     </>

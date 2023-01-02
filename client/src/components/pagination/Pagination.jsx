@@ -17,7 +17,7 @@ const CustomNavLink = styled(NavLink)`
   font-size: 13px;
   line-height: calc((13+12) / 12);
   padding: 0 8px;
-  .selected {
+  &.selected {
     background-color: rgb(244, 130, 37);
     color: white;
     border: 1px solid transparent;
@@ -40,7 +40,7 @@ const CustomNavLink = styled(NavLink)`
 const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
 const Pagination = (props) => {
   const GoToTop = () => {
-    window.scrollTo({ top:0, behavior:'instant' });
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([1, 2, 3, 4, 5]);
@@ -68,7 +68,7 @@ const Pagination = (props) => {
         <CustomNavLink
           to={`/questions?page=${item}`}
           key={item}
-          className={({ isActive }) => (isActive ? "selected" : null)}
+          className={pageInfo?.page === item ? "selected" : null}
           onClick={GoToTop}
         >
           {item}
