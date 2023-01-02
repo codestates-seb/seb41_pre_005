@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 
-function SiginUpModal({ open, setModal, message, title, callback }) {
+function ModalComponet({ open, setModal, message, title, callback }) {
   const handleClose = () => {
     setModal({ open: false });
     if (callback) {
@@ -20,4 +20,4 @@ function SiginUpModal({ open, setModal, message, title, callback }) {
   );
 }
 
-export default SiginUpModal;
+export default ModalComponet;
