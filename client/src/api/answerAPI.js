@@ -2,12 +2,10 @@ import axios from "axios";
 const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
 export const postAnswer = async (data, token, questionId, userId) => {
   const endpoint = "/answer";
-  console.log(questionId);
   const formData = {
     userId,
     content: data.answer,
   };
-  console.log(formData);
   try {
     const response = await axios({
       method: "post",
@@ -15,7 +13,6 @@ export const postAnswer = async (data, token, questionId, userId) => {
       data: formData,
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -34,7 +31,6 @@ export const editAnswer = async (data, token, questionId, userId, answerId) => {
       data: formData,
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -46,7 +42,6 @@ export const deleteAnswer = async (questionId, answerId, Token, userId) => {
     url: `${url}/questions/${questionId}/${answerId}?userId=${userId}`,
     headers: { Authorization: `Bearer ${Token}` },
   });
-  console.log(res);
   return res;
 };
 export const answerUpVote = async (questionId, userId, answerId, Token) => {
@@ -56,7 +51,6 @@ export const answerUpVote = async (questionId, userId, answerId, Token) => {
     headers: { Authorization: `Bearer ${Token}` },
     url: `${url}/questions/upVote/${questionId}/${answerId}?userId=${userId}`,
   });
-  console.log(res);
   return res;
 };
 export const answerDownVote = async (questionId, userId, answerId, Token) => {
@@ -66,6 +60,5 @@ export const answerDownVote = async (questionId, userId, answerId, Token) => {
     headers: { Authorization: `Bearer ${Token}` },
     url: `${url}/questions/downVote/${questionId}/${answerId}?userId=${userId}`,
   });
-  console.log(res);
   return res;
 };

@@ -9,8 +9,7 @@ import Footer from "../components/common/Footer";
 import { SearchResultsHeadLine } from "../components/common/HeadLine";
 import { useLocation } from "react-router-dom";
 import { SearchQuestion } from "../api/questionAPI";
-import { useDispatch } from "react-redux";
-import { storeQuestions } from "../redux/questionsReducer";
+
 import SearchList from "../components/search/SearchList";
 
 const SearchResults = (props) => {
@@ -37,7 +36,7 @@ const SearchResults = (props) => {
             <QuestionsHeadLayout>
               <SearchResultsHeadLine />
             </QuestionsHeadLayout>
-            <SearchNav />
+            <SearchNav questionCount={questions?.length} />
             <SearchList questions={questions} />
           </MainContentLayout>
         </ContentLayout>

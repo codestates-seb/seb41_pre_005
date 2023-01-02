@@ -7,7 +7,7 @@ import QuestionStatistics from "./QuestionStatistics";
 import Tags from "./Tags";
 
 const QuestionContainer = styled.div`
-  height: 15.9rem;
+  height: 100%;
   display: flex;
   padding: 1.6rem;
   font-size: 1.3rem;

@@ -4,7 +4,6 @@ export const postQuestion = async (data, token, userId) => {
   if (!token || !userId) {
     return alert("post after login");
   }
-  console.log(data, token, userId);
   const endpoint = `${url}/questions/ask`;
   const tagNameList = data.tags.map((item) => item.tagName);
   const formData = {
@@ -79,7 +78,7 @@ export const sortQuestions = async (page, orderType) => {
     method: "get",
     url: `${url}/questions${page}&sort=${orderType}`,
   });
-  console.log(res);
+
   return res.data;
 };
 export const deleteQuestion = async (questionId, Token) => {
@@ -88,7 +87,7 @@ export const deleteQuestion = async (questionId, Token) => {
     url: `${url}/questions/${questionId}`,
     headers: { Authorization: `Bearer ${Token}` },
   });
-  console.log(res);
+
   return res;
 };
 export const SearchQuestion = async (data) => {
@@ -114,7 +113,7 @@ export const questionUpVote = async (questionId, userId, Token) => {
     headers: { Authorization: `Bearer ${Token}` },
     url: `${url}/questions/upVote/${questionId}?userId=${userId}`,
   });
-  console.log(res);
+
   return res;
 };
 export const questionDownVote = async (questionId, userId, Token) => {
@@ -124,6 +123,6 @@ export const questionDownVote = async (questionId, userId, Token) => {
     headers: { Authorization: `Bearer ${Token}` },
     url: `${url}/questions/downVote/${questionId}?userId=${userId}`,
   });
-  console.log(res);
+
   return res;
 };
