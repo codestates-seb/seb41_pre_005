@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const SearchbarContainer = styled.div`
@@ -46,15 +47,25 @@ const HeaderSearchbarInput = styled(SearchbarInput)`
 `;
 const HeaderSearchIcon = styled(SearchIcon)``;
 const SearchInputSvg = styled.img``;
-
+const Form = styled.form`
+  width: 100%;
+`;
 const SearchInput = () => {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    console.log(data);
+    navigate("/search", { state: data });
+  };
   return (
     <HeaderSearchbarContainer id="search">
-      <HeaderSearchbarInput
-        type="text"
-        placeholder="Search..."
-      ></HeaderSearchbarInput>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <HeaderSearchbarInput
+          {...register("search")}
+          type="text"
+          placeholder="Search..."
+        ></HeaderSearchbarInput>
+      </Form>
       <HeaderSearchIcon>
         <SearchInputSvg
           src={process.env.PUBLIC_URL + "/images/searchInput.svg"}

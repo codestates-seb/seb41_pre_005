@@ -91,7 +91,21 @@ export const deleteQuestion = async (questionId, Token) => {
   console.log(res);
   return res;
 };
-export const Search = (data) => {};
+export const SearchQuestion = async (data) => {
+  const res = await axios({
+    method: "get",
+    url: `${url}/questions/all`,
+  });
+  const questionArray = res.data.data;
+  const searchedQuestions = questionArray.filter((item) => {
+    if (item.title.search(data) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return searchedQuestions;
+};
 
 export const questionUpVote = async (questionId, userId, Token) => {
   const res = await axios({

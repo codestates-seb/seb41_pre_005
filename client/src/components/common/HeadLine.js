@@ -68,7 +68,6 @@ const AskQuestionWord = styled.div`
 `;
 const SearchResultsHead = styled.div`
   margin-top: 3rem;
-  margin-left: 15rem;
   display: flex;
   flex-direction: column;
 `;

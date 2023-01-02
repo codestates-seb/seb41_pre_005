@@ -59,11 +59,12 @@ const QuestionContent = styled.div`
 `;
 const Content = styled.div`
   max-width: 650px;
+
   /* border: 1px solid black; */
   word-break: break-all;
   .ql-syntax {
-    background-color: #23241f;
-    color: #f8f8f2;
+    background-color: rgb(246, 246, 246);
+    color: rgb(47, 51, 55);
     border-radius: 3px;
     padding: 5px;
     margin: 0 10px;
@@ -225,7 +226,7 @@ const QuestionDetail = ({ createdAt }) => {
                   <Content>{Parser(question?.content || "")}</Content>
 
                   <TagsContain>
-                    <Tags tags={question?.tagList} />
+                    <Tags marginLeft="0" tags={question?.tagList} />
                   </TagsContain>
                   <EditContain>
                     <QuestionEditEtc

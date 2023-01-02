@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import QuestionsItem from "./QuestionsItem";
+import QuestionsItem from "../questions/QuestionsItem";
 import Pagination from "../pagination/Pagination";
 import { getQuestions } from "../../api/questionAPI";
 import { useLocation } from "react-router-dom";
@@ -14,24 +14,7 @@ const Main = styled.div`
   border-bottom: 1px solid hsl(210, 8%, 90%);
 `;
 
-const QuestionsList = (props) => {
-  const questions = useSelector((state) => state.questions.data);
-  console.log(questions);
-  const dispatch = useDispatch();
-  const location = useLocation();
-  let query = location.search;
-  useEffect(() => {
-    async function paginationQuestions() {
-      if (location.pathname === "/") return;
-      if (query.trim() === "") {
-        query = "?page=1";
-      }
-      const questions = await getQuestions(query);
-      dispatch(storeQuestions(questions));
-    }
-    paginationQuestions();
-  }, [query]);
-
+const SearchList = ({ questions }) => {
   return (
     <Main>
       {questions?.map((item) => (
@@ -42,4 +25,4 @@ const QuestionsList = (props) => {
   );
 };
 
-export default QuestionsList;
+export default SearchList;

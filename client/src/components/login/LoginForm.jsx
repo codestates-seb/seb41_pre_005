@@ -4,7 +4,7 @@ import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../../components/login/AlertWarning";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/usersReducer";
@@ -38,11 +38,11 @@ const ButtonContainer = styled.div`
   height: 100%;
 `;
 const LoginForm = (props) => {
-  const [cookie, setCookie] = useCookies(["token"]);
   const [isAuthorized, setIsAuthorized] = useState(true);
   const dispatch = useDispatch();
   const methods = useForm();
   const navigate = useNavigate();
+  const cookie = new Cookies();
   const pass =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
   const [modal, setModal] = useState({
@@ -80,14 +80,13 @@ const LoginForm = (props) => {
       // alert("이메일과 비밀번호를 다시 확인해 주세요.");
       return setIsAuthorized(false);
     } else {
+      const { userId } = res.data;
+      localStorage.setItem("userId", JSON.stringify(userId));
+      const token = res.headers?.authorization.split(" ")[1];
+      dispatch(setUser({ token, userId }));
+      cookie.set("token", token);
       navigate("/");
     }
-
-    const { userId } = res.data;
-    localStorage.setItem("userId", JSON.stringify(userId));
-    const token = res.headers?.authorization.split(" ")[1];
-    dispatch(setUser({ token, userId }));
-    setCookie("token", token);
   };
   return (
     <FormProvider {...methods}>
