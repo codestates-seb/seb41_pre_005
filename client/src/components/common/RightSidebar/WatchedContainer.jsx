@@ -4,6 +4,8 @@ import Input from "../Input";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../Button";
 import { tagList } from "../../tags/TagsLists";
+import { useDispatch, useSelector } from "react-redux";
+import { storeQuestions } from "../../../redux/questionsReducer";
 
 const MagnifyingGlass = styled.img``;
 const Eye = styled.img``;
@@ -94,29 +96,34 @@ const AddBtnContainer = styled.div`
 const Check = styled.div`
   background-color: #fff7bb;
 `;
+const Form = styled.form`
+  display: flex;
+`;
 
 const WatchedContainer = () => {
   const [tag, setTag] = useState(false);
   const handleClicktag = () => {
     setTag(!tag);
-    console.log(tag);
   };
   const methods = useForm();
-
-  const emphasisTag = (data) => {
-    /*taglist 받아 온다
-    data로 받아온 태그가 있으면 표시해준다
-    없으면 null
-  */
-    const tagLists = { tagList };
-    const sameTag = tagLists.tagName === data;
-    {
-    }
-    return <Check>{sameTag}</Check>;
-  };
-
+  const questions = useSelector((state) => state.questions);
+  const dispatch = useDispatch();
   const onSubmit = (data) => {
-    console.log(data);
+    const tagedQuestions = questions.data.map((item) => {
+      const tagNameList = item.tagList?.map((tag) => tag.tagName);
+      if (tagNameList?.indexOf(data.tagName) >= 0) {
+        return { ...item, isWatched: true };
+      } else {
+        return item;
+      }
+    });
+
+    const newQuestions = {
+      pageInfo: { ...questions.pageInfo },
+      data: tagedQuestions,
+    };
+    console.log(newQuestions);
+    dispatch(storeQuestions(newQuestions));
   };
   return (
     <>
@@ -125,14 +132,14 @@ const WatchedContainer = () => {
           <SidebarName>Watched Tags</SidebarName>
           <FormProvider {...methods}>
             <FeatContainer>
-              <Input id="tag" fieldName="tagName" width={"222px"} />
-              <form onSubmit={methods.handleSubmit(onSubmit)}>
+              <Form onSubmit={methods.handleSubmit(onSubmit)}>
+                <Input id="tag" fieldName="tagName" width={"222px"} />
                 <AddBtnContainer>
                   <Button width={"47px"} height={"21px"}>
                     Add
                   </Button>
                 </AddBtnContainer>
-              </form>
+              </Form>
             </FeatContainer>
           </FormProvider>
         </WatchTag>

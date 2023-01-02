@@ -16,7 +16,6 @@ const Main = styled.div`
 
 const QuestionsList = (props) => {
   const questions = useSelector((state) => state.questions.data);
-  console.log(questions);
   const dispatch = useDispatch();
   const location = useLocation();
   let query = location.search;
