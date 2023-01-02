@@ -180,7 +180,6 @@ const QuestionDetail = ({ createdAt }) => {
   const handleEditOn = () => {
     navigate("/questions/edit", { state: question });
   };
-  console.log(question);
   return (
     <>
       <QuestDetailContainer>

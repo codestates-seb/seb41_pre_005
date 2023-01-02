@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { sortQuestions } from "../../api/questionAPI";
@@ -50,6 +50,7 @@ const SortedByVote = styled(SortedByNewest)`
 `;
 const QuestionNav = ({ questionCount }) => {
   const [selected, setSelected] = useState("newest");
+  const questions = useSelector((state) => state.questions.data);
   const dispatch = useDispatch();
   const location = useLocation();
   let query = location.search;
@@ -81,7 +82,7 @@ const QuestionNav = ({ questionCount }) => {
   return (
     <DataController>
       <NavContainer>
-        <QuestionCount>{questionCount || 328} questions</QuestionCount>
+        <QuestionCount>{questions?.length || 328} questions</QuestionCount>
         <NavBar onClick={handleClick}>
           <SortedByNewest
             id="newest"
