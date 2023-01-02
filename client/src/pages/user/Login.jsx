@@ -4,6 +4,7 @@ import SocialLogin from "../../components/login/SocialLogin";
 import LoginForm from "../../components/login/LoginForm";
 import LoginPageBottom from "../../components/login/LoginPageBottom";
 import { useSelector } from "react-redux";
+import { Cookies } from "react-cookie";
 
 const LoginContainer = styled.div`
   position: relative;
@@ -33,8 +34,11 @@ const FormContainer = styled.div`
 `;
 const Login = (props) => {
   const userId = JSON.parse(localStorage.getItem("userId"));
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+
   useEffect(() => {
-    if (userId) {
+    if (userId && Token) {
       window.location.replace("/");
     }
   }, []);
