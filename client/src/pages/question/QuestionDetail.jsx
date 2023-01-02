@@ -225,7 +225,7 @@ const QuestionDetail = ({ createdAt }) => {
                   <Content>{Parser(question?.content || "")}</Content>
 
                   <TagsContain>
-                    <Tags tags={question?.tagList} />
+                    <Tags marginLeft="0" tags={question?.tagList} />
                   </TagsContain>
                   <EditContain>
                     <QuestionEditEtc
