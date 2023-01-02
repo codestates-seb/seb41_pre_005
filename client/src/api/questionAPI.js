@@ -1,9 +1,10 @@
 import axios from "axios";
 const url = "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090";
 export const postQuestion = async (data, token, userId) => {
-  if (!token) {
+  if (!token || !userId) {
     return alert("post after login");
   }
+  console.log(data, token, userId);
   const endpoint = `${url}/questions/ask`;
   const tagNameList = data.tags.map((item) => item.tagName);
   const formData = {
@@ -25,10 +26,36 @@ export const postQuestion = async (data, token, userId) => {
   }
 };
 
+export const editQuestion = async (data, token, questionId, userId) => {
+  if (!token || !userId) {
+    return alert("post after login");
+  }
+  const endpoint = `${url}/questions/${questionId}/edit`;
+  const tagNameList = data.tagList.map((item) => item.tagName);
+  const formData = {
+    userId,
+    content: data.content,
+    title: data.title,
+    tagNameList,
+  };
+  try {
+    const response = await axios({
+      method: "patch",
+      url: endpoint,
+      data: formData,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getQuestions = async (page = "?page=1") => {
   const res = await axios({
     method: "get",
-    url: `${url}/questions${page}&sort=`,
+    url: `${url}/questions${page}&sort=createdAt`,
   });
   return res.data;
 };
@@ -55,11 +82,32 @@ export const sortQuestions = async (page, orderType) => {
   console.log(res);
   return res.data;
 };
-
-export const Search = (data) => {};
+export const deleteQuestion = async (questionId, Token) => {
+  const res = await axios({
+    method: "delete",
+    url: `${url}/questions/${questionId}`,
+    headers: { Authorization: `Bearer ${Token}` },
+  });
+  console.log(res);
+  return res;
+};
+export const SearchQuestion = async (data) => {
+  const res = await axios({
+    method: "get",
+    url: `${url}/questions/all`,
+  });
+  const questionArray = res.data.data;
+  const searchedQuestions = questionArray.filter((item) => {
+    if (item.title.search(data) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return searchedQuestions;
+};
 
 export const questionUpVote = async (questionId, userId, Token) => {
-  console.log(questionId, userId);
   const res = await axios({
     method: "post",
     data: { data: 1 },
@@ -70,7 +118,6 @@ export const questionUpVote = async (questionId, userId, Token) => {
   return res;
 };
 export const questionDownVote = async (questionId, userId, Token) => {
-  console.log(questionId, userId);
   const res = await axios({
     method: "post",
     data: { data: 1 },

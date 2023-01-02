@@ -7,7 +7,7 @@ body {
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
-  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
@@ -22,6 +22,7 @@ body {
 ul,
 ol {
   list-style: none;
+  padding-left: 0 !important;
 }
 button,
 input,
@@ -56,4 +57,7 @@ a {
   border: 1px solid #38a9f0;
   box-shadow: 0px 0px 0px 4px hsla(206, 100%, 40%, 0.15);
   outline: 0;
+}
+pre {
+  white-space: normal !important;
 }

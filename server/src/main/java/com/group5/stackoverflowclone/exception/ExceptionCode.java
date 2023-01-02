@@ -10,7 +10,10 @@ public enum ExceptionCode {
     QUESTION_NOT_FOUND(404, "Question not found"),
     ANSWER_NOT_FOUND(404, "Answer not found"),
 
-    UNAUTHORIZED_USER(403, "not authorized user");
+    UNAUTHORIZED_USER(403, "not authorized user"),
+
+    ALREADY_UP_VOTED(409, "already upVoted"),
+    ALREADY_DOWN_VOTED(409, "already downVoted");
 
 
     @Getter

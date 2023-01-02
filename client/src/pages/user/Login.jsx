@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import SocialLogin from "../../components/login/SocialLogin";
 import LoginForm from "../../components/login/LoginForm";
 import LoginPageBottom from "../../components/login/LoginPageBottom";
+import { useSelector } from "react-redux";
+import { Cookies } from "react-cookie";
 
 const LoginContainer = styled.div`
   position: relative;
@@ -22,7 +24,6 @@ const LoginContainer = styled.div`
     content: "";
     background-color: #f1f2f3;
   }
-  /* background-color: #f1f2f3; */
 `;
 const FormContainer = styled.div`
   width: 27.8rem;
@@ -31,17 +32,16 @@ const FormContainer = styled.div`
   border-radius: 1rem;
   background-color: white;
 `;
-
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const FindPassword = styled.span`
-  color: #0693ff;
-  line-height: 2rem;
-  font-size: 1rem;
-`;
 const Login = (props) => {
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+
+  useEffect(() => {
+    if (userId && Token) {
+      window.location.replace("/");
+    }
+  }, []);
   return (
     <LoginContainer>
       <SocialLogin />

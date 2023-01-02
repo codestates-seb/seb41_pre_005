@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
-
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../../components/login/AlertWarning";
-
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
 import { useDispatch } from "react-redux";
-import { getUser } from "../../redux/usersReducer";
+import { setUser } from "../../redux/usersReducer";
 import { useNavigate } from "react-router-dom";
+import ModalComponet from "../common/Modal";
+
 const InputContainer = styled.div`
   margin: 0.6rem 0;
 `;
@@ -38,52 +38,65 @@ const ButtonContainer = styled.div`
   height: 100%;
 `;
 const LoginForm = (props) => {
-  const [cookie, setCookie] = useCookies(["token"]);
   const [isAuthorized, setIsAuthorized] = useState(true);
   const dispatch = useDispatch();
   const methods = useForm();
   const navigate = useNavigate();
+  const cookie = new Cookies();
+  const pass =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+  const [modal, setModal] = useState({
+    open: false,
+    title: "",
+    message: "",
+    callback: false,
+  });
   const {
     formState: { errors },
   } = useForm();
   const emailValidation = {
-    required: "email is required",
+    required: "입력해 주세요.",
+    pattern: {
+      value: /\S+@\S+\.\S+/,
+      message: "이메일 형식에 맞지 않습니다.",
+    },
   };
   const passwordValidation = {
-    required: "password is required",
-    minLength: {
-      value: 8,
-      message: "password should be at least 8 characters",
+    required: "입력해 주세요.",
+    pattern: {
+      value: pass,
+      message: "8자리이상, 숫자,문자,특수문자가 들어가야됩니다.",
     },
   };
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
-    /*     try {
-      const res = await axios({
-        method: "post",
-        data,
-        url: "/users/login",
-      });
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    } */
     const res = await login(data);
-
-    if (res.status !== 200) {
+    if (res?.status !== 200) {
+      setModal({
+        open: true,
+        title: "로그인을 실패했습니다.",
+        message: `이메일과 비밀번호를 다시 확인해주세요.`,
+      });
+      // alert("이메일과 비밀번호를 다시 확인해 주세요.");
       return setIsAuthorized(false);
     } else {
+      const { userId } = res.data;
+      localStorage.setItem("userId", JSON.stringify(userId));
+      const token = res.headers?.authorization.split(" ")[1];
+      dispatch(setUser({ token, userId }));
+      cookie.set("token", token);
       navigate("/");
     }
-    const { userId } = res.data;
-    localStorage.setItem("userId", JSON.stringify(userId));
-    const token = res.headers?.authorization.split(" ")[1];
-    dispatch(getUser({ token, userId }));
-    setCookie("token", token);
   };
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <ModalComponet
+          open={modal.open}
+          setModal={setModal}
+          message={modal.message}
+          title={modal.title}
+        />
         <InputContainer>
           <Label htmlFor="email">Email</Label>
           <Input

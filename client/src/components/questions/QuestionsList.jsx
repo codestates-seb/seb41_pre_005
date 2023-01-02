@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import QuestionsItem from "./QuestionsItem";
 import Pagination from "../pagination/Pagination";
 import { getQuestions } from "../../api/questionAPI";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { storeQuestions } from "../../redux/questionsReducer";
+
 const Main = styled.div`
   height: 100%;
   width: 100%;
@@ -20,14 +20,6 @@ const QuestionsList = (props) => {
   const location = useLocation();
   let query = location.search;
   useEffect(() => {
-    /*    async function loadQuestions() {
-      const questionData = await axios({
-        method: "get",
-        url: "data/data.json",
-      });
-      setQuestions(questionData.data.questions);
-    }
-    loadQuestions(); */
     async function paginationQuestions() {
       if (location.pathname === "/") return;
       if (query.trim() === "") {

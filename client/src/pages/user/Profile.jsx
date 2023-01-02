@@ -23,11 +23,6 @@ const ProfileContentLayout = styled.div`
   padding: 2.4rem;
 `;
 
-// const AboutLayout = styled.div`
-//   flex-grow: 1;
-//   margin: 1.2rem;
-// `;
-
 const Profile = () => {
   return (
     <>

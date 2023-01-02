@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useFormContext } from "react-hook-form";
 const InputElement = styled.input`
@@ -29,6 +29,7 @@ const Input = ({
   handleKeyup,
   type,
   error,
+  defaultValue,
 }) => {
   const [isValid, setIsValid] = useState(true);
   const { register, setValue } = useFormContext();
@@ -45,6 +46,7 @@ const Input = ({
       isValid={error ? false : true}
       {...(fieldName ? { ...register(fieldName, validation) } : null)}
       onKeyUp={handleKeyup ? handleKeyup : null}
+      defaultValue={defaultValue}
     />
   );
 };

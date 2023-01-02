@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ButtonBlue } from "./Header";
+import { ButtonBlue } from "./Headers/HeaderBtn";
 
 const PageHeaderHeadline = styled.div`
   padding-left: 2.4rem;
@@ -68,7 +68,6 @@ const AskQuestionWord = styled.div`
 `;
 const SearchResultsHead = styled.div`
   margin-top: 3rem;
-  margin-left: 15rem;
   display: flex;
   flex-direction: column;
 `;
@@ -162,5 +161,3 @@ export const SearchResultsHeadLine = () => {
     </SearchResultsHead>
   );
 };
-
-// const HeadLine = {QuestionsHeadLine, HomeHeadLine, TagsHeadline};

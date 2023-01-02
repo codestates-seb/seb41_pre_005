@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 const SearchbarContainer = styled.div`
   box-sizing: border-box;
   padding: 0 3.5rem;
@@ -11,12 +13,10 @@ const SearchbarContainer = styled.div`
     width: auto;
   }
 `;
-
 const SearchbarInput = styled.input`
   box-sizing: border-box;
   max-width: ${(props) => props.width || "1000px"};
   height: ${(props) => props.height || "30px"};
-
   border: 1px solid #babfc4;
   border-radius: 3px;
   padding-left: 30px;
@@ -28,7 +28,6 @@ const SearchbarInput = styled.input`
     box-shadow: 0px 0px 0px 4px #d8e5f2;
   }
 `;
-
 const SearchIcon = styled.div`
   position: absolute;
   left: 4.2rem;
@@ -41,36 +40,36 @@ const HeaderSearchbarContainer = styled(SearchbarContainer)`
   flex-grow: 1;
   max-width: 756px;
 `;
-
 const HeaderSearchbarInput = styled(SearchbarInput)`
   width: 100%;
   height: 33px;
   position: relative;
 `;
-
 const HeaderSearchIcon = styled(SearchIcon)``;
-
+const SearchInputSvg = styled.img``;
+const Form = styled.form`
+  width: 100%;
+`;
 const SearchInput = () => {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    console.log(data);
+    navigate("/search", { state: data });
+  };
   return (
     <HeaderSearchbarContainer id="search">
-      <HeaderSearchbarInput
-        type="text"
-        placeholder="Search..."
-      ></HeaderSearchbarInput>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <HeaderSearchbarInput
+          {...register("search")}
+          type="text"
+          placeholder="Search..."
+        ></HeaderSearchbarInput>
+      </Form>
       <HeaderSearchIcon>
-        <svg
-          aria-hidden="true"
-          className="svg-icon iconSearch"
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-        >
-          <path
-            style={{ fill: "rgb(131, 140, 149)" }}
-            d="m18 16.5-5.14-5.18h-.35a7 7 0 1 0-1.19 1.19v.35L16.5 18l1.5-1.5ZM12 7A5 5 0 1 1 2 7a5 5 0 0 1 10 0Z"
-          />
-        </svg>
+        <SearchInputSvg
+          src={process.env.PUBLIC_URL + "/images/searchInput.svg"}
+        ></SearchInputSvg>
       </HeaderSearchIcon>
     </HeaderSearchbarContainer>
   );
