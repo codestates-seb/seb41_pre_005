@@ -10,7 +10,7 @@ const TagsLayout = styled.div`
 `;
 const TagsContainer = styled.ul`
   display: inline;
-  margin-left: 2rem;
+  margin-left: ${(props) => props.marginLeft || "2rem"};
 `;
 const TagItem = styled.li`
   display: inline;
@@ -21,7 +21,6 @@ const TagLink = styled.a`
   color: hsl(205, 47%, 42%);
   background-color: hsl(205, 46%, 92%);
   border-color: transparent;
-
   display: inline-block;
   padding: 0.4rem 0.5rem;
   line-height: 1;
@@ -32,10 +31,10 @@ const TagLink = styled.a`
   border-radius: 3px;
   margin: 2px 2px 2px 0;
 `;
-const Tags = ({ tags }) => {
+const Tags = ({ tags, marginLeft }) => {
   return (
     <TagsLayout>
-      <TagsContainer>
+      <TagsContainer marginLeft={marginLeft}>
         {tags?.map((item, index) => (
           <TagItem key={item?.tagId}>
             <TagLink>{item?.tagName}</TagLink>
