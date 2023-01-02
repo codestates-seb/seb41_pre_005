@@ -12,6 +12,9 @@ const QuestionContainer = styled.div`
   padding: 1.6rem;
   font-size: 1.3rem;
   border-bottom: 0.1rem solid hsl(210, 8%, 90%);
+  &.taged {
+    background-color: rgb(253, 247, 226);
+  }
 `;
 
 const QuestionSummary = styled.div`
@@ -41,10 +44,10 @@ const SummaryMeta = styled.div`
 const TagContainer = styled.div`
   position: relative;
   right: 2rem;
-`
+`;
 const QuestionsItem = ({ question }) => {
   return (
-    <QuestionContainer>
+    <QuestionContainer className={question.isWatched ? "taged" : null}>
       <QuestionStatistics
         questionVote={question?.voteCount}
         answerConunt={question?.answerList?.length}
@@ -65,7 +68,9 @@ const QuestionsItem = ({ question }) => {
           )}
         </QuestionBody>
         <SummaryMeta>
-          <TagContainer><Tags tags={question?.tagList} /></TagContainer>
+          <TagContainer>
+            <Tags tags={question?.tagList} />
+          </TagContainer>
           <Author
             author={question?.displayName}
             createdAt={question?.createdAt}
