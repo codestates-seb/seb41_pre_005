@@ -18,6 +18,7 @@ import {
   RightContainer,
 } from "./Headers/HeaderContainer";
 import { HeaderSearchbar } from "./Headers/HeaderSearchbar";
+import SearchInput from "../search/SearchInput";
 const MenuDropdown = styled.div`
   width: 375px;
   position: absolute;
@@ -105,7 +106,7 @@ const Header = () => {
               <HeadBtnContainer>
                 <button className="forTeams_btn">Products</button>
               </HeadBtnContainer>
-              <HeaderSearchbar />
+              <SearchInput />
               <RightContainer>
                 <LoginIcon></LoginIcon>
                 <EtcBtn onClick={() => handleClickMenu("community")}>
