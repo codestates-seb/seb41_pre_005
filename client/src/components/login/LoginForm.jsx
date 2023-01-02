@@ -4,7 +4,7 @@ import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../../components/login/AlertWarning";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/usersReducer";
@@ -41,6 +41,7 @@ const LoginForm = (props) => {
   const dispatch = useDispatch();
   const methods = useForm();
   const navigate = useNavigate();
+  const cookie = new Cookies();
   const {
     formState: { errors },
   } = useForm();
@@ -57,14 +58,15 @@ const LoginForm = (props) => {
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
     const res = await login(data);
-
-    if (res.status !== 200) {
+    console.log(res);
+    if (res?.status !== 200) {
       return setIsAuthorized(false);
     } else {
       const { userId } = res.data;
       localStorage.setItem("userId", JSON.stringify(userId));
       const token = res.headers?.authorization.split(" ")[1];
       dispatch(setUser({ token, userId }));
+      cookie.set("token", token);
       navigate("/");
     }
   };
