@@ -1,6 +1,5 @@
 ## 💻 StackOverFlow Clone
 CodeStates 41기 Pre-Project 05 StackOverFlow 클론 코딩
-- [배포 주소](http://stackoverflowclone.s3-website.ap-northeast-2.amazonaws.com/questions)
 - 프로젝트 기간:
 
 ## 팀소개
