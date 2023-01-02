@@ -34,3 +34,18 @@ CodeStates 41기 Pre-Project 05 StackOverFlow 클론 코딩
 |refactor| 코드 리팩토링|
 |test| 테스트 코드|
 |chore| 빌드 업무 수정, 패키지 매니저 수정|
+
+
+![1_SignIn](https://user-images.githubusercontent.com/91445593/210200593-7224c8dc-01b5-4ea1-9d10-87adf6a40c23.gif)
+![2_Login](https://user-images.githubusercontent.com/91445593/210200599-0ffa4724-f5b4-456c-8d35-ddc557f8e107.gif)
+![3_TopQuestions](https://user-images.githubusercontent.com/91445593/210200605-56e1ecbc-4d84-4179-b2e3-07ec18dbe7aa.gif)
+![4_AllQuestionFindQuestionSort](https://user-images.githubusercontent.com/91445593/210200608-98684235-f0a4-449d-b6b4-53458aee2a39.gif)
+![5_Tags](https://user-images.githubusercontent.com/91445593/210200610-1ec71241-55d8-4c00-bbed-58b0fc561a40.gif)
+![6_AskQuestion](https://user-images.githubusercontent.com/91445593/210200611-d40fa6a1-175c-42a1-b7bb-2f9528ca2328.gif)
+![7_EditQuestion](https://user-images.githubusercontent.com/91445593/210200616-9c5279bd-c261-4384-a8d2-d3ce859caaa0.gif)
+![8_VoteAnswer](https://user-images.githubusercontent.com/91445593/210200627-053348d1-156b-42e6-bee6-be8b5eb8fa0b.gif)
+![9_MyPage](https://user-images.githubusercontent.com/91445593/210200636-d4563154-4f33-48db-89e2-6e3a1fe3ed57.gif)
+![10_DeleteQuestion](https://user-images.githubusercontent.com/91445593/210200638-6b7f331d-9320-43e3-bc95-c271f9f17665.gif)
+![11_FindQuestionSort](https://user-images.githubusercontent.com/91445593/210200640-30ff9665-fe2d-4cb8-aa49-21b6c73b83be.gif)
+![12_Logout](https://user-images.githubusercontent.com/91445593/210200643-3dcbd052-9590-425a-b3e7-118bde47a84f.gif)
+
