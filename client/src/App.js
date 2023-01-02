@@ -3,22 +3,15 @@ import styled from "styled-components";
 import SignUp from "./pages/user/SingUp";
 import Login from "./pages/user/Login";
 import Questions from "./pages/question/Questions";
-import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import Tags from "./pages/Tags";
 import Profile from "./pages/user/Profile";
-import SearchResults from "../src/pages/SearchResults";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import QuestionDetail from "./pages/question/QuestionDetail";
 import AskQuestion from "./pages/question/AskQuestion";
-
 import { Route, Routes } from "react-router-dom";
-
 import Header from "./components/common/Header";
-import { useEffect, useState } from "react";
-import LoginHeader from "./components/common/LoginHeader";
-import { Cookies } from "react-cookie";
+import EditQuestion from "./pages/question/EditQuestion";
 
 const PageLayout = styled.div`
   max-width: 126.4rem;
@@ -26,17 +19,9 @@ const PageLayout = styled.div`
   margin: auto;
 `;
 function App() {
-  // const [isLogin, setIsLogin] = useState(false);
-  // const getCookie = (name) => {
-  //   return cookies.get(name);
-  // };
-  // const cookie = getCookie("token");
-
   return (
     <>
       <Header />
-      {/* <LoginHeader /> */}
-      {/* {isToken ? <LoginHeader /> : <Header />} */}
       <PageLayout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -47,6 +32,7 @@ function App() {
           <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path="/users/:id" element={<Profile />} />
           <Route path="/tags" element={<Tags />} />
+          <Route path="/questions/edit" element={<EditQuestion />} />
         </Routes>
       </PageLayout>
     </>

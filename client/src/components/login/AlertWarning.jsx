@@ -3,7 +3,6 @@ import styled from "styled-components";
 const Alert = styled.img`
   width: 18px;
   height: 18px;
-  /* vertical-align: baseline; */
   display: block;
   position: absolute;
   bottom: 150%;

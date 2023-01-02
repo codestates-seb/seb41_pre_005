@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-// import AskQuestionButton from "../../components/questions/AskQuestionButton";
 import PostQuestionBtn from "../../components/questions/PostQuestionBtn";
 import AskQuestionForm from "../../components/questions/ask/AskQuestionForm";
 import AskQuestionTags from "../../components/questions/ask/AskQuestionTags";
@@ -25,6 +24,12 @@ const AskPageLayout = styled.div`
     height: 100vh;
     content: "";
     background-color: #f8f9f9;
+    @media screen and (max-height: 1024px) {
+      height: 160%;
+    }
+    @media screen and (max-height: 660px) {
+      height: 220%;
+    }
   }
 `;
 const AskContainer = styled.div`
@@ -40,7 +45,6 @@ const Main = styled.main`
   margin-bottom: 4.8rem;
 `;
 const Notice = styled.div`
-  /* 임시로 지정 */
   max-height: 411px;
 `;
 const TitleContainer = styled.div`
@@ -65,31 +69,19 @@ const initialValue = {
 };
 const AskQuestion = (props) => {
   const methods = useForm(initialValue);
-  const user = useSelector((state) => state.currentUser);
+  const userId = JSON.parse(localStorage.getItem("userId"));
   const cookie = new Cookies();
   const Token = cookie.get("token");
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    /*     const tagNameList = data.tags.map((item) => item.tagName);
-
-    const formData = {
-      content: data.content,
-      title: data.title,
-      tagNameList,
-    };
-    try {
-      const response = await axios({
-        method: "post",
-        url: "http://ec2-3-38-98-200.ap-northeast-2.compute.amazonaws.com:8090/questions/ask",
-        data: formData,
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    } */
-    console.log(user);
-    const res = await postQuestion(data, user.token || Token, user.userId);
+    const res = await postQuestion(data, Token, userId);
+    console.log(res);
+    if (res?.status !== 201) {
+      // alert("fail to post question");
+    } else {
+      navigate(`/questions/${res?.data?.data?.questionId}`);
+    }
     console.log(res);
   };
   return (

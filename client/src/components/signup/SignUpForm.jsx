@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import styled from "styled-components";
-import axios from "axios";
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../login/AlertWarning";
 import { signUp } from "../../api/userAPI";
@@ -41,22 +40,6 @@ const SignUpForm = (props) => {
   const methods = useForm(initialValue);
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
-    /*     console.log(data);
-    const res = await axios({
-      url: "/users/signup",
-      method: "post",
-      data: {
-        email: data.userEmail,
-        password: data.userPassword,
-        displayName: data.userName,
-      },
-    })
-      // .then((response) => {
-      //   console.log(response.data);
-      // })
-      .catch((error) => {
-        console.log(error);
-      }); */
     signUp(data);
     setModal({
       open: true,
@@ -66,8 +49,6 @@ const SignUpForm = (props) => {
         navigate("/login");
       },
     });
-    // alert(`환영합니다 ${data.userName}님!`);
-    // navigate("/login");
   };
 
   // console.log(watch("userName"));

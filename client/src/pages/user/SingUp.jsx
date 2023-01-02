@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SignUpLayout from "../../components/layout/SignUpLayout";
 import styled from "styled-components";
 

@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/common/Button";
 import Input from "../../components/common/Input";
-
 import { FormProvider, useForm } from "react-hook-form";
 import AlertWarning from "../../components/login/AlertWarning";
-
 import { useCookies } from "react-cookie";
 import { login } from "../../api/userAPI";
 import { useDispatch } from "react-redux";
-import { getUser } from "../../redux/usersReducer";
+import { setUser } from "../../redux/usersReducer";
 import { useNavigate } from "react-router-dom";
 import ModalComponet from "../common/Modal";
 
@@ -72,17 +70,6 @@ const LoginForm = (props) => {
   };
   const error = methods?.formState?.errors;
   const onSubmit = async (data) => {
-    /*     try {
-      const res = await axios({
-        method: "post",
-        data,
-        url: "/users/login",
-      });
-      console.log(res);
-    } catch (e) {
-      console.log(e);
-    } */
-
     const res = await login(data);
     if (res?.status !== 200) {
       setModal({
@@ -99,7 +86,7 @@ const LoginForm = (props) => {
     const { userId } = res.data;
     localStorage.setItem("userId", JSON.stringify(userId));
     const token = res.headers?.authorization.split(" ")[1];
-    dispatch(getUser({ token, userId }));
+    dispatch(setUser({ token, userId }));
     setCookie("token", token);
   };
   return (

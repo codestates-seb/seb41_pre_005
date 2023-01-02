@@ -1,13 +1,12 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../api/userAPI";
+import { Cookies } from "react-cookie";
 
 const ProfileHead = styled.div`
   width: 106.7rem;
   height: 14.4rem;
-  /* display: flex; */
 `;
 
 const UserNameContain = styled.div`
@@ -30,6 +29,7 @@ const EditBtn = styled.button`
   font-size: 1.2rem;
   cursor: pointer;
   background-color: white;
+  margin-top: 5rem;
 `;
 const ProfileBtn = styled.button`
   width: 7.8rem;
@@ -40,9 +40,6 @@ const ProfileBtn = styled.button`
   margin-left: 0.5rem;
   cursor: pointer;
   background-color: white;
-  /* &:hover {
-  background-color: #f8f9f9;
-} */
 `;
 const ProfileCreatedAt = styled.div`
   margin-top: 0.5rem;
@@ -71,9 +68,7 @@ const UploadTime = styled.time`
   white-space: nowrap;
   font-size: 1.3rem;
 `;
-// const GetUserName = (props) => {
-//   return <UserNameContain>{props.userName}</UserNameContain>;
-// };
+const Cake = styled.img``;
 
 const HeaderLineTime = ({ createdAt }) => {
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -112,61 +107,27 @@ const HeaderLineTime = ({ createdAt }) => {
 };
 
 const ProfileHeader = () => {
-  // const [userName, setUserName] = useState();
-  // const [createAt, setCreateAt] = useState();
-  // useEffect(() => {
-  //   async function getData(id) {
-  //     const userData = await axios({
-  //       method: "get",
-  //       url: `/users/${id}`,
-  //     });
-  //     setUserName(userData.data.displayName);
-  //     setCreateAt(userData.data.createdAt);
-  //   }
-  //   getData();
-  // }, []);
-  const { id } = useParams();
+  const cookie = new Cookies();
+  const Token = cookie.get("token");
+  const userId = JSON.parse(localStorage.getItem("userId"));
   const [userInfo, setUserInfo] = useState();
   useEffect(() => {
     async function getUserInfo() {
-      const res = await getUser(id);
-      console.log(res);
+      const res = await getUser(Token, userId);
       setUserInfo(res);
     }
     getUserInfo();
-    // dispatch(getUser({ token, userId }));
-    // setUserInfo(userId)
   }, []);
-
-  // useEffect(() => {
-  //   getUser().then((res) => {
-  //     setUserName(res.data.displayName);
-  //     setCreateAt(res.data.createdAt);
-  //   });
-  // }, []);
 
   return (
     <ProfileHead>
       <ProfileImg></ProfileImg>
       <UserNameContain>{userInfo?.displayName}</UserNameContain>
-      {/* {userInfo.displayname} */}
       <ProfileCreatedAt>
-        <svg
-          aria-hidden="true"
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          style={{ marginRight: "20px" }}
-        >
-          <path
-            d="M9 4.5a1.5 1.5 0 0 0 1.28-2.27L9 0 7.72 2.23c-.14.22-.22.48-.22.77 0 .83.68 1.5 1.5 1.5Zm3.45 7.5-.8-.81-.81.8c-.98.98-2.69.98-3.67 0l-.8-.8-.82.8c-.49.49-1.14.76-1.83.76-.55 0-1.3-.17-1.72-.46V15c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2v-2.7c-.42.28-1.17.45-1.72.45-.69 0-1.34-.27-1.83-.76Zm1.3-5H10V5H8v2H4.25C3 7 2 8 2 9.25v.9c0 .81.91 1.47 1.72 1.47.39 0 .77-.14 1.03-.42l1.61-1.6 1.6 1.6a1.5 1.5 0 0 0 2.08 0l1.6-1.6 1.6 1.6c.28.28.64.43 1.03.43.81 0 1.73-.67 1.73-1.48v-.9C16 8.01 15 7 13.75 7Z"
-            fill="grey"
-          ></path>
-        </svg>
+        <Cake src={process.env.PUBLIC_URL + "/images/profile/cake.svg"}></Cake>
         <MemberPeriod>
           Member for
-          <HeaderLineTime>{userInfo?.createdAt}</HeaderLineTime>
-          {/* <ElapsedTime>{userInfo?.createdAt}</ElapsedTime> */}
+          <HeaderLineTime createdAt={userInfo?.createdAt}></HeaderLineTime>
         </MemberPeriod>
       </ProfileCreatedAt>
       <ProfileBtnContainer>

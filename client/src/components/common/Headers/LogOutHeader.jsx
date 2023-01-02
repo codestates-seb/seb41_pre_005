@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ButtonBlue, ButtonSblue } from "./HeaderSet";
+import { ButtonBlue, ButtonSblue } from "./HeaderBtn";
 import SearchInput from "../../search/SearchInput";
 
 export const HeadBtnContainer = styled.div`

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import AskEditor from "./AskEditor";
+
 const DetailProblem = styled.div`
   padding: 2.4rem;
   background-color: white;
   border: 1px solid hsl(210, 8%, 90%);
   height: 100%;
 `;
-
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;

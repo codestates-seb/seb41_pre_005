@@ -22,7 +22,6 @@ const LoginContainer = styled.div`
     content: "";
     background-color: #f1f2f3;
   }
-  /* background-color: #f1f2f3; */
 `;
 const FormContainer = styled.div`
   width: 27.8rem;

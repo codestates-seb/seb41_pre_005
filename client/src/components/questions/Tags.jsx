@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 const TagsLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -9,6 +10,7 @@ const TagsLayout = styled.div`
 `;
 const TagsContainer = styled.ul`
   display: inline;
+  margin-left: 2rem;
 `;
 const TagItem = styled.li`
   display: inline;

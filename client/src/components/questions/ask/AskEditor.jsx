@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import styled from "styled-components";
 import { useFormContext } from "react-hook-form";
+
 const EditorContainer = styled.div`
   min-height: 260px;
 `;
@@ -13,7 +14,7 @@ const ErrorMessage = styled.div`
   color: red;
   font-size: 1.3rem;
 `;
-const AskEditor = ({ label, validation }) => {
+const AskEditor = ({ label, validation, defaultValue }) => {
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -84,6 +85,7 @@ const AskEditor = ({ label, validation }) => {
         modules={modules}
         formats={formats}
         onChange={onChangeHandler}
+        defaultValue={defaultValue}
       />
       <ErrorMessage>{errors?.content?.message}</ErrorMessage>
     </EditorContainer>

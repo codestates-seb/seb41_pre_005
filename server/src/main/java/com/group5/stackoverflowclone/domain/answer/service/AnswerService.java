@@ -68,7 +68,7 @@ public class AnswerService {
             answer.upVotedUserId.add(userId);
             voteCount++;
         } else if (voteStatus == VoteStatus.ALREADY_UP_VOTED) {
-
+            throw new BusinessLogicException(ExceptionCode.ALREADY_UP_VOTED);
         } else if (voteStatus == VoteStatus.ALREADY_DOWN_VOTED) {
             answer.downVotedUserId.remove(userId);
             voteCount++;
@@ -90,7 +90,7 @@ public class AnswerService {
             answer.upVotedUserId.remove(userId);
             voteCount--;
         } else if (voteStatus == VoteStatus.ALREADY_DOWN_VOTED) {
-
+            throw new BusinessLogicException(ExceptionCode.ALREADY_DOWN_VOTED);
         }
         answer.setVoteCount(voteCount);
     }

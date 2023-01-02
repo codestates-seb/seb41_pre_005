@@ -12,20 +12,13 @@ const ButtonContainer = styled.div`
 `;
 const AnswerForm = (props) => {
   const methods = useForm();
-  const user = useSelector((state) => state.currentUser);
   const cookie = new Cookies();
   const Token = cookie.get("token");
   const id = useParams();
   const webStorageUserId = JSON.parse(localStorage.getItem("userId"));
-  console.log(webStorageUserId);
+
   const onSubmit = async (data) => {
-    const res = await postAnswer(
-      data,
-      user.token || Token,
-      id,
-      user.userId || webStorageUserId
-    );
-    console.log(res);
+    const res = await postAnswer(data, Token, id, webStorageUserId);
     if (res.status === 201) {
       window.location.replace(`/questions/${id.id}`);
     }

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ButtonBlue } from "./Headers/HeaderSet";
+import { ButtonBlue } from "./Headers/HeaderBtn";
 
 const PageHeaderHeadline = styled.div`
   padding-left: 2.4rem;
@@ -162,5 +162,3 @@ export const SearchResultsHeadLine = () => {
     </SearchResultsHead>
   );
 };
-
-// const HeadLine = {QuestionsHeadLine, HomeHeadLine, TagsHeadline};
