@@ -12,7 +12,7 @@ CodeStates 41기 Pre-Project 05 StackOverFlow 클론 코딩
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |<img width="140px" height="140px" src="https://user-images.githubusercontent.com/111180375/210194653-db128c51-b09b-4a42-8012-4bcdfdecfd2b.png">|<img width="140px" height="140px" src="https://user-images.githubusercontent.com/111180375/210195387-1bd0cbb1-f83b-4c72-b385-1bcf6ee0f246.png">|<img width="140px" height="140px" src="https://user-images.githubusercontent.com/111180375/210195124-375e3d90-bf48-4f58-aa57-f1e05ebd4d06.png">|<img width="140px" height="140px" src="https://user-images.githubusercontent.com/111180375/210194880-e66d3fcf-4942-498b-b493-acb78d1ebe5b.png">|<img width="140px" height="140px" src="https://user-images.githubusercontent.com/111180375/210194930-22b263cc-e62a-4051-a713-fadaec6be23b.png">|<img width="140px" height="140px" src="https://user-images.githubusercontent.com/111180375/210195435-ada5f804-0ba8-423c-b838-10cc3ed1d96c.png">|
 |FE(Captain)|FE|FE|BE|BE|BE|
-|[koreadinosaur](https://github.com/koreadinosaur)|[DPDPO](https://github.com/DPDPO)|[mjwoong](https://github.com/mjwoong)|[hosoo3513](https://github.com/hosoo3513)|[GGOOPARK](https://github.com/GGOOPARK)|[Kim-Jihyun1](https://github.com/Kim-Jihyun1)|
+|[koreadinosaur](https://github.com/koreadinosaur)|[DPDPO](https://github.com/DPDPO)|[mjwoong](https://github.com/mjwoong)|[hosoo3513](https://github.com/hosoo3513)|[GGOOPARK](https://github.com/GGOOPARK)|[7ihyun](https://github.com/7ihyun)|
 
 <br>
 
